@@ -1,5 +1,5 @@
 
-# Specification 'shape-dection-api'
+# Specification 'shape-detection-api'
 
-This is the repository for shape-dection-api. You're welcome to contribute! Let's make the Web rock our socks
+This is the repository for shape-detection-api. You're welcome to contribute! Let's make the Web rock our socks
 off!
