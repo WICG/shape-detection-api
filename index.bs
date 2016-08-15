@@ -1,0 +1,50 @@
+<pre class="metadata">
+Title: Shape detection in Images
+Status: ED
+ED: https://wicg.github.io/shape-detection-api
+Shortname: shape-detection-api
+Level: 1
+Editor: Miguel Casas-Sanchez, Google Inc., mcasas@google.com
+Abstract: This document describes an API for surfacing accelerated capabilities for detection of shapes in still images or live image feeds. The shapes can be, but are not limited to, human faces.
+Group: wicg
+!Participate: <a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
+!Participate: <a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a>
+</pre>
+
+<style>
+table {
+  border-collapse: collapse;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  text-align: left;
+}
+table caption {
+  font-weight: bold;
+  padding: 3px;
+  text-align: left;
+}
+table td, table th {
+  border: 1px solid black;
+  padding: 3px;
+}
+</style>
+
+# Introduction # {#introduction}
+
+Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
+
+<pre class="anchors">
+spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
+    type: interface
+        text: Array; url: sec-array-objects
+        text: Promise; url:sec-promise-objects
+        text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
+</pre>
+
+<pre class="link-defaults">
+spec: html
+    type: dfn
+        text: allowed to show a popup
+        text: in parallel
+        text: incumbent settings object
+</pre>
