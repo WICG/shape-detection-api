@@ -1444,7 +1444,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
   <div class="p-summary" data-fill-with="abstract">
-   <p>This document describes an API for surfacing accelerated capabilities for detection of shapes in still images or live image feeds. The shapes can be, but are not limited to, human faces.</p>
+   <p>This document describes an API providing access to accelerated shape detectors (e.g. human faces) for still images and/or live image feeds.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
@@ -1461,14 +1461,17 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <nav data-fill-with="table-of-contents" id="toc">
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
-    <li><a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
-    <li><a href="#shape-detection-in-the-wild"><span class="secno">2</span> <span class="content">Shape detection in the wild</span></a>
     <li>
-     <a href="#api"><span class="secno">3</span> <span class="content">Shape Detection API</span></a>
+     <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
-      <li><a href="#face-detection-api"><span class="secno">3.1</span> <span class="content">Face Detection API</span></a>
+      <li><a href="#shape-detection-in-the-wild"><span class="secno">1.1</span> <span class="content">Shape detection in the wild</span></a>
      </ol>
-    <li><a href="#examples"><span class="secno">4</span> <span class="content">Examples</span></a>
+    <li>
+     <a href="#api"><span class="secno">2</span> <span class="content">Shape Detection API</span></a>
+     <ol class="toc">
+      <li><a href="#face-detection-api"><span class="secno">2.1</span> <span class="content">Face Detection API</span></a>
+     </ol>
+    <li><a href="#examples"><span class="secno">3</span> <span class="content">Examples</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -1488,8 +1491,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <main>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p>Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.</p>
-   <h2 class="heading settled" data-level="2" id="shape-detection-in-the-wild"><span class="secno">2. </span><span class="content">Shape detection in the wild</span><a class="self-link" href="#shape-detection-in-the-wild"></a></h2>
-   <p>Object-class detection in general consists on "the task is to find the locations and sizes of all objects in an image that belong to a given class. Examples include upper torsos, pedestrians, and cars." <a data-link-type="biblio" href="#biblio-wikipedia">[wikipedia]</a> . Face detection, on the other hand, focuses on detecting near-front facing human faces. A widespread class of detection algorithms use a hunting algorithm that tries to match a cascade of classifiers in several areas of the image and for several potential object sizes, which turns the process into extremely computationally complex. It is not the idea here to compare those algorithms, nor to offer a software fallback implementation of any of them for the Web, but to offer the available hardware capabilities, if any, to the Web Applications.</p>
+   <h3 class="heading settled" data-level="1.1" id="shape-detection-in-the-wild"><span class="secno">1.1. </span><span class="content">Shape detection in the wild</span><a class="self-link" href="#shape-detection-in-the-wild"></a></h3>
+   <p>In object-class detection "the task is to find the locations and sizes of all objects in an image that belong to a given class. Examples include upper torsos, pedestrians, and cars." <a data-link-type="biblio" href="#biblio-wikipedia">[wikipedia]</a> . Face detection, on the other hand, focuses on detecting near-front facing human faces. A widespread class of detection algorithms use a hunting algorithm that tries to match a cascade of classifiers in several areas of the image and for several potential object sizes, which turns the process into extremely computationally complex. It is not the idea here to compare those algorithms, nor to offer a software fallback implementation of any of them for the Web, but to offer the available hardware capabilities, if any, to the Web Applications.</p>
    <p class="note" role="note"> Note that Face Detection (resp., Object) is not the same as Face Tracking nor Face Recognition, albeit those operations are usually interrelated. </p>
    <p class="note" role="note">Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found in <a href="">https://github.com/mtschirs/js-objectdetect#performance>mtschirs GitHub repo</a> </p>
    <p>Some use cases of having object/face detection in the Web:</p>
@@ -1504,8 +1507,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
      <p>Fun! you can map glasses, funny hats and other overlays on top of the detected faces</p>
    </ul>
    <p>Finally, note that using a particular Face/Object Detector does not preclude using others; in this case the hardware provided results can, e.g. be used as precursor or in parallel to user-defined ones.</p>
-   <h2 class="heading settled" data-level="3" id="api"><span class="secno">3. </span><span class="content">Shape Detection API</span><a class="self-link" href="#api"></a></h2>
-   <p>Individual browsers MAY provide <code class="idl"><a data-link-type="idl" href="#detector" id="ref-for-detector-1">Detector</a></code>s, indicating the availability of hardware providing a <code class="idl"><a data-link-type="idl" href="#dom-detector-detect" id="ref-for-dom-detector-detect-1">detect()</a></code> accelerated operation. The result of the detection operation is a Promise that may be resolved with a <code>Sequence</code> of <code class="idl"><a data-link-type="idl" href="#detectedobject" id="ref-for-detectedobject-1">DetectedObject</a></code>s, each one of a given <code class="idl"><a data-link-type="idl" href="#enumdef-shapetype" id="ref-for-enumdef-shapetype-1">ShapeType</a></code>, and with a <var>boundingBox</var>.</p>
+   <h2 class="heading settled" data-level="2" id="api"><span class="secno">2. </span><span class="content">Shape Detection API</span><a class="self-link" href="#api"></a></h2>
+   <p>Individual browsers MAY provide <code class="idl"><a data-link-type="idl" href="#detector" id="ref-for-detector-1">Detector</a></code>s, indicating the availability of hardware providing a <code class="idl"><a data-link-type="idl" href="#dom-detector-detect" id="ref-for-dom-detector-detect-1">detect()</a></code> accelerated operation.</p>
 <pre class="idl highlight def"><span class="kt">typedef</span> (<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a> <span class="kt">or</span>
          <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlvideoelement">HTMLVideoElement</a> <span class="kt">or</span>
          <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a> <span class="kt">or</span>
@@ -1515,13 +1518,13 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 
 [<a class="nv idl-code" data-link-type="extended-attribute">NoInterfaceObject</a>, <a class="nv idl-code" data-link-type="extended-attribute">exposed</a>=<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/browsers.html#window">Window</a>,<a class="nv idl-code" data-link-type="extended-attribute">Worker</a>]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detector">Detector</dfn> {
-    <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedobject" id="ref-for-detectedobject-2">DetectedObject</a>>> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Detector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-detector-detect">detect</dfn>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="Detector/detect(image)" data-dfn-type="argument" data-export="" id="dom-detector-detect-image-image">image<a class="self-link" href="#dom-detector-detect-image-image"></a></dfn>);
+    <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedobject" id="ref-for-detectedobject-1">DetectedObject</a>>> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Detector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-detector-detect">detect</dfn>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="Detector/detect(image)" data-dfn-type="argument" data-export="" id="dom-detector-detect-image-image">image<a class="self-link" href="#dom-detector-detect-image-image"></a></dfn>);
 };
 </pre>
+   <p>The result of a <code class="idl"><a data-link-type="idl" href="#dom-detector-detect" id="ref-for-dom-detector-detect-2">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> is a Promise that may be resolved with a <code>Sequence</code> of <code class="idl"><a data-link-type="idl" href="#detectedobject" id="ref-for-detectedobject-2">DetectedObject</a></code>s, each one of a given <code class="idl"><a data-link-type="idl" href="#enumdef-shapetype" id="ref-for-enumdef-shapetype-1">ShapeType</a></code> and delimited by a <var>boundingBox</var>.</p>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-shapetype">ShapeType</dfn> {
   <dfn class="s idl-code" data-dfn-for="ShapeType" data-dfn-type="enum-value" data-export="" data-lt="&quot;face&quot;|face" id="dom-shapetype-face">"face"<a class="self-link" href="#dom-shapetype-face"></a></dfn>,
   <dfn class="s idl-code" data-dfn-for="ShapeType" data-dfn-type="enum-value" data-export="" data-lt="&quot;qr&quot;|qr" id="dom-shapetype-qr">"qr"<a class="self-link" href="#dom-shapetype-qr"></a></dfn>,
-  // Maybe others?
 };
 
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedobject">DetectedObject</dfn> {
@@ -1530,11 +1533,12 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   // Consider adding here some extras: confidence level, etc.
 };
 </pre>
-   <h3 class="heading settled" data-level="3.1" id="face-detection-api"><span class="secno">3.1. </span><span class="content">Face Detection API</span><a class="self-link" href="#face-detection-api"></a></h3>
+   <p class="note" role="note"> So far, <dfn data-dfn-type="dfn" data-noexport="" id="shapetypeface">ShapeType.face<a class="self-link" href="#shapetypeface"></a></dfn> and <dfn data-dfn-type="dfn" data-noexport="" id="shapetypeqr">ShapeType.qr<a class="self-link" href="#shapetypeqr"></a></dfn> are the only expected detector types forecasted, others might be added as needed. </p>
+   <h3 class="heading settled" data-level="2.1" id="face-detection-api"><span class="secno">2.1. </span><span class="content">Face Detection API</span><a class="self-link" href="#face-detection-api"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-1">FaceDetector</a></code> is essentially a straightforward implementation of the previous <code class="idl"><a data-link-type="idl" href="#detector" id="ref-for-detector-2">Detector</a></code> with a Dictionary of <code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-1">FaceDetectorOptions</a></code> for creation.</p>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-facedetectoroptions">FaceDetectorOptions</dfn> {
   <span class="kt">boolean</span> <dfn class="nv idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" data-type="boolean " id="dom-facedetectoroptions-fastmode">fastMode<a class="self-link" href="#dom-facedetectoroptions-fastmode"></a></dfn>;
-  <a class="n" data-link-type="idl-name">integer</a> <dfn class="nv idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" data-type="integer " id="dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces<a class="self-link" href="#dom-facedetectoroptions-maxdetectedfaces"></a></dfn>;
+  <span class="kt">unsigned</span> <span class="kt">short</span> <dfn class="nv idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" data-type="unsigned short " id="dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces<a class="self-link" href="#dom-facedetectoroptions-maxdetectedfaces"></a></dfn>;
   // etc...
 };
 
@@ -1544,7 +1548,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 };
 <a class="n" data-link-type="idl-name" href="#facedetector" id="ref-for-facedetector-2">FaceDetector</a> <span class="kt">implements</span> <a class="n" data-link-type="idl-name" href="#detector" id="ref-for-detector-3">Detector</a>;
 </pre>
-   <h2 class="heading settled" data-level="4" id="examples"><span class="secno">4. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
+   <h2 class="heading settled" data-level="3" id="examples"><span class="secno">3. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <div class="example" id="example-3a43a0a2">
     <a class="self-link" href="#example-3a43a0a2"></a> 
 <pre class="highlight"><span></span><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">FaceDetector</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
@@ -1719,22 +1723,24 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#dom-detectedobject-boundingbox">boundingBox</a><span>, in §3</span>
-   <li><a href="#detectedobject">DetectedObject</a><span>, in §3</span>
-   <li><a href="#dom-detector-detect">detect(image)</a><span>, in §3</span>
-   <li><a href="#detector">Detector</a><span>, in §3</span>
-   <li><a href="#dom-shapetype-face">"face"</a><span>, in §3</span>
-   <li><a href="#dom-shapetype-face">face</a><span>, in §3</span>
-   <li><a href="#facedetector">FaceDetector</a><span>, in §3.1</span>
-   <li><a href="#dom-facedetector-facedetector">FaceDetector()</a><span>, in §3.1</span>
-   <li><a href="#dom-facedetector-facedetector">FaceDetector(faceDetectorOptions)</a><span>, in §3.1</span>
-   <li><a href="#dictdef-facedetectoroptions">FaceDetectorOptions</a><span>, in §3.1</span>
-   <li><a href="#dom-facedetectoroptions-fastmode">fastMode</a><span>, in §3.1</span>
-   <li><a href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a><span>, in §3.1</span>
-   <li><a href="#dom-shapetype-qr">"qr"</a><span>, in §3</span>
-   <li><a href="#dom-shapetype-qr">qr</a><span>, in §3</span>
-   <li><a href="#enumdef-shapetype">ShapeType</a><span>, in §3</span>
-   <li><a href="#dom-detectedobject-type">type</a><span>, in §3</span>
+   <li><a href="#dom-detectedobject-boundingbox">boundingBox</a><span>, in §2</span>
+   <li><a href="#detectedobject">DetectedObject</a><span>, in §2</span>
+   <li><a href="#dom-detector-detect">detect(image)</a><span>, in §2</span>
+   <li><a href="#detector">Detector</a><span>, in §2</span>
+   <li><a href="#dom-shapetype-face">"face"</a><span>, in §2</span>
+   <li><a href="#dom-shapetype-face">face</a><span>, in §2</span>
+   <li><a href="#dom-facedetector-facedetector">FaceDetector()</a><span>, in §2.1</span>
+   <li><a href="#facedetector">FaceDetector</a><span>, in §2.1</span>
+   <li><a href="#dom-facedetector-facedetector">FaceDetector(faceDetectorOptions)</a><span>, in §2.1</span>
+   <li><a href="#dictdef-facedetectoroptions">FaceDetectorOptions</a><span>, in §2.1</span>
+   <li><a href="#dom-facedetectoroptions-fastmode">fastMode</a><span>, in §2.1</span>
+   <li><a href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a><span>, in §2.1</span>
+   <li><a href="#dom-shapetype-qr">"qr"</a><span>, in §2</span>
+   <li><a href="#dom-shapetype-qr">qr</a><span>, in §2</span>
+   <li><a href="#enumdef-shapetype">ShapeType</a><span>, in §2</span>
+   <li><a href="#shapetypeface">ShapeType.face</a><span>, in §2</span>
+   <li><a href="#shapetypeqr">ShapeType.qr</a><span>, in §2</span>
+   <li><a href="#dom-detectedobject-type">type</a><span>, in §2</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -1793,7 +1799,6 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 <span class="kt">enum</span> <a class="nv" href="#enumdef-shapetype">ShapeType</a> {
   <a class="s" href="#dom-shapetype-face">"face"</a>,
   <a class="s" href="#dom-shapetype-qr">"qr"</a>,
-  // Maybe others?
 };
 
 <span class="kt">interface</span> <a class="nv" href="#detectedobject">DetectedObject</a> {
@@ -1804,7 +1809,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> {
   <span class="kt">boolean</span> <a class="nv" data-type="boolean " href="#dom-facedetectoroptions-fastmode">fastMode</a>;
-  <a class="n" data-link-type="idl-name">integer</a> <a class="nv" data-type="integer " href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a>;
+  <span class="kt">unsigned</span> <span class="kt">short</span> <a class="nv" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a>;
   // etc...
 };
 
@@ -1818,38 +1823,38 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <aside class="dfn-panel" data-for="detector">
    <b><a href="#detector">#detector</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-detector-1">3. Shape Detection API</a>
-    <li><a href="#ref-for-detector-2">3.1. Face Detection API</a> <a href="#ref-for-detector-3">(2)</a>
+    <li><a href="#ref-for-detector-1">2. Shape Detection API</a>
+    <li><a href="#ref-for-detector-2">2.1. Face Detection API</a> <a href="#ref-for-detector-3">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-detector-detect">
    <b><a href="#dom-detector-detect">#dom-detector-detect</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-detector-detect-1">3. Shape Detection API</a>
+    <li><a href="#ref-for-dom-detector-detect-1">2. Shape Detection API</a> <a href="#ref-for-dom-detector-detect-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-shapetype">
    <b><a href="#enumdef-shapetype">#enumdef-shapetype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enumdef-shapetype-1">3. Shape Detection API</a> <a href="#ref-for-enumdef-shapetype-2">(2)</a>
+    <li><a href="#ref-for-enumdef-shapetype-1">2. Shape Detection API</a> <a href="#ref-for-enumdef-shapetype-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="detectedobject">
    <b><a href="#detectedobject">#detectedobject</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-detectedobject-1">3. Shape Detection API</a> <a href="#ref-for-detectedobject-2">(2)</a>
+    <li><a href="#ref-for-detectedobject-1">2. Shape Detection API</a> <a href="#ref-for-detectedobject-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-facedetectoroptions">
    <b><a href="#dictdef-facedetectoroptions">#dictdef-facedetectoroptions</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-facedetectoroptions-1">3.1. Face Detection API</a> <a href="#ref-for-dictdef-facedetectoroptions-2">(2)</a>
+    <li><a href="#ref-for-dictdef-facedetectoroptions-1">2.1. Face Detection API</a> <a href="#ref-for-dictdef-facedetectoroptions-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="facedetector">
    <b><a href="#facedetector">#facedetector</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-facedetector-1">3.1. Face Detection API</a> <a href="#ref-for-facedetector-2">(2)</a>
+    <li><a href="#ref-for-facedetector-1">2.1. Face Detection API</a> <a href="#ref-for-facedetector-2">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
