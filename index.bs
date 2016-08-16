@@ -33,7 +33,7 @@ table td, table th {
 
 Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
 
-# Shape detection in the wild # {#shape-detection}
+# Shape detection in the wild
 
 Object-class detection in general consists on "the task is to find the locations and sizes of all objects in an image that belong to a given class. Examples include upper torsos, pedestrians, and cars." [[wikipedia]] . Face detection, on the other hand, focuses on detecting near-front facing human faces. A widespread class of detection algorithms use a hunting algorithm that tries to match a cascade of classifiers in several areas of the image and for several potential object sizes, which turns the process into extremely computationally complex. It is not the idea here to compare those algorithms, nor to offer a software fallback implementation of any of them for the Web, but to offer the available hardware capabilities, if any, to the Web Applications.
 
@@ -55,48 +55,9 @@ Finally, note that using a particular Face/Object Detector does not preclude usi
 
 # Shape Detection API # {#api}
 
-Individual browsers MAY provide the capabilitiy to create a {{Detector}} of {{ShapeDetectorType}}.
+Individual browsers MAY provide {{Detector}}s, indicating the availability of hardware providing a {{detect()}} accelerated operation. The result of the detection operation is a Promise that may be resolved with a <code>Sequence</code> of {{DetectedObject}}s, each one of a given {{ShapeType}}, and with a |boundingBox|.
 
 <pre class="idl">
-[NoInterfaceObject, exposed=Window,Worker]
-interface Detector {
-    Promise &lt;sequence&lt;DetectedObject>> detect(ImageBitmapSource image);
-};
-
-[Constructor(optional FaceDetectorOptions faceDetectorOptions)]
-interface FaceDetector {
-    // face detector specific attributes and methods
-};
-FaceDetector implements Detector;
-
-partial interface Navigator {
-  Promise&lt;Detector> getShapeDetector(ShapeDetectorType type);
-};
-</pre>
-
-<pre class="idl">
-enum ShapeDetectorType {
-  "face",
-  "qr",
-  // etc...
-};
-
-dictionary ShapeExtras {
-  float confidence = 0.0;
-  // etc...
-};
-
-dictionary FaceDetectorOptions {
-  DOMRect minDetectedFaceSize;
-  // etc...
-};
-
-interface DetectedObject {
-  readonly attribute ShapeDetectorType type;
-  readonly attribute DOMRect boundingBox;
-  readonly attribute ShapeExtras extras;
-};
-
 typedef (HTMLImageElement or
          HTMLVideoElement or
          HTMLCanvasElement or
@@ -104,25 +65,70 @@ typedef (HTMLImageElement or
          ImageData or
          ImageBitmap) ImageBitmapSource;
 
+[NoInterfaceObject, exposed=Window,Worker]
+interface Detector {
+    Promise&lt;sequence&lt;DetectedObject>> detect(ImageBitmapSource image);
+};
 </pre>
+
+<pre class="idl">
+enum ShapeType {
+  "face",
+  "qr",
+  // Maybe others?
+};
+
+interface DetectedObject {
+  readonly attribute ShapeType type;
+  readonly attribute DOMRect boundingBox;
+  // Consider adding here some extras: confidence level, etc.
+};
+</pre>
+
+## Face Detection API
+
+{{FaceDetector}} is essentially a straightforward implementation of the previous {{Detector}} with a Dictionary of {{FaceDetectorOptions}} for creation.
+
+<pre class="idl">
+dictionary FaceDetectorOptions {
+  boolean fastMode;
+  integer maxDetectedFaces;
+  // etc...
+};
+
+[Constructor(optional FaceDetectorOptions faceDetectorOptions)]
+interface FaceDetector {
+  // FaceDetector specific attributes and methods
+};
+FaceDetector implements Detector;
+</pre>
+
 
 # Examples # {#examples}
 
+
 <div class="example" highlight="javascript">
 <pre>
-navigator.getShapeDetector('face')
-.catch(() => {
-  console.error("Face Detection most likely not supported");
-}).then(detector => {
-  // Assume |theImage| is e.g. a &lt;img> content, or a Blob.
-	return detector.detect(theImage);
-}).then(detectedShapes => {
+if (typeof FaceDetector !== 'function') {
+	console.error('Face Detection not supported in this platform');
+}
+</pre>
+</div>
+
+<div class="example" highlight="javascript">
+<pre>
+let faceDetector = new FaceDetector({fastMode: true, maxDetectedFaces: 1});
+// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
+
+faceDetector.detect(theImage)
+.then(detectedShapes => {
   for (const shape of detectedShapes) {
-    console.assert(shape.type == 'face', "Detected object should be a face");
-    console.log( ' face detected at ' +
-        '(${shape.boundingBox.x}, ${shape.boundingBox.y}),' +
+    console.assert(shape.type == 'face');
+    console.log(' Face @ (${shape.boundingBox.x}, ${shape.boundingBox.y}),' +
         ' size ${shape.boundingBox.width}x${shape.boundingBox.height}');
   }
+}).catch(() => {
+  console.error("Face Detection failed, boo.");
 })
 </pre>
 </div>
