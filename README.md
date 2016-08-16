@@ -1,5 +1,5 @@
 
-# Specification 'shape-detection-api'
+# Shape Detection API Specification _:stars:_:movie_camera:
 
 This is the repository for `shape-detection-api`, an experimental API for detecting Shapes (and Faces) in live or still images on the Web, using hardware acceleration.
 
