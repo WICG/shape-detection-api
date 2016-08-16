@@ -41,7 +41,7 @@ In object-class detection "the task is to find the locations and sizes of all ob
 Note that Face Detection (resp., Object) is not the same as Face Tracking nor Face Recognition, albeit those operations are usually interrelated.
 </p>
 
-<p class="note">Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found in <a href=>https://github.com/mtschirs/js-objectdetect#performance>mtschirs GitHub repo</a>
+<p class="note">Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found in <a href=https://github.com/mtschirs/js-objectdetect#performance>mtschirs' GitHub repo</a>
 </p>
 
 Some use cases of having object/face detection in the Web:
