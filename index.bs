@@ -113,7 +113,31 @@ DetectedFace implements DetectedObject;
 Finalize the attributes of {{DetectedFace}}.
 </p>
 
+## Barcode Detection API
+
+{{BarcodeDetector}} is the implementation of {{Detector}} for QR codes.
+
+<pre class="idl">
+[Constructor()]
+interface BarcodeDetector {
+};
+BarcodeDetector implements Detector;
+</pre>
+
+<pre class="idl">
+interface DetectedBarcode {
+    readonly attribute string rawValue;
+};
+DetectedBarcode implements DetectedObject;
+</pre>
+
+<p class="issue">
+Finalize the attributes of {{DetectedBarCode}}, taking e.g. the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Android Barcode</a> and <a href="https://developer.apple.com/library/ios/documentation/QuartzCore/Reference/CIQRCodeFeature/index.html#//apple_ref/occ/instp/CIQRCodeFeature/messageString">Apple's QICRCodeFeature</a> into account.
+</p>
+
 # Examples # {#examples}
+
+## Face Detection
 
 <div class="example" highlight="javascript">
 <pre>
@@ -139,6 +163,27 @@ faceDetector.detect(theImage)
 })
 </pre>
 </div>
+
+## Barcode Detection
+
+<div class="example" highlight="javascript">
+<pre>
+let barcodeDetector = new BarcodeDetector();
+// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
+
+barcodeDetector.detect(theImage)
+.then(detectedCodes => {
+  for (const barcode of detectedCodes) {
+    console.log(' Barcode ${barcode.rawValue}' +
+        ' @ (${barcode.boundingBox.x}, ${face.boundingBox.y}) with size' +
+        ' ${face.boundingBox.width}x${face.boundingBox.height}');
+  }
+}).catch(() => {
+  console.error("Barcode Detection failed, boo.");
+})
+</pre>
+</div>
+
 
 <pre class="anchors">
 spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
