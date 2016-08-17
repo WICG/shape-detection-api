@@ -1,5 +1,5 @@
 <pre class="metadata">
-Title: Shape detection in Images
+Title: Shape Detection in Images
 Status: ED
 ED: https://wicg.github.io/shape-detection-api
 Shortname: shape-detection-api
