@@ -71,23 +71,17 @@ interface Detector {
 };
 </pre>
 
-The result of a {{detect()}} operation on an {{ImageBitmapSource}} is a Promise that may be resolved with a <code>Sequence</code> of {{DetectedObject}}s, each one of a given {{ShapeType}} and delimited by a |boundingBox|.
+The result of a {{detect()}} operation on an {{ImageBitmapSource}} is a Promise that MAY be resolved with a <code>Sequence</code> of {{DetectedObject}}s, each one essentially consisting on and delimited by a |boundingBox|. A {{DetectedObject}} must be subclassed and implemented by each {{Detector}}.
 
 <pre class="idl">
-enum ShapeType {
-  "face",
-  "qr",
-};
-
+[NoInterfaceObject, exposed=Window,Worker]
 interface DetectedObject {
-  readonly attribute ShapeType type;
-  readonly attribute DOMRect boundingBox;
-  // Consider adding here some extras: confidence level, etc.
+   readonly attribute DOMRect boundingBox;
 };
 </pre>
 
-<p class="note">
-So far, <dfn>ShapeType.face</dfn> and <dfn>ShapeType.qr</dfn> are the only expected detector types forecasted, others might be added as needed.
+<p class="issue">
+Consider adding attributes common to all implementations to {{DetectedObject}}, e.g. confidence level.
 </p>
 
 ## Face Detection API
@@ -103,14 +97,23 @@ dictionary FaceDetectorOptions {
 
 [Constructor(optional FaceDetectorOptions faceDetectorOptions)]
 interface FaceDetector {
-  // FaceDetector specific attributes and methods
 };
 FaceDetector implements Detector;
 </pre>
 
+A {{FaceDetector}} provides a <code>sequence</code> of {{DetectedFace}}s.
+<pre class="idl">
+interface DetectedFace {
+    // readonly attribute unsigned long id;
+    // readonly attribute sequence<Landmark>? landmarks;
+};
+DetectedFace implements DetectedObject;
+</pre>
+<p class="issue">
+Finalize the attributes of {{DetectedFace}}.
+</p>
 
 # Examples # {#examples}
-
 
 <div class="example" highlight="javascript">
 <pre>
@@ -126,11 +129,10 @@ let faceDetector = new FaceDetector({fastMode: true, maxDetectedFaces: 1});
 // Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 
 faceDetector.detect(theImage)
-.then(detectedShapes => {
-  for (const shape of detectedShapes) {
-    console.assert(shape.type == 'face');
-    console.log(' Face @ (${shape.boundingBox.x}, ${shape.boundingBox.y}),' +
-        ' size ${shape.boundingBox.width}x${shape.boundingBox.height}');
+.then(detectedFaces => {
+  for (const face of detectedFaces) {
+    console.log(' Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),' +
+        ' size ${face.boundingBox.width}x${face.boundingBox.height}');
   }
 }).catch(() => {
   console.error("Face Detection failed, boo.");

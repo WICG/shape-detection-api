@@ -1430,6 +1430,8 @@ pre.idl.highlight { color: #708090; }
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://wicg.github.io/shape-detection-api">https://wicg.github.io/shape-detection-api</a>
+     <dt>Issue Tracking:
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:mcasas@google.com">Miguel Casas-Sanchez</a> (<span class="p-org org">Google Inc.</span>)
      <dt>Participate:
@@ -1486,6 +1488,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -1521,21 +1524,15 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedobject" id="ref-for-detectedobject-1">DetectedObject</a>>> <dfn class="nv dfn-paneled idl-code" data-dfn-for="Detector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-detector-detect">detect</dfn>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="Detector/detect(image)" data-dfn-type="argument" data-export="" id="dom-detector-detect-image-image">image<a class="self-link" href="#dom-detector-detect-image-image"></a></dfn>);
 };
 </pre>
-   <p>The result of a <code class="idl"><a data-link-type="idl" href="#dom-detector-detect" id="ref-for-dom-detector-detect-2">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> is a Promise that may be resolved with a <code>Sequence</code> of <code class="idl"><a data-link-type="idl" href="#detectedobject" id="ref-for-detectedobject-2">DetectedObject</a></code>s, each one of a given <code class="idl"><a data-link-type="idl" href="#enumdef-shapetype" id="ref-for-enumdef-shapetype-1">ShapeType</a></code> and delimited by a <var>boundingBox</var>.</p>
-<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-shapetype">ShapeType</dfn> {
-  <dfn class="s idl-code" data-dfn-for="ShapeType" data-dfn-type="enum-value" data-export="" data-lt="&quot;face&quot;|face" id="dom-shapetype-face">"face"<a class="self-link" href="#dom-shapetype-face"></a></dfn>,
-  <dfn class="s idl-code" data-dfn-for="ShapeType" data-dfn-type="enum-value" data-export="" data-lt="&quot;qr&quot;|qr" id="dom-shapetype-qr">"qr"<a class="self-link" href="#dom-shapetype-qr"></a></dfn>,
-};
-
+   <p>The result of a <code class="idl"><a data-link-type="idl" href="#dom-detector-detect" id="ref-for-dom-detector-detect-2">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> is a Promise that MAY be resolved with a <code>Sequence</code> of <code class="idl"><a data-link-type="idl" href="#detectedobject" id="ref-for-detectedobject-2">DetectedObject</a></code>s, each one essentially consisting on and delimited by a <var>boundingBox</var>. A <code class="idl"><a data-link-type="idl" href="#detectedobject" id="ref-for-detectedobject-3">DetectedObject</a></code> must be subclassed and implemented by each <code class="idl"><a data-link-type="idl" href="#detector" id="ref-for-detector-2">Detector</a></code>.</p>
+<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute">NoInterfaceObject</a>, <a class="nv idl-code" data-link-type="extended-attribute">exposed</a>=<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/browsers.html#window">Window</a>,<a class="nv idl-code" data-link-type="extended-attribute">Worker</a>]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedobject">DetectedObject</dfn> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-shapetype" id="ref-for-enumdef-shapetype-2">ShapeType</a> <dfn class="nv idl-code" data-dfn-for="DetectedObject" data-dfn-type="attribute" data-export="" data-readonly="" data-type="ShapeType" id="dom-detectedobject-type">type<a class="self-link" href="#dom-detectedobject-type"></a></dfn>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <dfn class="nv idl-code" data-dfn-for="DetectedObject" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMRect" id="dom-detectedobject-boundingbox">boundingBox<a class="self-link" href="#dom-detectedobject-boundingbox"></a></dfn>;
-  // Consider adding here some extras: confidence level, etc.
+   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <dfn class="nv idl-code" data-dfn-for="DetectedObject" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMRect" id="dom-detectedobject-boundingbox">boundingBox<a class="self-link" href="#dom-detectedobject-boundingbox"></a></dfn>;
 };
 </pre>
-   <p class="note" role="note"> So far, <dfn data-dfn-type="dfn" data-noexport="" id="shapetypeface">ShapeType.face<a class="self-link" href="#shapetypeface"></a></dfn> and <dfn data-dfn-type="dfn" data-noexport="" id="shapetypeqr">ShapeType.qr<a class="self-link" href="#shapetypeqr"></a></dfn> are the only expected detector types forecasted, others might be added as needed. </p>
+   <p class="issue" id="issue-59c29c85"><a class="self-link" href="#issue-59c29c85"></a> Consider adding attributes common to all implementations to <code class="idl"><a data-link-type="idl" href="#detectedobject" id="ref-for-detectedobject-4">DetectedObject</a></code>, e.g. confidence level. </p>
    <h3 class="heading settled" data-level="2.1" id="face-detection-api"><span class="secno">2.1. </span><span class="content">Face Detection API</span><a class="self-link" href="#face-detection-api"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-1">FaceDetector</a></code> is essentially a straightforward implementation of the previous <code class="idl"><a data-link-type="idl" href="#detector" id="ref-for-detector-2">Detector</a></code> with a Dictionary of <code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-1">FaceDetectorOptions</a></code> for creation.</p>
+   <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-1">FaceDetector</a></code> is essentially a straightforward implementation of the previous <code class="idl"><a data-link-type="idl" href="#detector" id="ref-for-detector-3">Detector</a></code> with a Dictionary of <code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-1">FaceDetectorOptions</a></code> for creation.</p>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-facedetectoroptions">FaceDetectorOptions</dfn> {
   <span class="kt">boolean</span> <dfn class="nv idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" data-type="boolean " id="dom-facedetectoroptions-fastmode">fastMode<a class="self-link" href="#dom-facedetectoroptions-fastmode"></a></dfn>;
   <span class="kt">unsigned</span> <span class="kt">short</span> <dfn class="nv idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" data-type="unsigned short " id="dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces<a class="self-link" href="#dom-facedetectoroptions-maxdetectedfaces"></a></dfn>;
@@ -1544,10 +1541,17 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 
 [<dfn class="nv idl-code" data-dfn-for="FaceDetector" data-dfn-type="constructor" data-export="" data-lt="FaceDetector(faceDetectorOptions)|FaceDetector()" id="dom-facedetector-facedetector">Constructor<a class="self-link" href="#dom-facedetector-facedetector"></a></dfn>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-2">FaceDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/FaceDetector(faceDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions<a class="self-link" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"></a></dfn>)]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="facedetector">FaceDetector</dfn> {
-  // FaceDetector specific attributes and methods
 };
-<a class="n" data-link-type="idl-name" href="#facedetector" id="ref-for-facedetector-2">FaceDetector</a> <span class="kt">implements</span> <a class="n" data-link-type="idl-name" href="#detector" id="ref-for-detector-3">Detector</a>;
+<a class="n" data-link-type="idl-name" href="#facedetector" id="ref-for-facedetector-2">FaceDetector</a> <span class="kt">implements</span> <a class="n" data-link-type="idl-name" href="#detector" id="ref-for-detector-4">Detector</a>;
 </pre>
+   <p>A <code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-3">FaceDetector</a></code> provides a <code>sequence</code> of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-1">DetectedFace</a></code>s.</p>
+<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedface">DetectedFace</dfn> {
+    // readonly attribute unsigned long id;
+    // readonly attribute sequence? landmarks;
+};
+<a class="n" data-link-type="idl-name" href="#detectedface" id="ref-for-detectedface-2">DetectedFace</a> <span class="kt">implements</span> <a class="n" data-link-type="idl-name" href="#detectedobject" id="ref-for-detectedobject-5">DetectedObject</a>;
+</pre>
+   <p class="issue" id="issue-79c11cc3"><a class="self-link" href="#issue-79c11cc3"></a> Finalize the attributes of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-3">DetectedFace</a></code>. </p>
    <h2 class="heading settled" data-level="3" id="examples"><span class="secno">3. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <div class="example" id="example-3a43a0a2">
     <a class="self-link" href="#example-3a43a0a2"></a> 
@@ -1556,17 +1560,16 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 <span class="p">}</span>
 </pre>
    </div>
-   <div class="example" id="example-36a06bad">
-    <a class="self-link" href="#example-36a06bad"></a> 
+   <div class="example" id="example-542b1c52">
+    <a class="self-link" href="#example-542b1c52"></a> 
 <pre class="highlight"><span></span><span class="kd">let</span> <span class="nx">faceDetector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FaceDetector</span><span class="p">({</span><span class="nx">fastMode</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">maxDetectedFaces</span><span class="o">:</span> <span class="mi">1</span><span class="p">});</span>
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.</span>
 
 <span class="nx">faceDetector</span><span class="p">.</span><span class="nx">detect</span><span class="p">(</span><span class="nx">theImage</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">detectedShapes</span> <span class="o">=></span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">shape</span> <span class="k">of</span> <span class="nx">detectedShapes</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">shape</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">'face'</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">' Face @ (${shape.boundingBox.x}, ${shape.boundingBox.y}),'</span> <span class="o">+</span>
-        <span class="s1">' size ${shape.boundingBox.width}x${shape.boundingBox.height}'</span><span class="p">);</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">detectedFaces</span> <span class="o">=></span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">face</span> <span class="k">of</span> <span class="nx">detectedFaces</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">' Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),'</span> <span class="o">+</span>
+        <span class="s1">' size ${face.boundingBox.width}x${face.boundingBox.height}'</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(()</span> <span class="o">=></span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Face Detection failed, boo."</span><span class="p">);</span>
@@ -1724,23 +1727,16 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#dom-detectedobject-boundingbox">boundingBox</a><span>, in §2</span>
+   <li><a href="#detectedface">DetectedFace</a><span>, in §2.1</span>
    <li><a href="#detectedobject">DetectedObject</a><span>, in §2</span>
    <li><a href="#dom-detector-detect">detect(image)</a><span>, in §2</span>
    <li><a href="#detector">Detector</a><span>, in §2</span>
-   <li><a href="#dom-shapetype-face">"face"</a><span>, in §2</span>
-   <li><a href="#dom-shapetype-face">face</a><span>, in §2</span>
-   <li><a href="#dom-facedetector-facedetector">FaceDetector()</a><span>, in §2.1</span>
    <li><a href="#facedetector">FaceDetector</a><span>, in §2.1</span>
+   <li><a href="#dom-facedetector-facedetector">FaceDetector()</a><span>, in §2.1</span>
    <li><a href="#dom-facedetector-facedetector">FaceDetector(faceDetectorOptions)</a><span>, in §2.1</span>
    <li><a href="#dictdef-facedetectoroptions">FaceDetectorOptions</a><span>, in §2.1</span>
    <li><a href="#dom-facedetectoroptions-fastmode">fastMode</a><span>, in §2.1</span>
    <li><a href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a><span>, in §2.1</span>
-   <li><a href="#dom-shapetype-qr">"qr"</a><span>, in §2</span>
-   <li><a href="#dom-shapetype-qr">qr</a><span>, in §2</span>
-   <li><a href="#enumdef-shapetype">ShapeType</a><span>, in §2</span>
-   <li><a href="#shapetypeface">ShapeType.face</a><span>, in §2</span>
-   <li><a href="#shapetypeqr">ShapeType.qr</a><span>, in §2</span>
-   <li><a href="#dom-detectedobject-type">type</a><span>, in §2</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -1796,15 +1792,9 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedobject">DetectedObject</a>>> <a class="nv" href="#dom-detector-detect">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-detector-detect-image-image">image</a>);
 };
 
-<span class="kt">enum</span> <a class="nv" href="#enumdef-shapetype">ShapeType</a> {
-  <a class="s" href="#dom-shapetype-face">"face"</a>,
-  <a class="s" href="#dom-shapetype-qr">"qr"</a>,
-};
-
+[<a class="nv idl-code" data-link-type="extended-attribute">NoInterfaceObject</a>, <a class="nv idl-code" data-link-type="extended-attribute">exposed</a>=<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/browsers.html#window">Window</a>,<a class="nv idl-code" data-link-type="extended-attribute">Worker</a>]
 <span class="kt">interface</span> <a class="nv" href="#detectedobject">DetectedObject</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-shapetype">ShapeType</a> <a class="nv" data-readonly="" data-type="ShapeType" href="#dom-detectedobject-type">type</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv" data-readonly="" data-type="DOMRect" href="#dom-detectedobject-boundingbox">boundingBox</a>;
-  // Consider adding here some extras: confidence level, etc.
+   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv" data-readonly="" data-type="DOMRect" href="#dom-detectedobject-boundingbox">boundingBox</a>;
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> {
@@ -1815,16 +1805,26 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 
 [<a class="nv" href="#dom-facedetector-facedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> <a class="nv" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions</a>)]
 <span class="kt">interface</span> <a class="nv" href="#facedetector">FaceDetector</a> {
-  // FaceDetector specific attributes and methods
 };
 <a class="n" data-link-type="idl-name" href="#facedetector">FaceDetector</a> <span class="kt">implements</span> <a class="n" data-link-type="idl-name" href="#detector">Detector</a>;
 
+<span class="kt">interface</span> <a class="nv" href="#detectedface">DetectedFace</a> {
+    // readonly attribute unsigned long id;
+    // readonly attribute sequence? landmarks;
+};
+<a class="n" data-link-type="idl-name" href="#detectedface">DetectedFace</a> <span class="kt">implements</span> <a class="n" data-link-type="idl-name" href="#detectedobject">DetectedObject</a>;
+
 </pre>
+  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <div style="counter-reset:issue">
+   <div class="issue"> Consider adding attributes common to all implementations to <code class="idl"><a data-link-type="idl" href="#detectedobject">DetectedObject</a></code>, e.g. confidence level. <a href="#issue-59c29c85"> ↵ </a></div>
+   <div class="issue"> Finalize the attributes of <code class="idl"><a data-link-type="idl" href="#detectedface">DetectedFace</a></code>. <a href="#issue-79c11cc3"> ↵ </a></div>
+  </div>
   <aside class="dfn-panel" data-for="detector">
    <b><a href="#detector">#detector</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-detector-1">2. Shape Detection API</a>
-    <li><a href="#ref-for-detector-2">2.1. Face Detection API</a> <a href="#ref-for-detector-3">(2)</a>
+    <li><a href="#ref-for-detector-1">2. Shape Detection API</a> <a href="#ref-for-detector-2">(2)</a>
+    <li><a href="#ref-for-detector-3">2.1. Face Detection API</a> <a href="#ref-for-detector-4">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-detector-detect">
@@ -1833,16 +1833,11 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <li><a href="#ref-for-dom-detector-detect-1">2. Shape Detection API</a> <a href="#ref-for-dom-detector-detect-2">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="enumdef-shapetype">
-   <b><a href="#enumdef-shapetype">#enumdef-shapetype</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-shapetype-1">2. Shape Detection API</a> <a href="#ref-for-enumdef-shapetype-2">(2)</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="detectedobject">
    <b><a href="#detectedobject">#detectedobject</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-detectedobject-1">2. Shape Detection API</a> <a href="#ref-for-detectedobject-2">(2)</a>
+    <li><a href="#ref-for-detectedobject-1">2. Shape Detection API</a> <a href="#ref-for-detectedobject-2">(2)</a> <a href="#ref-for-detectedobject-3">(3)</a> <a href="#ref-for-detectedobject-4">(4)</a>
+    <li><a href="#ref-for-detectedobject-5">2.1. Face Detection API</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-facedetectoroptions">
@@ -1854,7 +1849,13 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <aside class="dfn-panel" data-for="facedetector">
    <b><a href="#facedetector">#facedetector</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-facedetector-1">2.1. Face Detection API</a> <a href="#ref-for-facedetector-2">(2)</a>
+    <li><a href="#ref-for-facedetector-1">2.1. Face Detection API</a> <a href="#ref-for-facedetector-2">(2)</a> <a href="#ref-for-facedetector-3">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="detectedface">
+   <b><a href="#detectedface">#detectedface</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-detectedface-1">2.1. Face Detection API</a> <a href="#ref-for-detectedface-2">(2)</a> <a href="#ref-for-detectedface-3">(3)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
