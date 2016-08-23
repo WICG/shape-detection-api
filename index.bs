@@ -175,8 +175,8 @@ barcodeDetector.detect(theImage)
 .then(detectedCodes => {
   for (const barcode of detectedCodes) {
     console.log(' Barcode ${barcode.rawValue}' +
-        ' @ (${barcode.boundingBox.x}, ${face.boundingBox.y}) with size' +
-        ' ${face.boundingBox.width}x${face.boundingBox.height}');
+        ' @ (${barcode.boundingBox.x}, ${barcode.boundingBox.y}) with size' +
+        ' ${barcode.boundingBox.width}x${barcode.boundingBox.height}');
   }
 }).catch(() => {
   console.error("Barcode Detection failed, boo.");
