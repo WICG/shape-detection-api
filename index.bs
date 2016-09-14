@@ -35,7 +35,7 @@ Photos and images constitute the largest chunk of the Web, and many include reco
 
 ## Shape detection in the wild
 
-In object-class detection "the task is to find the locations and sizes of all objects in an image that belong to a given class. Examples include upper torsos, pedestrians, and cars." [[wikipedia]] . Face detection, on the other hand, focuses on detecting near-front facing human faces. A widespread class of detection algorithms use a hunting algorithm that tries to match a cascade of classifiers in several areas of the image and for several potential object sizes, which turns the process into extremely computationally complex. It is not the idea here to compare those algorithms, nor to offer a software fallback implementation of any of them for the Web, but to offer the available hardware capabilities, if any, to the Web Applications.
+Feature detection belongs to a broader, so called object-class detection where "the task is to find the locations and sizes of all objects in an image that belong to a given class. Examples include upper torsos, pedestrians, and cars." [[wikipedia]] . Face detection, in particular, focuses on detecting near-front facing human faces. A widespread class of detection algorithms use a hunting algorithm that tries to match a cascade of classifiers in several areas of the image and for several potential object sizes, which turns the process into extremely computationally complex. It is not the idea here to compare those algorithms, nor to offer a software fallback implementation of any of them for the Web, but to offer the available hardware capabilities, if any, to the Web Applications.
 
 <p class="note">
 Note that Face Detection (resp., Object) is not the same as Face Tracking nor Face Recognition, albeit those operations are usually interrelated.
@@ -204,10 +204,10 @@ spec: html
 <pre class="biblio">
 {
   "wikipedia": {
-      "href": "https://en.wikipedia.org/wiki/Face_detection",
-      "title": "Face Detection Wikipedia Entry",
+      "href": "https://en.wikipedia.org/wiki/Object-class_detection",
+      "title": "Object-class Detection Wikipedia Entry",
       "publisher": "Wikipedia",
-      "date": "15 August 2016"
+      "date": "14 September 2016"
   }
 }
 </pre>
