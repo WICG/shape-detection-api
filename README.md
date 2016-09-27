@@ -17,7 +17,9 @@ You're welcome to contribute! Let's make the Web rock our socks off!
 
 * QR/barcode detection can be used for quick user registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508).
 
-# Rendered URL
+* QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. [here](http://www.multidots.com/augmented-reality/)).
+
+## Rendered URL
 
 The rendered version of this site can be found in https://wicg.github.io/shape-detection-api (if that's not alive for some reason try the [rawgit rendering](https://rawgit.com/WICG/shape-detection-api/gh-pages/index.html)).
 
