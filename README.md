@@ -47,11 +47,11 @@ CoreImage library includes a `CIDetector` class that provides not only Face Dete
 * [CIDetector class, Mac OS X](https://developer.apple.com/library/mac/documentation/CoreImage/Reference/CIDetector_Ref/)
 * [CIDetector class, iOS](https://developer.apple.com/library/ios/documentation/CoreImage/Reference/CIDetector_Ref/)
 
-## Rendered URL
+## Rendered URL :bookmark_tabs:
 
 The rendered version of this site can be found in https://wicg.github.io/shape-detection-api (if that's not alive for some reason try the [rawgit rendering](https://rawgit.com/WICG/shape-detection-api/gh-pages/index.html)).
 
-## Notes on bikeshedding
+## Notes on bikeshedding :bicyclist:
 
 To compile, I'm just running
 
