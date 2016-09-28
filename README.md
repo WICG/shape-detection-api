@@ -5,11 +5,11 @@ This is the repository for `shape-detection-api`, an experimental API for detect
 
 You're welcome to contribute! Let's make the Web rock our socks off!
 
-## [Introduction](https://wicg.github.io/shape-detection-api/#introduction)
+## [Introduction](https://wicg.github.io/shape-detection-api/#introduction) :blue_book:
 
 Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
 
-## Use cases
+## Use cases :camera:
 
 * Live video feeds would like to identify faces in a picture/video as highly salient areas to e.g. give hints to image or video encoders.
 
@@ -23,15 +23,15 @@ Photos and images constitute the largest chunk of the Web, and many include reco
 
 * QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. [here](http://www.multidots.com/augmented-reality/)).
 
-## Current Workarounds
+## Current Workarounds :wrench:
 
 Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found [here](https://github.com/mtschirs/js-objectdetect#performance).
 
-## Potential for misuse
+## Potential for misuse :money_with_wings:
 
 Face Detection is an expensive operation due to the algorithmic complexity. Many requests, or demanding systems like a live stream feed with a certain frame rate, could slow down the whole system or greatly increase power consumption.
 
-## Platform specific implementation notes
+## Platform specific implementation notes :computer:
 
 ### Android
 
