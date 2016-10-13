@@ -1,5 +1,5 @@
 <pre class="metadata">
-Title: Shape Detection in Images
+Title: Accelerated Shape Detection in Images
 Status: ED
 ED: https://wicg.github.io/shape-detection-api
 Shortname: shape-detection-api
@@ -46,16 +46,19 @@ Note that Face Detection (resp., Object) is not the same as Face Tracking nor Fa
 
 Some use cases of having object/face detection in the Web:
 
+
 * Live video feeds would like to identify faces in a picture/video as highly salient areas to e.g. give hints to image or video encoders.
 * Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to which face.
 * Face detection is the first step before Face Recognition: detected faces are used for the recognition phase, greatly speeding the process.
 * Fun! you can map glasses, funny hats and other overlays on top of the detected faces
+* QR/barcode detection can be used for quick user registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508).
+* QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. [here](http://www.multidots.com/augmented-reality/)).
 
 Finally, note that using a particular Face/Object Detector does not preclude using others; in this case the hardware provided results can, e.g. be used as precursor or in parallel to user-defined ones.
 
 # Shape Detection API # {#api}
 
-Individual browsers MAY provide {{Detector}}s, indicating the availability of hardware providing a {{detect()}} accelerated operation.
+Individual browsers MAY provide Detectors indicating the availability of hardware providing a {{detect()}} accelerated operation.
 
 <pre class="idl">
 typedef (HTMLImageElement or
@@ -64,14 +67,9 @@ typedef (HTMLImageElement or
          Blob or
          ImageData or
          ImageBitmap) ImageBitmapSource;
-
-[NoInterfaceObject, exposed=Window,Worker]
-interface Detector {
-    Promise&lt;sequence&lt;DetectedObject>> detect(ImageBitmapSource image);
-};
 </pre>
 
-The result of a {{detect()}} operation on an {{ImageBitmapSource}} is a Promise that MAY be resolved with a <code>Sequence</code> of {{DetectedObject}}s, each one essentially consisting on and delimited by a |boundingBox|. A {{DetectedObject}} must be subclassed and implemented by each {{Detector}}.
+Detection results are encoded in sequences of {{DetectedObject}}s representing rectangular areas of an {{ImageBitmapSource}} where the looked-for object is found. Each {{DetectedObject}} consists of, at least, a {{DOMRect}} in normalized coordinates.
 
 <pre class="idl">
 [NoInterfaceObject, exposed=Window,Worker]
@@ -84,9 +82,13 @@ interface DetectedObject {
 Consider adding attributes common to all implementations to {{DetectedObject}}, e.g. confidence level.
 </p>
 
+## Security with shape detection
+
+Information leakage can occur if scripts from one <a href="https://www.w3.org/TR/2009/WD-html5-20090825/browsers.html#origin">origin</a> can access information (e.g., read pixels) from images from another origin (one that isn't the same). {{detect()}} mehods MUST throw a "{{SecurityError}}" {{DOMException}} whenever any of the members of a source for the detection have an effective script origin which is not the same as the Document's effective script origin.
+
 ## Face Detection API
 
-{{FaceDetector}} is essentially a straightforward implementation of the previous {{Detector}} with a Dictionary of {{FaceDetectorOptions}} for creation.
+{{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise that MAY be resolved with a <code>Sequence</code> of {{DetectedFace}}s, each one essentially consisting on and delimited by a |boundingBox|.
 
 <pre class="idl">
 dictionary FaceDetectorOptions {
@@ -97,11 +99,10 @@ dictionary FaceDetectorOptions {
 
 [Constructor(optional FaceDetectorOptions faceDetectorOptions)]
 interface FaceDetector {
+    Promise&lt;sequence&lt;DetectedFace>> detect(ImageBitmapSource image);
 };
-FaceDetector implements Detector;
 </pre>
 
-A {{FaceDetector}} provides a <code>sequence</code> of {{DetectedFace}}s.
 <pre class="idl">
 interface DetectedFace {
     // readonly attribute unsigned long id;
@@ -109,19 +110,20 @@ interface DetectedFace {
 };
 DetectedFace implements DetectedObject;
 </pre>
+
 <p class="issue">
 Finalize the attributes of {{DetectedFace}}.
 </p>
 
 ## Barcode Detection API
 
-{{BarcodeDetector}} is the implementation of {{Detector}} for QR codes.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes. It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise that MAY be resolved with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox|, and possibly a |rawValue| decoded `string`.
 
 <pre class="idl">
 [Constructor()]
 interface BarcodeDetector {
+    Promise&lt;sequence&lt;DetectedBarcode>> detect(ImageBitmapSource image);
 };
-BarcodeDetector implements Detector;
 </pre>
 
 <pre class="idl">
@@ -137,15 +139,17 @@ Finalize the attributes of {{DetectedBarCode}}, taking e.g. the <a href="https:/
 
 # Examples # {#examples}
 
-## Face Detection
+## Platform support for a given detector
 
 <div class="example" highlight="javascript">
 <pre>
-if (typeof FaceDetector !== 'function') {
+if (window.FaceDetector == undefined) {
 	console.error('Face Detection not supported in this platform');
 }
 </pre>
 </div>
+
+## Face Detection
 
 <div class="example" highlight="javascript">
 <pre>
