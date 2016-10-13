@@ -51,14 +51,25 @@ Some use cases of having object/face detection in the Web:
 * Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to which face.
 * Face detection is the first step before Face Recognition: detected faces are used for the recognition phase, greatly speeding the process.
 * Fun! you can map glasses, funny hats and other overlays on top of the detected faces
-* QR/barcode detection can be used for quick user registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508).
-* QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. [here](http://www.multidots.com/augmented-reality/)).
+* QR/barcode detection can be used for quick user registration, e.g. for <a href="https://twitter.com/RegistertoVote/status/733123511128981508">voting purposes</a>.
+* QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. <a href="http://www.multidots.com/augmented-reality/">here</a>).
 
 Finally, note that using a particular Face/Object Detector does not preclude using others; in this case the hardware provided results can, e.g. be used as precursor or in parallel to user-defined ones.
 
 # Shape Detection API # {#api}
 
 Individual browsers MAY provide Detectors indicating the availability of hardware providing a {{detect()}} accelerated operation.
+
+Detection results are encoded in sequences of {{DetectedObject}}s representing areas of an input {{ImageBitmapSource}} where the looked-for object is found. Each {{DetectedObject}} consists of, at least, a {{DOMRect}}.
+
+<pre class="idl">
+[NoInterfaceObject, exposed=Window,Worker]
+interface DetectedObject {
+   readonly attribute DOMRect boundingBox;
+};
+</pre>
+
+## Image sources for detection
 
 <pre class="idl">
 typedef (HTMLImageElement or
@@ -69,32 +80,42 @@ typedef (HTMLImageElement or
          ImageBitmap) ImageBitmapSource;
 </pre>
 
-Detection results are encoded in sequences of {{DetectedObject}}s representing rectangular areas of an {{ImageBitmapSource}} where the looked-for object is found. Each {{DetectedObject}} consists of, at least, a {{DOMRect}} in normalized coordinates.
-
-<pre class="idl">
-[NoInterfaceObject, exposed=Window,Worker]
-interface DetectedObject {
-   readonly attribute DOMRect boundingBox;
-};
-</pre>
-
-<p class="issue">
-Consider adding attributes common to all implementations to {{DetectedObject}}, e.g. confidence level.
+<p class="note">
+This section is inspired by [[2dcontext#image-sources-for-2d-rendering-contexts]].
 </p>
 
-## Security with shape detection
+{{ImageBitmapSource}} allows objects implementing any of a number of interfaces to be used as image sources for the detection process.
 
-Information leakage can occur if scripts from one <a href="https://www.w3.org/TR/2009/WD-html5-20090825/browsers.html#origin">origin</a> can access information (e.g., read pixels) from images from another origin (one that isn't the same). {{detect()}} mehods MUST throw a "{{SecurityError}}" {{DOMException}} whenever any of the members of a source for the detection have an effective script origin which is not the same as the Document's effective script origin.
+* When an {{ImageBitmapSource}} object represents an {{HTMLImageElement}}, the element's image must be used as the source image. Specifically, when an {{ImageBitmapSource}} object represents an animated image in an {{HTMLImageElement}}, the user agent must use the default image of the animation (the one that the format defines is to be used when animation is not supported or is disabled), or, if there is no such image, the first frame of the animation.
+
+* When an {{ImageBitmapSource}} object represents an {{HTMLVideoElement}}, then the frame at the current playback position when the method with the argument is invoked must be used as the source image when processing the image, and the source image's dimensions must be the intrinsic width and intrinsic height of the media resource (i.e. after any aspect-ratio correction has been applied).
+
+* When an {{ImageBitmapSource}} object represents an {{HTMLCanvasElement}}, the element's bitmap must be used as the source image.
+
+The {{ImageBitmapSource}} argument is not <b>origin-clean</b> if it is an {{HTMLImageElement}} or {{HTMLVideoElement}} whose origin is not the same as the origin specified by the entry settings object, or if it is an {{HTMLCanvasElement}} whose bitmap's |origin-clean| flag is false, or if it is a {{CanvasRenderingContext2D}} object whose bitmap's |origin-clean| flag is false.
+
+When the UA is required to use a given type of {{ImageBitmapSource}} as input for the {{detect()}} method (of whichever shape category), it MUST run these steps:
+
+* If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object that is in the |broken| state, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
+
+* If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object that is not fully decodable, or if the {{ImageBitmapSource}} argument is an {{HTMLVideoElement}} object whose |readyState| attribute is either |HAVE_NOTHING| or |HAVE_METADATA|, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
+
+* If the {{ImageBitmapSource}} argument is an {{HTMLImageElement}} object with an intrinsic width or intrinsic height (or both) equal to zero, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
+
+* If the {{ImageBitmapSource}} argument is an {{HTMLCanvasElement}} object with either a horizontal dimension or a vertical dimension equal to zero,  then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
+
+* If any of the members of an {{ImageBitmapSource}} for the detection have an effective script origin which is not the same as the Document's effective script origin, reject the Promise with a new {{DOMExpcetion}} whose name is {{SecurityError}}.
+
+
 
 ## Face Detection API
 
-{{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise that MAY be resolved with a <code>Sequence</code> of {{DetectedFace}}s, each one essentially consisting on and delimited by a |boundingBox|.
+{{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise. This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedFace}}s, each one essentially consisting on and delimited by a |boundingBox|.
 
 <pre class="idl">
 dictionary FaceDetectorOptions {
-  boolean fastMode;
   unsigned short maxDetectedFaces;
-  // etc...
+  // Consider: boolean fastMode;
 };
 
 [Constructor(optional FaceDetectorOptions faceDetectorOptions)]
@@ -111,13 +132,9 @@ interface DetectedFace {
 DetectedFace implements DetectedObject;
 </pre>
 
-<p class="issue">
-Finalize the attributes of {{DetectedFace}}.
-</p>
-
 ## Barcode Detection API
 
-{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes. It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise that MAY be resolved with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox|, and possibly a |rawValue| decoded `string`.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox|, and possibly a |rawValue| decoded `string`.
 
 <pre class="idl">
 [Constructor()]
