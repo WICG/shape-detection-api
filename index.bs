@@ -81,32 +81,32 @@ typedef (HTMLImageElement or
 </pre>
 
 <p class="note">
-This section is inspired by [[2dcontext#image-sources-for-2d-rendering-contexts]].
+This section is inspired by [[canvas2dcontext#image-sources-for-2d-rendering-contexts]].
 </p>
 
 {{ImageBitmapSource}} allows objects implementing any of a number of interfaces to be used as image sources for the detection process.
 
 * When an {{ImageBitmapSource}} object represents an {{HTMLImageElement}}, the element's image must be used as the source image. Specifically, when an {{ImageBitmapSource}} object represents an animated image in an {{HTMLImageElement}}, the user agent must use the default image of the animation (the one that the format defines is to be used when animation is not supported or is disabled), or, if there is no such image, the first frame of the animation.
 
-* When an {{ImageBitmapSource}} object represents an {{HTMLVideoElement}}, then the frame at the current playback position when the method with the argument is invoked must be used as the source image when processing the image, and the source image's dimensions must be the intrinsic width and intrinsic height of the media resource (i.e. after any aspect-ratio correction has been applied).
+* When an {{ImageBitmapSource}} object represents an {{HTMLVideoElement}}, then the frame at the current playback position when the method with the argument is invoked must be used as the source image when processing the image, and the source image's dimensions must be the <a href="https://drafts.csswg.org/css2/conform.html#intrinsic">intrinsic dimensions</a> of the media resource (i.e. after any aspect-ratio correction has been applied).
 
 * When an {{ImageBitmapSource}} object represents an {{HTMLCanvasElement}}, the element's bitmap must be used as the source image.
 
-The {{ImageBitmapSource}} argument is not <b>origin-clean</b> if it is an {{HTMLImageElement}} or {{HTMLVideoElement}} whose origin is not the same as the origin specified by the entry settings object, or if it is an {{HTMLCanvasElement}} whose bitmap's |origin-clean| flag is false, or if it is a {{CanvasRenderingContext2D}} object whose bitmap's |origin-clean| flag is false.
+When the UA is required to use a given type of {{ImageBitmapSource}} as input argument for the {{detect()}} method of whichever detector, it MUST run these steps:
 
-When the UA is required to use a given type of {{ImageBitmapSource}} as input for the {{detect()}} method (of whichever shape category), it MUST run these steps:
+* If any {{ImageBitmapSource}} have an effective script origin ([[HTML#concept-origin]]) which is not the same as the Document's effective script origin, then reject the Promise with a new {{DOMException}} whose name is {{SecurityError}}.
 
 * If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object that is in the |broken| state, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
 
-* If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object that is not fully decodable, or if the {{ImageBitmapSource}} argument is an {{HTMLVideoElement}} object whose |readyState| attribute is either |HAVE_NOTHING| or |HAVE_METADATA|, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
+* If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object that is not fully decodable then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps
 
-* If the {{ImageBitmapSource}} argument is an {{HTMLImageElement}} object with an intrinsic width or intrinsic height (or both) equal to zero, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
+* If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object with either <a href="https://drafts.csswg.org/css2/conform.html#intrinsic">intrinsic dimension</a> (or both) equal to zero, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
 
-* If the {{ImageBitmapSource}} argument is an {{HTMLCanvasElement}} object with either a horizontal dimension or a vertical dimension equal to zero,  then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
+* If the {{ImageBitmapSource}} is an {{HTMLVideoElement}} object whose <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate">|readyState|</a> attribute is either |HAVE_NOTHING| or |HAVE_METADATA|, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
 
-* If any of the members of an {{ImageBitmapSource}} for the detection have an effective script origin which is not the same as the Document's effective script origin, reject the Promise with a new {{DOMExpcetion}} whose name is {{SecurityError}}.
+* If the {{ImageBitmapSource}} is an {{HTMLCanvasElement}} object with either a horizontal dimension or a vertical dimension equal to zero,  then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
 
-
+* If the {{ImageBitmapSource}} argument is an {{HTMLCanvasElement}} whose bitmap's |origin-clean| ([[HTML#concept-canvas-origin-clean]]) flag is false, then reject the Promise with a new {{DOMException}} whose name is {{SecurityError}}, and abort any further steps.
 
 ## Face Detection API
 
@@ -229,6 +229,13 @@ spec: html
       "title": "Object-class Detection Wikipedia Entry",
       "publisher": "Wikipedia",
       "date": "14 September 2016"
+  },
+  "canvas2dcontext": {
+      "authors": [ "Rik Cabanier", "Jatinder Mann", "Jay Munro", "Tom Wiltzius",
+                   "Ian Hickson"],
+      "href": "https://www.w3.org/TR/2dcontext/",
+      "title": "HTML Canvas 2D Context",
+      "status": "REC"
   }
 }
 </pre>
