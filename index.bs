@@ -60,24 +60,21 @@ Finally, note that using a particular Face/Object Detector does not preclude usi
 
 Individual browsers MAY provide Detectors indicating the availability of hardware providing a {{detect()}} accelerated operation.
 
-Detection results are encoded in sequences of {{DetectedObject}}s representing areas of an input {{ImageBitmapSource}} where the looked-for object is found. Each {{DetectedObject}} consists of, at least, a {{DOMRect}}.
+Detection results are encoded in sequences of {{DetectedObject}}s representing areas of an input {{ImageBitmapSource}} where the looked-for object is found. Each {{DetectedObject}} consists of, at least, a {{DOMRectReadOnly}}.
 
 <pre class="idl">
 [NoInterfaceObject, exposed=Window,Worker]
 interface DetectedObject {
-   readonly attribute DOMRect boundingBox;
+   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
 };
 </pre>
 
 ## Image sources for detection
 
 <pre class="idl">
-typedef (HTMLImageElement or
-         HTMLVideoElement or
-         HTMLCanvasElement or
+typedef (CanvasImageSource or
          Blob or
-         ImageData or
-         ImageBitmap) ImageBitmapSource;
+         ImageData) ImageBitmapSource;
 </pre>
 
 <p class="note">
@@ -126,15 +123,15 @@ interface FaceDetector {
 
 <pre class="idl">
 interface DetectedFace {
-    // readonly attribute unsigned long id;
-    // readonly attribute sequence<Landmark>? landmarks;
+    // [SameObject] readonly attribute unsigned long id;
+    // [SameObject] readonly attribute sequence<Landmark>? landmarks;
 };
 DetectedFace implements DetectedObject;
 </pre>
 
 ## Barcode Detection API
 
-{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox|, and possibly a |rawValue| decoded `string`.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox|, and possibly a |rawValue| decoded `DOMString`.
 
 <pre class="idl">
 [Constructor()]
@@ -145,7 +142,7 @@ interface BarcodeDetector {
 
 <pre class="idl">
 interface DetectedBarcode {
-    readonly attribute string rawValue;
+    [SameObject] readonly attribute DOMString rawValue;
 };
 DetectedBarcode implements DetectedObject;
 </pre>
