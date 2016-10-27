@@ -97,8 +97,6 @@ When the UA is required to use a given type of {{ImageBitmapSource}} as input ar
 
 * If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object that is not fully decodable then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps
 
-* If the {{ImageBitmapSource}} is an {{HTMLImageElement}} object with either <a href="https://drafts.csswg.org/css2/conform.html#intrinsic">intrinsic dimension</a> (or both) equal to zero, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
-
 * If the {{ImageBitmapSource}} is an {{HTMLVideoElement}} object whose <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate">|readyState|</a> attribute is either |HAVE_NOTHING| or |HAVE_METADATA|, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
 
 * If the {{ImageBitmapSource}} is an {{HTMLCanvasElement}} object with either a horizontal dimension or a vertical dimension equal to zero,  then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
