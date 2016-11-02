@@ -51,6 +51,15 @@ CoreImage library includes a `CIDetector` class that provides not only Face Dete
 
 The rendered version of this site can be found in https://wicg.github.io/shape-detection-api (if that's not alive for some reason try the [rawgit rendering](https://rawgit.com/WICG/shape-detection-api/gh-pages/index.html)).
 
+## Examples and demos
+
+<p class="note">
+This section is inspired by [[canvas2dcontext#image-sources-for-2d-rendering-contexts]].
+</p>
+
+
+Blabla
+
 ## Notes on bikeshedding :bicyclist:
 
 To compile, I'm just running

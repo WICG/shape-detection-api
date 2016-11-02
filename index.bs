@@ -1,10 +1,11 @@
 <pre class="metadata">
 Title: Accelerated Shape Detection in Images
+Repository: wicg/shape-detection-api
 Status: ED
 ED: https://wicg.github.io/shape-detection-api
 Shortname: shape-detection-api
 Level: 1
-Editor: Miguel Casas-Sanchez, Google Inc., mcasas@google.com
+Editor: Miguel Casas-Sanchez, w3cid 82825, Google Inc., mcasas@google.com
 Abstract: This document describes an API providing access to accelerated shape detectors (e.g. human faces) for still images and/or live image feeds.
 Group: wicg
 !Participate: <a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
@@ -99,9 +100,10 @@ When the UA is required to use a given type of {{ImageBitmapSource}} as input ar
 
 * If the {{ImageBitmapSource}} is an {{HTMLVideoElement}} object whose <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate">|readyState|</a> attribute is either |HAVE_NOTHING| or |HAVE_METADATA|, then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
 
-* If the {{ImageBitmapSource}} is an {{HTMLCanvasElement}} object with either a horizontal dimension or a vertical dimension equal to zero,  then reject the Promise with a new {{DOMException}} whose name is {{InvalidStateError}}, and abort any further steps.
-
 * If the {{ImageBitmapSource}} argument is an {{HTMLCanvasElement}} whose bitmap's |origin-clean| ([[HTML#concept-canvas-origin-clean]]) flag is false, then reject the Promise with a new {{DOMException}} whose name is {{SecurityError}}, and abort any further steps.
+
+Note that if the {{ImageBitmapSource}} is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty `DetectedObject` sequence.
+
 
 ## Face Detection API
 
@@ -151,17 +153,40 @@ Finalize the attributes of {{DetectedBarCode}}, taking e.g. the <a href="https:/
 
 # Examples # {#examples}
 
+<p class="note">
+Slightly modified/extended versions of these examples (and more) can be found in
+ e.g. <a href="https://codepen.io/collection/DwWVJj/">this codepen collection</a>.
+</p>
+
 ## Platform support for a given detector
 
+<div class="note">
+The following example can also be found in e.g. <a
+href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a>
+with minimal modifications.
+</div>
+
 <div class="example" highlight="javascript">
+
 <pre>
 if (window.FaceDetector == undefined) {
-	console.error('Face Detection not supported in this platform');
+	console.error('Face Detection not supported on this platform');
+}
+if (window.BarcodeDetector == undefined) {
+  console.error('Barcode Detection not supported on this platform');
 }
 </pre>
 </div>
 
 ## Face Detection
+
+<div class="note">
+The following example can also be found in e.g.
+<a href="https://codepen.io/miguelao/pen/YGrYAm?editors=0010">this codepen</a>,
+(or <a
+href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this one
+ with bounding box overlay on the input image</a>).
+</div>
 
 <div class="example" highlight="javascript">
 <pre>

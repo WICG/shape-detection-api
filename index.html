@@ -1438,15 +1438,16 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-10-27">27 October 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-11-02">2 November 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
      <dd><a class="u-url" href="https://wicg.github.io/shape-detection-api">https://wicg.github.io/shape-detection-api</a>
      <dt>Issue Tracking:
+     <dd><a href="https://github.com/wicg/shape-detection-api/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editor:
-     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:mcasas@google.com">Miguel Casas-Sanchez</a> (<span class="p-org org">Google Inc.</span>)
+     <dd class="editor p-author h-card vcard" data-editor-id="82825"><a class="p-name fn u-email email" href="mailto:mcasas@google.com">Miguel Casas-Sanchez</a> (<span class="p-org org">Google Inc.</span>)
      <dt>Participate:
      <dd><span><a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a></span>
      <dd><span><a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a></span>
@@ -1569,10 +1570,9 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <li data-md="">
      <p>If the <code class="idl"><a data-link-type="idl" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-11">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlvideoelement">HTMLVideoElement</a></code> object whose <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate"><var>readyState</var></a> attribute is either <var>HAVE_NOTHING</var> or <var>HAVE_METADATA</var>, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps.</p>
     <li data-md="">
-     <p>If the <code class="idl"><a data-link-type="idl" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-12">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a></code> object with either a horizontal dimension or a vertical dimension equal to zero,  then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps.</p>
-    <li data-md="">
-     <p>If the <code class="idl"><a data-link-type="idl" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-13">ImageBitmapSource</a></code> argument is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a></code> whose bitmap’s <var>origin-clean</var> (<a href="https://html.spec.whatwg.org/multipage/#concept-canvas-origin-clean">HTML Standard §concept-canvas-origin-clean</a>) flag is false, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>, and abort any further steps.</p>
+     <p>If the <code class="idl"><a data-link-type="idl" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-12">ImageBitmapSource</a></code> argument is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a></code> whose bitmap’s <var>origin-clean</var> (<a href="https://html.spec.whatwg.org/multipage/#concept-canvas-origin-clean">HTML Standard §concept-canvas-origin-clean</a>) flag is false, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>, and abort any further steps.</p>
    </ul>
+   <p>Note that if the <code class="idl"><a data-link-type="idl" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-13">ImageBitmapSource</a></code> is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty `DetectedObject` sequence.</p>
    <h3 class="heading settled" data-level="2.2" id="face-detection-api"><span class="secno">2.2. </span><span class="content">Face Detection API</span><a class="self-link" href="#face-detection-api"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-1">FaceDetector</a></code> represents an underlying accelerated platform’s component for detection of human faces in images. It can be created with an optional Dictionary of <code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-1">FaceDetectorOptions</a></code>. It provides a single <code class="idl"><a data-link-type="idl" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect-3">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-14">ImageBitmapSource</a></code> which result is a Promise. This method MUST reject this promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-1">DetectedFace</a></code>s, each one essentially consisting on and delimited by a <var>boundingBox</var>.</p>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-facedetectoroptions">FaceDetectorOptions</dfn> {
@@ -1605,15 +1605,24 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 </pre>
    <p class="issue" id="issue-49001d11"><a class="self-link" href="#issue-49001d11"></a> Finalize the attributes of <code class="idl"><a data-link-type="idl">DetectedBarCode</a></code>, taking e.g. the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Android Barcode</a> and <a href="https://developer.apple.com/library/ios/documentation/QuartzCore/Reference/CIQRCodeFeature/index.html#//apple_ref/occ/instp/CIQRCodeFeature/messageString">Apple’s QICRCodeFeature</a> into account. </p>
    <h2 class="heading settled" data-level="3" id="examples"><span class="secno">3. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
+   <p class="note" role="note"> Slightly modified/extended versions of these examples (and more) can be found in
+ e.g. <a href="https://codepen.io/collection/DwWVJj/">this codepen collection</a>. </p>
    <h3 class="heading settled" data-level="3.1" id="platform-support-for-a-given-detector"><span class="secno">3.1. </span><span class="content">Platform support for a given detector</span><a class="self-link" href="#platform-support-for-a-given-detector"></a></h3>
-   <div class="example" id="example-19c7e090">
-    <a class="self-link" href="#example-19c7e090"></a> 
+   <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a> with minimal modifications. </div>
+   <div class="example" id="example-5b01f019">
+    <a class="self-link" href="#example-5b01f019"></a> 
 <pre class="highlight"><span class="k">if</span> <span class="p">(</span>window<span class="p">.</span>FaceDetector <span class="o">==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
-  console<span class="p">.</span>error<span class="p">(</span><span class="s1">'Face Detection not supported in this platform'</span><span class="p">)</span><span class="p">;</span>
+  console<span class="p">.</span>error<span class="p">(</span><span class="s1">'Face Detection not supported on this platform'</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span>window<span class="p">.</span>BarcodeDetector <span class="o">==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+  console<span class="p">.</span>error<span class="p">(</span><span class="s1">'Barcode Detection not supported on this platform'</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
    </div>
    <h3 class="heading settled" data-level="3.2" id="face-detection"><span class="secno">3.2. </span><span class="content">Face Detection</span><a class="self-link" href="#face-detection"></a></h3>
+   <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/YGrYAm?editors=0010">this codepen</a>,
+(or <a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this one
+ with bounding box overlay on the input image</a>). </div>
    <div class="example" id="example-542b1c52">
     <a class="self-link" href="#example-542b1c52"></a> 
 <pre class="highlight"><span class="kd">let</span> faceDetector <span class="o">=</span> <span class="k">new</span> FaceDetector<span class="p">(</span><span class="p">{</span>fastMode<span class="o">:</span> <span class="kc">true</span><span class="p">,</span> maxDetectedFaces<span class="o">:</span> <span class="mi">1</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
@@ -1841,7 +1850,7 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
      <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#window">Window</a>
     </ul>
    <li>
-    <a data-link-type="biblio">[WebIDL-1]</a> defines the following terms:
+    <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
      <li><a href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a>
      <li><a href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>
@@ -1854,15 +1863,15 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-fileapi">[FileAPI]
-   <dd>Arun Ranganathan; Jonas Sicking. <a href="https://w3c.github.io/FileAPI/">File API</a>. 21 April 2015. WD. URL: <a href="https://w3c.github.io/FileAPI/">https://w3c.github.io/FileAPI/</a>
+   <dd>Arun Ranganathan; Jonas Sicking. <a href="https://w3c.github.io/FileAPI/">File API</a>. URL: <a href="https://w3c.github.io/FileAPI/">https://w3c.github.io/FileAPI/</a>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
-   <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="http://dev.w3.org/fxtf/geometry/">Geometry Interfaces Module Level 1</a>. 25 November 2014. CR. URL: <a href="http://dev.w3.org/fxtf/geometry/">http://dev.w3.org/fxtf/geometry/</a>
+   <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="http://dev.w3.org/fxtf/geometry/">Geometry Interfaces Module Level 1</a>. URL: <a href="http://dev.w3.org/fxtf/geometry/">http://dev.w3.org/fxtf/geometry/</a>
    <dt id="biblio-html">[HTML]
    <dd>Ian Hickson. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
-   <dt id="biblio-webidl-1">[WebIDL-1]
-   <dd>Cameron McCormack; Boris Zbarsky. <a href="https://heycam.github.io/webidl/">WebIDL Level 1</a>. 15 September 2016. PR. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dt id="biblio-webidl">[WebIDL]
+   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
