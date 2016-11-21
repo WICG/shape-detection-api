@@ -11,6 +11,8 @@ Photos and images constitute the largest chunk of the Web, and many include reco
 
 ## Use cases :camera:
 
+* QR/barcode detection can be used for quick user registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508).
+
 * Live video feeds would like to identify faces in a picture/video as highly salient areas to e.g. give hints to image or video encoders.
 
 * Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to which face.
@@ -19,13 +21,13 @@ Photos and images constitute the largest chunk of the Web, and many include reco
 
 * Fun! you can map glasses, funny hats and other overlays on top of the detected faces
 
-* QR/barcode detection can be used for quick user registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508).
-
 * QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. [here](http://www.multidots.com/augmented-reality/)).
 
 ## Current Workarounds :wrench:
 
-Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found [here](https://github.com/mtschirs/js-objectdetect#performance).
+Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found [here](https://github.com/mtschirs/js-objectdetect#performance) (note that this performance evaluation does not include e.g. WebCam image acquisition and/or canvas interactions).
+
+Samsung Browser [has a private API](developer.samsung.com/internet): click to unfold "Overview for Android", then search for "QR code reader".
 
 ## Potential for misuse :money_with_wings:
 
