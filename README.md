@@ -23,11 +23,13 @@ Photos and images constitute the largest chunk of the Web, and many include reco
 
 * QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. [here](http://www.multidots.com/augmented-reality/)).
 
-## Current Workarounds :wrench:
+## Current Related Efforts and Workarounds :wrench:
 
 Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found [here](https://github.com/mtschirs/js-objectdetect#performance) (note that this performance evaluation does not include e.g. WebCam image acquisition and/or canvas interactions).
 
 Samsung Browser [has a private API](developer.samsung.com/internet) (click to unfold "Overview for Android", then search for "QR code reader").
+
+Although it's not really related to the Web Platform, it's worth noting that Android Native Apps usually integrate [ZXing](https://github.com/zxing/zxing) (which amounts to adding ~560KB when counting [core.jar](http://repo1.maven.org/maven2/com/google/zxing/core/3.3.0/), [android-core.jar](http://repo1.maven.org/maven2/com/google/zxing/android-core/3.3.0/) and [android-integration.jar](http://repo1.maven.org/maven2/com/google/zxing/android-integration/3.3.0/))).
 
 ## Potential for misuse :money_with_wings:
 
