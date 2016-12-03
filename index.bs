@@ -115,7 +115,7 @@ dictionary FaceDetectorOptions {
   // Consider: boolean fastMode;
 };
 
-[Constructor(optional FaceDetectorOptions faceDetectorOptions)]
+[Exposed=(Window,Worker), Constructor(optional FaceDetectorOptions faceDetectorOptions)]
 interface FaceDetector {
     Promise&lt;sequence&lt;DetectedFace>> detect(ImageBitmapSource image);
 };
@@ -134,7 +134,7 @@ DetectedFace implements DetectedObject;
 {{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox|, and possibly a |rawValue| decoded `DOMString`.
 
 <pre class="idl">
-[Constructor()]
+[Exposed=(Window,Worker), Constructor()]
 interface BarcodeDetector {
     Promise&lt;sequence&lt;DetectedBarcode>> detect(ImageBitmapSource image);
 };

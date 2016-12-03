@@ -968,6 +968,8 @@ Possible extra rowspan handling
 		/* Reverse color scheme */
 		color: black;
 		border-color: #3980B5;
+		border-bottom-width: 3px !important;
+		margin-bottom: 0px !important;
 	}
 	.toc a:visited {
 		border-color: #054572;
@@ -1174,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed 1.0.0" name="generator">
+  <meta content="Bikeshed version 18bde035bc0169bb31c49099bf3e6ec57ff9ec7f" name="generator">
 <style>
 table {
   border-collapse: collapse;
@@ -1438,7 +1440,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-11-02">2 November 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-12-03">3 December 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1580,7 +1582,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   // Consider: boolean fastMode;
 };
 
-[<dfn class="nv idl-code" data-dfn-for="FaceDetector" data-dfn-type="constructor" data-export="" data-lt="FaceDetector(faceDetectorOptions)|FaceDetector()" id="dom-facedetector-facedetector">Constructor<a class="self-link" href="#dom-facedetector-facedetector"></a></dfn>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-2">FaceDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/FaceDetector(faceDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions<a class="self-link" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"></a></dfn>)]
+[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <dfn class="nv idl-code" data-dfn-for="FaceDetector" data-dfn-type="constructor" data-export="" data-lt="FaceDetector(faceDetectorOptions)|FaceDetector()" id="dom-facedetector-facedetector">Constructor<a class="self-link" href="#dom-facedetector-facedetector"></a></dfn>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-2">FaceDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/FaceDetector(faceDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions<a class="self-link" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"></a></dfn>)]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="facedetector">FaceDetector</dfn> {
     <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface" id="ref-for-detectedface-2">DetectedFace</a>>> <dfn class="nv dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-facedetector-detect">detect</dfn>(<a class="n" data-link-type="idl-name" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-15">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-facedetector-detect-image-image">image<a class="self-link" href="#dom-facedetector-detect-image-image"></a></dfn>);
 };
@@ -1593,7 +1595,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 </pre>
    <h3 class="heading settled" data-level="2.3" id="barcode-detection-api"><span class="secno">2.3. </span><span class="content">Barcode Detection API</span><a class="self-link" href="#barcode-detection-api"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector-1">BarcodeDetector</a></code> represents an underlying accelerated platform’s component for detection in images of QR codes or barcodes.It provides a single <code class="idl"><a data-link-type="idl" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect-4">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-16">ImageBitmapSource</a></code> which result is a Promise.This method MUST reject this promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of <code class="idl"><a data-link-type="idl" href="#detectedbarcode" id="ref-for-detectedbarcode-1">DetectedBarcode</a></code>s, each one essentially consisting on and delimited by a <var>boundingBox</var>, and possibly a <var>rawValue</var> decoded `DOMString`.</p>
-<pre class="idl highlight def">[<dfn class="nv idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="constructor" data-export="" data-lt="BarcodeDetector()" id="dom-barcodedetector-barcodedetector">Constructor<a class="self-link" href="#dom-barcodedetector-barcodedetector"></a></dfn>()]
+<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <dfn class="nv idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="constructor" data-export="" data-lt="BarcodeDetector()" id="dom-barcodedetector-barcodedetector">Constructor<a class="self-link" href="#dom-barcodedetector-barcodedetector"></a></dfn>()]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="barcodedetector">BarcodeDetector</dfn> {
     <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedbarcode" id="ref-for-detectedbarcode-2">DetectedBarcode</a>>> <dfn class="nv idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-barcodedetector-detect">detect<a class="self-link" href="#dom-barcodedetector-detect"></a></dfn>(<a class="n" data-link-type="idl-name" href="#typedefdef-imagebitmapsource" id="ref-for-typedefdef-imagebitmapsource-17">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="BarcodeDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-barcodedetector-detect-image-image">image<a class="self-link" href="#dom-barcodedetector-detect-image-image"></a></dfn>);
 };
@@ -1853,6 +1855,7 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
      <li><a href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a>
+     <li><a href="https://heycam.github.io/webidl/#Exposed">Exposed</a>
      <li><a href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>
      <li><a href="https://heycam.github.io/webidl/#NoInterfaceObject">NoInterfaceObject</a>
      <li><a href="https://heycam.github.io/webidl/#SameObject">SameObject</a>
@@ -1867,7 +1870,7 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
    <dt id="biblio-geometry-1">[GEOMETRY-1]
    <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="http://dev.w3.org/fxtf/geometry/">Geometry Interfaces Module Level 1</a>. URL: <a href="http://dev.w3.org/fxtf/geometry/">http://dev.w3.org/fxtf/geometry/</a>
    <dt id="biblio-html">[HTML]
-   <dd>Ian Hickson. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+   <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
@@ -1893,7 +1896,7 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
   // Consider: boolean fastMode;
 };
 
-[<a class="nv" href="#dom-facedetector-facedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> <a class="nv" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions</a>)]
+[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <a class="nv" href="#dom-facedetector-facedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> <a class="nv" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions</a>)]
 <span class="kt">interface</span> <a class="nv" href="#facedetector">FaceDetector</a> {
     <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface">DetectedFace</a>>> <a class="nv" href="#dom-facedetector-detect">detect</a>(<a class="n" data-link-type="idl-name" href="#typedefdef-imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-facedetector-detect-image-image">image</a>);
 };
@@ -1904,7 +1907,7 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
 };
 <a class="n" data-link-type="idl-name" href="#detectedface">DetectedFace</a> <span class="kt">implements</span> <a class="n" data-link-type="idl-name" href="#detectedobject">DetectedObject</a>;
 
-[<a class="nv" href="#dom-barcodedetector-barcodedetector">Constructor</a>()]
+[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <a class="nv" href="#dom-barcodedetector-barcodedetector">Constructor</a>()]
 <span class="kt">interface</span> <a class="nv" href="#barcodedetector">BarcodeDetector</a> {
     <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedbarcode">DetectedBarcode</a>>> <a class="nv" href="#dom-barcodedetector-detect">detect</a>(<a class="n" data-link-type="idl-name" href="#typedefdef-imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-barcodedetector-detect-image-image">image</a>);
 };
