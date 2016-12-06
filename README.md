@@ -11,19 +11,18 @@ Photos and images constitute the largest chunk of the Web, and many include reco
 
 ## Use cases :camera:
 
-* QR/barcode detection can be used for quick user registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508).
+QR/barcode detection can be used for:
+* user identification/registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508);
+* eCommerce, e.g. [Walmart Pay](https://www.slashgear.com/awalmart-announces-walmart-pay-for-qr-code-based-mobile-payments-10417912/);
+* Augmented Reality overlay, e.g. [here](http://www.multidots.com/augmented-reality/);
 
-* Live video feeds would like to identify faces in a picture/video as highly salient areas to e.g. give hints to image or video encoders.
+Face detection can be used for:
+* producing fun effects, e.g. [Snapchat Lenses](https://support.snapchat.com/en-US/a/lenses1);
+* giving hints to encoders or auto focus routines;
+* user name tagging;
+* enhance accesibility by e.g. making objects appear larger as the user gets closer like [HeadTrackr](https://www.auduno.com/headtrackr/examples/targets.html);
+* speeding up Face Recognition by indicating the areas of the image where faces are present.
 
-* Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to which face.
-
-* Face detection is the first step before Face Recognition: detected faces are used for the recognition phase, greatly speeding the process.
-
-* Enhance accesibility by e.g. coupling zoom in/out to detected face size.
-
-* Fun! you can map glasses, funny hats and other overlays on top of the detected faces
-
-* QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. [here](http://www.multidots.com/augmented-reality/)).
 
 ## Current Related Efforts and Workarounds :wrench:
 
@@ -66,10 +65,15 @@ Mac OS X/iOS provides `CIDetector` for Face, QR, Text and Rectangle detection in
 | ------------- |:-------------:| -----:|
 | [CIDetector, Mac OS X](https://developer.apple.com/library/mac/documentation/CoreImage/Reference/CIDetector_Ref/)| Software | OS X v10.7, 2011 |
 | [CIDetector, iOS](https://developer.apple.com/library/ios/documentation/CoreImage/Reference/CIDetector_Ref/) | Software | iOS v5.0, 2011 |
+| [AVFoundation](https://developer.apple.com/reference/avfoundation/avcapturemetadataoutput?language=objc)| Hardware | iOS 6.0, 2012 |
+
+Apple has supported Face Detection in hardware since the [Apple A5 processor](https://en.wikipedia.org/wiki/Apple_A5) introduced in 2011.
 
 ### Windows
 
-Windows 10 has a [FaceDetector](https://msdn.microsoft.com/library/windows/apps/dn974129) class
+Windows 10 has a [FaceDetector](https://msdn.microsoft.com/library/windows/apps/dn974129) class.
+
+TODO: investigate
 
 ## Rendered URL :bookmark_tabs:
 
