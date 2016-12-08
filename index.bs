@@ -72,12 +72,6 @@ interface DetectedObject {
 
 ## Image sources for detection
 
-<pre class="idl">
-typedef (CanvasImageSource or
-         Blob or
-         ImageData) ImageBitmapSource;
-</pre>
-
 <p class="note">
 This section is inspired by [[canvas2dcontext#image-sources-for-2d-rendering-contexts]].
 </p>
