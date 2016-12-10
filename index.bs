@@ -34,41 +34,13 @@ table td, table th {
 
 Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
 
-## Shape detection in the wild
+## Shape detection use cases
 
-Feature detection belongs to a broader, so called object-class detection where "the task is to find the locations and sizes of all objects in an image that belong to a given class. Examples include upper torsos, pedestrians, and cars." [[wikipedia]] . Face detection, in particular, focuses on detecting near-front facing human faces. A widespread class of detection algorithms use a hunting algorithm that tries to match a cascade of classifiers in several areas of the image and for several potential object sizes, which turns the process into extremely computationally complex. It is not the idea here to compare those algorithms, nor to offer a software fallback implementation of any of them for the Web, but to offer the available hardware capabilities, if any, to the Web Applications.
-
-<p class="note">
-Note that Face Detection (resp., Object) is not the same as Face Tracking nor Face Recognition, albeit those operations are usually interrelated.
-</p>
-
-<p class="note">Some Web Apps -gasp- run Face Detection in Javascript. A performance comparison of some such libraries can be found in <a href=https://github.com/mtschirs/js-objectdetect#performance>mtschirs' GitHub repo</a>
-</p>
-
-Some use cases of having object/face detection in the Web:
-
-
-* Live video feeds would like to identify faces in a picture/video as highly salient areas to e.g. give hints to image or video encoders.
-* Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to which face.
-* Face detection is the first step before Face Recognition: detected faces are used for the recognition phase, greatly speeding the process.
-* Fun! you can map glasses, funny hats and other overlays on top of the detected faces
-* QR/barcode detection can be used for quick user registration, e.g. for <a href="https://twitter.com/RegistertoVote/status/733123511128981508">voting purposes</a>.
-* QR codes can be used as markers to overlay synthetic Augmented Reality objects (see e.g. <a href="http://www.multidots.com/augmented-reality/">here</a>).
-
-Finally, note that using a particular Face/Object Detector does not preclude using others; in this case the hardware provided results can, e.g. be used as precursor or in parallel to user-defined ones.
+Please see the <a href="https://github.com/WICG/shape-detection-api/blob/gh-pages/README.md">Readme/Explainer</a> in the repository.
 
 # Shape Detection API # {#api}
 
-Individual browsers MAY provide Detectors indicating the availability of hardware providing a {{detect()}} accelerated operation.
-
-Detection results are encoded in sequences of {{DetectedObject}}s representing areas of an input {{ImageBitmapSource}} where the looked-for object is found. Each {{DetectedObject}} consists of, at least, a {{DOMRectReadOnly}}.
-
-<pre class="idl">
-[NoInterfaceObject, exposed=Window,Worker]
-interface DetectedObject {
-   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
-};
-</pre>
+Individual browsers MAY provide Detectors indicating the availability of hardware providing accelerated operation.
 
 ## Image sources for detection
 
@@ -84,7 +56,7 @@ This section is inspired by [[canvas2dcontext#image-sources-for-2d-rendering-con
 
 * When an {{ImageBitmapSource}} object represents an {{HTMLCanvasElement}}, the element's bitmap must be used as the source image.
 
-When the UA is required to use a given type of {{ImageBitmapSource}} as input argument for the {{detect()}} method of whichever detector, it MUST run these steps:
+When the UA is required to use a given type of {{ImageBitmapSource}} as input argument for the<code>detect()</code> method of whichever detector, it MUST run these steps:
 
 * If any {{ImageBitmapSource}} have an effective script origin ([[HTML#concept-origin]]) which is not the same as the Document's effective script origin, then reject the Promise with a new {{DOMException}} whose name is {{SecurityError}}.
 
@@ -98,52 +70,107 @@ When the UA is required to use a given type of {{ImageBitmapSource}} as input ar
 
 Note that if the {{ImageBitmapSource}} is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty `DetectedObject` sequence.
 
+## Detected objects
+
+Detection results are encoded in sequences of {{DetectedObject}}s representing areas of a given input {{ImageBitmapSource}} where looked-for objects are found. Each {{DetectedObject}} consists of, at least, a {{DOMRectReadOnly}} |boundingBox|.
+
+<pre class="idl">
+[NoInterfaceObject, exposed=Window,Worker]
+interface DetectedObject {
+ [SameObject] readonly attribute DOMRectReadOnly boundingBox;
+};
+</pre>
+
+<dl class="domintro">
+  <dt><dfn attribute for="DetectedObject"><code>boundingBox</code></dfn></dt>
+  <dd>A rectangle indicating the position and extent of a detected feature aligned to the image axes.</dd>
+</dl>
 
 ## Face Detection API
 
-{{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise. This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedFace}}s, each one essentially consisting on and delimited by a |boundingBox|.
+{{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{FaceDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise. This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedFace}}s, each one essentially consisting on and delimited by a |boundingBox|.
 
 <pre class="idl">
 dictionary FaceDetectorOptions {
   unsigned short maxDetectedFaces;
-  // Consider: boolean fastMode;
-};
-
-[Exposed=(Window,Worker), Constructor(optional FaceDetectorOptions faceDetectorOptions)]
-interface FaceDetector {
-    Promise&lt;sequence&lt;DetectedFace>> detect(ImageBitmapSource image);
+  boolean fastMode;
 };
 </pre>
 
+<dl class="domintro">
+  <dt><dfn dict-member for="FaceDetectorOptions"><code>maxDetectedFaces</code></dfn></dt>
+  <dd>Maximum number of detected faces to be identified in the scene.</dd>
+  <dt><dfn dict-member for="FaceDetectorOptions"><code>fastMode</code></dfn></dt>
+  <dd>Hint to the UA to try and prioritise speed over accuracy by e.g. operating on a reduced scale or looking for large features.</dd>
+</dl>
+
 <pre class="idl">
-interface DetectedFace {
-    // [SameObject] readonly attribute unsigned long id;
-    // [SameObject] readonly attribute sequence<Landmark>? landmarks;
+[Exposed=(Window,Worker), Constructor(optional FaceDetectorOptions faceDetectorOptions)]
+interface FaceDetector {
+  Promise&lt;sequence&lt;DetectedFace>> detect(ImageBitmapSource image);
 };
+</pre>
+
+<dl class="domintro">
+  <dt><dfn constructor for="FaceDetector"><code>FaceDetector(optional FaceDetectorOptions faceDetectorOptions)</code></dfn></dt>
+  <dd>Constructs a new <a>FaceDetector</a> with the optional |faceDetectorOptions|.</dd>
+  <dt><dfn method for="FaceDetector"><code>detect()</code></dfn></dt>
+  <dd>Tries to detect human faces in the {{ImageBitmapSource}} |image|.  The dectected faces, if any, are returned as a sequence of {{DetectedFace}}s.</dd>
+</dl>
+
+<pre class="idl">
+interface DetectedFace {};
 DetectedFace implements DetectedObject;
 </pre>
 
+<div class="example">
+Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a>, <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple's CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>.
+</div>
+
+<div class="note">
+  Consider adding attributes such as, e.g.:
+  <pre>
+    [SameObject] readonly attribute unsigned long id;
+    [SameObject] readonly attribute sequence&lt;Landmark>? landmarks;
+  </pre>
+  to {{DetectedFace}}.
+</div>
+
+
 ## Barcode Detection API
 
-{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.It provides a single {{detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox|, and possibly a |rawValue| decoded `DOMString`.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox| and a series or {{Point2D}}s, and possibly a |rawValue| decoded <code>DOMString</code>.
 
 <pre class="idl">
 [Exposed=(Window,Worker), Constructor()]
 interface BarcodeDetector {
-    Promise&lt;sequence&lt;DetectedBarcode>> detect(ImageBitmapSource image);
+  Promise&lt;sequence&lt;DetectedBarcode>> detect(ImageBitmapSource image);
 };
 </pre>
 
+<dl class="domintro">
+  <dt><dfn method for="BarcodeDetector"><code>detect(ImageBitmapSource image)</code></dfn></dt>
+  <dd>Tries to detect barcodes in the {{ImageBitmapSource}} |image|.</dd>
+</dl>
+
 <pre class="idl">
 interface DetectedBarcode {
-    [SameObject] readonly attribute DOMString rawValue;
+  [SameObject] readonly attribute DOMString rawValue;
+  [SameObject] readonly attribute sequence&lt;Point2D> cornerPoints;
 };
 DetectedBarcode implements DetectedObject;
 </pre>
 
-<p class="issue">
-Finalize the attributes of {{DetectedBarCode}}, taking e.g. the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Android Barcode</a> and <a href="https://developer.apple.com/library/ios/documentation/QuartzCore/Reference/CIQRCodeFeature/index.html#//apple_ref/occ/instp/CIQRCodeFeature/messageString">Apple's QICRCodeFeature</a> into account.
-</p>
+<dl class="domintro">
+  <dt><dfn attribute for="DetectedBarcode"><code>rawValue</code></dfn></dt>
+  <dd>String decoded from the barcode. This value might be multiline.</dd>
+  <dt><dfn attribute for="DetectedBarcode"><code>cornerPoints</code></dfn></dt>
+  <dd>A <a>sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
+</dl>
+
+<div class="example">
+Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CICRCodeFeature</a>.
+</div>
 
 # Examples # {#examples}
 
@@ -201,6 +228,14 @@ faceDetector.detect(theImage)
 
 ## Barcode Detection
 
+<div class="note">
+The following example can also be found in e.g.
+<a href="https://codepen.io/miguelao/pen/ZBBxOM?editors=0010">this codepen</a>,
+(or <a
+href="https://codepen.io/miguelao/pen/bBWOzM?editors=0010">this one
+ with bounding box overlay on the input image</a>).
+</div>
+
 <div class="example" highlight="javascript">
 <pre>
 let barcodeDetector = new BarcodeDetector();
@@ -226,6 +261,10 @@ spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
         text: Array; url: sec-array-objects
         text: Promise; url:sec-promise-objects
         text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
+</pre>
+
+<pre class="anchors">
+urlPrefix: https://w3c.github.io/mediacapture-image/#; type: interface; text: Point2D
 </pre>
 
 <pre class="link-defaults">
