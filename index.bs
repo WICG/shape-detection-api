@@ -264,7 +264,7 @@ spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
 </pre>
 
 <pre class="anchors">
-urlPrefix: https://w3c.github.io/mediacapture-image/#; type: interface; text: Point2D
+urlPrefix: https://w3c.github.io/mediacapture-image/#; type: interface; text: Point2D; url: Point2D
 </pre>
 
 <pre class="link-defaults">
