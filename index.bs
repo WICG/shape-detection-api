@@ -68,27 +68,11 @@ When the UA is required to use a given type of {{ImageBitmapSource}} as input ar
 
 * If the {{ImageBitmapSource}} argument is an {{HTMLCanvasElement}} whose bitmap's |origin-clean| ([[HTML#concept-canvas-origin-clean]]) flag is false, then reject the Promise with a new {{DOMException}} whose name is {{SecurityError}}, and abort any further steps.
 
-Note that if the {{ImageBitmapSource}} is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty `DetectedObject` sequence.
-
-## Detected objects
-
-Detection results are encoded in sequences of {{DetectedObject}}s representing areas of a given input {{ImageBitmapSource}} where looked-for objects are found. Each {{DetectedObject}} consists of, at least, a {{DOMRectReadOnly}} |boundingBox|.
-
-<pre class="idl">
-[NoInterfaceObject, exposed=Window,Worker]
-interface DetectedObject {
- [SameObject] readonly attribute DOMRectReadOnly boundingBox;
-};
-</pre>
-
-<dl class="domintro">
-  <dt><dfn attribute for="DetectedObject"><code>boundingBox</code></dfn></dt>
-  <dd>A rectangle indicating the position and extent of a detected feature aligned to the image axes.</dd>
-</dl>
+Note that if the {{ImageBitmapSource}} is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty sequence of detected objects.
 
 ## Face Detection API
 
-{{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{FaceDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise. This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedFace}}s, each one essentially consisting on and delimited by a |boundingBox|.
+{{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{FaceDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise. This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a Sequence of {{DetectedFace}}s, each one essentially consisting on and delimited by a {{DetectedFace/boundingBox}}.
 
 <pre class="idl">
 dictionary FaceDetectorOptions {
@@ -113,15 +97,21 @@ interface FaceDetector {
 
 <dl class="domintro">
   <dt><dfn constructor for="FaceDetector"><code>FaceDetector(optional FaceDetectorOptions faceDetectorOptions)</code></dfn></dt>
-  <dd>Constructs a new <a>FaceDetector</a> with the optional |faceDetectorOptions|.</dd>
+  <dd>Constructs a new {{FaceDetector}} with the optional |faceDetectorOptions|.</dd>
   <dt><dfn method for="FaceDetector"><code>detect()</code></dfn></dt>
   <dd>Tries to detect human faces in the {{ImageBitmapSource}} |image|.  The dectected faces, if any, are returned as a sequence of {{DetectedFace}}s.</dd>
 </dl>
 
 <pre class="idl">
-interface DetectedFace {};
-DetectedFace implements DetectedObject;
+interface DetectedFace {
+  [SameObject] readonly attribute DOMRectReadOnly boundingBox;
+};
 </pre>
+
+<dl class="domintro">
+  <dt><dfn attribute for="DetectedFace"><code>boundingBox</code></dfn></dt>
+  <dd>A rectangle indicating the position and extent of a detected feature aligned to the image axes.</dd>
+</dl>
 
 <div class="example">
 Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a>, <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple's CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>.
@@ -139,7 +129,7 @@ Example implementations of face detection are e.g. <a href="https://developer.an
 
 ## Barcode Detection API
 
-{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a <code>Sequence</code> of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a |boundingBox| and a series or {{Point2D}}s, and possibly a |rawValue| decoded <code>DOMString</code>.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a {{DetectedBarcode/boundingBox}} and a series or {{Point2D}}s, and possibly a |rawValue| decoded {{DOMString}}.
 
 <pre class="idl">
 [Exposed=(Window,Worker), Constructor()]
@@ -155,15 +145,19 @@ interface BarcodeDetector {
 
 <pre class="idl">
 interface DetectedBarcode {
+  [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
   [SameObject] readonly attribute sequence&lt;Point2D> cornerPoints;
 };
-DetectedBarcode implements DetectedObject;
 </pre>
 
 <dl class="domintro">
+  <dt><dfn attribute for="DetectedBarcode"><code>boundingBox</code></dfn></dt>
+  <dd>A rectangle indicating the position and extent of a detected feature aligned to the image</dd>
+
   <dt><dfn attribute for="DetectedBarcode"><code>rawValue</code></dfn></dt>
   <dd>String decoded from the barcode. This value might be multiline.</dd>
+
   <dt><dfn attribute for="DetectedBarcode"><code>cornerPoints</code></dfn></dt>
   <dd>A <a>sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
 </dl>
@@ -264,7 +258,11 @@ spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
 </pre>
 
 <pre class="anchors">
-urlPrefix: https://w3c.github.io/mediacapture-image/#; type: interface; text: Point2D; url: Point2D
+type: interface; text: Point2D; url: https://w3c.github.io/mediacapture-image/#Point2D;
+</pre>
+
+<pre class="anchors">
+type: interface; text: DOMString; url: https://heycam.github.io/webidl/#idl-DOMString; spec: webidl
 </pre>
 
 <pre class="link-defaults">
