@@ -166,6 +166,45 @@ interface DetectedBarcode {
 Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CICRCodeFeature</a>.
 </div>
 
+## Text Detection API
+
+{{TextDetector}} represents an underlying accelerated platform's component for detection in images of text.  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on a {{DetectedText/rawValue}} and delimited by a {{DetectedText/boundingBox}}.
+
+<pre class="idl">
+[
+    Constructor,
+    Exposed=(Window,Worker),
+] interface TextDetector {
+    Promise&lt;sequence&lt;DetectedText&gt;&gt; detect(ImageBitmapSource image);
+};
+</pre>
+
+<dl class="domintro">
+  <dt><dfn method for="TextDetector"><code>detect(ImageBitmapSource image)</code></dfn></dt>
+  <dd>Tries to detect text blocks in the {{ImageBitmapSource}} |image|.</dd>
+</dl>
+
+<pre class="idl">
+[
+    Constructor,
+] interface DetectedText {
+    [SameObject] readonly attribute DOMRect boundingBox;
+    [SameObject] readonly attribute DOMString rawValue;
+};
+</pre>
+
+<dl class="domintro">
+  <dt><dfn attribute for="DetectedText"><code>boundingBox</code></dfn></dt>
+  <dd>A rectangle indicating the position and extent of a detected feature aligned to the image</dd>
+
+  <dt><dfn attribute for="DetectedText"><code>rawValue</code></dfn></dt>
+  <dd>Raw string detected from the image.</dd>
+</dl>
+
+<div class="example">
+Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple's CIDetector</a> or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>.
+</div>
+
 # Examples # {#examples}
 
 <p class="note">
@@ -197,7 +236,7 @@ if (window.BarcodeDetector == undefined) {
 
 <div class="note">
 The following example can also be found in e.g.
-<a href="https://codepen.io/miguelao/pen/YGrYAm?editors=0010">this codepen</a>,
+<a href="https://codepen.io/miguelao/pen/YGrYAm?editors=0010">this codepen</a>
 (or <a
 href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this one
  with bounding box overlay on the input image</a>).
@@ -224,7 +263,7 @@ faceDetector.detect(theImage)
 
 <div class="note">
 The following example can also be found in e.g.
-<a href="https://codepen.io/miguelao/pen/ZBBxOM?editors=0010">this codepen</a>,
+<a href="https://codepen.io/miguelao/pen/ZBBxOM?editors=0010">this codepen</a>
 (or <a
 href="https://codepen.io/miguelao/pen/bBWOzM?editors=0010">this one
  with bounding box overlay on the input image</a>).
@@ -244,6 +283,34 @@ barcodeDetector.detect(theImage)
   }
 }).catch(() => {
   console.error("Barcode Detection failed, boo.");
+})
+</pre>
+</div>
+
+## Text Detection
+
+<div class="note">
+The following example can also be found in e.g.
+<a href="http://s.codepen.io/xianglu_google/debug/pNGBKv">this codepen</a>
+(or <a
+href="http://s.codepen.io/xianglu_google/debug/QGoaYe">this one
+ with video capture integrated</a>).
+</div>
+
+<div class="example" highlight="javascript">
+<pre>
+let barcodeDetector = new BarcodeDetector();
+// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
+
+textDetector.detect(theImage)
+.then(detectedTextBlocks => {
+  for (const textBlock of detectedTextBlocks) {
+    console.log(
+        'text @ (${textBlock.boundingBox.x}, ${textBlock.boundingBox.y}), ' +
+        'size ${textBlock.boundingBox.width}x${textBlock.boundingBox.height}');
+  }
+}).catch(() => {
+  console.error("Text Detection failed, boo.");
 })
 </pre>
 </div>
