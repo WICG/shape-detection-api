@@ -1440,7 +1440,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-12-21">21 December 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-12-22">22 December 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1629,13 +1629,16 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dfn class="nv idl-code" data-dfn-for="DetectedText" data-dfn-type="constructor" data-export="" data-lt="DetectedText()" id="dom-detectedtext-detectedtext">Constructor<a class="self-link" href="#dom-detectedtext-detectedtext"></a></dfn>,
 ] <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedtext">DetectedText</dfn> {
     [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRect" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox-2">boundingBox</a>;
+    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue-1">rawValue</a>;
 };
 </pre>
    <dl class="domintro">
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="attribute" data-export="" id="dom-detectedtext-boundingbox"><code>boundingBox</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a>, readonly</span>
     <dd>A rectangle indicating the position and extent of a detected feature aligned to the image
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="attribute" data-export="" id="dom-detectedtext-rawvalue"><code>rawValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>, readonly</span>
+    <dd>Raw string detected from the image.
    </dl>
-   <div class="example" id="example-fa042bdf"><a class="self-link" href="#example-fa042bdf"></a> Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple’s CIDetector</a> or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 OCR API</a>. </div>
+   <div class="example" id="example-ea7becbb"><a class="self-link" href="#example-ea7becbb"></a> Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple’s CIDetector</a> or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>. </div>
    <h2 class="heading settled" data-level="3" id="examples"><span class="secno">3. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <p class="note" role="note"> Slightly modified/extended versions of these examples (and more) can be found in
  e.g. <a href="https://codepen.io/collection/DwWVJj/">this codepen collection</a>. </p>
@@ -1887,7 +1890,12 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <li><a href="#dictdef-facedetectoroptions">FaceDetectorOptions</a><span>, in §2.2</span>
    <li><a href="#dom-facedetectoroptions-fastmode">fastMode</a><span>, in §2.2</span>
    <li><a href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a><span>, in §2.2</span>
-   <li><a href="#dom-detectedbarcode-rawvalue">rawValue</a><span>, in §2.3</span>
+   <li>
+    rawValue
+    <ul>
+     <li><a href="#dom-detectedbarcode-rawvalue">attribute for DetectedBarcode</a><span>, in §2.3</span>
+     <li><a href="#dom-detectedtext-rawvalue">attribute for DetectedText</a><span>, in §2.4</span>
+    </ul>
    <li><a href="#dom-textdetector-textdetector">TextDetector()</a><span>, in §2.4</span>
    <li><a href="#textdetector">TextDetector</a><span>, in §2.4</span>
   </ul>
@@ -1970,6 +1978,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
     <a class="nv" href="#dom-detectedtext-detectedtext">Constructor</a>,
 ] <span class="kt">interface</span> <a class="nv" href="#detectedtext">DetectedText</a> {
     [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRect" href="#dom-detectedtext-boundingbox">boundingBox</a>;
+    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue">rawValue</a>;
 };
 
 </pre>
@@ -2079,6 +2088,12 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <b><a href="#dom-detectedtext-boundingbox">#dom-detectedtext-boundingbox</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-detectedtext-boundingbox-1">2.4. Text Detection API</a> <a href="#ref-for-dom-detectedtext-boundingbox-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-detectedtext-rawvalue">
+   <b><a href="#dom-detectedtext-rawvalue">#dom-detectedtext-rawvalue</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-detectedtext-rawvalue-1">2.4. Text Detection API</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */

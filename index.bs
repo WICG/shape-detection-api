@@ -189,16 +189,20 @@ Example implementations of Barcode/QR code detection are e.g. <a href="https://d
     Constructor,
 ] interface DetectedText {
     [SameObject] readonly attribute DOMRect boundingBox;
+    [SameObject] readonly attribute DOMString rawValue;
 };
 </pre>
 
 <dl class="domintro">
   <dt><dfn attribute for="DetectedText"><code>boundingBox</code></dfn></dt>
   <dd>A rectangle indicating the position and extent of a detected feature aligned to the image</dd>
+
+  <dt><dfn attribute for="DetectedText"><code>rawValue</code></dfn></dt>
+  <dd>Raw string detected from the image.</dd>
 </dl>
 
 <div class="example">
-Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple's CIDetector</a> or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 OCR API</a>.
+Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple's CIDetector</a> or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>.
 </div>
 
 # Examples # {#examples}
