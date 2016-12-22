@@ -168,7 +168,7 @@ Example implementations of Barcode/QR code detection are e.g. <a href="https://d
 
 ## Text Detection API
 
-{{TextDetector}} represents an underlying accelerated platform's component for detection in images of text.  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on and delimited by a {{DetectedText/boundingBox}}.
+{{TextDetector}} represents an underlying accelerated platform's component for detection in images of text.  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on a {{DetectedText/rawValue}} and delimited by a {{DetectedText/boundingBox}}.
 
 <pre class="idl">
 [
