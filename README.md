@@ -95,7 +95,7 @@ The rendered version of this site can be found in https://wicg.github.io/shape-d
 
 ## Examples and demos
 
-Blabla
+https://wicg.github.io/shape-detection-api/#examples
 
 ## Notes on bikeshedding :bicyclist:
 
