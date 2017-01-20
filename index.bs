@@ -32,7 +32,7 @@ table td, table th {
 
 # Introduction # {#introduction}
 
-Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
+Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces, QR codes or text. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging, or web URL redirection. While hardware manufacturers have been supporting these features for a long time, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
 
 ## Shape detection use cases
 
@@ -229,6 +229,9 @@ if (window.FaceDetector == undefined) {
 if (window.BarcodeDetector == undefined) {
   console.error('Barcode Detection not supported on this platform');
 }
+if (window.TextDetector == undefined) {
+  console.error('Text Detection not supported on this platform');
+}
 </pre>
 </div>
 
@@ -237,8 +240,7 @@ if (window.BarcodeDetector == undefined) {
 <div class="note">
 The following example can also be found in e.g.
 <a href="https://codepen.io/miguelao/pen/YGrYAm?editors=0010">this codepen</a>
-(or <a
-href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this one
+(or <a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this one
  with bounding box overlay on the input image</a>).
 </div>
 
@@ -264,8 +266,7 @@ faceDetector.detect(theImage)
 <div class="note">
 The following example can also be found in e.g.
 <a href="https://codepen.io/miguelao/pen/ZBBxOM?editors=0010">this codepen</a>
-(or <a
-href="https://codepen.io/miguelao/pen/bBWOzM?editors=0010">this one
+(or <a href="https://codepen.io/miguelao/pen/bBWOzM?editors=0010">this one
  with bounding box overlay on the input image</a>).
 </div>
 
@@ -292,8 +293,7 @@ barcodeDetector.detect(theImage)
 <div class="note">
 The following example can also be found in e.g.
 <a href="http://s.codepen.io/xianglu_google/debug/pNGBKv">this codepen</a>
-(or <a
-href="http://s.codepen.io/xianglu_google/debug/QGoaYe">this one
+(or <a href="http://s.codepen.io/xianglu_google/debug/QGoaYe">this one
  with video capture integrated</a>).
 </div>
 

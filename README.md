@@ -1,20 +1,21 @@
 
 # Shape Detection API Specification _:stars:_:movie_camera:
 
-This is the repository for `shape-detection-api`, an experimental API for detecting Shapes (e.g. Faces and other Objects) in live or still images on the Web by **using accelerated hardware**.
+This is the repository for `shape-detection-api`, an experimental API for detecting Shapes (e.g. Faces, Barcodes, Text) in live or still images on the Web by **using accelerated hardware/OS resources**.
 
 You're welcome to contribute! Let's make the Web rock our socks off!
 
 ## [Introduction](https://wicg.github.io/shape-detection-api/#introduction) :blue_book:
 
-Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
+Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces, text or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of computationally demanding libraries necessary.
 
 ## Use cases :camera:
 
-QR/barcode detection can be used for:
+QR/barcode/text detection can be used for:
 * user identification/registration, e.g. for [voting purposes](https://twitter.com/RegistertoVote/status/733123511128981508);
 * eCommerce, e.g. [Walmart Pay](https://www.slashgear.com/awalmart-announces-walmart-pay-for-qr-code-based-mobile-payments-10417912/);
 * Augmented Reality overlay, e.g. [here](http://www.multidots.com/augmented-reality/);
+* Driving online-to-offline engagement, fighting fakes [etc](https://www.clickz.com/why-have-qr-codes-taken-off-in-china/23662/).
 
 Face detection can be used for:
 * producing fun effects, e.g. [Snapchat Lenses](https://support.snapchat.com/en-US/a/lenses1);
@@ -34,15 +35,28 @@ Samsung Browser [has a private API](developer.samsung.com/internet) (click to un
 
 Android Native Apps usually integrate [ZXing](https://github.com/zxing/zxing) (which amounts to adding ~560KB when counting [core.jar](http://repo1.maven.org/maven2/com/google/zxing/core/3.3.0/), [android-core.jar](http://repo1.maven.org/maven2/com/google/zxing/android-core/3.3.0/) and [android-integration.jar](http://repo1.maven.org/maven2/com/google/zxing/android-integration/3.3.0/))).
 
+OCR reader in Javascript are north of 1MB of size ()
+
 ## Potential for misuse :money_with_wings:
 
 Face Detection is an expensive operation due to the algorithmic complexity. Many requests, or demanding systems like a live stream feed with a certain frame rate, could slow down the whole system or greatly increase power consumption.
 
 ## Platform specific implementation notes :computer:
 
+## Overview
+
+What platforms support what detector?
+
+Encoder   | Mac| Android | Win10  | Linux   | ChromeOs |
+--------- |:--:| :------:| :---:  | :------:| :------: |
+Face      | sw | hw/sw   | sw     | &#10008;| &#10008; |
+QR/Barcode| sw | sw      |&#10008;| &#10008;| &#10008; |
+Text      | sw | sw      | sw     | &#10008;| &#10008; |
+
+
 ### Android
 
-Android provides both a stand alone software detector and a hardware based interface to the hardware ones.
+Android provides both a stand alone software face detector and a interface to the hardware ones.
 
 | API           |     uses...     | Release notes  |
 | ------------- |:-------------:| -----:|
@@ -56,6 +70,8 @@ The availability of the actual hardware detection depends on the actual chip; ac
 * [Samsung Exynos](http://www.samsung.com/semiconductor/minisite/Exynos/data/Benefits_of_Exynos_5420_ISP_for_Enhanced_Imaging_Experience.pdf) (at least 2013).
 * Huawei HiSilicon [Kirin950](http://www.androidauthority.com/huawei-hisilicon-kirin-950-official-653811) since 2015 (this fabless manufacturer is relatively new).
 * It is worth noting that ARM [acquired Apical in 2016](https://www.arm.com/products/graphics-and-multimedia/computer-vision) for its computer vision expertise.
+
+Barcode/QR and Text detection is available via Google Play Services [barcode](https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary) and [text](https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary), respectively.
 
 ### Mac OS X / iOS
 
@@ -71,9 +87,7 @@ Apple has supported Face Detection in hardware since the [Apple A5 processor](ht
 
 ### Windows
 
-Windows 10 has a [FaceDetector](https://msdn.microsoft.com/library/windows/apps/dn974129) class.
-
-TODO: investigate
+Windows 10 has a [FaceDetector](https://msdn.microsoft.com/library/windows/apps/dn974129) class and support for Text Detection [OCR](https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx).
 
 ## Rendered URL :bookmark_tabs:
 
@@ -85,7 +99,7 @@ Blabla
 
 ## Notes on bikeshedding :bicyclist:
 
-To compile, I'm just running
+To compile, run:
 
 ```
 curl https://api.csswg.org/bikeshed/ -F file=@index.bs -F force=1 > index.html
