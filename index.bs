@@ -293,13 +293,13 @@ barcodeDetector.detect(theImage)
 <div class="note">
 The following example can also be found in e.g.
 <a href="http://s.codepen.io/xianglu_google/debug/pNGBKv">this codepen</a>
-(or <a href="http://s.codepen.io/xianglu_google/debug/QGoaYe">this one
+(or <a href="https://codepen.io/miguelao/pen/VPMxrj">this one
  with video capture integrated</a>).
 </div>
 
 <div class="example" highlight="javascript">
 <pre>
-let barcodeDetector = new BarcodeDetector();
+let textDetector = new TextDetector();
 // Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 
 textDetector.detect(theImage)

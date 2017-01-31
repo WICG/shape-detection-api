@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 48f3e0ec257a756aad6df3ed37b6360b66ae5352" name="generator">
+  <meta content="Bikeshed version 009836c46217067220542eccc715a300175723d6" name="generator">
 <style>
 table {
   border-collapse: collapse;
@@ -1440,7 +1440,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-01-20">20 January 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-01-31">31 January 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1561,13 +1561,13 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    </dl>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector" id="ref-for-dom-facedetector-facedetector-1">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-2">FaceDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/FaceDetector(faceDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions<a class="self-link" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"></a></dfn>)]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="facedetector">FaceDetector</dfn> {
-  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface" id="ref-for-detectedface-2">DetectedFace</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect-2">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-facedetector-detect-image-image">image<a class="self-link" href="#dom-facedetector-detect-image-image"></a></dfn>);
+  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface" id="ref-for-detectedface-2">DetectedFace</a>>> <dfn class="nv dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-facedetector-detect">detect</dfn>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-facedetector-detect-image-image">image<a class="self-link" href="#dom-facedetector-detect-image-image"></a></dfn>);
 };
 </pre>
    <dl class="domintro">
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="constructor" data-export="" data-lt="FaceDetector(faceDetectorOptions)|FaceDetector()" id="dom-facedetector-facedetector"><code>FaceDetector(optional FaceDetectorOptions faceDetectorOptions)</code></dfn>
     <dd>Constructs a new <code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-2">FaceDetector</a></code> with the optional <var>faceDetectorOptions</var>.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-facedetector-detect"><code>detect()</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" id="dom-facedetector-detect"><code>detect()</code></dfn>
     <dd>Tries to detect human faces in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> <var>image</var>.  The dectected faces, if any, are returned as a sequence of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-3">DetectedFace</a></code>s.
    </dl>
 <pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedface">DetectedFace</dfn> {
@@ -1666,12 +1666,12 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 </span>
 faceDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span class="p">)</span>
-<span class="p">.</span>then<span class="p">(</span>detectedFaces <span class="o">=></span> <span class="p">{</span>
+<span class="p">.</span>then<span class="p">(</span>detectedFaces <span class="p">=></span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> face <span class="k">of</span> detectedFaces<span class="p">)</span> <span class="p">{</span>
     console<span class="p">.</span>log<span class="p">(</span><span class="s1">' Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),'</span> <span class="o">+</span>
         <span class="s1">' size ${face.boundingBox.width}x${face.boundingBox.height}'</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
   console<span class="p">.</span>error<span class="p">(</span><span class="s2">"Face Detection failed, boo."</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">)</span>
 </pre>
@@ -1685,33 +1685,33 @@ faceDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 </span>
 barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span class="p">)</span>
-<span class="p">.</span>then<span class="p">(</span>detectedCodes <span class="o">=></span> <span class="p">{</span>
+<span class="p">.</span>then<span class="p">(</span>detectedCodes <span class="p">=></span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> barcode <span class="k">of</span> detectedCodes<span class="p">)</span> <span class="p">{</span>
     console<span class="p">.</span>log<span class="p">(</span><span class="s1">' Barcode ${barcode.rawValue}'</span> <span class="o">+</span>
         <span class="s1">' @ (${barcode.boundingBox.x}, ${barcode.boundingBox.y}) with size'</span> <span class="o">+</span>
         <span class="s1">' ${barcode.boundingBox.width}x${barcode.boundingBox.height}'</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
   console<span class="p">.</span>error<span class="p">(</span><span class="s2">"Barcode Detection failed, boo."</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">)</span>
 </pre>
    </div>
    <h3 class="heading settled" data-level="3.4" id="text-detection"><span class="secno">3.4. </span><span class="content">Text Detection</span><a class="self-link" href="#text-detection"></a></h3>
-   <div class="note" role="note"> The following example can also be found in e.g. <a href="http://s.codepen.io/xianglu_google/debug/pNGBKv">this codepen</a> (or <a href="http://s.codepen.io/xianglu_google/debug/QGoaYe">this one
+   <div class="note" role="note"> The following example can also be found in e.g. <a href="http://s.codepen.io/xianglu_google/debug/pNGBKv">this codepen</a> (or <a href="https://codepen.io/miguelao/pen/VPMxrj">this one
  with video capture integrated</a>). </div>
-   <div class="example" id="example-a74d6b07">
-    <a class="self-link" href="#example-a74d6b07"></a> 
-<pre class="highlight"><span class="kd">let</span> barcodeDetector <span class="o">=</span> <span class="k">new</span> BarcodeDetector<span class="p">(</span><span class="p">)</span><span class="p">;</span>
+   <div class="example" id="example-ac575464">
+    <a class="self-link" href="#example-ac575464"></a> 
+<pre class="highlight"><span class="kd">let</span> textDetector <span class="o">=</span> <span class="k">new</span> TextDetector<span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 </span>
 textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span class="p">)</span>
-<span class="p">.</span>then<span class="p">(</span>detectedTextBlocks <span class="o">=></span> <span class="p">{</span>
+<span class="p">.</span>then<span class="p">(</span>detectedTextBlocks <span class="p">=></span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> textBlock <span class="k">of</span> detectedTextBlocks<span class="p">)</span> <span class="p">{</span>
     console<span class="p">.</span>log<span class="p">(</span>
         <span class="s1">'text @ (${textBlock.boundingBox.x}, ${textBlock.boundingBox.y}), '</span> <span class="o">+</span>
         <span class="s1">'size ${textBlock.boundingBox.width}x${textBlock.boundingBox.height}'</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
   console<span class="p">.</span>error<span class="p">(</span><span class="s2">"Text Detection failed, boo."</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">)</span>
 </pre>
@@ -1876,6 +1876,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
      <li><a href="#dom-detectedtext-boundingbox">attribute for DetectedText</a><span>, in §2.4</span>
     </ul>
    <li><a href="#dom-detectedbarcode-cornerpoints">cornerPoints</a><span>, in §2.3</span>
+   <li><a href="#dom-facedetector-detect">detect()</a><span>, in §2.2</span>
    <li><a href="#detectedbarcode">DetectedBarcode</a><span>, in §2.3</span>
    <li><a href="#detectedface">DetectedFace</a><span>, in §2.2</span>
    <li><a href="#detectedtext">DetectedText</a><span>, in §2.4</span>
@@ -1952,7 +1953,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> <a class="nv" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions</a>)]
 <span class="kt">interface</span> <a class="nv" href="#facedetector">FaceDetector</a> {
-  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface">DetectedFace</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-facedetector-detect">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-facedetector-detect-image-image">image</a>);
+  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface">DetectedFace</a>>> <a class="nv" href="#dom-facedetector-detect">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-facedetector-detect-image-image">image</a>);
 };
 
 <span class="kt">interface</span> <a class="nv" href="#detectedface">DetectedFace</a> {
@@ -2009,6 +2010,12 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
     <li><a href="#ref-for-facedetector-1">2.2. Face Detection API</a> <a href="#ref-for-facedetector-2">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-facedetector-detect">
+   <b><a href="#dom-facedetector-detect">#dom-facedetector-detect</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-facedetector-detect-1">2.2. Face Detection API</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dom-facedetector-facedetector">
    <b><a href="#dom-facedetector-facedetector">#dom-facedetector-facedetector</a></b><b>Referenced in:</b>
    <ul>
@@ -2018,7 +2025,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
   <aside class="dfn-panel" data-for="dom-facedetector-detect">
    <b><a href="#dom-facedetector-detect">#dom-facedetector-detect</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-facedetector-detect-1">2.2. Face Detection API</a> <a href="#ref-for-dom-facedetector-detect-2">(2)</a>
+    <li><a href="#ref-for-dom-facedetector-detect-1">2.2. Face Detection API</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="detectedface">
