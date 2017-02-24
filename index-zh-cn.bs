@@ -34,7 +34,7 @@ table td, table th {
 
 照片和图像是互联网构成中最大的部分，其中相当一部分包含了可识别的特征，比如人脸，二维码或者文本。可想而之，识别这些特征的计算开销非常大，但有些很有趣场景，比如在照片中自动标记人脸，或者根据图像中的URL进行重定向。硬件厂商从很久以前就已经开始支持这些特性，但Web应用迟迟未能很好地利用上这些硬件特性，必须借助一些难用的程序库才能达到目的。
 
-## Shape detection use cases 图形识别的场景
+## 图形识别的场景 ## {#image-sources-for-detection}
 
 请参考代码库中<a href="https://github.com/WICG/shape-detection-api/blob/gh-pages/README.md">自述/解释</a> 的文档。
 
@@ -42,7 +42,7 @@ table td, table th {
 
 某些特定的浏览器可能会提供识别器来标示当前硬件是否提供加速功能。
 
-## Image sources for detection 用于识别的图像源
+## 用于识别的图像源 ## {#image-sources-for-detection}
 
 <p class="note">
 本节的灵感来自 [[canvas2dcontext#image-sources-for-2d-rendering-contexts]]。
@@ -58,7 +58,7 @@ table td, table th {
 
 * 当{{ImageBitmapSource}}对象代表{{HTMLCanvasElement}}的时候，该元素的位图必须用作源图像。
 
-当用户代理程序(User Agent)被要求用某种既有的{{ImageBitmapSource}}作为识别器的<code>detect()</code>方法的输入参数的时候，**必须**执行以下步骤：
+当用户代理程序(User Agent)被要求用某种既有的{{ImageBitmapSource}}作为识别器的<code>detect()</code>方法的输入参数的时候，必须执行以下步骤：
 
 * 如果{{ImageBitmapSource}}所含的有效脚本源([[HTML#concept-origin]])和当前文档的有效脚本源不同，就拒绝对应的Promise对象，并附上一个名为{{SecurityError}}的新建{{DOMException}}对象。
 
@@ -73,12 +73,12 @@ table td, table th {
 * 如果一个{{ImageBitmapSource}}是一个{{HTMLCanvasElement}}对象，且其位图的|origin-clean| ([[HTML#concept-canvas-origin-clean]])标识为false的话，就拒绝对应的Promise对象，并附上一个名为{{SecurityError}}的新建{{DOMException}}对象，同时停止之后的所有步骤。
 
 
-请注意，如果一个{{ImageBitmapSource}}的水平尺寸或垂直尺寸等于零，那么对应的Promise对象就会被简单地当作一个空的已检测对象序列来处理。
+请注意，如果一个{{ImageBitmapSource}}的水平尺寸或垂直尺寸等于0，那么对应的Promise对象就会被简单地当作一个空的已检测对象序列来处理。
 
 
-## Image sources for detection 人脸识别API
+## 人脸识别API ## {#face-detection-api}
 
-{{FaceDetector}}代表一个针对图像中的人脸进行识别的底层加速平台组件。创建时可以选择一个{{FaceDetectorOptions}}的Dictionary对象作为入参。它提供了一个单独的 {{FaceDetector/detect()}}方法操作{{ImageBitmapSource}}对象，并返回Promise对象。如果检测到[[#image-sources-for-detection]]中提及的用例，则该方法**必须**拒绝该Promise对象；否则，它可能会向{{DetectedFace}}序列推入一个新任务，这样会消耗操作系统或平台资源去依序处理该Promise，每个任务由一个{{DetectedFace/boundingBox}}所包含并界定。
+{{FaceDetector}}代表一个针对图像中的人脸进行识别的底层加速平台组件。创建时可以选择一个{{FaceDetectorOptions}}的Dictionary对象作为入参。它提供了一个单独的 {{FaceDetector/detect()}}方法操作{{ImageBitmapSource}}对象，并返回Promise对象。如果检测到[[#image-sources-for-detection]]中提及的用例，则该方法必须拒绝该Promise对象；否则，它可能会向{{DetectedFace}}序列推入一个新任务，这样会消耗操作系统或平台资源去依序处理该Promise，每个任务由一个{{DetectedFace/boundingBox}}所包含并界定。
 
 <pre class="idl">
 dictionary FaceDetectorOptions {
@@ -132,10 +132,9 @@ interface DetectedFace {
   to {{DetectedFace}}.
 </div>
 
+## 条形码识别API ## {#barcode-detection-api}
 
-## Image sources for detection条形码识别API
-
-{{BarcodeDetector}}代表一个针对图像中的二维码或条形码进行识别的底层加速平台组件。它提供了一个单独的{{BarcodeDetector/detect()}}方法操作{{ImageBitmapSource}}对象，并返回Promise对象。如果检测到[[#image-sources-for-detection]]中提及的情况，则该方法**必须**拒绝该Promise对象；否则，它可能会向{{DetectedBarcode}}序列推入一个新任务，这样会消耗操作系统或平台资源去依序处理该Promise。基本上每个任务包含{{DetectedBarcode/boundingBox}}和一系列{{Point2D}}，甚至可能还有个解码后的{{DOMString}}对象{{DetectedBarcode/rawValue}}，由它们来确定边界。
+{{BarcodeDetector}}代表一个针对图像中的二维码或条形码进行识别的底层加速平台组件。它提供了一个单独的{{BarcodeDetector/detect()}}方法操作{{ImageBitmapSource}}对象，并返回Promise对象。如果检测到[[#image-sources-for-detection]]中提及的情况，则该方法必须拒绝该Promise对象；否则，它可能会向{{DetectedBarcode}}序列推入一个新任务，这样会消耗操作系统或平台资源去依序处理该Promise。基本上每个任务包含{{DetectedBarcode/boundingBox}}和一系列{{Point2D}}，甚至可能还有个解码后的{{DOMString}}对象{{DetectedBarcode/rawValue}}，由它们来确定边界。
 
 
 <pre class="idl">
@@ -173,7 +172,7 @@ interface DetectedBarcode {
 实现了条形码/二维码识别的示例有：<a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> 或者 <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CICRCodeFeature</a>.
 </div>
 
-## Image sources for detection 文本识别API
+## 文本识别API ## {#text-detection-api}
 
 TextDetector代表一个针对图像中的文本进行识别的底层加速平台组件。它提供了一个单独的{{TextDetector/detect()}}方法操作{{ImageBitmapSource}}对象，并返回Promise对象。如果检测到[[#image-sources-for-detection]]中提及的情况，则该方法必须拒绝该Promise对象；否则，它可能会向{{DetectedText}}序列推入一个新任务，这样会消耗操作系统或平台资源去依序处理该Promise，基本上每个task包含一个{{DetectedText/rawValue}}，并由一个{{DetectedText/boundingBox}}来确定边界。
 
@@ -220,7 +219,7 @@ TextDetector代表一个针对图像中的文本进行识别的底层加速平�
 以下示例的微调或扩展版本，以及更多示例请参考<a href="https://codepen.io/collection/DwWVJj/">这个codepen集合</a>。
 </p>
 
-## Image sources for detection 图形识别器的平台支持
+## 图形识别器的平台支持 ## {#platform-support-for-a-given-detector}
 
 <div class="note">
 以下的示例同样可以在<a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">这个codepen</a>中找到微调的版本。 
@@ -241,7 +240,7 @@ if (window.TextDetector == undefined) {
 </pre>
 </div>
 
-## Image sources for detection 人脸识别
+## 人脸识别 ## {#face-detection}
 
 <div class="note">
 以下的示例同样可以在<a href="https://codepen.io/miguelao/pen/YGrYAm?editors=0010">这个codepen</a>(或者<a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">这个有边界框覆盖的图像示例中</a>)找到。
@@ -264,7 +263,7 @@ faceDetector.detect(theImage)
 </pre>
 </div>
 
-## Image sources for detection 条形码识别
+## 条形码识别 ## {#barcode-detection}
 
 <div class="note">
  以下的示例同样可以在这个<a href="https://codepen.io/miguelao/pen/ZBBxOM?editors=0010">这个codepen</a>(或者<a href="https://codepen.io/miguelao/pen/bBWOzM?editors=0010">这个覆盖了边界框的图像示例中</a>)找到。
@@ -288,7 +287,7 @@ barcodeDetector.detect(theImage)
 </pre>
 </div>
 
-## Image sources for detection 文本识别
+## 文本识别 ## {#text-detection}
 
 <div class="note">
 以下的示例同样可以在<a href="http://s.codepen.io/xianglu_google/debug/pNGBKv">这个codepen</a> (或者<a href="https://codepen.io/miguelao/pen/VPMxrj">这个集成了视频捕捉功能的示例</a>)找到。
