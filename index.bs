@@ -239,9 +239,7 @@ if (window.TextDetector == undefined) {
 
 <div class="note">
 The following example can also be found in e.g.
-<a href="https://codepen.io/miguelao/pen/YGrYAm?editors=0010">this codepen</a>
-(or <a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this one
- with bounding box overlay on the input image</a>).
+<a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this codepen</a>.
 </div>
 
 <div class="example" highlight="javascript">
@@ -265,9 +263,7 @@ faceDetector.detect(theImage)
 
 <div class="note">
 The following example can also be found in e.g.
-<a href="https://codepen.io/miguelao/pen/ZBBxOM?editors=0010">this codepen</a>
-(or <a href="https://codepen.io/miguelao/pen/bBWOzM?editors=0010">this one
- with bounding box overlay on the input image</a>).
+<a href="https://codepen.io/miguelao/pen/wgrYjZ?editors=0010">this codepen</a>.
 </div>
 
 <div class="example" highlight="javascript">
@@ -292,9 +288,7 @@ barcodeDetector.detect(theImage)
 
 <div class="note">
 The following example can also be found in e.g.
-<a href="http://s.codepen.io/xianglu_google/debug/pNGBKv">this codepen</a>
-(or <a href="https://codepen.io/miguelao/pen/VPMxrj">this one
- with video capture integrated</a>).
+<a href="https://codepen.io/miguelao/pen/ygxVqg">this codepen</a>.
 </div>
 
 <div class="example" highlight="javascript">
