@@ -7,6 +7,7 @@ Shortname: shape-detection-api
 Level: 1
 Editor: Miguel Casas-Sanchez, w3cid 82825, Google Inc., mcasas@google.com
 Abstract: This document describes an API providing access to accelerated shape detectors (e.g. human faces) for still images and/or live image feeds.
+Translation: zh-CN https://wicg.github.io/shape-detection-api/index-zh-cn.html
 Group: wicg
 !Participate: <a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
 !Participate: <a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a>
@@ -351,4 +352,3 @@ spec: html
   }
 }
 </pre>
-
