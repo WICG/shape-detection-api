@@ -1,5 +1,5 @@
 <pre class="metadata">
-Title: Accelerated Shape Detection in Images
+Title: 加速的图形识别
 Repository: wicg/shape-detection-api
 Status: ED
 ED: https://wicg.github.io/shape-detection-api
@@ -7,6 +7,7 @@ Shortname: shape-detection-api
 Level: 1
 Editor: Miguel Casas-Sanchez, w3cid 82825, Google Inc., mcasas@google.com
 Abstract: 本文档描述了一套Chrome中针对静态和/或动态图像的图形识别（如：人脸识别）API。
+Translation: en-US https://wicg.github.io/shape-detection-api
 Group: wicg
 !Participate: <a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
 !Participate: <a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a>
@@ -353,3 +354,4 @@ spec: html
   }
 }
 </pre>
+

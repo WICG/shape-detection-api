@@ -1,7 +1,7 @@
 <!doctype html><html lang="en">
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <title>Accelerated Shape Detection in Images</title>
+  <title>加速的图形识别</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 <style data-fill-with="stylesheet">/******************************************************************************
  *                   Style sheet for the W3C specifications                   *
@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version e1dec9014e8312d8b7897a43b49535747bd6f1b2" name="generator">
+  <meta content="Bikeshed version 2212f81bb04dafcc62a45dbc72321690773dc326" name="generator">
 <style>
 table {
   border-collapse: collapse;
@@ -1439,8 +1439,8 @@ pre.idl.highlight { color: #708090; }
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"></p>
-   <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-24">24 February 2017</time></span></h2>
+   <h1 class="p-name no-ref allcaps" id="title">加速的图形识别</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-28">28 February 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1449,13 +1449,15 @@ pre.idl.highlight { color: #708090; }
      <dd><a href="https://github.com/wicg/shape-detection-api/issues/">GitHub</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard" data-editor-id="82825"><a class="p-name fn u-email email" href="mailto:mcasas@google.com">Miguel Casas-Sanchez</a> (<span class="p-org org">Google Inc.</span>)
+     <dt>Translations <small>(non-normative and likely out-of-date)</small>:
+     <dd><a href="https://wicg.github.io/shape-detection-api" hreflang="en-us" rel="alternate">en-us</a>
      <dt>Participate:
      <dd><span><a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a></span>
      <dd><span><a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a></span>
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2015 the Contributors to the Accelerated Shape Detection in Images Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2015 the Contributors to the 加速的图形识别 Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
 A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    <hr title="Separator for header">
   </div>
@@ -1933,13 +1935,13 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
-   <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="http://dev.w3.org/fxtf/geometry/">Geometry Interfaces Module Level 1</a>. URL: <a href="http://dev.w3.org/fxtf/geometry/">http://dev.w3.org/fxtf/geometry/</a>
+   <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="http://dev.w3.org/fxtf/geometry/">Geometry Interfaces Module Level 1</a>. 25 November 2014. CR. URL: <a href="http://dev.w3.org/fxtf/geometry/">http://dev.w3.org/fxtf/geometry/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. WD. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl def"><span class="kt">dictionary</span> <a class="nv" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> {
