@@ -100,7 +100,7 @@ interface FaceDetector {
   <dt><dfn constructor for="FaceDetector"><code>FaceDetector(optional FaceDetectorOptions faceDetectorOptions)</code></dfn></dt>
   <dd>Constructs a new {{FaceDetector}} with the optional |faceDetectorOptions|.</dd>
   <dt><dfn method for="FaceDetector"><code>detect()</code></dfn></dt>
-  <dd>Tries to detect human faces in the {{ImageBitmapSource}} |image|.  The dectected faces, if any, are returned as a sequence of {{DetectedFace}}s.</dd>
+  <dd>Tries to detect human faces in the {{ImageBitmapSource}} |image|.  The detected faces, if any, are returned as a sequence of {{DetectedFace}}s.</dd>
 </dl>
 
 <pre class="idl">
@@ -130,7 +130,7 @@ Example implementations of face detection are e.g. <a href="https://developer.an
 
 ## Barcode Detection API
 
-{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a {{DetectedBarcode/boundingBox}} and a series or {{Point2D}}s, and possibly a |rawValue| decoded {{DOMString}}.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a {{DetectedBarcode/boundingBox}} and a series or {{Point2D}}s, and possibly a {{DetectedBarcode/rawValue}} decoded {{DOMString}}.
 
 <pre class="idl">
 [Exposed=(Window,Worker), Constructor()]
