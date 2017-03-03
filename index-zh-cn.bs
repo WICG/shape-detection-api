@@ -7,7 +7,6 @@ Shortname: shape-detection-api
 Level: 1
 Editor: Miguel Casas-Sanchez, w3cid 82825, Google Inc., mcasas@google.com
 Abstract: 本文档描述了一套Chrome中针对静态和/或动态图像的图形识别（如：人脸识别）API。
-Translation: en-US https://wicg.github.io/shape-detection-api
 Group: wicg
 !Participate: <a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
 !Participate: <a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a>
@@ -223,7 +222,7 @@ TextDetector代表一个针对图像中的文本进行识别的底层加速平�
 ## 图形识别器的平台支持 ## {#platform-support-for-a-given-detector}
 
 <div class="note">
-以下的示例同样可以在<a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">这个codepen</a>中找到微调的版本。 
+以下的示例同样可以在<a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">这个codepen</a>中找到微调的版本。
 </div>
 
 <div class="example" highlight="javascript">
