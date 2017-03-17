@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 2212f81bb04dafcc62a45dbc72321690773dc326" name="generator">
+  <meta content="Bikeshed version fa6d32dea6b39d19cbb9dd6d5e69f189e8bdd53f" name="generator">
 <style>
 table {
   border-collapse: collapse;
@@ -1440,7 +1440,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref allcaps" id="title">加速的图形识别</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-28">28 February 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-17">17 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1535,22 +1535,22 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>当用户代理程序(User Agent)被要求用某种既有的<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>作为识别器的<code>detect()</code>方法的输入参数的时候，必须执行以下步骤：</p>
    <ul>
     <li data-md="">
-     <p>如果<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>所含的有效脚本源(<a href="https://html.spec.whatwg.org/multipage/#concept-origin">HTML Standard §concept-origin</a>)和当前文档的有效脚本源不同，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>对象。</p>
+     <p>如果<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>所含的有效脚本源(<a href="https://html.spec.whatwg.org/multipage/#concept-origin">HTML Standard §concept-origin</a>)和当前文档的有效脚本源不同，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>对象。</p>
     <li data-md="">
-     <p>如果一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个处于<var>broken</var>状态的<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>对象的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
+     <p>如果一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个处于<var>broken</var>状态的<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>对象的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
     <li data-md="">
-     <p>如果<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个不能完整解码的<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>对象的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
+     <p>如果<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个不能完整解码的<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>对象的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
     <li data-md="">
-     <p>如果一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlvideoelement">HTMLVideoElement</a></code>对象，且其<a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate"><var>readyState</var></a>属性为<var>HAVE_NOTHING</var> 或 <var>HAVE_METADATA</var>的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
+     <p>如果一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlvideoelement">HTMLVideoElement</a></code>对象，且其<a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate"><var>readyState</var></a>属性为<var>HAVE_NOTHING</var> 或 <var>HAVE_METADATA</var>的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
     <li data-md="">
-     <p>如果一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a></code>对象，且其位图的<var>origin-clean</var> (<a href="https://html.spec.whatwg.org/multipage/#concept-canvas-origin-clean">HTML Standard §concept-canvas-origin-clean</a>)标识为false的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
+     <p>如果一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>是一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a></code>对象，且其位图的<var>origin-clean</var> (<a href="https://html.spec.whatwg.org/multipage/#concept-canvas-origin-clean">HTML Standard §concept-canvas-origin-clean</a>)标识为false的话，就拒绝对应的Promise对象，并附上一个名为<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>的新建<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code>对象，同时停止之后的所有步骤。</p>
    </ul>
    <p>请注意，如果一个<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>的水平尺寸或垂直尺寸等于0，那么对应的Promise对象就会被简单地当作一个空的已检测对象序列来处理。</p>
    <h3 class="heading settled" data-level="2.2" id="face-detection-api"><span class="secno">2.2. </span><span class="content">人脸识别API</span><a class="self-link" href="#face-detection-api"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-1">FaceDetector</a></code>代表一个针对图像中的人脸进行识别的底层加速平台组件。创建时可以选择一个<code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-1">FaceDetectorOptions</a></code>的Dictionary对象作为入参。它提供了一个单独的 <code class="idl"><a data-link-type="idl" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect-1">detect()</a></code>方法操作<code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code>对象，并返回Promise对象。如果检测到<a href="#image-sources-for-detection">§1.1 图形识别的场景</a>中提及的用例，则该方法必须拒绝该Promise对象；否则，它可能会向<code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-1">DetectedFace</a></code>序列推入一个新任务，这样会消耗操作系统或平台资源去依序处理该Promise，每个任务由一个<code class="idl"><a data-link-type="idl" href="#dom-detectedface-boundingbox" id="ref-for-dom-detectedface-boundingbox-1">boundingBox</a></code>所包含并界定。</p>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-facedetectoroptions">FaceDetectorOptions</dfn> {
-  <span class="kt">unsigned</span> <span class="kt">short</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces" id="ref-for-dom-facedetectoroptions-maxdetectedfaces-1">maxDetectedFaces</a>;
-  <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-facedetectoroptions-fastmode" id="ref-for-dom-facedetectoroptions-fastmode-1">fastMode</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><span class="kt">unsigned</span> <span class="kt">short</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces" id="ref-for-dom-facedetectoroptions-maxdetectedfaces-1">maxDetectedFaces</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-facedetectoroptions-fastmode" id="ref-for-dom-facedetectoroptions-fastmode-1">fastMode</a>;
 };
 </pre>
    <dl class="domintro">
@@ -1582,7 +1582,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <div class="note" role="note">
      Consider adding attributes such as, e.g.: 
 <pre>[SameObject] readonly attribute unsigned long id;
-[SameObject] readonly attribute sequence&lt;Landmark>? landmarks;
+[SameObject] readonly attribute FrozenArray&lt;Landmark>? landmarks;
 </pre>
     <p>to <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-4">DetectedFace</a></code>.</p>
    </div>
@@ -1599,8 +1599,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    </dl>
 <pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedbarcode">DetectedBarcode</dfn> {
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox-2">boundingBox</a>;
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue-2">rawValue</a>;
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="sequence<Point2D>" href="#dom-detectedbarcode-cornerpoints" id="ref-for-dom-detectedbarcode-cornerpoints-1">cornerPoints</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue-2">rawValue</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Point2D>" href="#dom-detectedbarcode-cornerpoints" id="ref-for-dom-detectedbarcode-cornerpoints-1">cornerPoints</a>;
 };
 </pre>
    <dl class="domintro">
@@ -1608,7 +1608,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dd>与图像坐标轴对齐的一个矩形，该矩形标示了一个已识别特征的位置和范围。
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-rawvalue"><code>rawValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>, readonly</span>
     <dd>从条形码解码得到的DOMString对象，该值可能为多行。
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-cornerpoints"><code>cornerPoints</code></dfn>, <span> of type sequence&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-cornerpoints"><code>cornerPoints</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>>, readonly</span>
     <dd>一串已识别条形码的顶点序列（<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence">sequence</a>），顺序从左上角开始，以顺时针方向排列。因为现实中透视形变的原因，该序列不一定表示的是正方形。
    </dl>
    <div class="example" id="example-56c3ea56"><a class="self-link" href="#example-56c3ea56"></a> 实现了条形码/二维码识别的示例有：<a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> 或者 <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple’s CICRCodeFeature</a>. </div>
@@ -1629,7 +1629,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dfn class="nv idl-code" data-dfn-for="DetectedText" data-dfn-type="constructor" data-export="" data-lt="DetectedText()" id="dom-detectedtext-detectedtext">Constructor<a class="self-link" href="#dom-detectedtext-detectedtext"></a></dfn>,
 ] <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedtext">DetectedText</dfn> {
     [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRect" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox-2">boundingBox</a>;
-    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue-2">rawValue</a>;
+    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue-2">rawValue</a>;
 };
 </pre>
    <dl class="domintro">
@@ -1664,12 +1664,12 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 </span>
 faceDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span class="p">)</span>
-<span class="p">.</span>then<span class="p">(</span>detectedFaces <span class="p">=></span> <span class="p">{</span>
+<span class="p">.</span>then<span class="p">(</span>detectedFaces <span class="o">=></span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> face <span class="k">of</span> detectedFaces<span class="p">)</span> <span class="p">{</span>
     console<span class="p">.</span>log<span class="p">(</span><span class="s1">' Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),'</span> <span class="o">+</span>
         <span class="s1">' size ${face.boundingBox.width}x${face.boundingBox.height}'</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
   console<span class="p">.</span>error<span class="p">(</span><span class="s2">"Face Detection failed, boo."</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">)</span>
 </pre>
@@ -1682,13 +1682,13 @@ faceDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 </span>
 barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span class="p">)</span>
-<span class="p">.</span>then<span class="p">(</span>detectedCodes <span class="p">=></span> <span class="p">{</span>
+<span class="p">.</span>then<span class="p">(</span>detectedCodes <span class="o">=></span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> barcode <span class="k">of</span> detectedCodes<span class="p">)</span> <span class="p">{</span>
     console<span class="p">.</span>log<span class="p">(</span><span class="s1">' Barcode ${barcode.rawValue}'</span> <span class="o">+</span>
         <span class="s1">' @ (${barcode.boundingBox.x}, ${barcode.boundingBox.y}) with size'</span> <span class="o">+</span>
         <span class="s1">' ${barcode.boundingBox.width}x${barcode.boundingBox.height}'</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
   console<span class="p">.</span>error<span class="p">(</span><span class="s2">"Barcode Detection failed, boo."</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">)</span>
 </pre>
@@ -1701,13 +1701,13 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 </span>
 textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span class="p">)</span>
-<span class="p">.</span>then<span class="p">(</span>detectedTextBlocks <span class="p">=></span> <span class="p">{</span>
+<span class="p">.</span>then<span class="p">(</span>detectedTextBlocks <span class="o">=></span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> textBlock <span class="k">of</span> detectedTextBlocks<span class="p">)</span> <span class="p">{</span>
     console<span class="p">.</span>log<span class="p">(</span>
         <span class="s1">'text @ (${textBlock.boundingBox.x}, ${textBlock.boundingBox.y}), '</span> <span class="o">+</span>
         <span class="s1">'size ${textBlock.boundingBox.width}x${textBlock.boundingBox.height}'</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=></span> <span class="p">{</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
   console<span class="p">.</span>error<span class="p">(</span><span class="s2">"Text Detection failed, boo."</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">)</span>
 </pre>
@@ -1918,7 +1918,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
-     <li><a href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a>
+     <li><a href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a>
      <li><a href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>
      <li><a href="https://heycam.github.io/webidl/#Exposed">Exposed</a>
      <li><a href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a>
@@ -1933,18 +1933,18 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
-   <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="http://dev.w3.org/fxtf/geometry/">Geometry Interfaces Module Level 1</a>. 25 November 2014. CR. URL: <a href="http://dev.w3.org/fxtf/geometry/">http://dev.w3.org/fxtf/geometry/</a>
+   <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="https://www.w3.org/TR/geometry-1/">Geometry Interfaces Module Level 1</a>. URL: <a href="https://www.w3.org/TR/geometry-1/">https://www.w3.org/TR/geometry-1/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. WD. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://www.w3.org/TR/WebIDL-1/">Web IDL</a>. URL: <a href="https://www.w3.org/TR/WebIDL-1/">https://www.w3.org/TR/WebIDL-1/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl def"><span class="kt">dictionary</span> <a class="nv" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> {
-  <span class="kt">unsigned</span> <span class="kt">short</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a>;
-  <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-facedetectoroptions-fastmode">fastMode</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><span class="kt">unsigned</span> <span class="kt">short</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-facedetectoroptions-fastmode">fastMode</a>;
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> <a class="nv" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions</a>)]
@@ -1963,8 +1963,8 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
 
 <span class="kt">interface</span> <a class="nv" href="#detectedbarcode">DetectedBarcode</a> {
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedbarcode-boundingbox">boundingBox</a>;
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue">rawValue</a>;
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="sequence<Point2D>" href="#dom-detectedbarcode-cornerpoints">cornerPoints</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue">rawValue</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Point2D>" href="#dom-detectedbarcode-cornerpoints">cornerPoints</a>;
 };
 
 [
@@ -1978,7 +1978,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
     <a class="nv" href="#dom-detectedtext-detectedtext">Constructor</a>,
 ] <span class="kt">interface</span> <a class="nv" href="#detectedtext">DetectedText</a> {
     [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRect" href="#dom-detectedtext-boundingbox">boundingBox</a>;
-    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue">rawValue</a>;
+    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue">rawValue</a>;
 };
 
 </pre>
