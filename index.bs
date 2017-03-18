@@ -122,7 +122,7 @@ Example implementations of face detection are e.g. <a href="https://developer.an
   Consider adding attributes such as, e.g.:
   <pre>
     [SameObject] readonly attribute unsigned long id;
-    [SameObject] readonly attribute sequence&lt;Landmark>? landmarks;
+    [SameObject] readonly attribute FrozenArray&lt;Landmark>? landmarks;
   </pre>
   to {{DetectedFace}}.
 </div>
@@ -148,7 +148,7 @@ interface BarcodeDetector {
 interface DetectedBarcode {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
-  [SameObject] readonly attribute sequence&lt;Point2D> cornerPoints;
+  [SameObject] readonly attribute FrozenArray&lt;Point2D> cornerPoints;
 };
 </pre>
 
