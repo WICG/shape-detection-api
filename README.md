@@ -60,7 +60,7 @@ Android provides both a stand alone software face detector and a interface to th
 
 | API           |     uses...     | Release notes  |
 | ------------- |:-------------:| -----:|
-| [FaceDetector](https://developer.android.com/reference/android/media/FaceDetector)| Software based using the [Neven face detector](https://android.googlesource.com/platform/external/neven)| API Level 1, 2008|
+| [FaceDetector](https://developer.android.com/reference/android/media/FaceDetector.html)| Software based using the [Neven face detector](https://android.googlesource.com/platform/external/neven)| API Level 1, 2008|
 | [Camera2](https://developer.android.com/reference/android/hardware/camera2/CaptureRequest.html#STATISTICS_FACE_DETECT_MODE)| Hardware | API Level 21/Lollipop, 2014 |
 | [Camera.Face](https://developer.android.com/reference/android/hardware/Camera.Face.html) (old)| Hardware | API Level 14/Ice Cream Sandwich, 2011 |
 
