@@ -106,27 +106,56 @@ interface FaceDetector {
 <pre class="idl">
 interface DetectedFace {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
+  [SameObject] readonly attribute FrozenArray&lt;Landmark>? landmarks;
 };
 </pre>
 
 <dl class="domintro">
   <dt><dfn attribute for="DetectedFace"><code>boundingBox</code></dfn></dt>
   <dd>A rectangle indicating the position and extent of a detected feature aligned to the image axes.</dd>
+  <dt><dfn attribute for="DetectedFace"><code>landmarks</code></dfn></dt>
+  <dd>A series of features of interest related to the detected feature.</dd>
 </dl>
 
 <div class="example">
-Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a>, <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple's CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>.
+Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a> (or the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face">Google Play Services vision library</a>), <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple's CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>.
 </div>
+
+<pre class="idl">
+dictionary Landmark {
+  required Point2D location;
+  LandmarkType type;
+};
+</pre>
+
+<dl class="domintro">
+  <dt><dfn dict-member for="Landmark"><code>location</code></dfn></dt>
+  <dd>Location of a given landmark aligned to the image axes.</dd>
+  <dt><dfn dict-member for="Landmark"><code>type</code></dfn></dt>
+  <dd>Type of the landmark, if known.</dd>
+</dl>
+
+<pre class="idl">
+enum LandmarkType {
+  "mouth",
+  "eye"
+};
+</pre>
+
+<dl class="domintro">
+  <dt><dfn enum-value for="LandmarkType"><code>mouth</code></dfn></dt>
+  <dd>The landmark is identified as a human mouth.</dd>
+  <dt><dfn enum-value for="LandmarkType"><code>eye</code></dfn></dt>
+  <dd>The landmark is identified as a human eye.</dd>
+</dl>
 
 <div class="note">
   Consider adding attributes such as, e.g.:
   <pre>
     [SameObject] readonly attribute unsigned long id;
-    [SameObject] readonly attribute FrozenArray&lt;Landmark>? landmarks;
   </pre>
   to {{DetectedFace}}.
 </div>
-
 
 ## Barcode Detection API
 

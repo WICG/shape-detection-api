@@ -61,6 +61,7 @@ Android provides both a stand alone software face detector and a interface to th
 | API           |     uses...     | Release notes  |
 | ------------- |:-------------:| -----:|
 | [FaceDetector](https://developer.android.com/reference/android/media/FaceDetector.html)| Software based using the [Neven face detector](https://android.googlesource.com/platform/external/neven)| API Level 1, 2008|
+| [Vision.Face](https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face)| Software based | Google Play services 7.2, Aug 2015|
 | [Camera2](https://developer.android.com/reference/android/hardware/camera2/CaptureRequest.html#STATISTICS_FACE_DETECT_MODE)| Hardware | API Level 21/Lollipop, 2014 |
 | [Camera.Face](https://developer.android.com/reference/android/hardware/Camera.Face.html) (old)| Hardware | API Level 14/Ice Cream Sandwich, 2011 |
 
@@ -78,7 +79,7 @@ Barcode/QR and Text detection is available via Google Play Services [barcode](ht
 Mac OS X/iOS provides `CIDetector` for Face, QR, Text and Rectangle detection in software.
 
 | API           |     uses...     | Release notes  |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------: | -----:|
 | [CIDetector, Mac OS X](https://developer.apple.com/library/mac/documentation/CoreImage/Reference/CIDetector_Ref/)| Software | OS X v10.7, 2011 |
 | [CIDetector, iOS](https://developer.apple.com/library/ios/documentation/CoreImage/Reference/CIDetector_Ref/) | Software | iOS v5.0, 2011 |
 | [AVFoundation](https://developer.apple.com/reference/avfoundation/avcapturemetadataoutput?language=objc)| Hardware | iOS 6.0, 2012 |
