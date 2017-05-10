@@ -98,7 +98,11 @@ interface FaceDetector {
 
 <dl class="domintro">
   <dt><dfn constructor for="FaceDetector"><code>FaceDetector(optional FaceDetectorOptions faceDetectorOptions)</code></dfn></dt>
-  <dd>Constructs a new {{FaceDetector}} with the optional |faceDetectorOptions|.</dd>
+  <dd>Constructs a new {{FaceDetector}} with the optional |faceDetectorOptions|.
+    <div class="note">
+    Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{FaceDetector}} for several detections.
+    </div>
+  </dd>
   <dt><dfn method for="FaceDetector"><code>detect()</code></dfn></dt>
   <dd>Tries to detect human faces in the {{ImageBitmapSource}} |image|.  The detected faces, if any, are returned as a sequence of {{DetectedFace}}s.</dd>
 </dl>
@@ -169,6 +173,13 @@ interface BarcodeDetector {
 </pre>
 
 <dl class="domintro">
+  <dt><dfn constructor for="BarcodeDetector"><code>BarcodeDetector()</code></dfn></dt>
+  <dd>
+    <div class="note">
+    Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{BarcodeDetector}} for several detections.
+    </div>
+  </dd>
+
   <dt><dfn method for="BarcodeDetector"><code>detect(ImageBitmapSource image)</code></dfn></dt>
   <dd>Tries to detect barcodes in the {{ImageBitmapSource}} |image|.</dd>
 </dl>
@@ -193,7 +204,7 @@ interface DetectedBarcode {
 </dl>
 
 <div class="example">
-Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CICRCodeFeature</a>.
+Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CIQRCodeFeature</a>.
 </div>
 
 ## Text Detection API
@@ -210,6 +221,12 @@ Example implementations of Barcode/QR code detection are e.g. <a href="https://d
 </pre>
 
 <dl class="domintro">
+  <dt><dfn constructor for="TextDetector"><code>TextDetector()</code></dfn></dt>
+  <dd>
+    <div class="note">
+    Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{TextDetector}} for several detections.
+    </div>
+  </dd>
   <dt><dfn method for="TextDetector"><code>detect(ImageBitmapSource image)</code></dfn></dt>
   <dd>Tries to detect text blocks in the {{ImageBitmapSource}} |image|.</dd>
 </dl>
@@ -269,7 +286,7 @@ if (window.TextDetector == undefined) {
 
 <div class="note">
 The following example can also be found in e.g.
-<a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this codepen</a>.
+<a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this codepen</a> (or <a href="https://codepen.io/miguelao/pen/PmJWro">this one</a>, with landmarks overlay).
 </div>
 
 <div class="example" highlight="javascript">
