@@ -90,7 +90,8 @@ dictionary FaceDetectorOptions {
 </dl>
 
 <pre class="idl">
-[Exposed=(Window,Worker), Constructor(optional FaceDetectorOptions faceDetectorOptions)]
+[Exposed=(Window,Worker),
+ Constructor(optional FaceDetectorOptions faceDetectorOptions)]
 interface FaceDetector {
   Promise&lt;sequence&lt;DetectedFace>> detect(ImageBitmapSource image);
 };
@@ -163,26 +164,56 @@ enum LandmarkType {
 
 ## Barcode Detection API
 
-{{BarcodeDetector}} represents an underlying accelerated platform's component for detection in images of QR codes or barcodes.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a {{DetectedBarcode/boundingBox}} and a series or {{Point2D}}s, and possibly a {{DetectedBarcode/rawValue}} decoded {{DOMString}}.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection of linear or two-dimensional barcodes in images.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a {{DetectedBarcode/boundingBox}} and a series or {{Point2D}}s, and possibly a {{DetectedBarcode/rawValue}} decoded {{DOMString}}.
+
+<div class="example">
+Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CIQRCodeFeature</a>.
+</div>
 
 <pre class="idl">
-[Exposed=(Window,Worker), Constructor()]
+[Exposed=(Window,Worker),
+ Constructor(optional BarcodeDetectorOptions barcodeDetectorOptions)]
 interface BarcodeDetector {
+  readonly attribute FrozenArray&lt;BarcodeFormat> supportedFormats;
+
   Promise&lt;sequence&lt;DetectedBarcode>> detect(ImageBitmapSource image);
 };
 </pre>
 
 <dl class="domintro">
-  <dt><dfn constructor for="BarcodeDetector"><code>BarcodeDetector()</code></dfn></dt>
-  <dd>
+  <dt><dfn constructor for="BarcodeDetector"><code>BarcodeDetector(optional BarcodeDetectorOptions barcodeDetectorOptions)</code></dfn></dt>
+  <dd>Constructs a new {{BarcodeDetector}} with the optional |barcodeDetectorOptions|, if present.
     <div class="note">
     Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{BarcodeDetector}} for several detections.
     </div>
   </dd>
 
+  <dt><dfn attribute for="BarcodeDetector"><code>supportedFormats</code></dfn></dt>
+  <dd> List of {{BarcodeFormat}}s supported by the platform.
+
+  <div class="note">
+    The list of supported {{BarcodeFormat}}s is platform dependent, some examples are the ones supported by <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/BarcodeDetector.Builder.html#setBarcodeFormats(int)">Google Play Services</a> and <a href="https://developer.apple.com/documentation/coreimage/ciqrcodefeature?preferredLanguage=occ#overview">Apple's QICRCodeFeature</a>.
+  </div>
+  </dd>
+
   <dt><dfn method for="BarcodeDetector"><code>detect(ImageBitmapSource image)</code></dfn></dt>
   <dd>Tries to detect barcodes in the {{ImageBitmapSource}} |image|.</dd>
 </dl>
+
+### {{BarcodeDetectorOptions}} ### {#barcodedetectoroptions-section}
+
+<pre class="idl">
+dictionary BarcodeDetectorOptions {
+  sequence&lt;BarcodeFormat> formats;
+};
+</pre>
+
+<dl class="domintro">
+  <dt><dfn dict-member for="BarcodeDetectorOptions"><code>formats</code></dfn></dt>
+  <dd>A series of {{BarcodeFormat}}s to search for in the subsequent {{detect()}} calls.</dd>
+</dl>
+
+### {{DetectedBarcode}} ### {#detectedbarcode-section}
 
 <pre class="idl">
 interface DetectedBarcode {
@@ -203,9 +234,71 @@ interface DetectedBarcode {
   <dd>A <a>sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
 </dl>
 
-<div class="example">
-Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CIQRCodeFeature</a>.
-</div>
+### {{BarcodeFormat}} ### {#barcodeformat-section}
+
+<pre class="idl">
+  enum BarcodeFormat {
+    "aztec",
+    "code_128",
+    "code_39",
+    "code_93",
+    "codabar",
+    "data_matrix",
+    "ean_13",
+    "ean_8",
+    "itf",
+    "pdf417",
+    "qr_code",
+    "upc_a",
+    "upc_e"
+  };
+</pre>
+
+## Values ## {#barcodeformat-values}
+
+<dl class="domintro">
+  <dt><dfn enum-value for="BarcodeFormat"><code>aztec</code></dfn></dt>
+  <dd>This entry represents a square two-dimensional matrix following [[iso24778]] and with a square bullseye pattern at their centre, thus resembling an Aztec pyramid. Does not require a surrounding blank zone.
+  </dd>
+  <dt><dfn enum-value for="BarcodeFormat"><code>code_128</code></dfn></dt>
+  <dd><dfn>Code 128</dfn> is a linear (one-dimensional), bidirectionally-decodable, self-checking barcode following [[iso15417]] and able to encode all 128 characters of ASCII (hence the naming).
+  </dd>
+  <dt><dfn enum-value for="BarcodeFormat"><code>code_39</code></dfn></dt>
+  <dd>This part talks about the <dfn>Code 39</dfn> barcode. It is a discrete and variable-length barcode type.
+  [[iso16388]]
+  </dd>
+  <dt><dfn enum-value for="BarcodeFormat"><code>code_93</code></dfn></dt>
+  <dd> Code 93 is a linear, continuous symbology with a variable length following [[bc5]]. It offers a larger information density than <a>Code 128</a> and the visually similar <a>Code 39</a>. Code 93 is used primarily by Canada Post to encode supplementary delivery information.</dd>
+  <dt><dfn enum-value for="BarcodeFormat"><code>codabar</code></dfn></dt>
+  <dd>Codabar is a linear barcode symbology developed in 1972 by Pitney Bowes Corp. (
+  </dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>data_matrix</code></dfn></dt>
+  <dd> Data Matrix is an orientation-independent two-dimensional barcode composed of black and white modules arranged in either a square or rectangular pattern following [[iso16022]].</dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>ean_13</code></dfn></dt>
+  <dd><dfn>EAN-13</dfn> is a linear barcode based on the <a>UPC-A</a> standard and defined in [[iso15420]]. It was originally developed by the International Article Numbering Association (EAN) in Europe as a superset of the original 12-digit Universal Product Code (UPC) system developed in the United States (<a>UPC-A</a> codes are represented in EAN-13 with the first character set to <var>0</var>).</dd>
+  <dt><dfn enum-value for="BarcodeFormat"><code>ean_8</code></dfn></dt>
+  <dd>EAN-8 is a linear barcode defined in [[iso15420]] and derived from <a>EAN-13</a>.</dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>itf</code></dfn></dt>
+  <dd>ITF14 barcode is the GS1 implementation of an Interleaved 2 of 5 bar code to encode a Global Trade Item  Number. It is continuous, self-checking, bidirectionally decodable and it will always encode 14 digits.
+  was once used in the package delivery industry but replaced by <a>Code 128</a>.
+  [[bc2]]
+  </dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>pdf417</code></dfn></dt>
+  <dd>PDF417 refers to a continuous two-dimensional barcode symbology format with multiple rows and columns, bi-directionally decodable and according to the Standard [[iso15438]].</dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>qr_code</code></dfn></dt>
+  <dd>QR Code is a two-dimensional barcode respecting the Standard [[iso18004]]. The information encoded can be text, URL or other data.</dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>upc_a</code></dfn></dt>
+  <dd><dfn>UPC-A</dfn> is one of the most common linear barcode types and is widely applied to retail in the United States.  Define in [[iso15420]], it represents digits by strips of bars and spaces, each digit being associated to a unique pattern of 2 bars and 2 spaces, both of variable width.  UPC-A can encode 12 digits that are uniquely assigned to each trade item, and it'ss technically a subset of <a>EAN-13</a> (UPC-A codes are represented in <a>EAN-13</a> with the first character set to <var>0</var>). </dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>upc_e</code></dfn></dt>
+  <dd>UPC-E Barcode is a variation of <a>UPC-A</a> defined in [[iso15420]], compressing out unnecessary zeros for a more compact barcode.</dd>
+</dl>
 
 ## Text Detection API
 
@@ -383,6 +476,58 @@ spec: html
 
 <pre class="biblio">
 {
+  "iso15417": {
+      "href": "https://www.iso.org/standard/43896.html",
+      "title": "Information technology -- Automatic identification and data capture techniques -- Code 128 bar code symbology specification",
+      "publisher": "ISO/IEC",
+      "date": "June 2007"
+  },
+  "iso15420": {
+      "href": "https://www.iso.org/standard/46143.html",
+      "title": "Information technology -- Automatic identification and data capture techniques -- EAN/UPC bar code symbology specification",
+      "publisher": "ISO/IEC",
+      "date": "Decemver 2009"
+  },
+  "iso15438": {
+      "href": "https://www.iso.org/standard/65502.html",
+      "title": "Information technology -- Automatic identification and data capture techniques -- PDF417 bar code symbology specification",
+      "publisher": "ISO/IEC",
+      "date": "September 2015"
+  },
+  "iso16022": {
+      "href": "https://www.iso.org/standard/44230.html",
+      "title": "Information technology -- Automatic identification and data capture techniques -- Data Matrix bar code symbology specification",
+      "publisher": "ISO/IEC",
+      "date": "September 2009"
+  },
+  "iso16388": {
+      "href": "https://www.iso.org/standard/43897.html",
+      "title": "nformation technology -- Automatic identification and data capture techniques -- Code 39 bar code symbology specification",
+      "publisher": "ISO/IEC",
+      "date": "May 2007"
+  },
+  "iso18004": {
+      "href": "https://www.iso.org/standard/62021.html",
+      "title": "Information technology -- Automatic identification and data capture techniques -- QR Code bar code symbology specification",
+      "publisher": "ISO/IEC",
+      "date": "February 2015"
+  },
+  "iso24778": {
+      "href": "https://www.iso.org/standard/62021.html",
+      "title": "Information technology -- Automatic identification and data capture techniques -- Aztec Code bar code symbology specification",
+      "publisher": "ISO/IEC",
+      "date": "February 2008"
+  },
+  "bc2" :{
+      "title": "ANSI/AIM-BC2, Uniform Symbol Specification - Interleaved 2 of 5",
+      "publisher": "ANSI",
+      "date": "1995"
+  },
+  "bc5" :{
+      "title": "ANSI/AIM-BC5, Uniform Symbol Specification - Code 93",
+      "publisher": "ANSI",
+      "date": "1995"
+  },
   "wikipedia": {
       "href": "https://en.wikipedia.org/wiki/Object-class_detection",
       "title": "Object-class Detection Wikipedia Entry",

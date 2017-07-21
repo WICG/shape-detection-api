@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 3e4ecbe0ef0589381cdca6fa15e8ab0ea3856450" name="generator">
+  <meta content="Bikeshed version 8a7d153902c1668ea606aa3058eb3884329809f9" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
 <style>
 table {
@@ -1441,7 +1441,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-05-10">10 May 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-07-21">21 July 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1491,8 +1491,15 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
      <ol class="toc">
       <li><a href="#image-sources-for-detection"><span class="secno">2.1</span> <span class="content">Image sources for detection</span></a>
       <li><a href="#face-detection-api"><span class="secno">2.2</span> <span class="content">Face Detection API</span></a>
-      <li><a href="#barcode-detection-api"><span class="secno">2.3</span> <span class="content">Barcode Detection API</span></a>
-      <li><a href="#text-detection-api"><span class="secno">2.4</span> <span class="content">Text Detection API</span></a>
+      <li>
+       <a href="#barcode-detection-api"><span class="secno">2.3</span> <span class="content">Barcode Detection API</span></a>
+       <ol class="toc">
+        <li><a href="#barcodedetectoroptions-section"><span class="secno">2.3.1</span> <span class="content"><code class="idl"><span>BarcodeDetectorOptions</span></code></span></a>
+        <li><a href="#detectedbarcode-section"><span class="secno">2.3.2</span> <span class="content"><code class="idl"><span>DetectedBarcode</span></code></span></a>
+        <li><a href="#barcodeformat-section"><span class="secno">2.3.3</span> <span class="content"><code class="idl"><span>BarcodeFormat</span></code></span></a>
+       </ol>
+      <li><a href="#barcodeformat-values"><span class="secno">2.4</span> <span class="content">Values</span></a>
+      <li><a href="#text-detection-api"><span class="secno">2.5</span> <span class="content">Text Detection API</span></a>
      </ol>
     <li>
      <a href="#examples"><span class="secno">3</span> <span class="content">Examples</span></a>
@@ -1513,6 +1520,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
    </ol>
@@ -1526,87 +1534,88 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>Individual browsers MAY provide Detectors indicating the availability of hardware providing accelerated operation.</p>
    <h3 class="heading settled" data-level="2.1" id="image-sources-for-detection"><span class="secno">2.1. </span><span class="content">Image sources for detection</span><a class="self-link" href="#image-sources-for-detection"></a></h3>
    <p class="note" role="note"> This section is inspired by <a href="https://www.w3.org/TR/2dcontext/#image-sources-for-2d-rendering-contexts">HTML Canvas 2D Context §image-sources-for-2d-rendering-contexts</a>. </p>
-   <p><code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> allows objects implementing any of a number of interfaces to be used as image sources for the detection process.</p>
+   <p><code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> allows objects implementing any of a number of interfaces to be used as image sources for the detection process.</p>
    <ul>
     <li data-md="">
-     <p>When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>, the element’s image must be used as the source image. Specifically, when an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an animated image in an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>, the user agent must use the default image of the animation (the one that the format defines is to be used when animation is not supported or is disabled), or, if there is no such image, the first frame of the animation.</p>
+     <p>When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>, the element’s image must be used as the source image. Specifically, when an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an animated image in an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code>, the user agent must use the default image of the animation (the one that the format defines is to be used when animation is not supported or is disabled), or, if there is no such image, the first frame of the animation.</p>
     <li data-md="">
-     <p>When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlvideoelement">HTMLVideoElement</a></code>, then the frame at the current playback position when the method with the argument is invoked must be used as the source image when processing the image, and the source image’s dimensions must be the <a href="https://drafts.csswg.org/css2/conform.html#intrinsic">intrinsic dimensions</a> of the media resource (i.e. after any aspect-ratio correction has been applied).</p>
+     <p>When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement">HTMLVideoElement</a></code>, then the frame at the current playback position when the method with the argument is invoked must be used as the source image when processing the image, and the source image’s dimensions must be the <a href="https://drafts.csswg.org/css2/conform.html#intrinsic">intrinsic dimensions</a> of the media resource (i.e. after any aspect-ratio correction has been applied).</p>
     <li data-md="">
-     <p>When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a></code>, the element’s bitmap must be used as the source image.</p>
+     <p>When an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> object represents an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement">HTMLCanvasElement</a></code>, the element’s bitmap must be used as the source image.</p>
    </ul>
-   <p>When the UA is required to use a given type of <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> as input argument for the<code>detect()</code> method of whichever detector, it MUST run these steps:</p>
+   <p>When the UA is required to use a given type of <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> as input argument for the<code>detect()</code> method of whichever detector, it MUST run these steps:</p>
    <ul>
     <li data-md="">
-     <p>If any <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> have an effective script origin (<a href="https://html.spec.whatwg.org/multipage/#concept-origin">HTML Standard §concept-origin</a>) which is not the same as the Document’s effective script origin, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>.</p>
+     <p>If any <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> have an effective script origin (<a href="https://html.spec.whatwg.org/multipage/#concept-origin">HTML Standard §concept-origin</a>) which is not the same as the Document’s effective script origin, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>.</p>
     <li data-md="">
-     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code> object that is in the <var>broken</var> state, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps.</p>
+     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code> object that is in the <var>broken</var> state, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps.</p>
     <li data-md="">
-     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code> object that is not fully decodable then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps</p>
+     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a></code> object that is not fully decodable then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps</p>
     <li data-md="">
-     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlvideoelement">HTMLVideoElement</a></code> object whose <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate"><var>readyState</var></a> attribute is either <var>HAVE_NOTHING</var> or <var>HAVE_METADATA</var>, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps.</p>
+     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement">HTMLVideoElement</a></code> object whose <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#ready-states:dom-media-readystate"><var>readyState</var></a> attribute is either <var>HAVE_NOTHING</var> or <var>HAVE_METADATA</var>, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#invalidstateerror">InvalidStateError</a></code>, and abort any further steps.</p>
     <li data-md="">
-     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> argument is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a></code> whose bitmap’s <var>origin-clean</var> (<a href="https://html.spec.whatwg.org/multipage/#concept-canvas-origin-clean">HTML Standard §concept-canvas-origin-clean</a>) flag is false, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>, and abort any further steps.</p>
+     <p>If the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> argument is an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement">HTMLCanvasElement</a></code> whose bitmap’s <var>origin-clean</var> (<a href="https://html.spec.whatwg.org/multipage/#concept-canvas-origin-clean">HTML Standard §concept-canvas-origin-clean</a>) flag is false, then reject the Promise with a new <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#securityerror">SecurityError</a></code>, and abort any further steps.</p>
    </ul>
-   <p>Note that if the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty sequence of detected objects.</p>
+   <p>Note that if the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty sequence of detected objects.</p>
    <h3 class="heading settled" data-level="2.2" id="face-detection-api"><span class="secno">2.2. </span><span class="content">Face Detection API</span><a class="self-link" href="#face-detection-api"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-1">FaceDetector</a></code> represents an underlying accelerated platform’s component for detection of human faces in images. It can be created with an optional Dictionary of <code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-1">FaceDetectorOptions</a></code>. It provides a single <code class="idl"><a data-link-type="idl" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect-1">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> which result is a Promise. This method MUST reject this promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a Sequence of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-1">DetectedFace</a></code>s, each one essentially consisting on and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedface-boundingbox" id="ref-for-dom-detectedface-boundingbox-1">boundingBox</a></code>.</p>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-facedetectoroptions">FaceDetectorOptions</dfn> {
+   <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-1">FaceDetector</a></code> represents an underlying accelerated platform’s component for detection of human faces in images. It can be created with an optional Dictionary of <code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-1">FaceDetectorOptions</a></code>. It provides a single <code class="idl"><a data-link-type="idl" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect-1">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> which result is a Promise. This method MUST reject this promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a Sequence of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-1">DetectedFace</a></code>s, each one essentially consisting on and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedface-boundingbox" id="ref-for-dom-detectedface-boundingbox-1">boundingBox</a></code>.</p>
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-facedetectoroptions"><code>FaceDetectorOptions</code></dfn> {
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><span class="kt">unsigned</span> <span class="kt">short</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces" id="ref-for-dom-facedetectoroptions-maxdetectedfaces-1">maxDetectedFaces</a>;
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-facedetectoroptions-fastmode" id="ref-for-dom-facedetectoroptions-fastmode-1">fastMode</a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" id="dom-facedetectoroptions-maxdetectedfaces"><code>maxDetectedFaces</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-unsigned-short">unsigned short</a></span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" id="dom-facedetectoroptions-maxdetectedfaces"><code><code>maxDetectedFaces</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-unsigned-short">unsigned short</a></span>
     <dd>Maximum number of detected faces to be identified in the scene.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" id="dom-facedetectoroptions-fastmode"><code>fastMode</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-boolean">boolean</a></span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" id="dom-facedetectoroptions-fastmode"><code><code>fastMode</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-boolean">boolean</a></span>
     <dd>Hint to the UA to try and prioritise speed over accuracy by e.g. operating on a reduced scale or looking for large features.
    </dl>
-<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector" id="ref-for-dom-facedetector-facedetector-1">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-2">FaceDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/FaceDetector(faceDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions">faceDetectorOptions<a class="self-link" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"></a></dfn>)]
-<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="facedetector">FaceDetector</dfn> {
-  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface" id="ref-for-detectedface-2">DetectedFace</a>>> <dfn class="nv dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-facedetector-detect">detect</dfn>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-facedetector-detect-image-image">image<a class="self-link" href="#dom-facedetector-detect-image-image"></a></dfn>);
+<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
+ <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector" id="ref-for-dom-facedetector-facedetector-1">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions-2">FaceDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/FaceDetector(faceDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"><code>faceDetectorOptions</code><a class="self-link" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"></a></dfn>)]
+<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="facedetector"><code>FaceDetector</code></dfn> {
+  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface" id="ref-for-detectedface-2">DetectedFace</a>>> <dfn class="nv dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-facedetector-detect"><code>detect</code></dfn>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-facedetector-detect-image-image"><code>image</code><a class="self-link" href="#dom-facedetector-detect-image-image"></a></dfn>);
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="constructor" data-export="" data-lt="FaceDetector(faceDetectorOptions)|FaceDetector()" id="dom-facedetector-facedetector"><code>FaceDetector(optional FaceDetectorOptions faceDetectorOptions)</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="constructor" data-export="" data-lt="FaceDetector(faceDetectorOptions)|FaceDetector()" id="dom-facedetector-facedetector"><code><code>FaceDetector(optional FaceDetectorOptions faceDetectorOptions)</code></code></dfn>
     <dd>
      Constructs a new <code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-2">FaceDetector</a></code> with the optional <var>faceDetectorOptions</var>. 
      <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector-3">FaceDetector</a></code> for several detections. </div>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" id="dom-facedetector-detect"><code>detect()</code></dfn>
-    <dd>Tries to detect human faces in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> <var>image</var>.  The detected faces, if any, are returned as a sequence of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-3">DetectedFace</a></code>s.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetector" data-dfn-type="method" data-export="" id="dom-facedetector-detect"><code><code>detect()</code></code></dfn>
+    <dd>Tries to detect human faces in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> <var>image</var>.  The detected faces, if any, are returned as a sequence of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-3">DetectedFace</a></code>s.
    </dl>
-<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedface">DetectedFace</dfn> {
+<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedface"><code>DetectedFace</code></dfn> {
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedface-boundingbox" id="ref-for-dom-detectedface-boundingbox-2">boundingBox</a>;
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="#dictdef-landmark" id="ref-for-dictdef-landmark-1">Landmark</a>>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Landmark>?" href="#dom-detectedface-landmarks" id="ref-for-dom-detectedface-landmarks-1">landmarks</a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedFace" data-dfn-type="attribute" data-export="" id="dom-detectedface-boundingbox"><code>boundingBox</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedFace" data-dfn-type="attribute" data-export="" id="dom-detectedface-boundingbox"><code><code>boundingBox</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a>, readonly</span>
     <dd>A rectangle indicating the position and extent of a detected feature aligned to the image axes.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedFace" data-dfn-type="attribute" data-export="" id="dom-detectedface-landmarks"><code>landmarks</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="#dictdef-landmark" id="ref-for-dictdef-landmark-2">Landmark</a>>, readonly, nullable</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedFace" data-dfn-type="attribute" data-export="" id="dom-detectedface-landmarks"><code><code>landmarks</code></code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="#dictdef-landmark" id="ref-for-dictdef-landmark-2">Landmark</a>>, readonly, nullable</span>
     <dd>A series of features of interest related to the detected feature.
    </dl>
    <div class="example" id="example-7a5c27af"><a class="self-link" href="#example-7a5c27af"></a> Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a> (or the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face">Google Play Services vision library</a>), <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple’s CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>. </div>
-<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-landmark">Landmark</dfn> {
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-landmark"><code>Landmark</code></dfn> {
   <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a> <a class="nv idl-code" data-link-type="dict-member" data-type="Point2D " href="#dom-landmark-location" id="ref-for-dom-landmark-location-1">location</a>;
   <a class="n" data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype-1">LandmarkType</a> <a class="nv idl-code" data-link-type="dict-member" data-type="LandmarkType " href="#dom-landmark-type" id="ref-for-dom-landmark-type-1">type</a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export="" id="dom-landmark-location"><code>location</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a></span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export="" id="dom-landmark-location"><code><code>location</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a></span>
     <dd>Location of a given landmark aligned to the image axes.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export="" id="dom-landmark-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype-2">LandmarkType</a></span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export="" id="dom-landmark-type"><code><code>type</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype-2">LandmarkType</a></span>
     <dd>Type of the landmark, if known.
    </dl>
-<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-landmarktype">LandmarkType</dfn> {
+<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-landmarktype"><code>LandmarkType</code></dfn> {
   <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-mouth" id="ref-for-dom-landmarktype-mouth-1">"mouth"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-eye" id="ref-for-dom-landmarktype-eye-1">"eye"</a>
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="LandmarkType" data-dfn-type="enum-value" data-export="" id="dom-landmarktype-mouth"><code>mouth</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="LandmarkType" data-dfn-type="enum-value" data-export="" id="dom-landmarktype-mouth"><code><code>mouth</code></code></dfn>
     <dd>The landmark is identified as a human mouth.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="LandmarkType" data-dfn-type="enum-value" data-export="" id="dom-landmarktype-eye"><code>eye</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="LandmarkType" data-dfn-type="enum-value" data-export="" id="dom-landmarktype-eye"><code><code>eye</code></code></dfn>
     <dd>The landmark is identified as a human eye.
    </dl>
    <div class="note" role="note">
@@ -1616,61 +1625,126 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <p>to <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface-4">DetectedFace</a></code>.</p>
    </div>
    <h3 class="heading settled" data-level="2.3" id="barcode-detection-api"><span class="secno">2.3. </span><span class="content">Barcode Detection API</span><a class="self-link" href="#barcode-detection-api"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector-1">BarcodeDetector</a></code> represents an underlying accelerated platform’s component for detection in images of QR codes or barcodes.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect-1">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> which result is a Promise.  This method MUST reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#detectedbarcode" id="ref-for-detectedbarcode-1">DetectedBarcode</a></code>s, each one essentially consisting on and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox-1">boundingBox</a></code> and a series or <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a></code>s, and possibly a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue-1">rawValue</a></code> decoded <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a></code>.</p>
-<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>), <a class="nv idl-code" data-link-type="constructor" href="#dom-barcodedetector-barcodedetector" id="ref-for-dom-barcodedetector-barcodedetector-1">Constructor</a>()]
-<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="barcodedetector">BarcodeDetector</dfn> {
-  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedbarcode" id="ref-for-detectedbarcode-2">DetectedBarcode</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect-2">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="BarcodeDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-barcodedetector-detect-image-image">image<a class="self-link" href="#dom-barcodedetector-detect-image-image"></a></dfn>);
+   <p><code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector-1">BarcodeDetector</a></code> represents an underlying accelerated platform’s component for detection in images of QR codes or barcodes.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect-1">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> which result is a Promise.  This method MUST reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#detectedbarcode" id="ref-for-detectedbarcode-1">DetectedBarcode</a></code>s, each one essentially consisting on and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox-1">boundingBox</a></code> and a series or <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a></code>s, and possibly a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue-1">rawValue</a></code> decoded <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a></code>.</p>
+   <div class="example" id="example-314ef784"><a class="self-link" href="#example-314ef784"></a> Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple’s CIQRCodeFeature</a>. </div>
+<pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
+ <a class="nv idl-code" data-link-type="constructor" href="#dom-barcodedetector-barcodedetector" id="ref-for-dom-barcodedetector-barcodedetector-1">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-barcodedetectoroptions" id="ref-for-dictdef-barcodedetectoroptions-1">BarcodeDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="BarcodeDetector/BarcodeDetector(barcodeDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-barcodedetector-barcodedetector-barcodedetectoroptions-barcodedetectoroptions"><code>barcodeDetectorOptions</code><a class="self-link" href="#dom-barcodedetector-barcodedetector-barcodedetectoroptions-barcodedetectoroptions"></a></dfn>)]
+<span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="barcodedetector"><code>BarcodeDetector</code></dfn> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-1">BarcodeFormat</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<BarcodeFormat>" href="#dom-barcodedetector-supportedformats" id="ref-for-dom-barcodedetector-supportedformats-1">supportedFormats</a>;
+
+  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedbarcode" id="ref-for-detectedbarcode-2">DetectedBarcode</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect-2">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="BarcodeDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-barcodedetector-detect-image-image"><code>image</code><a class="self-link" href="#dom-barcodedetector-detect-image-image"></a></dfn>);
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="constructor" data-export="" id="dom-barcodedetector-barcodedetector"><code>BarcodeDetector()</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="constructor" data-export="" data-lt="BarcodeDetector(barcodeDetectorOptions)|BarcodeDetector()" id="dom-barcodedetector-barcodedetector"><code><code>BarcodeDetector(optional BarcodeDetectorOptions barcodeDetectorOptions)</code></code></dfn>
     <dd>
-     <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector-2">BarcodeDetector</a></code> for several detections. </div>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-barcodedetector-detect"><code>detect(ImageBitmapSource image)</code></dfn>
-    <dd>Tries to detect barcodes in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> <var>image</var>.
+     Constructs a new <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector-2">BarcodeDetector</a></code> with the optional <var>barcodeDetectorOptions</var>, if present. 
+     <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector-3">BarcodeDetector</a></code> for several detections. </div>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="attribute" data-export="" id="dom-barcodedetector-supportedformats"><code><code>supportedFormats</code></code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-2">BarcodeFormat</a>>, readonly</span>
+    <dd>
+      List of <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-3">BarcodeFormat</a></code>s supported by the platform. 
+     <div class="note" role="note"> The list of supported <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-4">BarcodeFormat</a></code>s is platform dependent, some examples are the ones supported by <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/BarcodeDetector.Builder.html#setBarcodeFormats(int)">Google Play Services</a> and <a href="https://developer.apple.com/documentation/coreimage/ciqrcodefeature?preferredLanguage=occ#overview">Apple’s QICRCodeFeature</a>. </div>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-barcodedetector-detect"><code><code>detect(ImageBitmapSource image)</code></code></dfn>
+    <dd>Tries to detect barcodes in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> <var>image</var>.
    </dl>
-<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedbarcode">DetectedBarcode</dfn> {
+   <h4 class="heading settled" data-level="2.3.1" id="barcodedetectoroptions-section"><span class="secno">2.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dictdef-barcodedetectoroptions" id="ref-for-dictdef-barcodedetectoroptions-2">BarcodeDetectorOptions</a></code></span><a class="self-link" href="#barcodedetectoroptions-section"></a></h4>
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-barcodedetectoroptions"><code>BarcodeDetectorOptions</code></dfn> {
+  <span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-5">BarcodeFormat</a>> <a class="nv idl-code" data-link-type="dict-member" data-type="sequence<BarcodeFormat> " href="#dom-barcodedetectoroptions-formats" id="ref-for-dom-barcodedetectoroptions-formats-1">formats</a>;
+};
+</pre>
+   <dl class="domintro">
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetectorOptions" data-dfn-type="dict-member" data-export="" id="dom-barcodedetectoroptions-formats"><code><code>formats</code></code></dfn>, <span> of type sequence&lt;<a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-6">BarcodeFormat</a>></span>
+    <dd>A series of <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-7">BarcodeFormat</a></code>s to search for in the subsequent <code class="idl"><a data-link-type="idl" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect-2">detect()</a></code> calls.
+   </dl>
+   <h4 class="heading settled" data-level="2.3.2" id="detectedbarcode-section"><span class="secno">2.3.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#detectedbarcode" id="ref-for-detectedbarcode-3">DetectedBarcode</a></code></span><a class="self-link" href="#detectedbarcode-section"></a></h4>
+<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedbarcode"><code>DetectedBarcode</code></dfn> {
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox-2">boundingBox</a>;
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue-2">rawValue</a>;
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Point2D>" href="#dom-detectedbarcode-cornerpoints" id="ref-for-dom-detectedbarcode-cornerpoints-1">cornerPoints</a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-boundingbox"><code>boundingBox</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-boundingbox"><code><code>boundingBox</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a>, readonly</span>
     <dd>A rectangle indicating the position and extent of a detected feature aligned to the image
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-rawvalue"><code>rawValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-rawvalue"><code><code>rawValue</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>, readonly</span>
     <dd>String decoded from the barcode. This value might be multiline.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-cornerpoints"><code>cornerPoints</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-cornerpoints"><code><code>cornerPoints</code></code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>>, readonly</span>
     <dd>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence">sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
    </dl>
-   <div class="example" id="example-314ef784"><a class="self-link" href="#example-314ef784"></a> Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple’s CIQRCodeFeature</a>. </div>
-   <h3 class="heading settled" data-level="2.4" id="text-detection-api"><span class="secno">2.4. </span><span class="content">Text Detection API</span><a class="self-link" href="#text-detection-api"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector-1">TextDetector</a></code> represents an underlying accelerated platform’s component for detection in images of text.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect-1">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#detectedtext" id="ref-for-detectedtext-1">DetectedText</a></code>s, each one essentially consisting on a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue-1">rawValue</a></code> and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox-1">boundingBox</a></code>.</p>
+   <h4 class="heading settled" data-level="2.3.3" id="barcodeformat-section"><span class="secno">2.3.3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-8">BarcodeFormat</a></code></span><a class="self-link" href="#barcodeformat-section"></a></h4>
+<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-barcodeformat"><code>BarcodeFormat</code></dfn> {
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-aztec" id="ref-for-dom-barcodeformat-aztec-1">"aztec"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-code_128" id="ref-for-dom-barcodeformat-code_128-1">"code_128"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-code_39" id="ref-for-dom-barcodeformat-code_39-1">"code_39"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-code_93" id="ref-for-dom-barcodeformat-code_93-1">"code_93"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-codabar" id="ref-for-dom-barcodeformat-codabar-1">"codabar"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-data_matrix" id="ref-for-dom-barcodeformat-data_matrix-1">"data_matrix"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-ean_13" id="ref-for-dom-barcodeformat-ean_13-1">"ean_13"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-ean_8" id="ref-for-dom-barcodeformat-ean_8-1">"ean_8"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-itf" id="ref-for-dom-barcodeformat-itf-1">"itf"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-pdf417" id="ref-for-dom-barcodeformat-pdf417-1">"pdf417"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-qr_code" id="ref-for-dom-barcodeformat-qr_code-1">"qr_code"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_a" id="ref-for-dom-barcodeformat-upc_a-1">"upc_a"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_e" id="ref-for-dom-barcodeformat-upc_e-1">"upc_e"</a>
+};
+</pre>
+   <h3 class="heading settled" data-level="2.4" id="barcodeformat-values"><span class="secno">2.4. </span><span class="content">Values</span><a class="self-link" href="#barcodeformat-values"></a></h3>
+   <dl class="domintro">
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-aztec"><code><code>aztec</code></code></dfn>
+    <dd>This entry represents a square two-dimensional matrix following <a data-link-type="biblio" href="#biblio-iso24778">[iso24778]</a> and with a square bullseye pattern at their centre, thus resembling an Aztec pyramid. Does not require a surrounding blank zone. 
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-code_128"><code><code>code_128</code></code></dfn>
+    <dd><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="code-128">Code 128</dfn> is a linear (one-dimensional), bidirectionally-decodable, self-checking barcode following <a data-link-type="biblio" href="#biblio-iso15417">[iso15417]</a> and able to encode all 128 characters of ASCII (hence the naming). 
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-code_39"><code><code>code_39</code></code></dfn>
+    <dd>This part talks about the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="code-39">Code 39</dfn> barcode. It is a discrete and variable-length barcode type. <a data-link-type="biblio" href="#biblio-iso16388">[iso16388]</a> 
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-code_93"><code><code>code_93</code></code></dfn>
+    <dd> Code 93 is a linear, continuous symbology with a variable length following <a data-link-type="biblio" href="#biblio-bc5">[bc5]</a>. It offers a larger information density than <a data-link-type="dfn" href="#code-128" id="ref-for-code-128-1">Code 128</a> and the visually similar <a data-link-type="dfn" href="#code-39" id="ref-for-code-39-1">Code 39</a>. Code 93 is used primarily by Canada Post to encode supplementary delivery information.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-codabar"><code><code>codabar</code></code></dfn>
+    <dd>Codabar is a linear barcode symbology developed in 1972 by Pitney Bowes Corp. ( 
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-data_matrix"><code><code>data_matrix</code></code></dfn>
+    <dd> Data Matrix is an orientation-independent two-dimensional barcode composed of black and white modules arranged in either a square or rectangular pattern following <a data-link-type="biblio" href="#biblio-iso16022">[iso16022]</a>.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-ean_13"><code><code>ean_13</code></code></dfn>
+    <dd><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="ean-13">EAN-13</dfn> is a linear barcode based on the <a data-link-type="dfn" href="#upc-a" id="ref-for-upc-a-1">UPC-A</a> standard and defined in <a data-link-type="biblio" href="#biblio-iso15420">[iso15420]</a>. It was originally developed by the International Article Numbering Association (EAN) in Europe as a superset of the original 12-digit Universal Product Code (UPC) system developed in the United States (<a data-link-type="dfn" href="#upc-a" id="ref-for-upc-a-2">UPC-A</a> codes are represented in EAN-13 with the first character set to <var>0</var>).
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-ean_8"><code><code>ean_8</code></code></dfn>
+    <dd>EAN-8 is a linear barcode defined in <a data-link-type="biblio" href="#biblio-iso15420">[iso15420]</a> and derived from <a data-link-type="dfn" href="#ean-13" id="ref-for-ean-13-1">EAN-13</a>.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-itf"><code><code>itf</code></code></dfn>
+    <dd>ITF14 barcode is the GS1 implementation of an Interleaved 2 of 5 bar code to encode a Global Trade Item  Number. It is continuous, self-checking, bidirectionally decodable and it will always encode 14 digits.
+  was once used in the package delivery industry but replaced by <a data-link-type="dfn" href="#code-128" id="ref-for-code-128-2">Code 128</a>. <a data-link-type="biblio" href="#biblio-bc2">[bc2]</a> 
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-pdf417"><code><code>pdf417</code></code></dfn>
+    <dd>PDF417 refers to a continuous two-dimensional barcode symbology format with multiple rows and columns, bi-directionally decodable and according to the Standard <a data-link-type="biblio" href="#biblio-iso15438">[iso15438]</a>.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-qr_code"><code><code>qr_code</code></code></dfn>
+    <dd>QR Code is a two-dimensional barcode respecting the Standard <a data-link-type="biblio" href="#biblio-iso18004">[iso18004]</a>. The information encoded can be text, URL or other data.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-upc_a"><code><code>upc_a</code></code></dfn>
+    <dd><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="upc-a">UPC-A</dfn> is one of the most common linear barcode types and is widely applied to retail in the United States.  Define in <a data-link-type="biblio" href="#biblio-iso15420">[iso15420]</a>, it represents digits by strips of bars and spaces, each digit being associated to a unique pattern of 2 bars and 2 spaces, both of variable width.  UPC-A can encode 12 digits that are uniquely assigned to each trade item, and it’ss technically a subset of <a data-link-type="dfn" href="#ean-13" id="ref-for-ean-13-2">EAN-13</a> (UPC-A codes are represented in <a data-link-type="dfn" href="#ean-13" id="ref-for-ean-13-3">EAN-13</a> with the first character set to <var>0</var>). 
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-upc_e"><code><code>upc_e</code></code></dfn>
+    <dd>UPC-E Barcode is a variation of <a data-link-type="dfn" href="#upc-a" id="ref-for-upc-a-3">UPC-A</a> defined in <a data-link-type="biblio" href="#biblio-iso15420">[iso15420]</a>, compressing out unnecessary zeros for a more compact barcode.
+   </dl>
+   <h3 class="heading settled" data-level="2.5" id="text-detection-api"><span class="secno">2.5. </span><span class="content">Text Detection API</span><a class="self-link" href="#text-detection-api"></a></h3>
+   <p><code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector-1">TextDetector</a></code> represents an underlying accelerated platform’s component for detection in images of text.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect-1">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#detectedtext" id="ref-for-detectedtext-1">DetectedText</a></code>s, each one essentially consisting on a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue-1">rawValue</a></code> and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox-1">boundingBox</a></code>.</p>
 <pre class="idl highlight def">[
     <a class="nv idl-code" data-link-type="constructor" href="#dom-textdetector-textdetector" id="ref-for-dom-textdetector-textdetector-1">Constructor</a>,
     <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
-] <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="textdetector">TextDetector</dfn> {
-    <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedtext" id="ref-for-detectedtext-2">DetectedText</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect-2">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="TextDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-textdetector-detect-image-image">image<a class="self-link" href="#dom-textdetector-detect-image-image"></a></dfn>);
+] <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="textdetector"><code>TextDetector</code></dfn> {
+    <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedtext" id="ref-for-detectedtext-2">DetectedText</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect-2">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a> <dfn class="nv idl-code" data-dfn-for="TextDetector/detect(image)" data-dfn-type="argument" data-export="" id="dom-textdetector-detect-image-image"><code>image</code><a class="self-link" href="#dom-textdetector-detect-image-image"></a></dfn>);
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="constructor" data-export="" id="dom-textdetector-textdetector"><code>TextDetector()</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="constructor" data-export="" id="dom-textdetector-textdetector"><code><code>TextDetector()</code></code></dfn>
     <dd>
      <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector-2">TextDetector</a></code> for several detections. </div>
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-textdetector-detect"><code>detect(ImageBitmapSource image)</code></dfn>
-    <dd>Tries to detect text blocks in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a></code> <var>image</var>.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="method" data-export="" data-lt="detect(image)" id="dom-textdetector-detect"><code><code>detect(ImageBitmapSource image)</code></code></dfn>
+    <dd>Tries to detect text blocks in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a></code> <var>image</var>.
    </dl>
 <pre class="idl highlight def">[
-    <dfn class="nv idl-code" data-dfn-for="DetectedText" data-dfn-type="constructor" data-export="" data-lt="DetectedText()" id="dom-detectedtext-detectedtext">Constructor<a class="self-link" href="#dom-detectedtext-detectedtext"></a></dfn>,
-] <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedtext">DetectedText</dfn> {
+    <dfn class="nv idl-code" data-dfn-for="DetectedText" data-dfn-type="constructor" data-export="" data-lt="DetectedText()" id="dom-detectedtext-detectedtext"><code>Constructor</code><a class="self-link" href="#dom-detectedtext-detectedtext"></a></dfn>,
+] <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedtext"><code>DetectedText</code></dfn> {
     [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRect" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox-2">boundingBox</a>;
     [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue-2">rawValue</a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="attribute" data-export="" id="dom-detectedtext-boundingbox"><code>boundingBox</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="attribute" data-export="" id="dom-detectedtext-boundingbox"><code><code>boundingBox</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a>, readonly</span>
     <dd>A rectangle indicating the position and extent of a detected feature aligned to the image
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="attribute" data-export="" id="dom-detectedtext-rawvalue"><code>rawValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>, readonly</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="attribute" data-export="" id="dom-detectedtext-rawvalue"><code><code>rawValue</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>, readonly</span>
     <dd>Raw string detected from the image.
    </dl>
    <div class="example" id="example-ea7becbb"><a class="self-link" href="#example-ea7becbb"></a> Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple’s CIDetector</a> or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>. </div>
@@ -1898,49 +1972,71 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#dom-barcodeformat-aztec">aztec</a><span>, in §2.4</span>
    <li><a href="#barcodedetector">BarcodeDetector</a><span>, in §2.3</span>
    <li><a href="#dom-barcodedetector-barcodedetector">BarcodeDetector()</a><span>, in §2.3</span>
+   <li><a href="#dom-barcodedetector-barcodedetector">BarcodeDetector(barcodeDetectorOptions)</a><span>, in §2.3</span>
+   <li><a href="#dictdef-barcodedetectoroptions">BarcodeDetectorOptions</a><span>, in §2.3.1</span>
+   <li><a href="#enumdef-barcodeformat">BarcodeFormat</a><span>, in §2.3.3</span>
    <li>
     boundingBox
     <ul>
      <li><a href="#dom-detectedface-boundingbox">attribute for DetectedFace</a><span>, in §2.2</span>
-     <li><a href="#dom-detectedbarcode-boundingbox">attribute for DetectedBarcode</a><span>, in §2.3</span>
-     <li><a href="#dom-detectedtext-boundingbox">attribute for DetectedText</a><span>, in §2.4</span>
+     <li><a href="#dom-detectedbarcode-boundingbox">attribute for DetectedBarcode</a><span>, in §2.3.2</span>
+     <li><a href="#dom-detectedtext-boundingbox">attribute for DetectedText</a><span>, in §2.5</span>
     </ul>
-   <li><a href="#dom-detectedbarcode-cornerpoints">cornerPoints</a><span>, in §2.3</span>
+   <li><a href="#dom-barcodeformat-codabar">codabar</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodeformat-code_128">code_128</a><span>, in §2.4</span>
+   <li><a href="#code-128">Code 128</a><span>, in §2.4</span>
+   <li><a href="#code-39">Code 39</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodeformat-code_39">code_39</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodeformat-code_93">code_93</a><span>, in §2.4</span>
+   <li><a href="#dom-detectedbarcode-cornerpoints">cornerPoints</a><span>, in §2.3.2</span>
+   <li><a href="#dom-barcodeformat-data_matrix">data_matrix</a><span>, in §2.4</span>
    <li><a href="#dom-facedetector-detect">detect()</a><span>, in §2.2</span>
-   <li><a href="#detectedbarcode">DetectedBarcode</a><span>, in §2.3</span>
+   <li><a href="#detectedbarcode">DetectedBarcode</a><span>, in §2.3.2</span>
    <li><a href="#detectedface">DetectedFace</a><span>, in §2.2</span>
-   <li><a href="#detectedtext">DetectedText</a><span>, in §2.4</span>
-   <li><a href="#dom-detectedtext-detectedtext">DetectedText()</a><span>, in §2.4</span>
+   <li><a href="#dom-detectedtext-detectedtext">DetectedText()</a><span>, in §2.5</span>
+   <li><a href="#detectedtext">DetectedText</a><span>, in §2.5</span>
    <li>
     detect(image)
     <ul>
      <li><a href="#dom-facedetector-detect">method for FaceDetector</a><span>, in §2.2</span>
      <li><a href="#dom-barcodedetector-detect">method for BarcodeDetector</a><span>, in §2.3</span>
-     <li><a href="#dom-textdetector-detect">method for TextDetector</a><span>, in §2.4</span>
+     <li><a href="#dom-textdetector-detect">method for TextDetector</a><span>, in §2.5</span>
     </ul>
+   <li><a href="#ean-13">EAN-13</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodeformat-ean_13">ean_13</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodeformat-ean_8">ean_8</a><span>, in §2.4</span>
    <li><a href="#dom-landmarktype-eye">eye</a><span>, in §2.2</span>
    <li><a href="#dom-facedetector-facedetector">FaceDetector()</a><span>, in §2.2</span>
    <li><a href="#facedetector">FaceDetector</a><span>, in §2.2</span>
    <li><a href="#dom-facedetector-facedetector">FaceDetector(faceDetectorOptions)</a><span>, in §2.2</span>
    <li><a href="#dictdef-facedetectoroptions">FaceDetectorOptions</a><span>, in §2.2</span>
    <li><a href="#dom-facedetectoroptions-fastmode">fastMode</a><span>, in §2.2</span>
+   <li><a href="#dom-barcodedetectoroptions-formats">formats</a><span>, in §2.3.1</span>
+   <li><a href="#dom-barcodeformat-itf">itf</a><span>, in §2.4</span>
    <li><a href="#dictdef-landmark">Landmark</a><span>, in §2.2</span>
    <li><a href="#dom-detectedface-landmarks">landmarks</a><span>, in §2.2</span>
    <li><a href="#enumdef-landmarktype">LandmarkType</a><span>, in §2.2</span>
    <li><a href="#dom-landmark-location">location</a><span>, in §2.2</span>
    <li><a href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a><span>, in §2.2</span>
    <li><a href="#dom-landmarktype-mouth">mouth</a><span>, in §2.2</span>
+   <li><a href="#dom-barcodeformat-pdf417">pdf417</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodeformat-qr_code">qr_code</a><span>, in §2.4</span>
    <li>
     rawValue
     <ul>
-     <li><a href="#dom-detectedbarcode-rawvalue">attribute for DetectedBarcode</a><span>, in §2.3</span>
-     <li><a href="#dom-detectedtext-rawvalue">attribute for DetectedText</a><span>, in §2.4</span>
+     <li><a href="#dom-detectedbarcode-rawvalue">attribute for DetectedBarcode</a><span>, in §2.3.2</span>
+     <li><a href="#dom-detectedtext-rawvalue">attribute for DetectedText</a><span>, in §2.5</span>
     </ul>
-   <li><a href="#dom-textdetector-textdetector">TextDetector()</a><span>, in §2.4</span>
-   <li><a href="#textdetector">TextDetector</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodedetector-supportedformats">supportedFormats</a><span>, in §2.3</span>
+   <li><a href="#dom-textdetector-textdetector">TextDetector()</a><span>, in §2.5</span>
+   <li><a href="#textdetector">TextDetector</a><span>, in §2.5</span>
    <li><a href="#dom-landmark-type">type</a><span>, in §2.2</span>
+   <li><a href="#dom-barcodeformat-upc_a">upc_a</a><span>, in §2.4</span>
+   <li><a href="#upc-a">UPC-A</a><span>, in §2.4</span>
+   <li><a href="#dom-barcodeformat-upc_e">upc_e</a><span>, in §2.4</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -1953,10 +2049,10 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><a href="https://html.spec.whatwg.org/multipage/scripting.html#htmlcanvaselement">HTMLCanvasElement</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement">HTMLCanvasElement</a>
      <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">HTMLImageElement</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlvideoelement">HTMLVideoElement</a>
-     <li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource">ImageBitmapSource</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement">HTMLVideoElement</a>
+     <li><a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a>
     </ul>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
@@ -1984,55 +2080,100 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <dt id="biblio-webidl">[WebIDL]
    <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
+  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <dl>
+   <dt id="biblio-bc2">[BC2]
+   <dd>ANSI/AIM-BC2, Uniform Symbol Specification - Interleaved 2 of 5. 1995. 
+   <dt id="biblio-bc5">[BC5]
+   <dd>ANSI/AIM-BC5, Uniform Symbol Specification - Code 93. 1995. 
+   <dt id="biblio-iso15417">[ISO15417]
+   <dd><a href="https://www.iso.org/standard/43896.html">Information technology -- Automatic identification and data capture techniques -- Code 128 bar code symbology specification</a>. June 2007. URL: <a href="https://www.iso.org/standard/43896.html">https://www.iso.org/standard/43896.html</a>
+   <dt id="biblio-iso15420">[ISO15420]
+   <dd><a href="https://www.iso.org/standard/46143.html">Information technology -- Automatic identification and data capture techniques -- EAN/UPC bar code symbology specification</a>. Decemver 2009. URL: <a href="https://www.iso.org/standard/46143.html">https://www.iso.org/standard/46143.html</a>
+   <dt id="biblio-iso15438">[ISO15438]
+   <dd><a href="https://www.iso.org/standard/65502.html">Information technology -- Automatic identification and data capture techniques -- PDF417 bar code symbology specification</a>. September 2015. URL: <a href="https://www.iso.org/standard/65502.html">https://www.iso.org/standard/65502.html</a>
+   <dt id="biblio-iso16022">[ISO16022]
+   <dd><a href="https://www.iso.org/standard/44230.html">Information technology -- Automatic identification and data capture techniques -- Data Matrix bar code symbology specification</a>. September 2009. URL: <a href="https://www.iso.org/standard/44230.html">https://www.iso.org/standard/44230.html</a>
+   <dt id="biblio-iso16388">[ISO16388]
+   <dd><a href="https://www.iso.org/standard/43897.html">nformation technology -- Automatic identification and data capture techniques -- Code 39 bar code symbology specification</a>. May 2007. URL: <a href="https://www.iso.org/standard/43897.html">https://www.iso.org/standard/43897.html</a>
+   <dt id="biblio-iso18004">[ISO18004]
+   <dd><a href="https://www.iso.org/standard/62021.html">Information technology -- Automatic identification and data capture techniques -- QR Code bar code symbology specification</a>. February 2015. URL: <a href="https://www.iso.org/standard/62021.html">https://www.iso.org/standard/62021.html</a>
+   <dt id="biblio-iso24778">[ISO24778]
+   <dd><a href="https://www.iso.org/standard/62021.html">Information technology -- Automatic identification and data capture techniques -- Aztec Code bar code symbology specification</a>. February 2008. URL: <a href="https://www.iso.org/standard/62021.html">https://www.iso.org/standard/62021.html</a>
+  </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def"><span class="kt"><span class="kt">dictionary</span></span> <a class="nv" href="#dictdef-facedetectoroptions"><span class="nv">FaceDetectorOptions</span></a> {
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">short</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces"><span class="nv">maxDetectedFaces</span></a>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt"><span class="kt">boolean</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-facedetectoroptions-fastmode"><span class="nv">fastMode</span></a>;
+<pre class="idl highlight def"><span class="kt">dictionary</span> <a class="nv" href="#dictdef-facedetectoroptions"><code>FaceDetectorOptions</code></a> {
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><span class="kt">unsigned</span> <span class="kt">short</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned short " href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-facedetectoroptions-fastmode">fastMode</a>;
 };
 
-[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><span class="nv">Exposed</span></a>=(<span class="n"><span class="n">Window</span></span>,<span class="n"><span class="n">Worker</span></span>), <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector"><span class="nv">Constructor</span></a>(<span class="kt"><span class="kt">optional</span></span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions"><span class="n">FaceDetectorOptions</span></a> <a class="nv" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"><span class="nv">faceDetectorOptions</span></a>)]
-<span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#facedetector"><span class="nv">FaceDetector</span></a> {
-  <span class="kt"><span class="kt">Promise</span></span>&lt;<span class="kt"><span class="kt">sequence</span></span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface"><span class="n">DetectedFace</span></a>>> <a class="nv" href="#dom-facedetector-detect"><span class="nv">detect</span></a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource"><span class="n">ImageBitmapSource</span></a> <a class="nv" href="#dom-facedetector-detect-image-image"><span class="nv">image</span></a>);
+[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
+ <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions">FaceDetectorOptions</a> <a class="nv" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"><code>faceDetectorOptions</code></a>)]
+<span class="kt">interface</span> <a class="nv" href="#facedetector"><code>FaceDetector</code></a> {
+  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedface">DetectedFace</a>>> <a class="nv" href="#dom-facedetector-detect"><code>detect</code></a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-facedetector-detect-image-image"><code>image</code></a>);
 };
 
-<span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#detectedface"><span class="nv">DetectedFace</span></a> {
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><span class="nv">SameObject</span></a>] <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly"><span class="n">DOMRectReadOnly</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedface-boundingbox"><span class="nv">boundingBox</span></a>;
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><span class="nv">SameObject</span></a>] <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <span class="kt"><span class="kt">FrozenArray</span></span>&lt;<a class="n" data-link-type="idl-name" href="#dictdef-landmark"><span class="n">Landmark</span></a>>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Landmark>?" href="#dom-detectedface-landmarks"><span class="nv">landmarks</span></a>;
+<span class="kt">interface</span> <a class="nv" href="#detectedface"><code>DetectedFace</code></a> {
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedface-boundingbox">boundingBox</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="#dictdef-landmark">Landmark</a>>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Landmark>?" href="#dom-detectedface-landmarks">landmarks</a>;
 };
 
-<span class="kt"><span class="kt">dictionary</span></span> <a class="nv" href="#dictdef-landmark"><span class="nv">Landmark</span></a> {
-  <span class="kt"><span class="kt">required</span></span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D"><span class="n">Point2D</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="Point2D " href="#dom-landmark-location"><span class="nv">location</span></a>;
-  <a class="n" data-link-type="idl-name" href="#enumdef-landmarktype"><span class="n">LandmarkType</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="LandmarkType " href="#dom-landmark-type"><span class="nv">type</span></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-landmark"><code>Landmark</code></a> {
+  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a> <a class="nv idl-code" data-link-type="dict-member" data-type="Point2D " href="#dom-landmark-location">location</a>;
+  <a class="n" data-link-type="idl-name" href="#enumdef-landmarktype">LandmarkType</a> <a class="nv idl-code" data-link-type="dict-member" data-type="LandmarkType " href="#dom-landmark-type">type</a>;
 };
 
-<span class="kt"><span class="kt">enum</span></span> <a class="nv" href="#enumdef-landmarktype"><span class="nv">LandmarkType</span></a> {
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-mouth"><span class="s">"mouth"</span></a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-eye"><span class="s">"eye"</span></a>
+<span class="kt">enum</span> <a class="nv" href="#enumdef-landmarktype"><code>LandmarkType</code></a> {
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-mouth">"mouth"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-eye">"eye"</a>
 };
 
-[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><span class="nv">Exposed</span></a>=(<span class="n"><span class="n">Window</span></span>,<span class="n"><span class="n">Worker</span></span>), <a class="nv idl-code" data-link-type="constructor" href="#dom-barcodedetector-barcodedetector"><span class="nv">Constructor</span></a>()]
-<span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#barcodedetector"><span class="nv">BarcodeDetector</span></a> {
-  <span class="kt"><span class="kt">Promise</span></span>&lt;<span class="kt"><span class="kt">sequence</span></span>&lt;<a class="n" data-link-type="idl-name" href="#detectedbarcode"><span class="n">DetectedBarcode</span></a>>> <a class="nv idl-code" data-link-type="method" href="#dom-barcodedetector-detect"><span class="nv">detect</span></a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource"><span class="n">ImageBitmapSource</span></a> <a class="nv" href="#dom-barcodedetector-detect-image-image"><span class="nv">image</span></a>);
+[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
+ <a class="nv idl-code" data-link-type="constructor" href="#dom-barcodedetector-barcodedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-barcodedetectoroptions">BarcodeDetectorOptions</a> <a class="nv" href="#dom-barcodedetector-barcodedetector-barcodedetectoroptions-barcodedetectoroptions"><code>barcodeDetectorOptions</code></a>)]
+<span class="kt">interface</span> <a class="nv" href="#barcodedetector"><code>BarcodeDetector</code></a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="#enumdef-barcodeformat">BarcodeFormat</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<BarcodeFormat>" href="#dom-barcodedetector-supportedformats">supportedFormats</a>;
+
+  <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedbarcode">DetectedBarcode</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-barcodedetector-detect">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-barcodedetector-detect-image-image"><code>image</code></a>);
 };
 
-<span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#detectedbarcode"><span class="nv">DetectedBarcode</span></a> {
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><span class="nv">SameObject</span></a>] <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly"><span class="n">DOMRectReadOnly</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedbarcode-boundingbox"><span class="nv">boundingBox</span></a>;
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><span class="nv">SameObject</span></a>] <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt"><span class="kt">DOMString</span></span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue"><span class="nv">rawValue</span></a>;
-  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><span class="nv">SameObject</span></a>] <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <span class="kt"><span class="kt">FrozenArray</span></span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D"><span class="n">Point2D</span></a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Point2D>" href="#dom-detectedbarcode-cornerpoints"><span class="nv">cornerPoints</span></a>;
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-barcodedetectoroptions"><code>BarcodeDetectorOptions</code></a> {
+  <span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#enumdef-barcodeformat">BarcodeFormat</a>> <a class="nv idl-code" data-link-type="dict-member" data-type="sequence<BarcodeFormat> " href="#dom-barcodedetectoroptions-formats">formats</a>;
+};
+
+<span class="kt">interface</span> <a class="nv" href="#detectedbarcode"><code>DetectedBarcode</code></a> {
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedbarcode-boundingbox">boundingBox</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue">rawValue</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Point2D>" href="#dom-detectedbarcode-cornerpoints">cornerPoints</a>;
+};
+
+<span class="kt">enum</span> <a class="nv" href="#enumdef-barcodeformat"><code>BarcodeFormat</code></a> {
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-aztec">"aztec"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-code_128">"code_128"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-code_39">"code_39"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-code_93">"code_93"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-codabar">"codabar"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-data_matrix">"data_matrix"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-ean_13">"ean_13"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-ean_8">"ean_8"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-itf">"itf"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-pdf417">"pdf417"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-qr_code">"qr_code"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_a">"upc_a"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_e">"upc_e"</a>
 };
 
 [
-    <a class="nv idl-code" data-link-type="constructor" href="#dom-textdetector-textdetector"><span class="nv">Constructor</span></a>,
-    <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><span class="nv">Exposed</span></a>=(<span class="n"><span class="n">Window</span></span>,<span class="n"><span class="n">Worker</span></span>),
-] <span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#textdetector"><span class="nv">TextDetector</span></a> {
-    <span class="kt"><span class="kt">Promise</span></span>&lt;<span class="kt"><span class="kt">sequence</span></span>&lt;<a class="n" data-link-type="idl-name" href="#detectedtext"><span class="n">DetectedText</span></a>>> <a class="nv idl-code" data-link-type="method" href="#dom-textdetector-detect"><span class="nv">detect</span></a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmapsource"><span class="n">ImageBitmapSource</span></a> <a class="nv" href="#dom-textdetector-detect-image-image"><span class="nv">image</span></a>);
+    <a class="nv idl-code" data-link-type="constructor" href="#dom-textdetector-textdetector">Constructor</a>,
+    <a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
+] <span class="kt">interface</span> <a class="nv" href="#textdetector"><code>TextDetector</code></a> {
+    <span class="kt">Promise</span>&lt;<span class="kt">sequence</span>&lt;<a class="n" data-link-type="idl-name" href="#detectedtext">DetectedText</a>>> <a class="nv idl-code" data-link-type="method" href="#dom-textdetector-detect">detect</a>(<a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">ImageBitmapSource</a> <a class="nv" href="#dom-textdetector-detect-image-image"><code>image</code></a>);
 };
 
 [
-    <a class="nv" href="#dom-detectedtext-detectedtext"><span class="nv">Constructor</span></a>,
-] <span class="kt"><span class="kt">interface</span></span> <a class="nv" href="#detectedtext"><span class="nv">DetectedText</span></a> {
-    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><span class="nv">SameObject</span></a>] <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect"><span class="n">DOMRect</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRect" href="#dom-detectedtext-boundingbox"><span class="nv">boundingBox</span></a>;
-    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject"><span class="nv">SameObject</span></a>] <span class="kt"><span class="kt">readonly</span></span> <span class="kt"><span class="kt">attribute</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt"><span class="kt">DOMString</span></span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue"><span class="nv">rawValue</span></a>;
+    <a class="nv" href="#dom-detectedtext-detectedtext"><code>Constructor</code></a>,
+] <span class="kt">interface</span> <a class="nv" href="#detectedtext"><code>DetectedText</code></a> {
+    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrect">DOMRect</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRect" href="#dom-detectedtext-boundingbox">boundingBox</a>;
+    [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedtext-rawvalue">rawValue</a>;
 };
 
 </pre>
@@ -2064,6 +2205,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <b><a href="#dom-facedetector-detect">#dom-facedetector-detect</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-facedetector-detect-1">2.2. Face Detection API</a>
+    <li><a href="#ref-for-dom-facedetector-detect-2">2.3.1. BarcodeDetectorOptions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-facedetector-facedetector">
@@ -2076,6 +2218,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <b><a href="#dom-facedetector-detect">#dom-facedetector-detect</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-facedetector-detect-1">2.2. Face Detection API</a>
+    <li><a href="#ref-for-dom-facedetector-detect-2">2.3.1. BarcodeDetectorOptions</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="detectedface">
@@ -2135,7 +2278,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
   <aside class="dfn-panel" data-for="barcodedetector">
    <b><a href="#barcodedetector">#barcodedetector</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-barcodedetector-1">2.3. Barcode Detection API</a> <a href="#ref-for-barcodedetector-2">(2)</a>
+    <li><a href="#ref-for-barcodedetector-1">2.3. Barcode Detection API</a> <a href="#ref-for-barcodedetector-2">(2)</a> <a href="#ref-for-barcodedetector-3">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-barcodedetector-barcodedetector">
@@ -2144,70 +2287,202 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
     <li><a href="#ref-for-dom-barcodedetector-barcodedetector-1">2.3. Barcode Detection API</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-barcodedetector-supportedformats">
+   <b><a href="#dom-barcodedetector-supportedformats">#dom-barcodedetector-supportedformats</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodedetector-supportedformats-1">2.3. Barcode Detection API</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dom-barcodedetector-detect">
    <b><a href="#dom-barcodedetector-detect">#dom-barcodedetector-detect</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-barcodedetector-detect-1">2.3. Barcode Detection API</a> <a href="#ref-for-dom-barcodedetector-detect-2">(2)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dictdef-barcodedetectoroptions">
+   <b><a href="#dictdef-barcodedetectoroptions">#dictdef-barcodedetectoroptions</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dictdef-barcodedetectoroptions-1">2.3. Barcode Detection API</a>
+    <li><a href="#ref-for-dictdef-barcodedetectoroptions-2">2.3.1. BarcodeDetectorOptions</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodedetectoroptions-formats">
+   <b><a href="#dom-barcodedetectoroptions-formats">#dom-barcodedetectoroptions-formats</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodedetectoroptions-formats-1">2.3.1. BarcodeDetectorOptions</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="detectedbarcode">
    <b><a href="#detectedbarcode">#detectedbarcode</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-detectedbarcode-1">2.3. Barcode Detection API</a> <a href="#ref-for-detectedbarcode-2">(2)</a>
+    <li><a href="#ref-for-detectedbarcode-3">2.3.2. DetectedBarcode</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-detectedbarcode-boundingbox">
    <b><a href="#dom-detectedbarcode-boundingbox">#dom-detectedbarcode-boundingbox</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-detectedbarcode-boundingbox-1">2.3. Barcode Detection API</a> <a href="#ref-for-dom-detectedbarcode-boundingbox-2">(2)</a>
+    <li><a href="#ref-for-dom-detectedbarcode-boundingbox-1">2.3. Barcode Detection API</a>
+    <li><a href="#ref-for-dom-detectedbarcode-boundingbox-2">2.3.2. DetectedBarcode</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-detectedbarcode-rawvalue">
    <b><a href="#dom-detectedbarcode-rawvalue">#dom-detectedbarcode-rawvalue</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-detectedbarcode-rawvalue-1">2.3. Barcode Detection API</a> <a href="#ref-for-dom-detectedbarcode-rawvalue-2">(2)</a>
+    <li><a href="#ref-for-dom-detectedbarcode-rawvalue-1">2.3. Barcode Detection API</a>
+    <li><a href="#ref-for-dom-detectedbarcode-rawvalue-2">2.3.2. DetectedBarcode</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-detectedbarcode-cornerpoints">
    <b><a href="#dom-detectedbarcode-cornerpoints">#dom-detectedbarcode-cornerpoints</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-detectedbarcode-cornerpoints-1">2.3. Barcode Detection API</a>
+    <li><a href="#ref-for-dom-detectedbarcode-cornerpoints-1">2.3.2. DetectedBarcode</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-barcodeformat">
+   <b><a href="#enumdef-barcodeformat">#enumdef-barcodeformat</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-barcodeformat-1">2.3. Barcode Detection API</a> <a href="#ref-for-enumdef-barcodeformat-2">(2)</a> <a href="#ref-for-enumdef-barcodeformat-3">(3)</a> <a href="#ref-for-enumdef-barcodeformat-4">(4)</a>
+    <li><a href="#ref-for-enumdef-barcodeformat-5">2.3.1. BarcodeDetectorOptions</a> <a href="#ref-for-enumdef-barcodeformat-6">(2)</a> <a href="#ref-for-enumdef-barcodeformat-7">(3)</a>
+    <li><a href="#ref-for-enumdef-barcodeformat-8">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-aztec">
+   <b><a href="#dom-barcodeformat-aztec">#dom-barcodeformat-aztec</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-aztec-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-code_128">
+   <b><a href="#dom-barcodeformat-code_128">#dom-barcodeformat-code_128</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-code_128-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="code-128">
+   <b><a href="#code-128">#code-128</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-code-128-1">2.4. Values</a> <a href="#ref-for-code-128-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-code_39">
+   <b><a href="#dom-barcodeformat-code_39">#dom-barcodeformat-code_39</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-code_39-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="code-39">
+   <b><a href="#code-39">#code-39</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-code-39-1">2.4. Values</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-code_93">
+   <b><a href="#dom-barcodeformat-code_93">#dom-barcodeformat-code_93</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-code_93-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-codabar">
+   <b><a href="#dom-barcodeformat-codabar">#dom-barcodeformat-codabar</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-codabar-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-data_matrix">
+   <b><a href="#dom-barcodeformat-data_matrix">#dom-barcodeformat-data_matrix</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-data_matrix-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-ean_13">
+   <b><a href="#dom-barcodeformat-ean_13">#dom-barcodeformat-ean_13</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-ean_13-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="ean-13">
+   <b><a href="#ean-13">#ean-13</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-ean-13-1">2.4. Values</a> <a href="#ref-for-ean-13-2">(2)</a> <a href="#ref-for-ean-13-3">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-ean_8">
+   <b><a href="#dom-barcodeformat-ean_8">#dom-barcodeformat-ean_8</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-ean_8-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-itf">
+   <b><a href="#dom-barcodeformat-itf">#dom-barcodeformat-itf</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-itf-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-pdf417">
+   <b><a href="#dom-barcodeformat-pdf417">#dom-barcodeformat-pdf417</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-pdf417-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-qr_code">
+   <b><a href="#dom-barcodeformat-qr_code">#dom-barcodeformat-qr_code</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-qr_code-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-upc_a">
+   <b><a href="#dom-barcodeformat-upc_a">#dom-barcodeformat-upc_a</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-upc_a-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="upc-a">
+   <b><a href="#upc-a">#upc-a</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-upc-a-1">2.4. Values</a> <a href="#ref-for-upc-a-2">(2)</a> <a href="#ref-for-upc-a-3">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-upc_e">
+   <b><a href="#dom-barcodeformat-upc_e">#dom-barcodeformat-upc_e</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-upc_e-1">2.3.3. BarcodeFormat</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="textdetector">
    <b><a href="#textdetector">#textdetector</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-textdetector-1">2.4. Text Detection API</a> <a href="#ref-for-textdetector-2">(2)</a>
+    <li><a href="#ref-for-textdetector-1">2.5. Text Detection API</a> <a href="#ref-for-textdetector-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-textdetector-textdetector">
    <b><a href="#dom-textdetector-textdetector">#dom-textdetector-textdetector</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-textdetector-textdetector-1">2.4. Text Detection API</a>
+    <li><a href="#ref-for-dom-textdetector-textdetector-1">2.5. Text Detection API</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-textdetector-detect">
    <b><a href="#dom-textdetector-detect">#dom-textdetector-detect</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-textdetector-detect-1">2.4. Text Detection API</a> <a href="#ref-for-dom-textdetector-detect-2">(2)</a>
+    <li><a href="#ref-for-dom-textdetector-detect-1">2.5. Text Detection API</a> <a href="#ref-for-dom-textdetector-detect-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="detectedtext">
    <b><a href="#detectedtext">#detectedtext</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-detectedtext-1">2.4. Text Detection API</a> <a href="#ref-for-detectedtext-2">(2)</a>
+    <li><a href="#ref-for-detectedtext-1">2.5. Text Detection API</a> <a href="#ref-for-detectedtext-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-detectedtext-boundingbox">
    <b><a href="#dom-detectedtext-boundingbox">#dom-detectedtext-boundingbox</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-detectedtext-boundingbox-1">2.4. Text Detection API</a> <a href="#ref-for-dom-detectedtext-boundingbox-2">(2)</a>
+    <li><a href="#ref-for-dom-detectedtext-boundingbox-1">2.5. Text Detection API</a> <a href="#ref-for-dom-detectedtext-boundingbox-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-detectedtext-rawvalue">
    <b><a href="#dom-detectedtext-rawvalue">#dom-detectedtext-rawvalue</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-detectedtext-rawvalue-1">2.4. Text Detection API</a> <a href="#ref-for-dom-detectedtext-rawvalue-2">(2)</a>
+    <li><a href="#ref-for-dom-detectedtext-rawvalue-1">2.5. Text Detection API</a> <a href="#ref-for-dom-detectedtext-rawvalue-2">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
