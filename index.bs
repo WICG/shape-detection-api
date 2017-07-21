@@ -219,6 +219,7 @@ dictionary BarcodeDetectorOptions {
 interface DetectedBarcode {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
+  [SameObject] readonly attribute BarcodeFormat format;
   [SameObject] readonly attribute FrozenArray&lt;Point2D> cornerPoints;
 };
 </pre>
@@ -229,6 +230,9 @@ interface DetectedBarcode {
 
   <dt><dfn attribute for="DetectedBarcode"><code>rawValue</code></dfn></dt>
   <dd>String decoded from the barcode. This value might be multiline.</dd>
+
+  <dt><dfn attribute for="DetectedBarcode"><code>format</code></dfn></dt>
+  <dd>Detect {{BarcodeFormat}}.</dd>
 
   <dt><dfn attribute for="DetectedBarcode"><code>cornerPoints</code></dfn></dt>
   <dd>A <a>sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
@@ -249,6 +253,7 @@ interface DetectedBarcode {
     "itf",
     "pdf417",
     "qr_code",
+    "unknown",
     "upc_a",
     "upc_e"
   };
@@ -292,6 +297,9 @@ interface DetectedBarcode {
 
   <dt><dfn enum-value for="BarcodeFormat"><code>qr_code</code></dfn></dt>
   <dd>QR Code is a two-dimensional barcode respecting the Standard [[iso18004]]. The information encoded can be text, URL or other data.</dd>
+
+  <dt><dfn enum-value for="BarcodeFormat"><code>unknown</code></dfn></dt>
+  <dd>This value is used by the platform to signify that it does not know or specify which barcode format is being detected or supported.</dd>
 
   <dt><dfn enum-value for="BarcodeFormat"><code>upc_a</code></dfn></dt>
   <dd><dfn>UPC-A</dfn> is one of the most common linear barcode types and is widely applied to retail in the United States.  Define in [[iso15420]], it represents digits by strips of bars and spaces, each digit being associated to a unique pattern of 2 bars and 2 spaces, both of variable width.  UPC-A can encode 12 digits that are uniquely assigned to each trade item, and it'ss technically a subset of <a>EAN-13</a> (UPC-A codes are represented in <a>EAN-13</a> with the first character set to <var>0</var>). </dd>

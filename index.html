@@ -1660,6 +1660,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 <pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="detectedbarcode"><code>DetectedBarcode</code></dfn> {
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox-2">boundingBox</a>;
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue-2">rawValue</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-8">BarcodeFormat</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="BarcodeFormat" href="#dom-detectedbarcode-format" id="ref-for-dom-detectedbarcode-format-1">format</a>;
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Point2D>" href="#dom-detectedbarcode-cornerpoints" id="ref-for-dom-detectedbarcode-cornerpoints-1">cornerPoints</a>;
 };
 </pre>
@@ -1668,10 +1669,12 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dd>A rectangle indicating the position and extent of a detected feature aligned to the image
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-rawvalue"><code><code>rawValue</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>, readonly</span>
     <dd>String decoded from the barcode. This value might be multiline.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-format"><code><code>format</code></code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-9">BarcodeFormat</a>, readonly</span>
+    <dd>Detect <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-10">BarcodeFormat</a></code>.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-cornerpoints"><code><code>cornerPoints</code></code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>>, readonly</span>
     <dd>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence">sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
    </dl>
-   <h4 class="heading settled" data-level="2.3.3" id="barcodeformat-section"><span class="secno">2.3.3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-8">BarcodeFormat</a></code></span><a class="self-link" href="#barcodeformat-section"></a></h4>
+   <h4 class="heading settled" data-level="2.3.3" id="barcodeformat-section"><span class="secno">2.3.3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat-11">BarcodeFormat</a></code></span><a class="self-link" href="#barcodeformat-section"></a></h4>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-barcodeformat"><code>BarcodeFormat</code></dfn> {
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-aztec" id="ref-for-dom-barcodeformat-aztec-1">"aztec"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-code_128" id="ref-for-dom-barcodeformat-code_128-1">"code_128"</a>,
@@ -1684,6 +1687,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-itf" id="ref-for-dom-barcodeformat-itf-1">"itf"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-pdf417" id="ref-for-dom-barcodeformat-pdf417-1">"pdf417"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-qr_code" id="ref-for-dom-barcodeformat-qr_code-1">"qr_code"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-unknown" id="ref-for-dom-barcodeformat-unknown-1">"unknown"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_a" id="ref-for-dom-barcodeformat-upc_a-1">"upc_a"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_e" id="ref-for-dom-barcodeformat-upc_e-1">"upc_e"</a>
 };
@@ -1713,6 +1717,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dd>PDF417 refers to a continuous two-dimensional barcode symbology format with multiple rows and columns, bi-directionally decodable and according to the Standard <a data-link-type="biblio" href="#biblio-iso15438">[iso15438]</a>.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-qr_code"><code><code>qr_code</code></code></dfn>
     <dd>QR Code is a two-dimensional barcode respecting the Standard <a data-link-type="biblio" href="#biblio-iso18004">[iso18004]</a>. The information encoded can be text, URL or other data.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-unknown"><code><code>unknown</code></code></dfn>
+    <dd>This value is used by the platform to signify that it does not know or specify which barcode format is being detected or supported.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-upc_a"><code><code>upc_a</code></code></dfn>
     <dd><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="upc-a">UPC-A</dfn> is one of the most common linear barcode types and is widely applied to retail in the United States.  Define in <a data-link-type="biblio" href="#biblio-iso15420">[iso15420]</a>, it represents digits by strips of bars and spaces, each digit being associated to a unique pattern of 2 bars and 2 spaces, both of variable width.  UPC-A can encode 12 digits that are uniquely assigned to each trade item, and it’ss technically a subset of <a data-link-type="dfn" href="#ean-13" id="ref-for-ean-13-2">EAN-13</a> (UPC-A codes are represented in <a data-link-type="dfn" href="#ean-13" id="ref-for-ean-13-3">EAN-13</a> with the first character set to <var>0</var>). 
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export="" id="dom-barcodeformat-upc_e"><code><code>upc_e</code></code></dfn>
@@ -2014,6 +2020,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <li><a href="#dom-facedetector-facedetector">FaceDetector(faceDetectorOptions)</a><span>, in §2.2</span>
    <li><a href="#dictdef-facedetectoroptions">FaceDetectorOptions</a><span>, in §2.2</span>
    <li><a href="#dom-facedetectoroptions-fastmode">fastMode</a><span>, in §2.2</span>
+   <li><a href="#dom-detectedbarcode-format">format</a><span>, in §2.3.2</span>
    <li><a href="#dom-barcodedetectoroptions-formats">formats</a><span>, in §2.3.1</span>
    <li><a href="#dom-barcodeformat-itf">itf</a><span>, in §2.4</span>
    <li><a href="#dictdef-landmark">Landmark</a><span>, in §2.2</span>
@@ -2034,6 +2041,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <li><a href="#dom-textdetector-textdetector">TextDetector()</a><span>, in §2.5</span>
    <li><a href="#textdetector">TextDetector</a><span>, in §2.5</span>
    <li><a href="#dom-landmark-type">type</a><span>, in §2.2</span>
+   <li><a href="#dom-barcodeformat-unknown">unknown</a><span>, in §2.4</span>
    <li><a href="#dom-barcodeformat-upc_a">upc_a</a><span>, in §2.4</span>
    <li><a href="#upc-a">UPC-A</a><span>, in §2.4</span>
    <li><a href="#dom-barcodeformat-upc_e">upc_e</a><span>, in §2.4</span>
@@ -2143,6 +2151,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
 <span class="kt">interface</span> <a class="nv" href="#detectedbarcode"><code>DetectedBarcode</code></a> {
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">DOMRectReadOnly</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMRectReadOnly" href="#dom-detectedbarcode-boundingbox">boundingBox</a>;
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString" href="#dom-detectedbarcode-rawvalue">rawValue</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-barcodeformat">BarcodeFormat</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="BarcodeFormat" href="#dom-detectedbarcode-format">format</a>;
   [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="FrozenArray<Point2D>" href="#dom-detectedbarcode-cornerpoints">cornerPoints</a>;
 };
 
@@ -2158,6 +2167,7 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-itf">"itf"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-pdf417">"pdf417"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-qr_code">"qr_code"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-unknown">"unknown"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_a">"upc_a"</a>,
   <a class="s idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_e">"upc_e"</a>
 };
@@ -2333,6 +2343,12 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
     <li><a href="#ref-for-dom-detectedbarcode-rawvalue-2">2.3.2. DetectedBarcode</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="dom-detectedbarcode-format">
+   <b><a href="#dom-detectedbarcode-format">#dom-detectedbarcode-format</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-detectedbarcode-format-1">2.3.2. DetectedBarcode</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dom-detectedbarcode-cornerpoints">
    <b><a href="#dom-detectedbarcode-cornerpoints">#dom-detectedbarcode-cornerpoints</a></b><b>Referenced in:</b>
    <ul>
@@ -2344,7 +2360,8 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <ul>
     <li><a href="#ref-for-enumdef-barcodeformat-1">2.3. Barcode Detection API</a> <a href="#ref-for-enumdef-barcodeformat-2">(2)</a> <a href="#ref-for-enumdef-barcodeformat-3">(3)</a> <a href="#ref-for-enumdef-barcodeformat-4">(4)</a>
     <li><a href="#ref-for-enumdef-barcodeformat-5">2.3.1. BarcodeDetectorOptions</a> <a href="#ref-for-enumdef-barcodeformat-6">(2)</a> <a href="#ref-for-enumdef-barcodeformat-7">(3)</a>
-    <li><a href="#ref-for-enumdef-barcodeformat-8">2.3.3. BarcodeFormat</a>
+    <li><a href="#ref-for-enumdef-barcodeformat-8">2.3.2. DetectedBarcode</a> <a href="#ref-for-enumdef-barcodeformat-9">(2)</a> <a href="#ref-for-enumdef-barcodeformat-10">(3)</a>
+    <li><a href="#ref-for-enumdef-barcodeformat-11">2.3.3. BarcodeFormat</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-barcodeformat-aztec">
@@ -2429,6 +2446,12 @@ textDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    <b><a href="#dom-barcodeformat-qr_code">#dom-barcodeformat-qr_code</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-barcodeformat-qr_code-1">2.3.3. BarcodeFormat</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-barcodeformat-unknown">
+   <b><a href="#dom-barcodeformat-unknown">#dom-barcodeformat-unknown</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-barcodeformat-unknown-1">2.3.3. BarcodeFormat</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-barcodeformat-upc_a">
