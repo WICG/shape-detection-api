@@ -75,19 +75,9 @@ Note that if the {{ImageBitmapSource}} is an object with either a horizontal dim
 
 {{FaceDetector}} represents an underlying accelerated platform's component for detection of human faces in images. It can be created with an optional Dictionary of {{FaceDetectorOptions}}. It provides a single {{FaceDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise. This method MUST reject this promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a Sequence of {{DetectedFace}}s, each one essentially consisting on and delimited by a {{DetectedFace/boundingBox}}.
 
-<pre class="idl">
-dictionary FaceDetectorOptions {
-  unsigned short maxDetectedFaces;
-  boolean fastMode;
-};
-</pre>
-
-<dl class="domintro">
-  <dt><dfn dict-member for="FaceDetectorOptions"><code>maxDetectedFaces</code></dfn></dt>
-  <dd>Maximum number of detected faces to be identified in the scene.</dd>
-  <dt><dfn dict-member for="FaceDetectorOptions"><code>fastMode</code></dfn></dt>
-  <dd>Hint to the UA to try and prioritise speed over accuracy by e.g. operating on a reduced scale or looking for large features.</dd>
-</dl>
+<div class="example">
+Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a> (or the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face">Google Play Services vision library</a>), <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple's CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>.
+</div>
 
 <pre class="idl">
 [Exposed=(Window,Worker),
@@ -108,6 +98,24 @@ interface FaceDetector {
   <dd>Tries to detect human faces in the {{ImageBitmapSource}} |image|.  The detected faces, if any, are returned as a sequence of {{DetectedFace}}s.</dd>
 </dl>
 
+### {{FaceDetectorOptions}} ### {#facedetectoroptions-section}
+
+<pre class="idl">
+dictionary FaceDetectorOptions {
+  unsigned short maxDetectedFaces;
+  boolean fastMode;
+};
+</pre>
+
+<dl class="domintro">
+  <dt><dfn dict-member for="FaceDetectorOptions"><code>maxDetectedFaces</code></dfn></dt>
+  <dd>Maximum number of detected faces to be identified in the scene.</dd>
+  <dt><dfn dict-member for="FaceDetectorOptions"><code>fastMode</code></dfn></dt>
+  <dd>Hint to the UA to try and prioritise speed over accuracy by e.g. operating on a reduced scale or looking for large features.</dd>
+</dl>
+
+### {{DetectedFace}} ### {#detectedface-section}
+
 <pre class="idl">
 interface DetectedFace {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
@@ -121,10 +129,6 @@ interface DetectedFace {
   <dt><dfn attribute for="DetectedFace"><code>landmarks</code></dfn></dt>
   <dd>A series of features of interest related to the detected feature.</dd>
 </dl>
-
-<div class="example">
-Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a> (or the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face">Google Play Services vision library</a>), <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple's CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>.
-</div>
 
 <pre class="idl">
 dictionary Landmark {
