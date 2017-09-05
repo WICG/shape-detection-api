@@ -312,7 +312,17 @@ interface DetectedBarcode {
 
 ## Text Detection API
 
-{{TextDetector}} represents an underlying accelerated platform's component for detection in images of text.  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on a {{DetectedText/rawValue}} and delimited by a {{DetectedText/boundingBox}} and a series of {{Point2D}}s.
+<b><i>This section is non-normative.</i></b>
+
+<div class="note">
+Text Detection, despite being an interesting field, are not considered stable enough across neither computing platforms nor character sets to be standarized in the context of this document, however the text and interface is kept here as a suggestion to implementers.
+</div>
+
+{{TextDetector}} represents an underlying accelerated platform's component for detection in images of Latin-1 text as defined in [[iso8859-1]].  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method must reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it may queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on a {{DetectedText/rawValue}} and delimited by a {{DetectedText/boundingBox}} and a series of {{Point2D}}s.
+
+<div class="example">
+Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple's CIDetector</a> (bounding box only, no OCR) or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>.
+</div>
 
 <pre class="idl">
 [
@@ -351,17 +361,15 @@ interface DetectedBarcode {
   <dd>A rectangle indicating the position and extent of a detected feature aligned to the image</dd>
 
   <dt><dfn attribute for="DetectedText"><code>rawValue</code></dfn></dt>
-  <dd>Raw string detected from the image.</dd>
+  <dd>Raw string detected from the image, where characters are drawn from [[iso8859-1]].</dd>
 
   <dt><dfn attribute for="DetectedText"><code>cornerPoints</code></dfn></dt>
   <dd>A <a>sequence</a> of corner points of the detected feature, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
 </dl>
 
-<div class="example">
-Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple's CIDetector</a> or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>.
-</div>
-
 # Examples # {#examples}
+
+<i>This section is non-normative.</i>
 
 <p class="note">
 Slightly modified/extended versions of these examples (and more) can be found in
@@ -406,7 +414,8 @@ let faceDetector = new FaceDetector({fastMode: true, maxDetectedFaces: 1});
 faceDetector.detect(theImage)
 .then(detectedFaces => {
   for (const face of detectedFaces) {
-    console.log(' Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),' +
+    console.log(
+        ' Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),' +
         ' size ${face.boundingBox.width}x${face.boundingBox.height}');
   }
 }).catch(() => {
@@ -492,6 +501,13 @@ spec: html
 
 <pre class="biblio">
 {
+  "iso8859-1": {
+      "href": "https://www.iso.org/standard/28245.html",
+      "title": "Information technology -- 8-bit single-byte coded graphic character sets -- Part 1: Latin alphabet No. 1",
+      "publisher": "ISO/IEC",
+      "date": "April 1998"
+  },
+
   "iso15417": {
       "href": "https://www.iso.org/standard/43896.html",
       "title": "Information technology -- Automatic identification and data capture techniques -- Code 128 bar code symbology specification",
