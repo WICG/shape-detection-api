@@ -164,7 +164,7 @@ enum LandmarkType {
 
 ## Barcode Detection API
 
-{{BarcodeDetector}} represents an underlying accelerated platform's component for detection of linear or two-dimensional barcodes in images.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a {{DetectedBarcode/boundingBox}} and a series or {{Point2D}}s, and possibly a {{DetectedBarcode/rawValue}} decoded {{DOMString}}.
+{{BarcodeDetector}} represents an underlying accelerated platform's component for detection of linear or two-dimensional barcodes in images.  It provides a single {{BarcodeDetector/detect()}} operation on an {{ImageBitmapSource}} which result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedBarcode}}s, each one essentially consisting on and delimited by a {{DetectedBarcode/boundingBox}} and a series of {{Point2D}}s, and possibly a {{DetectedBarcode/rawValue}} decoded {{DOMString}}.
 
 <div class="example">
 Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple's CIQRCodeFeature</a>.
@@ -259,8 +259,6 @@ interface DetectedBarcode {
   };
 </pre>
 
-## Values ## {#barcodeformat-values}
-
 <dl class="domintro">
   <dt><dfn enum-value for="BarcodeFormat"><code>aztec</code></dfn></dt>
   <dd>This entry represents a square two-dimensional matrix following [[iso24778]] and with a square bullseye pattern at their centre, thus resembling an Aztec pyramid. Does not require a surrounding blank zone.
@@ -310,7 +308,7 @@ interface DetectedBarcode {
 
 ## Text Detection API
 
-{{TextDetector}} represents an underlying accelerated platform's component for detection in images of text.  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on a {{DetectedText/rawValue}} and delimited by a {{DetectedText/boundingBox}}.
+{{TextDetector}} represents an underlying accelerated platform's component for detection in images of text.  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method MUST reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on a {{DetectedText/rawValue}} and delimited by a {{DetectedText/boundingBox}} and a series of {{Point2D}}s.
 
 <pre class="idl">
 [
@@ -332,12 +330,15 @@ interface DetectedBarcode {
   <dd>Tries to detect text blocks in the {{ImageBitmapSource}} |image|.</dd>
 </dl>
 
+### {{DetectedText}} ### {#detectedtext-section}
+
 <pre class="idl">
 [
     Constructor,
 ] interface DetectedText {
-    [SameObject] readonly attribute DOMRect boundingBox;
-    [SameObject] readonly attribute DOMString rawValue;
+  [SameObject] readonly attribute DOMRect boundingBox;
+  [SameObject] readonly attribute DOMString rawValue;
+  [SameObject] readonly attribute FrozenArray&lt;Point2D> cornerPoints;
 };
 </pre>
 
@@ -347,6 +348,9 @@ interface DetectedBarcode {
 
   <dt><dfn attribute for="DetectedText"><code>rawValue</code></dfn></dt>
   <dd>Raw string detected from the image.</dd>
+
+  <dt><dfn attribute for="DetectedText"><code>cornerPoints</code></dfn></dt>
+  <dd>A <a>sequence</a> of corner points of the detected feature, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
 </dl>
 
 <div class="example">
