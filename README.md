@@ -76,10 +76,12 @@ Barcode/QR and Text detection is available via Google Play Services [barcode](ht
 
 ### Mac OS X / iOS
 
-Mac OS X/iOS provides `CIDetector` for Face, QR, Text and Rectangle detection in software.
+Mac OS X/iOS provides `CIDetector` and `Vision Framework` for Face, QR, Text and Rectangle detection in software or hardware.
 
 | API           |     uses...     | Release notes  |
 | ------------- |:-------------: | -----:|
+| [Vision Framework, Mac OS X](https://developer.apple.com/documentation/vision)| Software and Hardware | OS X v10.13, 2017 |
+| [Vision Framework, iOS](https://developer.apple.com/documentation/vision)| Software and Hardware | IOS X v11.0, 2017 |
 | [CIDetector, Mac OS X](https://developer.apple.com/library/mac/documentation/CoreImage/Reference/CIDetector_Ref/)| Software | OS X v10.7, 2011 |
 | [CIDetector, iOS](https://developer.apple.com/library/ios/documentation/CoreImage/Reference/CIDetector_Ref/) | Software | iOS v5.0, 2011 |
 | [AVFoundation](https://developer.apple.com/reference/avfoundation/avcapturemetadataoutput?language=objc)| Hardware | iOS 6.0, 2012 |

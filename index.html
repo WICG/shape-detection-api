@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 0d6a1c7475b7bb2485f411c7e73d9990fd0cfef5" name="generator">
+  <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
 <style>
 table {
@@ -1441,7 +1441,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-10-21">21 October 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-01-03">3 January 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1458,7 +1458,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2017 the Contributors to the Accelerated Shape Detection in Images Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2018 the Contributors to the Accelerated Shape Detection in Images Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
 A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    <hr title="Separator for header">
   </div>
@@ -1602,19 +1602,20 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dd>A series of features of interest related to the detected feature.
    </dl>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-landmark"><code>Landmark</code></dfn> {
-  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D">Point2D</a> <a class="nv idl-code" data-link-type="dict-member" data-type="Point2D " href="#dom-landmark-location" id="ref-for-dom-landmark-location">location</a>;
+  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D">Point2D</a>> <a class="nv idl-code" data-link-type="dict-member" data-type="FrozenArray<Point2D> " href="#dom-landmark-location" id="ref-for-dom-landmark-location">location</a>;
   <a class="n" data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype">LandmarkType</a> <a class="nv idl-code" data-link-type="dict-member" data-type="LandmarkType " href="#dom-landmark-type" id="ref-for-dom-landmark-type">type</a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export="" id="dom-landmark-location"><code>location</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D①">Point2D</a></span>
-    <dd>Location of a given landmark aligned to the image axes.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export="" id="dom-landmark-location"><code>location</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D①">Point2D</a>></span>
+    <dd>A point or a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence">sequence</a> of points indicating the position of a detected landmark aligned to the image axes.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export="" id="dom-landmark-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype①">LandmarkType</a></span>
     <dd>Type of the landmark, if known.
    </dl>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-landmarktype"><code>LandmarkType</code></dfn> {
   <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-mouth" id="ref-for-dom-landmarktype-mouth">"mouth"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-eye" id="ref-for-dom-landmarktype-eye">"eye"</a>
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-eye" id="ref-for-dom-landmarktype-eye">"eye"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-nose" id="ref-for-dom-landmarktype-nose">"nose"</a>
 };
 </pre>
    <dl class="domintro">
@@ -1622,6 +1623,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dd>The landmark is identified as a human mouth.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="LandmarkType" data-dfn-type="enum-value" data-export="" id="dom-landmarktype-eye"><code>eye</code></dfn>
     <dd>The landmark is identified as a human eye.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="LandmarkType" data-dfn-type="enum-value" data-export="" id="dom-landmarktype-nose"><code>nose</code></dfn>
+    <dd>The landmark is identified as a human nose.
    </dl>
    <div class="note" role="note">
      Consider adding attributes such as, e.g.: 
@@ -1677,7 +1680,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-format"><code>format</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat⑧">BarcodeFormat</a>, readonly</span>
     <dd>Detect <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat⑨">BarcodeFormat</a></code>.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="attribute" data-export="" id="dom-detectedbarcode-cornerpoints"><code>cornerPoints</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D④">Point2D</a>>, readonly</span>
-    <dd>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence">sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
+    <dd>A <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence①">sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
    </dl>
    <h4 class="heading settled" data-level="2.3.3" id="barcodeformat-section"><span class="secno">2.3.3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat①⓪">BarcodeFormat</a></code></span><a class="self-link" href="#barcodeformat-section"></a></h4>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-barcodeformat"><code>BarcodeFormat</code></dfn> {
@@ -1979,6 +1982,7 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
    <li><a href="#dom-landmark-location">location</a><span>, in §2.2.2</span>
    <li><a href="#dom-facedetectoroptions-maxdetectedfaces">maxDetectedFaces</a><span>, in §2.2.1</span>
    <li><a href="#dom-landmarktype-mouth">mouth</a><span>, in §2.2.2</span>
+   <li><a href="#dom-landmarktype-nose">nose</a><span>, in §2.2.2</span>
    <li><a href="#dom-barcodeformat-pdf417">pdf417</a><span>, in §2.3.3</span>
    <li><a href="#dom-barcodeformat-qr_code">qr_code</a><span>, in §2.3.3</span>
    <li><a href="#dom-detectedbarcode-rawvalue">rawValue</a><span>, in §2.3.2</span>
@@ -2071,13 +2075,14 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-landmark"><code>Landmark</code></a> {
-  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D⑤">Point2D</a> <a class="nv idl-code" data-link-type="dict-member" data-type="Point2D " href="#dom-landmark-location" id="ref-for-dom-landmark-location①">location</a>;
+  <span class="kt">required</span> <span class="kt">FrozenArray</span>&lt;<a class="n" data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D⑤">Point2D</a>> <a class="nv idl-code" data-link-type="dict-member" data-type="FrozenArray<Point2D> " href="#dom-landmark-location" id="ref-for-dom-landmark-location①">location</a>;
   <a class="n" data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype②">LandmarkType</a> <a class="nv idl-code" data-link-type="dict-member" data-type="LandmarkType " href="#dom-landmark-type" id="ref-for-dom-landmark-type①">type</a>;
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-landmarktype"><code>LandmarkType</code></a> {
   <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-mouth" id="ref-for-dom-landmarktype-mouth①">"mouth"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-eye" id="ref-for-dom-landmarktype-eye①">"eye"</a>
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-eye" id="ref-for-dom-landmarktype-eye①">"eye"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-landmarktype-nose" id="ref-for-dom-landmarktype-nose①">"nose"</a>
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①①">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
@@ -2209,6 +2214,12 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
    <b><a href="#dom-landmarktype-eye">#dom-landmarktype-eye</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-landmarktype-eye">2.2.2. DetectedFace</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-landmarktype-nose">
+   <b><a href="#dom-landmarktype-nose">#dom-landmarktype-nose</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-landmarktype-nose">2.2.2. DetectedFace</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="barcodedetector">

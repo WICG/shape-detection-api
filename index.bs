@@ -136,14 +136,14 @@ interface DetectedFace {
 
 <pre class="idl">
 dictionary Landmark {
-  required Point2D location;
+  required FrozenArray&lt;Point2D> location;
   LandmarkType type;
 };
 </pre>
 
 <dl class="domintro">
   <dt><dfn dict-member for="Landmark"><code>location</code></dfn></dt>
-  <dd>Location of a given landmark aligned to the image axes.</dd>
+  <dd>A point or a <a>sequence</a> of points indicating the position of a detected landmark aligned to the image axes.</dd>
   <dt><dfn dict-member for="Landmark"><code>type</code></dfn></dt>
   <dd>Type of the landmark, if known.</dd>
 </dl>
@@ -151,7 +151,8 @@ dictionary Landmark {
 <pre class="idl">
 enum LandmarkType {
   "mouth",
-  "eye"
+  "eye",
+  "nose"
 };
 </pre>
 
@@ -160,6 +161,8 @@ enum LandmarkType {
   <dd>The landmark is identified as a human mouth.</dd>
   <dt><dfn enum-value for="LandmarkType"><code>eye</code></dfn></dt>
   <dd>The landmark is identified as a human eye.</dd>
+  <dt><dfn enum-value for="LandmarkType"><code>nose</code></dfn></dt>
+  <dd>The landmark is identified as a human nose.</dd>
 </dl>
 
 <div class="note">
