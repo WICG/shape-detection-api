@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version bbd6a9c4064dd454886bb3e0c74f0a19865c3c74" name="generator">
+  <meta content="Bikeshed version cdca9fa5e76366531c05a315e347b6557dcdf1ab" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
 <style>
 table {
@@ -1441,7 +1441,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-01-03">3 January 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-03-23">23 March 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1450,7 +1450,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
      <dd><a href="https://github.com/wicg/shape-detection-api/issues/">GitHub</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard" data-editor-id="82825"><a class="p-name fn u-email email" href="mailto:mcasas@google.com">Miguel Casas-Sanchez</a> (<span class="p-org org">Google Inc.</span>)
-     <dt>Translations <small>(non-normative and likely out-of-date)</small>:
+     <dt>Translations <small>(non-normative)</small>:
      <dd><span title="Simplified Chinese"><a href="https://wicg.github.io/shape-detection-api/index-zh-cn.html" hreflang="zh-cn" lang="zh-cn" rel="alternate">简体中文</a></span>
      <dt>Participate:
      <dd><a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
@@ -1562,7 +1562,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>Note that if the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①①">ImageBitmapSource</a></code> is an object with either a horizontal dimension or a vertical dimension equal to zero, then the Promise will be simply resolved with an empty sequence of detected objects.</p>
    <h3 class="heading settled" data-level="2.2" id="face-detection-api"><span class="secno">2.2. </span><span class="content">Face Detection API</span><a class="self-link" href="#face-detection-api"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#facedetector" id="ref-for-facedetector">FaceDetector</a></code> represents an underlying accelerated platform’s component for detection of human faces in images. It can be created with an optional Dictionary of <code class="idl"><a data-link-type="idl" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions">FaceDetectorOptions</a></code>. It provides a single <code class="idl"><a data-link-type="idl" href="#dom-facedetector-detect" id="ref-for-dom-facedetector-detect">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①②">ImageBitmapSource</a></code> which result is a Promise. This method MUST reject this promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task that utilizes the OS/Platform resources to resolve the Promise with a Sequence of <code class="idl"><a data-link-type="idl" href="#detectedface" id="ref-for-detectedface">DetectedFace</a></code>s, each one essentially consisting on and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedface-boundingbox" id="ref-for-dom-detectedface-boundingbox">boundingBox</a></code>.</p>
-   <div class="example" id="example-7a5c27af"><a class="self-link" href="#example-7a5c27af"></a> Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a> (or the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face">Google Play Services vision library</a>), <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">Apple’s CIFaceFeature</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>. </div>
+   <div class="example" id="example-b7ef6b12"><a class="self-link" href="#example-b7ef6b12"></a> Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a> (or the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face">Google Play Services vision library</a>), Apple’s <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">CIFaceFeature</a> / <a href="https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest?language=objc">VNDetectFaceLandmarksRequest</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>. </div>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
  <a class="nv idl-code" data-link-type="constructor" href="#dom-facedetector-facedetector" id="ref-for-dom-facedetector-facedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-facedetectoroptions" id="ref-for-dictdef-facedetectoroptions①">FaceDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="FaceDetector/FaceDetector(faceDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"><code>faceDetectorOptions</code><a class="self-link" href="#dom-facedetector-facedetector-facedetectoroptions-facedetectoroptions"></a></dfn>)]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="facedetector"><code>FaceDetector</code></dfn> {
@@ -1585,7 +1585,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 </pre>
    <dl class="domintro">
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" id="dom-facedetectoroptions-maxdetectedfaces"><code>maxDetectedFaces</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short①">unsigned short</a></span>
-    <dd>Maximum number of detected faces to be identified in the scene.
+    <dd>Hint to the UA to try and limit the amount of detected faces on the scene to this maximum number.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="FaceDetectorOptions" data-dfn-type="dict-member" data-export="" id="dom-facedetectoroptions-fastmode"><code>fastMode</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①">boolean</a></span>
     <dd>Hint to the UA to try and prioritise speed over accuracy by e.g. operating on a reduced scale or looking for large features.
    </dl>
@@ -1634,7 +1634,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    </div>
    <h3 class="heading settled" data-level="2.3" id="barcode-detection-api"><span class="secno">2.3. </span><span class="content">Barcode Detection API</span><a class="self-link" href="#barcode-detection-api"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector">BarcodeDetector</a></code> represents an underlying accelerated platform’s component for detection of linear or two-dimensional barcodes in images.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①⑤">ImageBitmapSource</a></code> which result is a Promise.  This method MUST reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§2.1 Image sources for detection</a>; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#detectedbarcode" id="ref-for-detectedbarcode">DetectedBarcode</a></code>s, each one essentially consisting on and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox">boundingBox</a></code> and a series of <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/mediacapture-image/#Point2D" id="ref-for-Point2D②">Point2D</a></code>s, and possibly a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue">rawValue</a></code> decoded <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString">DOMString</a></code>.</p>
-   <div class="example" id="example-314ef784"><a class="self-link" href="#example-314ef784"></a> Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">Apple’s CIQRCodeFeature</a>. </div>
+   <div class="example" id="example-87d2e0b9"><a class="self-link" href="#example-87d2e0b9"></a> Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or Apple’s <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">CIQRCodeFeature</a> / <a href="https://developer.apple.com/documentation/vision/vndetectbarcodesrequest?language=objc">VNDetectBarcodesRequest</a>. </div>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①">Exposed</a>=(<span class="n">Window</span>,<span class="n">Worker</span>),
  <a class="nv idl-code" data-link-type="constructor" href="#dom-barcodedetector-barcodedetector" id="ref-for-dom-barcodedetector-barcodedetector">Constructor</a>(<span class="kt">optional</span> <a class="n" data-link-type="idl-name" href="#dictdef-barcodedetectoroptions" id="ref-for-dictdef-barcodedetectoroptions">BarcodeDetectorOptions</a> <dfn class="nv idl-code" data-dfn-for="BarcodeDetector/BarcodeDetector(barcodeDetectorOptions)" data-dfn-type="argument" data-export="" id="dom-barcodedetector-barcodedetector-barcodedetectoroptions-barcodedetectoroptions"><code>barcodeDetectorOptions</code><a class="self-link" href="#dom-barcodedetector-barcodedetector-barcodedetectoroptions-barcodedetectoroptions"></a></dfn>)]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="barcodedetector"><code>BarcodeDetector</code></dfn> {
@@ -1737,8 +1737,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
  e.g. <a href="https://codepen.io/collection/DwWVJj/">this codepen collection</a>. </p>
    <h3 class="heading settled" data-level="3.1" id="platform-support-for-a-given-detector"><span class="secno">3.1. </span><span class="content">Platform support for a given detector</span><a class="self-link" href="#platform-support-for-a-given-detector"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a> with minimal modifications. </div>
-   <div class="example" id="example-5b01f019">
-    <a class="self-link" href="#example-5b01f019"></a> 
+   <div class="example" id="example-ecd3ff8f">
+    <a class="self-link" href="#example-ecd3ff8f"></a> 
 <pre class="highlight"><span class="k">if</span> <span class="p">(</span>window<span class="p">.</span>FaceDetector <span class="o">==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
   console<span class="p">.</span>error<span class="p">(</span><span class="s1">'Face Detection not supported on this platform'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1749,8 +1749,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    </div>
    <h3 class="heading settled" data-level="3.2" id="face-detection"><span class="secno">3.2. </span><span class="content">Face Detection</span><a class="self-link" href="#face-detection"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this codepen</a> (or <a href="https://codepen.io/miguelao/pen/PmJWro">this one</a>, with landmarks overlay). </div>
-   <div class="example" id="example-47c1fb5f">
-    <a class="self-link" href="#example-47c1fb5f"></a> 
+   <div class="example" id="example-254dd344">
+    <a class="self-link" href="#example-254dd344"></a> 
 <pre class="highlight"><span class="kd">let</span> faceDetector <span class="o">=</span> <span class="k">new</span> FaceDetector<span class="p">({</span>fastMode<span class="o">:</span> <span class="kc">true</span><span class="p">,</span> maxDetectedFaces<span class="o">:</span> <span class="mi">1</span><span class="p">});</span>
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.</span>
 <span class="c1"></span>
@@ -1768,8 +1768,8 @@ faceDetector<span class="p">.</span>detect<span class="p">(</span>theImage<span 
    </div>
    <h3 class="heading settled" data-level="3.3" id="barcode-detection"><span class="secno">3.3. </span><span class="content">Barcode Detection</span><a class="self-link" href="#barcode-detection"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/wgrYjZ?editors=0010">this codepen</a>. </div>
-   <div class="example" id="example-9defdf4f">
-    <a class="self-link" href="#example-9defdf4f"></a> 
+   <div class="example" id="example-e80a5e34">
+    <a class="self-link" href="#example-e80a5e34"></a> 
 <pre class="highlight"><span class="kd">let</span> barcodeDetector <span class="o">=</span> <span class="k">new</span> BarcodeDetector<span class="p">();</span>
 <span class="c1">// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.</span>
 <span class="c1"></span>
@@ -1944,8 +1944,8 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
    <li>
     boundingBox
     <ul>
-     <li><a href="#dom-detectedface-boundingbox">attribute for DetectedFace</a><span>, in §2.2.2</span>
      <li><a href="#dom-detectedbarcode-boundingbox">attribute for DetectedBarcode</a><span>, in §2.3.2</span>
+     <li><a href="#dom-detectedface-boundingbox">attribute for DetectedFace</a><span>, in §2.2.2</span>
     </ul>
    <li><a href="#dom-barcodeformat-codabar">codabar</a><span>, in §2.3.3</span>
    <li><a href="#dom-barcodeformat-code_128">code_128</a><span>, in §2.3.3</span>
@@ -1961,8 +1961,8 @@ barcodeDetector<span class="p">.</span>detect<span class="p">(</span>theImage<sp
    <li>
     detect(image)
     <ul>
-     <li><a href="#dom-facedetector-detect">method for FaceDetector</a><span>, in §2.2</span>
      <li><a href="#dom-barcodedetector-detect">method for BarcodeDetector</a><span>, in §2.3</span>
+     <li><a href="#dom-facedetector-detect">method for FaceDetector</a><span>, in §2.2</span>
     </ul>
    <li><a href="#ean-13">EAN-13</a><span>, in §2.3.3</span>
    <li><a href="#dom-barcodeformat-ean_13">ean_13</a><span>, in §2.3.3</span>
