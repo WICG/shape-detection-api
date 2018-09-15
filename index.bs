@@ -6,6 +6,7 @@ ED: https://wicg.github.io/shape-detection-api
 Shortname: shape-detection-api
 Level: 1
 Editor: Miguel Casas-Sanchez 82825, Google LLC https://www.google.com, mcasas@google.com
+Editor: Reilly Grant 83788, Google LLC https://www.google.com, reillyg@google.com
 Abstract: This document describes an API providing access to accelerated shape detectors (e.g. human faces) for still images and/or live image feeds.
 Translation: zh-CN https://wicg.github.io/shape-detection-api/index-zh-cn.html
 Group: wicg
@@ -316,6 +317,21 @@ interface DetectedBarcode {
   <dt><dfn enum-value for="BarcodeFormat"><code>upc_e</code></dfn></dt>
   <dd>UPC-E Barcode is a variation of <a>UPC-A</a> defined in [[iso15420]], compressing out unnecessary zeros for a more compact barcode.</dd>
 </dl>
+
+# Security and Privacy Considerations # {#security-and-privacy-considerations}
+
+<em>This section is non-normative.</em>
+
+This interface reveals information about the contents of an image source. It is
+critical for implementations to ensure that it cannot be used to bypass
+protections that would otherwise protect an image source from inspection.
+[[#image-sources-for-detection]] describes the algorithm to accomplish this.
+
+By providing high-performance shape detection capabilities this interface allows
+developers to run image analysis tasks on the local device. This offers a
+privacy advantage over offloading computation to a remote system. Developers
+should consider the results returned by this interface as privacy sensitive as
+the original image from which they were derived.
 
 # Examples # {#examples}
 

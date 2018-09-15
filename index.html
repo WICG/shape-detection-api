@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 2256080948f1b3e8190b9b709d5ef4565f45ab8d" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
-  <meta content="4c39f353a7f575ab5bbc58b8631f331878bb557c" name="document-revision">
+  <meta content="fd84730a6fad1867a31b06ce386fdc74f7531c44" name="document-revision">
 <style>
 table {
   border-collapse: collapse;
@@ -1542,12 +1542,13 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
         <li><a href="#barcodeformat-section"><span class="secno">2.3.3</span> <span class="content"><code class="idl"><span>BarcodeFormat</span></code></span></a>
        </ol>
      </ol>
+    <li><a href="#security-and-privacy-considerations"><span class="secno">3</span> <span class="content">Security and Privacy Considerations</span></a>
     <li>
-     <a href="#examples"><span class="secno">3</span> <span class="content">Examples</span></a>
+     <a href="#examples"><span class="secno">4</span> <span class="content">Examples</span></a>
      <ol class="toc">
-      <li><a href="#example-feature-detection"><span class="secno">3.1</span> <span class="content">Platform support for a given detector</span></a>
-      <li><a href="#example-face-detection"><span class="secno">3.2</span> <span class="content">Face Detection</span></a>
-      <li><a href="#example-barcode-detection"><span class="secno">3.3</span> <span class="content">Barcode Detection</span></a>
+      <li><a href="#example-feature-detection"><span class="secno">4.1</span> <span class="content">Platform support for a given detector</span></a>
+      <li><a href="#example-face-detection"><span class="secno">4.2</span> <span class="content">Face Detection</span></a>
+      <li><a href="#example-barcode-detection"><span class="secno">4.3</span> <span class="content">Barcode Detection</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -1769,11 +1770,21 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeFormat" data-dfn-type="enum-value" data-export id="dom-barcodeformat-upc_e"><code>upc_e</code></dfn>
     <dd>UPC-E Barcode is a variation of <a data-link-type="dfn" href="#upc-a" id="ref-for-upc-a②">UPC-A</a> defined in <a data-link-type="biblio" href="#biblio-iso15420">[iso15420]</a>, compressing out unnecessary zeros for a more compact barcode.
    </dl>
-   <h2 class="heading settled" data-level="3" id="examples"><span class="secno">3. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
+   <h2 class="heading settled" data-level="3" id="security-and-privacy-considerations"><span class="secno">3. </span><span class="content">Security and Privacy Considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
+   <p><em>This section is non-normative.</em></p>
+   <p>This interface reveals information about the contents of an image source. It is
+critical for implementations to ensure that it cannot be used to bypass
+protections that would therwise protect an image source from inspection. <a href="#image-sources-for-detection">§2.1 Image sources for detection</a> describes the algorithm to accomplish this.</p>
+   <p>By providing high-performance shape detection capabilities this interface allows
+developers to run image analysis tasks on the local device. This offers a
+privacy advantage over offloading computation to a remote system. Developers
+should consider the results returned by this interface as privacy sensitive as
+the original image from which they were derived.</p>
+   <h2 class="heading settled" data-level="4" id="examples"><span class="secno">4. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <p><i>This section is non-normative.</i></p>
    <p class="note" role="note"> Slightly modified/extended versions of these examples (and more) can be found in
  e.g. <a href="https://codepen.io/collection/DwWVJj/">this codepen collection</a>. </p>
-   <h3 class="heading settled" data-level="3.1" id="example-feature-detection"><span class="secno">3.1. </span><span class="content">Platform support for a given detector</span><a class="self-link" href="#example-feature-detection"></a></h3>
+   <h3 class="heading settled" data-level="4.1" id="example-feature-detection"><span class="secno">4.1. </span><span class="content">Platform support for a given detector</span><a class="self-link" href="#example-feature-detection"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a> with minimal modifications. </div>
    <div class="example" id="example-a40716b1">
     <a class="self-link" href="#example-a40716b1"></a> 
@@ -1785,7 +1796,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 <c- p>}</c->
 </pre>
    </div>
-   <h3 class="heading settled" data-level="3.2" id="example-face-detection"><span class="secno">3.2. </span><span class="content">Face Detection</span><a class="self-link" href="#example-face-detection"></a></h3>
+   <h3 class="heading settled" data-level="4.2" id="example-face-detection"><span class="secno">4.2. </span><span class="content">Face Detection</span><a class="self-link" href="#example-face-detection"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this codepen</a> (or <a href="https://codepen.io/miguelao/pen/PmJWro">this one</a>, with landmarks overlay). </div>
    <div class="example" id="example-108a90d1">
     <a class="self-link" href="#example-108a90d1"></a> 
@@ -1804,7 +1815,7 @@ faceDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
 <c- p>})</c->
 </pre>
    </div>
-   <h3 class="heading settled" data-level="3.3" id="example-barcode-detection"><span class="secno">3.3. </span><span class="content">Barcode Detection</span><a class="self-link" href="#example-barcode-detection"></a></h3>
+   <h3 class="heading settled" data-level="4.3" id="example-barcode-detection"><span class="secno">4.3. </span><span class="content">Barcode Detection</span><a class="self-link" href="#example-barcode-detection"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/wgrYjZ?editors=0010">this codepen</a>. </div>
    <div class="example" id="example-0be05266">
     <a class="self-link" href="#example-0be05266"></a> 
