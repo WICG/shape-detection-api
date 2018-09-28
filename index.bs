@@ -125,6 +125,8 @@ dictionary FaceDetectorOptions {
 interface DetectedFace {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute FrozenArray&lt;Landmark>? landmarks;
+
+  [Default] object toJSON();
 };
 </pre>
 
@@ -233,6 +235,8 @@ interface DetectedBarcode {
   [SameObject] readonly attribute DOMString rawValue;
   [SameObject] readonly attribute BarcodeFormat format;
   [SameObject] readonly attribute FrozenArray&lt;Point2D> cornerPoints;
+
+  [Default] object toJSON();
 };
 </pre>
 
