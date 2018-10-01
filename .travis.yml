@@ -1,0 +1,18 @@
+language: python
+sudo: false
+python:
+  - "2.7"
+
+install:
+  # Setup bikeshed. See https://tabatkins.github.io/bikeshed/#install-linux
+  - git clone https://github.com/tabatkins/bikeshed.git
+  - pip install --editable $PWD/bikeshed
+  - bikeshed update
+
+script:
+  - bash ./deploy.sh
+
+env:
+  global:
+  - ENCRYPTION_LABEL: "7ca32810ec8f"
+  - COMMIT_AUTHOR_EMAIL: "reillyg@chromium.org"
