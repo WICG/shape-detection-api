@@ -84,13 +84,13 @@ Note that if the {{ImageBitmapSource}} is an object with either a horizontal dim
 Example implementations of face detection are e.g. <a href="https://developer.android.com/reference/android/media/FaceDetector.html">Android FaceDetector</a> (or the <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/Face">Google Play Services vision library</a>), Apple's <a href="https://developer.apple.com/reference/coreimage/cifacefeature?language=objc">CIFaceFeature</a> / <a href="https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest?language=objc">VNDetectFaceLandmarksRequest</a> or <a href="https://msdn.microsoft.com/library/windows/apps/windows.media.faceanalysis.facedetector.aspx">Windows 10 FaceDetector</a>.
 </div>
 
-<pre class="idl">
+<xmp class="idl">
 [Exposed=(Window,Worker),
  Constructor(optional FaceDetectorOptions faceDetectorOptions)]
 interface FaceDetector {
-  Promise&lt;sequence&lt;DetectedFace>> detect(ImageBitmapSource image);
+  Promise<sequence<DetectedFace>> detect(ImageBitmapSource image);
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn constructor for="FaceDetector"><code>FaceDetector(optional FaceDetectorOptions |faceDetectorOptions|)</code></dfn></dt>
@@ -105,12 +105,12 @@ interface FaceDetector {
 
 ### {{FaceDetectorOptions}} ### {#facedetectoroptions-section}
 
-<pre class="idl">
+<xmp class="idl">
 dictionary FaceDetectorOptions {
   unsigned short maxDetectedFaces;
   boolean fastMode;
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn dict-member for="FaceDetectorOptions"><code>maxDetectedFaces</code></dfn></dt>
@@ -121,14 +121,14 @@ dictionary FaceDetectorOptions {
 
 ### {{DetectedFace}} ### {#detectedface-section}
 
-<pre class="idl">
+<xmp class="idl">
 interface DetectedFace {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
-  [SameObject] readonly attribute FrozenArray&lt;Landmark>? landmarks;
+  [SameObject] readonly attribute FrozenArray<Landmark>? landmarks;
 
   [Default] object toJSON();
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn attribute for="DetectedFace"><code>boundingBox</code></dfn></dt>
@@ -137,12 +137,12 @@ interface DetectedFace {
   <dd>A series of features of interest related to the detected feature.</dd>
 </dl>
 
-<pre class="idl">
+<xmp class="idl">
 dictionary Landmark {
-  required FrozenArray&lt;Point2D> locations;
+  required FrozenArray<Point2D> locations;
   LandmarkType type;
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn dict-member for="Landmark"><code>locations</code></dfn></dt>
@@ -151,13 +151,13 @@ dictionary Landmark {
   <dd>Type of the landmark, if known.</dd>
 </dl>
 
-<pre class="idl">
+<xmp class="idl">
 enum LandmarkType {
   "mouth",
   "eye",
   "nose"
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn enum-value for="LandmarkType"><code>mouth</code></dfn></dt>
@@ -184,15 +184,15 @@ enum LandmarkType {
 Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or Apple's <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">CIQRCodeFeature</a> / <a href="https://developer.apple.com/documentation/vision/vndetectbarcodesrequest?language=objc">VNDetectBarcodesRequest</a>.
 </div>
 
-<pre class="idl">
+<xmp class="idl">
 [Exposed=(Window,Worker),
  Constructor(optional BarcodeDetectorOptions barcodeDetectorOptions)]
 interface BarcodeDetector {
-  readonly attribute FrozenArray&lt;BarcodeFormat> supportedFormats;
+  readonly attribute FrozenArray<BarcodeFormat> supportedFormats;
 
-  Promise&lt;sequence&lt;DetectedBarcode>> detect(ImageBitmapSource image);
+  Promise<sequence<DetectedBarcode>> detect(ImageBitmapSource image);
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn constructor for="BarcodeDetector"><code>BarcodeDetector(optional BarcodeDetectorOptions |barcodeDetectorOptions|)</code></dfn></dt>
@@ -216,11 +216,11 @@ interface BarcodeDetector {
 
 ### {{BarcodeDetectorOptions}} ### {#barcodedetectoroptions-section}
 
-<pre class="idl">
+<xmp class="idl">
 dictionary BarcodeDetectorOptions {
-  sequence&lt;BarcodeFormat> formats;
+  sequence<BarcodeFormat> formats;
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn dict-member for="BarcodeDetectorOptions"><code>formats</code></dfn></dt>
@@ -229,16 +229,16 @@ dictionary BarcodeDetectorOptions {
 
 ### {{DetectedBarcode}} ### {#detectedbarcode-section}
 
-<pre class="idl">
+<xmp class="idl">
 interface DetectedBarcode {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
   [SameObject] readonly attribute BarcodeFormat format;
-  [SameObject] readonly attribute FrozenArray&lt;Point2D> cornerPoints;
+  [SameObject] readonly attribute FrozenArray<Point2D> cornerPoints;
 
   [Default] object toJSON();
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn attribute for="DetectedBarcode"><code>boundingBox</code></dfn></dt>
@@ -256,7 +256,7 @@ interface DetectedBarcode {
 
 ### {{BarcodeFormat}} ### {#barcodeformat-section}
 
-<pre class="idl">
+<xmp class="idl">
   enum BarcodeFormat {
     "aztec",
     "code_128",
@@ -273,7 +273,7 @@ interface DetectedBarcode {
     "upc_a",
     "upc_e"
   };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn enum-value for="BarcodeFormat"><code>aztec</code></dfn></dt>

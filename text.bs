@@ -6,6 +6,7 @@ ED: https://wicg.github.io/shape-detection-api
 Shortname: text-detection-api
 Level: 1
 Editor: Miguel Casas-Sanchez 82825, Google LLC https://www.google.com, mcasas@google.com
+Editor: Reilly Grant 83788, Google LLC https://www.google.com, reillyg@google.com
 Abstract: This document describes an API providing access to accelerated text detectors for still images and/or live image feeds.
 Group: wicg
 !Participate: <a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
@@ -54,14 +55,14 @@ Please refer to [[SHAPE-DETECTION-API#image-sources-for-detection]]
 Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple's CIDetector</a> (bounding box only, no OCR) or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>.
 </div>
 
-<pre class="idl">
+<xmp class="idl">
 [
     Constructor,
     Exposed=(Window,Worker),
 ] interface TextDetector {
-    Promise&lt;sequence&lt;DetectedText&gt;&gt; detect(ImageBitmapSource image);
+    Promise<sequence<DetectedText>> detect(ImageBitmapSource image);
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn constructor for="TextDetector"><code>TextDetector()</code></dfn></dt>
@@ -76,17 +77,17 @@ Example implementations of Text code detection are e.g. <a href="https://develop
 
 ### {{DetectedText}} ### {#detectedtext-section}
 
-<pre class="idl">
+<xmp class="idl">
 [
     Constructor,
 ] interface DetectedText {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
-  [SameObject] readonly attribute FrozenArray&lt;Point2D> cornerPoints;
+  [SameObject] readonly attribute FrozenArray<Point2D> cornerPoints;
 
   [Default] object toJSON();
 };
-</pre>
+</xmp>
 
 <dl class="domintro">
   <dt><dfn attribute for="DetectedText"><code>boundingBox</code></dfn></dt>
