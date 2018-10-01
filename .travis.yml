@@ -1,0 +1,4 @@
+language: generic
+branches:
+  only:
+    - gh-pages
