@@ -115,13 +115,12 @@ href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a>
 with minimal modifications.
 </div>
 
-<div class="example" highlight="javascript">
-
-<pre>
+<div class="example">
+```js
 if (window.TextDetector == undefined) {
   console.error('Text Detection not supported on this platform');
 }
-</pre>
+```
 </div>
 
 ## Text Detection ## {#example-text-detection}
@@ -131,8 +130,8 @@ The following example can also be found in e.g.
 <a href="https://codepen.io/miguelao/pen/ygxVqg">this codepen</a>.
 </div>
 
-<div class="example" highlight="javascript">
-<pre>
+<div class="example">
+```js
 let textDetector = new TextDetector();
 // Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 
@@ -146,7 +145,7 @@ textDetector.detect(theImage)
 }).catch(() => {
   console.error("Text Detection failed, boo.");
 })
-</pre>
+```
 </div>
 
 

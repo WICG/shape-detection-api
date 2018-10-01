@@ -350,16 +350,15 @@ href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a>
 with minimal modifications.
 </div>
 
-<div class="example" highlight="javascript">
-
-<pre>
+<div class="example">
+```js
 if (window.FaceDetector == undefined) {
   console.error('Face Detection not supported on this platform');
 }
 if (window.BarcodeDetector == undefined) {
   console.error('Barcode Detection not supported on this platform');
 }
-</pre>
+```
 </div>
 
 ## Face Detection ## {#example-face-detection}
@@ -369,8 +368,8 @@ The following example can also be found in e.g.
 <a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this codepen</a> (or <a href="https://codepen.io/miguelao/pen/PmJWro">this one</a>, with landmarks overlay).
 </div>
 
-<div class="example" highlight="javascript">
-<pre>
+<div class="example">
+```js
 let faceDetector = new FaceDetector({fastMode: true, maxDetectedFaces: 1});
 // Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 
@@ -384,7 +383,7 @@ faceDetector.detect(theImage)
 }).catch(() => {
   console.error("Face Detection failed, boo.");
 })
-</pre>
+```
 </div>
 
 ## Barcode Detection ## {#example-barcode-detection}
@@ -394,8 +393,8 @@ The following example can also be found in e.g.
 <a href="https://codepen.io/miguelao/pen/wgrYjZ?editors=0010">this codepen</a>.
 </div>
 
-<div class="example" highlight="javascript">
-<pre>
+<div class="example">
+```js
 let barcodeDetector = new BarcodeDetector();
 // Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
 
@@ -409,7 +408,7 @@ barcodeDetector.detect(theImage)
 }).catch(() => {
   console.error("Barcode Detection failed, boo.");
 })
-</pre>
+```
 </div>
 
 <pre class="anchors">
