@@ -9,6 +9,7 @@ Editor: Miguel Casas-Sanchez 82825, Google LLC https://www.google.com, mcasas@go
 Editor: Reilly Grant 83788, Google LLC https://www.google.com, reillyg@google.com
 Abstract: This document describes an API providing access to accelerated text detectors for still images and/or live image feeds.
 Group: wicg
+Markup Shorthands: markdown yes
 !Participate: <a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
 !Participate: <a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a>
 </pre>
@@ -65,7 +66,7 @@ Example implementations of Text code detection are e.g. <a href="https://develop
 </xmp>
 
 <dl class="domintro">
-  <dt><dfn constructor for="TextDetector"><code>TextDetector()</code></dfn></dt>
+  <dt><dfn constructor for="TextDetector">`TextDetector()`</dfn></dt>
   <dd>
     <div class="note">
     Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{TextDetector}} for several detections.
@@ -90,13 +91,13 @@ Example implementations of Text code detection are e.g. <a href="https://develop
 </xmp>
 
 <dl class="domintro">
-  <dt><dfn attribute for="DetectedText"><code>boundingBox</code></dfn></dt>
+  <dt><dfn attribute for="DetectedText">`boundingBox`</dfn></dt>
   <dd>A rectangle indicating the position and extent of a detected feature aligned to the image</dd>
 
-  <dt><dfn attribute for="DetectedText"><code>rawValue</code></dfn></dt>
+  <dt><dfn attribute for="DetectedText">`rawValue`</dfn></dt>
   <dd>Raw string detected from the image, where characters are drawn from [[iso8859-1]].</dd>
 
-  <dt><dfn attribute for="DetectedText"><code>cornerPoints</code></dfn></dt>
+  <dt><dfn attribute for="DetectedText">`cornerPoints`</dfn></dt>
   <dd>A <a>sequence</a> of corner points of the detected feature, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
 </dl>
 
