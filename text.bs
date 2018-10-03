@@ -79,6 +79,7 @@ Example implementations of Text code detection are e.g. <a href="https://develop
 <pre class="idl">
 [
     Constructor,
+    Serializable
 ] interface DetectedText {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
