@@ -1214,7 +1214,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version dff342f4b23fb230b71436fb31b55f5f169715bd" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
-  <meta content="019618b1939ea2ed77e365bf0c18027cc47acc04" name="document-revision">
+  <meta content="1d235212cd7a552adee849342c91bc9a9185a26a" name="document-revision">
 <style>
 table {
   border-collapse: collapse;
@@ -1478,7 +1478,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Text Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-10-01">1 October 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-10-03">3 October 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1582,6 +1582,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <h4 class="heading settled" data-level="2.2.1" id="detectedtext-section"><span class="secno">2.2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#detectedtext" id="ref-for-detectedtext②">DetectedText</a></code></span><a class="self-link" href="#detectedtext-section"></a></h4>
 <pre class="idl highlight def">[
     <dfn class="idl-code" data-dfn-for="DetectedText" data-dfn-type="constructor" data-export data-lt="DetectedText()" id="dom-detectedtext-detectedtext"><code><c- g>Constructor</c-></code><a class="self-link" href="#dom-detectedtext-detectedtext"></a></dfn>,
+    <a class="idl-code" data-link-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable" id="ref-for-serializable"><c- g>Serializable</c-></a>
 ] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="detectedtext"><code><c- g>DetectedText</c-></code></dfn> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMRectReadOnly" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox①"><c- g>boundingBox</c-></a>;
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue①"><c- g>rawValue</c-></a>;
@@ -1799,6 +1800,12 @@ textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
     <li><a href="#ref-for-imagebitmapsource">2.2. Text Detection API</a> <a href="#ref-for-imagebitmapsource①">(2)</a> <a href="#ref-for-imagebitmapsource②">(3)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-serializable">
+   <a href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable">https://html.spec.whatwg.org/multipage/structured-data.html#serializable</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-serializable">2.2.1. DetectedText</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMString">
    <a href="https://heycam.github.io/webidl/#idl-DOMString">https://heycam.github.io/webidl/#idl-DOMString</a><b>Referenced in:</b>
    <ul>
@@ -1834,6 +1841,7 @@ textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-imagebitmapsource" style="color:initial">ImageBitmapSource</span>
+     <li><span class="dfn-paneled" id="term-for-serializable" style="color:initial">Serializable</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
@@ -1873,6 +1881,7 @@ textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
 
 [
     <a href="#dom-detectedtext-detectedtext"><code><c- g>Constructor</c-></code></a>,
+    <a class="idl-code" data-link-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/structured-data.html#serializable" id="ref-for-serializable①"><c- g>Serializable</c-></a>
 ] <c- b>interface</c-> <a href="#detectedtext"><code><c- g>DetectedText</c-></code></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject③"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly②"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMRectReadOnly" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox①①"><c- g>boundingBox</c-></a>;
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject" id="ref-for-SameObject①①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue①①"><c- g>rawValue</c-></a>;
