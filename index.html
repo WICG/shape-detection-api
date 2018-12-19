@@ -1212,9 +1212,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version dff342f4b23fb230b71436fb31b55f5f169715bd" name="generator">
+  <meta content="Bikeshed version 6dcb46ba8cae3704b42c05bcd8578c92d239786a" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
-  <meta content="1d235212cd7a552adee849342c91bc9a9185a26a" name="document-revision">
+  <meta content="78cf1134e6cef81d1a4ffd52e2363122b9481789" name="document-revision">
 <style>
 table {
   border-collapse: collapse;
@@ -1478,7 +1478,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-10-03">3 October 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-12-19">19 December 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1790,7 +1790,7 @@ the original image from which they were derived.</p>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a> with minimal modifications. </div>
    <div class="example" id="example-a40716b1">
     <a class="self-link" href="#example-a40716b1"></a> 
-<pre class="highlight"><c- k>if</c-> <c- p>(</c->window<c- p>.</c->FaceDetector <c- o>==</c-> <c- kc>undefined</c-><c- p>)</c-> <c- p>{</c->
+<pre class="language-js highlight"><c- k>if</c-> <c- p>(</c->window<c- p>.</c->FaceDetector <c- o>==</c-> <c- kc>undefined</c-><c- p>)</c-> <c- p>{</c->
   console<c- p>.</c->error<c- p>(</c-><c- t>'Face Detection not supported on this platform'</c-><c- p>);</c->
 <c- p>}</c->
 <c- k>if</c-> <c- p>(</c->window<c- p>.</c->BarcodeDetector <c- o>==</c-> <c- kc>undefined</c-><c- p>)</c-> <c- p>{</c->
@@ -1800,10 +1800,10 @@ the original image from which they were derived.</p>
    </div>
    <h3 class="heading settled" data-level="4.2" id="example-face-detection"><span class="secno">4.2. </span><span class="content">Face Detection</span><a class="self-link" href="#example-face-detection"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/ORYbbm?editors=0010">this codepen</a> (or <a href="https://codepen.io/miguelao/pen/PmJWro">this one</a>, with landmarks overlay). </div>
-   <div class="example" id="example-108a90d1">
-    <a class="self-link" href="#example-108a90d1"></a> 
-<pre class="highlight"><c- a>let</c-> faceDetector <c- o>=</c-> <c- k>new</c-> FaceDetector<c- p>({</c->fastMode<c- o>:</c-> <c- kc>true</c-><c- p>,</c-> maxDetectedFaces<c- o>:</c-> <c- mi>1</c-><c- p>});</c->
-<c- c1>// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.</c->
+   <div class="example" id="example-6cd773af">
+    <a class="self-link" href="#example-6cd773af"></a> 
+<pre class="language-js highlight"><c- a>let</c-> faceDetector <c- o>=</c-> <c- k>new</c-> FaceDetector<c- p>({</c->fastMode<c- o>:</c-> <c- kc>true</c-><c- p>,</c-> maxDetectedFaces<c- o>:</c-> <c- mi>1</c-><c- p>});</c->
+<c- c1>// Assuming |theImage| is e.g. a &amp;lt;img> content, or a Blob.</c->
 
 faceDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
 <c- p>.</c->then<c- p>(</c->detectedFaces <c- p>=></c-> <c- p>{</c->
@@ -1819,10 +1819,10 @@ faceDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
    </div>
    <h3 class="heading settled" data-level="4.3" id="example-barcode-detection"><span class="secno">4.3. </span><span class="content">Barcode Detection</span><a class="self-link" href="#example-barcode-detection"></a></h3>
    <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/wgrYjZ?editors=0010">this codepen</a>. </div>
-   <div class="example" id="example-0be05266">
-    <a class="self-link" href="#example-0be05266"></a> 
-<pre class="highlight"><c- a>let</c-> barcodeDetector <c- o>=</c-> <c- k>new</c-> BarcodeDetector<c- p>();</c->
-<c- c1>// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.</c->
+   <div class="example" id="example-da90c518">
+    <a class="self-link" href="#example-da90c518"></a> 
+<pre class="language-js highlight"><c- a>let</c-> barcodeDetector <c- o>=</c-> <c- k>new</c-> BarcodeDetector<c- p>();</c->
+<c- c1>// Assuming |theImage| is e.g. a &amp;lt;img> content, or a Blob.</c->
 
 barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
 <c- p>.</c->then<c- p>(</c->detectedCodes <c- p>=></c-> <c- p>{</c->
@@ -2196,7 +2196,7 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
-   <dd>Simon Pieters; Dirk Schulze; Rik Cabanier. <a href="https://www.w3.org/TR/geometry-1/">Geometry Interfaces Module Level 1</a>. 25 November 2014. CR. URL: <a href="https://www.w3.org/TR/geometry-1/">https://www.w3.org/TR/geometry-1/</a>
+   <dd>Simon Pieters; Chris Harrelson. <a href="https://www.w3.org/TR/geometry-1/">Geometry Interfaces Module Level 1</a>. 4 December 2018. CR. URL: <a href="https://www.w3.org/TR/geometry-1/">https://www.w3.org/TR/geometry-1/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-rfc2119">[RFC2119]
