@@ -123,6 +123,7 @@ dictionary FaceDetectorOptions {
 ### {{DetectedFace}} ### {#detectedface-section}
 
 <xmp class="idl">
+[Serializable]
 interface DetectedFace {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute FrozenArray<Landmark>? landmarks;
@@ -229,6 +230,7 @@ dictionary BarcodeDetectorOptions {
 ### {{DetectedBarcode}} ### {#detectedbarcode-section}
 
 <xmp class="idl">
+[Serializable]
 interface DetectedBarcode {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
