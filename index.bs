@@ -188,7 +188,7 @@ Example implementations of Barcode/QR code detection are e.g. <a href="https://d
 [Exposed=(Window,Worker),
  Constructor(optional BarcodeDetectorOptions barcodeDetectorOptions)]
 interface BarcodeDetector {
-  static Promise<FrozenArray<BarcodeFormat>> getSupportedFormats();
+  static Promise<sequence<BarcodeFormat>> getSupportedFormats();
 
   Promise<sequence<DetectedBarcode>> detect(ImageBitmapSource image);
 };
