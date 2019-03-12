@@ -79,10 +79,8 @@ Example implementations of Text code detection are e.g. <a href="https://develop
 ### {{DetectedText}} ### {#detectedtext-section}
 
 <xmp class="idl">
-[
-    Constructor,
-    Serializable
-] interface DetectedText {
+[Exposed=(Window,Worker), Serializable]
+interface DetectedText {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
   [SameObject] readonly attribute FrozenArray<Point2D> cornerPoints;
