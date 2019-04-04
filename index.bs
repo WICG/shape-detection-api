@@ -197,6 +197,8 @@ interface BarcodeDetector {
 <dl class="domintro">
   <dt><dfn constructor for="BarcodeDetector"><code>BarcodeDetector(optional BarcodeDetectorOptions |barcodeDetectorOptions|)</code></dfn></dt>
   <dd>Constructs a new {{BarcodeDetector}} with the optional |barcodeDetectorOptions|, if present.
+    * If |barcodeDetectorOptions| is passed, and its |formats| are empty, then reject the Promise with a new {{DOMException}} whose name is {{TypeError}}, and abort any further steps.
+    * If |barcodeDetectorOptions| is passed, and its |formats| contain {{unknown}}, then reject the Promise with a new {{DOMException}} whose name is {{TypeError}}, and abort any further steps.
     <div class="note">
     Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{BarcodeDetector}} for several detections.
     </div>
@@ -208,7 +210,7 @@ interface BarcodeDetector {
      <li>If the UA does not support barcode detection, reject `promise` with a {{NotSupportedError}} and abort these steps.</li>
      <li>Enumerate the {{BarcodeFormat}}s that the UA understands as potentially detectable in images. Let this be `supportedFormats`.
      <div class="note">
-      The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in the `supporteFormats` array, however, it should not be detectable whatsoever.
+      The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in the `supportedFormats` array, however, it should not be detectable whatsoever.
      </div>
      </li>
      <li>Resolve `promise` with `supportedFormats`.</li>
