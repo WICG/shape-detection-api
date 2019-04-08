@@ -1212,9 +1212,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version eee3e9e7543e2188fb60d183a6cf3fe3a7d971c1" name="generator">
+  <meta content="Bikeshed version 4d208866a95a1121fceca549a36bfb09c5bf1705" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
-  <meta content="a7f576dccb35feb51068cc7fcc1a9dd9dceeefd0" name="document-revision">
+  <meta content="67a1c69af6982cefca283e4e30597a6b5fbdb04d" name="document-revision">
 <style>
 table {
   border-collapse: collapse;
@@ -1478,7 +1478,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-01-24">24 January 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2019-04-08">8 April 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1687,7 +1687,13 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="constructor" data-export data-lt="BarcodeDetector(barcodeDetectorOptions)|BarcodeDetector()" id="dom-barcodedetector-barcodedetector"><code>BarcodeDetector(optional BarcodeDetectorOptions <var>barcodeDetectorOptions</var>)</code></dfn>
     <dd>
      Constructs a new <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector①">BarcodeDetector</a></code> with the optional <var>barcodeDetectorOptions</var>, if present. 
-     <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector②">BarcodeDetector</a></code> for several detections. </div>
+     <ul>
+      <li data-md>
+       <p>If <var>barcodeDetectorOptions</var> is passed, and its <var>formats</var> are empty, then throw a new <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror" id="ref-for-sec-native-error-types-used-in-this-standard-typeerror">TypeError</a></code>.</p>
+      <li data-md>
+       <p>If <var>barcodeDetectorOptions</var> is passed, and its <var>formats</var> contain <code class="idl"><a data-link-type="idl" href="#dom-barcodeformat-unknown" id="ref-for-dom-barcodeformat-unknown">unknown</a></code>, then throw a new <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror" id="ref-for-sec-native-error-types-used-in-this-standard-typeerror①">TypeError</a></code>.</p>
+       <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector②">BarcodeDetector</a></code> for several detections. </div>
+     </ul>
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export id="dom-barcodedetector-getsupportedformats"><code>getSupportedFormats()</code></dfn>
     <dd>
       This method, when invoked, MUST return a new <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-promise-objects" id="ref-for-sec-promise-objects">Promise</a></code> <code>promise</code> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>: 
@@ -1695,7 +1701,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li>If the UA does not support barcode detection, reject <code>promise</code> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#notsupportederror" id="ref-for-notsupportederror">NotSupportedError</a></code> and abort these steps.
       <li>
        Enumerate the <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat①">BarcodeFormat</a></code>s that the UA understands as potentially detectable in images. Let this be <code>supportedFormats</code>. 
-       <div class="note" role="note"> The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in the <code>supporteFormats</code> array, however, it should not be detectable whatsoever. </div>
+       <div class="note" role="note"> The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in the <code>supportedFormats</code> array, however, it should not be detectable whatsoever. </div>
       <li>Resolve <code>promise</code> with <code>supportedFormats</code>.
      </ol>
      <div class="note" role="note"> The list of supported <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat②">BarcodeFormat</a></code>s is platform dependent, some examples are the ones supported by <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/BarcodeDetector.Builder.html#setBarcodeFormats(int)">Google Play Services</a> and <a href="https://developer.apple.com/documentation/coreimage/ciqrcodefeature?preferredLanguage=occ#overview">Apple’s QICRCodeFeature</a>. </div>
@@ -1743,7 +1749,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-itf" id="ref-for-dom-barcodeformat-itf"><c- s>"itf"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-pdf417" id="ref-for-dom-barcodeformat-pdf417"><c- s>"pdf417"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-qr_code" id="ref-for-dom-barcodeformat-qr_code"><c- s>"qr_code"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-unknown" id="ref-for-dom-barcodeformat-unknown"><c- s>"unknown"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-unknown" id="ref-for-dom-barcodeformat-unknown①"><c- s>"unknown"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_a" id="ref-for-dom-barcodeformat-upc_a"><c- s>"upc_a"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_e" id="ref-for-dom-barcodeformat-upc_e"><c- s>"upc_e"</c-></a>
 };
@@ -2056,6 +2062,12 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
     <li><a href="#ref-for-sec-promise-objects">2.3. Barcode Detection API</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-sec-native-error-types-used-in-this-standard-typeerror">
+   <a href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror">https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-sec-native-error-types-used-in-this-standard-typeerror">2.3. Barcode Detection API</a> <a href="#ref-for-sec-native-error-types-used-in-this-standard-typeerror①">(2)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-domrectreadonly">
    <a href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">https://drafts.fxtf.org/geometry-1/#domrectreadonly</a><b>Referenced in:</b>
    <ul>
@@ -2190,6 +2202,7 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
     <a data-link-type="biblio">[ECMASCRIPT]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-sec-promise-objects" style="color:initial">Promise</span>
+     <li><span class="dfn-paneled" id="term-for-sec-native-error-types-used-in-this-standard-typeerror" style="color:initial">TypeError</span>
     </ul>
    <li>
     <a data-link-type="biblio">[geometry-1]</a> defines the following terms:
@@ -2236,7 +2249,7 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
@@ -2322,7 +2335,7 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-itf" id="ref-for-dom-barcodeformat-itf①"><c- s>"itf"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-pdf417" id="ref-for-dom-barcodeformat-pdf417①"><c- s>"pdf417"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-qr_code" id="ref-for-dom-barcodeformat-qr_code①"><c- s>"qr_code"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-unknown" id="ref-for-dom-barcodeformat-unknown①"><c- s>"unknown"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-unknown" id="ref-for-dom-barcodeformat-unknown①①"><c- s>"unknown"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_a" id="ref-for-dom-barcodeformat-upc_a①"><c- s>"upc_a"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-barcodeformat-upc_e" id="ref-for-dom-barcodeformat-upc_e①"><c- s>"upc_e"</c-></a>
 };
@@ -2594,7 +2607,8 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
   <aside class="dfn-panel" data-for="dom-barcodeformat-unknown">
    <b><a href="#dom-barcodeformat-unknown">#dom-barcodeformat-unknown</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-barcodeformat-unknown">2.3.3. BarcodeFormat</a>
+    <li><a href="#ref-for-dom-barcodeformat-unknown">2.3. Barcode Detection API</a>
+    <li><a href="#ref-for-dom-barcodeformat-unknown①">2.3.3. BarcodeFormat</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-barcodeformat-upc_a">
