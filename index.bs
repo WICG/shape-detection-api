@@ -1,7 +1,7 @@
 <pre class="metadata">
 Title: Accelerated Shape Detection in Images
 Repository: wicg/shape-detection-api
-Status: ED
+Status: CG-DRAFT
 ED: https://wicg.github.io/shape-detection-api
 Shortname: shape-detection-api
 Level: 1
