@@ -43,7 +43,7 @@ Text Detection, despite being an interesting field, is not considered stable eno
 
 ## Shape detection use cases ## {#use-cases}
 
-Please see the <a href="https://github.com/WICG/shape-detection-api/blob/gh-pages/README.md">Readme/Explainer</a> in the repository.
+Please see the <a href="https://github.com/WICG/shape-detection-api/blob/master/README.md">Readme/Explainer</a> in the repository.
 
 # Shape Detection API # {#api}
 
