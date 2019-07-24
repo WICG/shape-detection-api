@@ -87,6 +87,7 @@ Example implementations of face detection are e.g. <a href="https://developer.an
 
 <xmp class="idl">
 [Exposed=(Window,Worker),
+ SecureContext,
  Constructor(optional FaceDetectorOptions faceDetectorOptions)]
 interface FaceDetector {
   Promise<sequence<DetectedFace>> detect(ImageBitmapSource image);
@@ -123,7 +124,9 @@ dictionary FaceDetectorOptions {
 ### {{DetectedFace}} ### {#detectedface-section}
 
 <xmp class="idl">
-[Serializable]
+[Exposed=(Window,Worker),
+ SecureContext,
+ Serializable]
 interface DetectedFace {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute FrozenArray<Landmark>? landmarks;
@@ -186,6 +189,7 @@ Example implementations of Barcode/QR code detection are e.g. <a href="https://d
 
 <xmp class="idl">
 [Exposed=(Window,Worker),
+ SecureContext,
  Constructor(optional BarcodeDetectorOptions barcodeDetectorOptions)]
 interface BarcodeDetector {
   static Promise<sequence<BarcodeFormat>> getSupportedFormats();
@@ -240,7 +244,9 @@ dictionary BarcodeDetectorOptions {
 ### {{DetectedBarcode}} ### {#detectedbarcode-section}
 
 <xmp class="idl">
-[Serializable]
+[Exposed=(Window,Worker),
+ SecureContext,
+ Serializable]
 interface DetectedBarcode {
   [SameObject] readonly attribute DOMRectReadOnly boundingBox;
   [SameObject] readonly attribute DOMString rawValue;
