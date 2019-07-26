@@ -201,8 +201,8 @@ interface BarcodeDetector {
 <dl class="domintro">
   <dt><dfn constructor for="BarcodeDetector"><code>BarcodeDetector(optional BarcodeDetectorOptions |barcodeDetectorOptions|)</code></dfn></dt>
   <dd>Constructs a new {{BarcodeDetector}} with |barcodeDetectorOptions|.
-    * If |barcodeDetectorOptions|.|formats| is present and empty, then throw a new {{TypeError}}.
-    * If |barcodeDetectorOptions|.|formats| is present and contains {{unknown}}, then throw a new {{TypeError}}.
+    * If |barcodeDetectorOptions|.{{BarcodeDetectorOptions/formats}} is present and empty, then throw a new {{TypeError}}.
+    * If |barcodeDetectorOptions|.{{BarcodeDetectorOptions/formats}} is present and contains {{unknown}}, then throw a new {{TypeError}}.
   <div class="note">
     Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{BarcodeDetector}} for several detections.
   </div>
