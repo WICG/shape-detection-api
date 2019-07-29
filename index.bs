@@ -209,15 +209,16 @@ interface BarcodeDetector {
   </dd>
 
   <dt><dfn method for="BarcodeDetector">`getSupportedFormats()`</dfn></dt>
-  <dd> This method, when invoked, MUST return a new {{Promise}} `promise` and run the following steps <a>in parallel</a>:
+  <dd>This method, when invoked, MUST return a new {{Promise}} |promise| and run the following steps <a>in parallel</a>:
     <ol>
-     <li>If the UA does not support barcode detection, reject `promise` with a {{NotSupportedError}} and abort these steps.</li>
-     <li>Enumerate the {{BarcodeFormat}}s that the UA understands as potentially detectable in images. Let this be `supportedFormats`.
-     <div class="note">
-      The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in the `supportedFormats` array, however, it should not be detectable whatsoever.
-     </div>
-     </li>
-     <li>Resolve `promise` with `supportedFormats`.</li>
+      <li>Let |supportedFormats| be a new {{Array}}.</li>
+      <li>If the UA does not support barcode detection, resolve |promise| with |supportedFormats| and abort these steps.</li>
+      <li>Enumerate the {{BarcodeFormat}}s that the UA understands as potentially detectable in images. Add these to |supportedFormats|.
+      <div class="note">
+        The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in |supportedFormats| array, however, it should not be detectable whatsoever.
+      </div>
+      </li>
+      <li>Resolve |promise| with |supportedFormats|.</li>
    </ol>
   <div class="note">
     The list of supported {{BarcodeFormat}}s is platform dependent, some examples are the ones supported by <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/BarcodeDetector.Builder.html#setBarcodeFormats(int)">Google Play Services</a> and <a href="https://developer.apple.com/documentation/coreimage/ciqrcodefeature?preferredLanguage=occ#overview">Apple's QICRCodeFeature</a>.
