@@ -200,12 +200,12 @@ interface BarcodeDetector {
 
 <dl class="domintro">
   <dt><dfn constructor for="BarcodeDetector"><code>BarcodeDetector(optional BarcodeDetectorOptions |barcodeDetectorOptions|)</code></dfn></dt>
-  <dd>Constructs a new {{BarcodeDetector}} with the optional |barcodeDetectorOptions|, if present.
-    * If |barcodeDetectorOptions| is passed, and its |formats| are empty, then throw a new {{TypeError}}.
-    * If |barcodeDetectorOptions| is passed, and its |formats| contain {{unknown}}, then throw a new {{TypeError}}.
-    <div class="note">
+  <dd>Constructs a new {{BarcodeDetector}} with |barcodeDetectorOptions|.
+    * If |barcodeDetectorOptions|.{{BarcodeDetectorOptions/formats}} is present and empty, then throw a new {{TypeError}}.
+    * If |barcodeDetectorOptions|.{{BarcodeDetectorOptions/formats}} is present and contains {{unknown}}, then throw a new {{TypeError}}.
+  <div class="note">
     Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{BarcodeDetector}} for several detections.
-    </div>
+  </div>
   </dd>
 
   <dt><dfn method for="BarcodeDetector">`getSupportedFormats()`</dfn></dt>
@@ -239,7 +239,11 @@ dictionary BarcodeDetectorOptions {
 
 <dl class="domintro">
   <dt><dfn dict-member for="BarcodeDetectorOptions">`formats`</dfn></dt>
-  <dd>A series of {{BarcodeFormat}}s to search for in the subsequent {{BarcodeDetector/detect()}} calls.</dd>
+  <dd>A series of {{BarcodeFormat}}s to search for in the subsequent {{BarcodeDetector/detect()}} calls. If not present then the UA SHOULD search for all supported formats.
+  <div class="note">
+    Limiting the search to a particular subset of supported formats is likely to provide better performance.
+  </div>
+  </dd>
 </dl>
 
 ### {{DetectedBarcode}} ### {#detectedbarcode-section}
