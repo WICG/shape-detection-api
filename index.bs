@@ -124,19 +124,16 @@ dictionary FaceDetectorOptions {
 ### {{DetectedFace}} ### {#detectedface-section}
 
 <xmp class="idl">
-[Exposed=(Window,Worker),
- SecureContext,
- Serializable]
-interface DetectedFace {
-  [SameObject] readonly attribute DOMRectReadOnly boundingBox;
-  [SameObject] readonly attribute FrozenArray<Landmark>? landmarks;
+dictionary DetectedFace {
+  required DOMRectReadOnly boundingBox;
+  required FrozenArray<Landmark>? landmarks;
 };
 </xmp>
 
 <dl class="domintro">
-  <dt><dfn attribute for="DetectedFace">`boundingBox`</dfn></dt>
+  <dt><dfn dict-member for="DetectedFace">`boundingBox`</dfn></dt>
   <dd>A rectangle indicating the position and extent of a detected feature aligned to the image axes.</dd>
-  <dt><dfn attribute for="DetectedFace">`landmarks`</dfn></dt>
+  <dt><dfn dict-member for="DetectedFace">`landmarks`</dfn></dt>
   <dd>A series of features of interest related to the detected feature.</dd>
 </dl>
 
@@ -249,28 +246,25 @@ dictionary BarcodeDetectorOptions {
 ### {{DetectedBarcode}} ### {#detectedbarcode-section}
 
 <xmp class="idl">
-[Exposed=(Window,Worker),
- SecureContext,
- Serializable]
-interface DetectedBarcode {
-  [SameObject] readonly attribute DOMRectReadOnly boundingBox;
-  [SameObject] readonly attribute DOMString rawValue;
-  [SameObject] readonly attribute BarcodeFormat format;
-  [SameObject] readonly attribute FrozenArray<Point2D> cornerPoints;
+dictionary DetectedBarcode {
+  required DOMRectReadOnly boundingBox;
+  required DOMString rawValue;
+  required BarcodeFormat format;
+  required FrozenArray<Point2D> cornerPoints;
 };
 </xmp>
 
 <dl class="domintro">
-  <dt><dfn attribute for="DetectedBarcode">`boundingBox`</dfn></dt>
+  <dt><dfn dict-member for="DetectedBarcode">`boundingBox`</dfn></dt>
   <dd>A rectangle indicating the position and extent of a detected feature aligned to the image</dd>
 
-  <dt><dfn attribute for="DetectedBarcode">`rawValue`</dfn></dt>
+  <dt><dfn dict-member for="DetectedBarcode">`rawValue`</dfn></dt>
   <dd>String decoded from the barcode. This value might be multiline.</dd>
 
-  <dt><dfn attribute for="DetectedBarcode">`format`</dfn></dt>
+  <dt><dfn dict-member for="DetectedBarcode">`format`</dfn></dt>
   <dd>Detect {{BarcodeFormat}}.</dd>
 
-  <dt><dfn attribute for="DetectedBarcode">`cornerPoints`</dfn></dt>
+  <dt><dfn dict-member for="DetectedBarcode">`cornerPoints`</dfn></dt>
   <dd>A <a>sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.</dd>
 </dl>
 
