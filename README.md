@@ -31,7 +31,7 @@ Some Web Apps -gasp- run Detection in Javascript. A performance comparison of so
 
 Samsung Browser [has a private API](developer.samsung.com/internet) (click to unfold "Overview for Android", then search for "QR code reader").
 
-**TODO**: compare a few JS/native libraries in terms of size and performance. On that, `zxingjs2` has [a list of alternative JS libraries](https://github.com/ghybs/zxingjs2#other-barcode-image-processing-libraries-related-to-javascript).
+**TODO**: compare a few JS/native libraries in terms of size and performance. A performance and detection comparison of some popular JS QR code scanners can be found [here](https://github.com/danimoh/qr-scanner-benchmark). `zxingjs2` has [a list of some additional JS libraries](https://github.com/ghybs/zxingjs2#other-barcode-image-processing-libraries-related-to-javascript).
 
 Android Native Apps usually integrate [ZXing](https://github.com/zxing/zxing) (which amounts to adding ~560KB when counting [core.jar](http://repo1.maven.org/maven2/com/google/zxing/core/3.3.0/), [android-core.jar](http://repo1.maven.org/maven2/com/google/zxing/android-core/3.3.0/) and [android-integration.jar](http://repo1.maven.org/maven2/com/google/zxing/android-integration/3.3.0/))).
 
