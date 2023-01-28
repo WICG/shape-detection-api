@@ -17,7 +17,7 @@ jobs:
           TOOLCHAIN: bikeshed
           BUILD_FAIL_ON: warning
           GH_PAGES_BRANCH: gh-pages
-      - name: scanning.bs
+      - name: text.bs
         uses: w3c/spec-prod@v2
         with:
           SOURCE: text.bs
