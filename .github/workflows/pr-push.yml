@@ -1,0 +1,27 @@
+name: CI
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+jobs:
+  main:
+    name: Build, Validate and Deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: index.bs
+        uses: w3c/spec-prod@v2
+        with:
+          SOURCE: index.bs
+          DESTINATION: index.html
+          TOOLCHAIN: bikeshed
+          BUILD_FAIL_ON: fatal
+          GH_PAGES_BRANCH: gh-pages
+      - name: text.bs
+        uses: w3c/spec-prod@v2
+        with:
+          SOURCE: text.bs
+          DESTINATION: text.html
+          TOOLCHAIN: bikeshed
+          BUILD_FAIL_ON: fatal
+          GH_PAGES_BRANCH: gh-pages
