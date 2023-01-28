@@ -15,7 +15,7 @@ jobs:
           SOURCE: index.bs
           DESTINATION: index.html
           TOOLCHAIN: bikeshed
-          BUILD_FAIL_ON: warning
+          BUILD_FAIL_ON: fatal
           GH_PAGES_BRANCH: gh-pages
       - name: text.bs
         uses: w3c/spec-prod@v2
@@ -23,5 +23,5 @@ jobs:
           SOURCE: text.bs
           DESTINATION: text.html
           TOOLCHAIN: bikeshed
-          BUILD_FAIL_ON: warning
+          BUILD_FAIL_ON: fatal
           GH_PAGES_BRANCH: gh-pages
