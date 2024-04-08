@@ -83,7 +83,7 @@ Example implementations of Text code detection are e.g. <a href="https://develop
 dictionary DetectedText {
   required DOMRectReadOnly boundingBox;
   required DOMString rawValue;
-  required FrozenArray<Point2D> cornerPoints;
+  required sequence<Point2D> cornerPoints;
 };
 </xmp>
 
