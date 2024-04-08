@@ -4,9 +4,9 @@
   <title>Accelerated Shape Detection in Images</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 859efb4bd, updated Fri Jan 27 16:04:01 2023 -0800" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
-  <meta content="cc6c9460a134e53901da65822dfd36cc11b4331b" name="document-revision">
+  <meta content="b0cb76adad30b3bdadd59b41cb9a802d4d1ffc59" name="document-revision">
 <style>
 table {
   border-collapse: collapse;
@@ -24,8 +24,7 @@ table td, table th {
   padding: 3px;
 }
 </style>
-<style>/* style-autolinks */
-
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -85,8 +84,17 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
-<style>/* style-colors */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -194,9 +202,121 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
-<style>/* style-counters */
+}
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
 body {
     counter-reset: example figure issue;
 }
@@ -223,20 +343,25 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
-}</style>
-<style>/* style-dfn-panel */
-
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
 }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
 .dfn-panel {
     position: absolute;
     z-index: 35;
+    width: 20em;
+    width: 300px;
     height: auto;
-    width: -webkit-fit-content;
-    width: fit-content;
-    max-width: 300px;
     max-height: 500px;
     overflow: auto;
     padding: 0.5em 0.75em;
@@ -244,6 +369,7 @@ figcaption:not(.no-marker)::before {
     background: var(--dfnpanel-bg);
     color: var(--dfnpanel-text);
     border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
 }
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
@@ -251,8 +377,15 @@ figcaption:not(.no-marker)::before {
 .dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
 .dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .dfn-panel.activated {
     display: inline-block;
     position: fixed;
@@ -263,10 +396,62 @@ figcaption:not(.no-marker)::before {
     max-height: 30vh;
 }
 
-.dfn-paneled { cursor: pointer; }
+.dfn-paneled[role="button"] { cursor: pointer; }
 </style>
-<style>/* style-issues */
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -275,8 +460,7 @@ a[href].issue-return {
     text-decoration: none;
 }
 </style>
-<style>/* style-md-lists */
-
+<style>/* Boilerplate: style-md-lists */
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -284,69 +468,69 @@ a[href].issue-return {
 }
 [data-md] > :last-child {
     margin-bottom: 0;
-}</style>
-<style>/* style-mdn-anno */
-@media (max-width: 767px) {
-	.mdn-anno {
-		opacity: .1;
-	}
 }
+</style>
+<style>/* Boilerplate: style-mdn-anno */
 :root {
 	--mdn-bg: #EEE;
 	--mdn-shadow: #999;
 	--mdn-nosupport-text: #ccc;
 }
+@media (prefers-color-scheme: dark) {
+	:root {
+		--mdn-bg: #222;
+		--mdn-shadow: #444;
+		--mdn-nosupport-text: #666;
+	}
+}
 .mdn-anno {
-	font: 1em sans-serif;
-	padding: 0.3em;
-	position: absolute;
-	z-index: 8;
-	right: 0.3em;
 	background: var(--mdn-bg, #EEE);
-	color: var(--text, black);
+	border-radius: .25em;
 	box-shadow: 0 0 3px var(--mdn-shadow, #999);
-	overflow: hidden;
-	border-collapse: initial;
-	border-spacing: initial;
-	min-width: 9em;
+	color: var(--text, black);
+	font: 1em sans-serif;
+	hyphens: none;
 	max-width: min-content;
+	overflow: hidden;
+	padding: 0.2em;
+	position: absolute;
+	right: 0.3em;
+	top: auto;
 	white-space: nowrap;
 	word-wrap: normal;
-	hyphens: none;
-	border-radius: .25em;
+	z-index: 8;
 }
-.mdn-anno:not(.wrapped) {
-	opacity: 1;
-	z-index: 9;
-}
-.mdn-anno.wrapped {
-	min-width: 0;
-}
-.mdn-anno.wrapped > :not(button) {
+.mdn-anno.unpositioned {
 	display: none;
 }
+.mdn-anno.overlapping-main {
+	opacity: .2;
+	transition: opacity .1s;
+}
+.mdn-anno[open] {
+	opacity: 1;
+	z-index: 9;
+	min-width: 9em;
+}
 .mdn-anno:hover {
+	opacity: 1;
 	outline: var(--text, black) 1px solid;
 }
-.mdn-anno > .mdn-anno-btn {
+.mdn-anno > summary {
+	font-weight: normal;
+	text-align: right;
 	cursor: pointer;
-	border: none;
-	color: #000;
-	background: transparent;
-	margin: -8px;
-	float: right;
-	padding: 10px 8px 8px 8px;
-	outline: none;
+	display: block;
 }
-.mdn-anno > .mdn-anno-btn > .less-than-two-engines-flag {
+.mdn-anno > summary > .less-than-two-engines-flag {
 	color: red;
 	padding-right: 2px;
 }
-.mdn-anno > .mdn-anno-btn > .all-engines-flag {
+.mdn-anno > summary > .all-engines-flag {
 	color: green;
 	padding-right: 2px;
 }
-.mdn-anno > .mdn-anno-btn > span {
+.mdn-anno > summary > span {
 	color: #fff;
 	background-color: #000;
 	font-weight: normal;
@@ -506,7 +690,7 @@ a[href].issue-return {
 	margin: -40px 0 0 0;
 }
 </style>
-<style>/* style-selflinks */
+<style>/* Boilerplate: style-selflinks */
 
 :root {
     --selflink-text: white;
@@ -566,12 +750,15 @@ a.self-link::before            { content: "¶"; }
 .heading > a.self-link::before { content: "§"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
-<style>/* style-syntax-highlighting */
+<style>/* Boilerplate: style-syntax-highlighting */
 
             pre.idl.highlight {
                 background: var(--borderedblock-bg, var(--def-bg));
             }
             
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
 
@@ -628,140 +815,8 @@ c-[vc] { color: #0077aa } /* Name.Variable.Class */
 c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-</style>
-<style>/* style-darkmode */
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: #ddd;
-        --bg: black;
 
-        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
-
-        --logo-bg: #1a5e9a;
-        --logo-active-bg: #c00;
-        --logo-text: white;
-
-        --tocnav-normal-text: #999;
-        --tocnav-normal-bg: var(--bg);
-        --tocnav-hover-text: var(--tocnav-normal-text);
-        --tocnav-hover-bg: #080808;
-        --tocnav-active-text: #f44;
-        --tocnav-active-bg: var(--tocnav-normal-bg);
-
-        --tocsidebar-text: var(--text);
-        --tocsidebar-bg: #080808;
-        --tocsidebar-shadow: rgba(255,255,255,.1);
-        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
-
-        --toclink-text: var(--text);
-        --toclink-underline: #6af;
-        --toclink-visited-text: var(--toclink-text);
-        --toclink-visited-underline: #054572;
-
-        --heading-text: #8af;
-
-        --hr-text: var(--text);
-
-        --algo-border: #456;
-
-        --del-text: #f44;
-        --del-bg: transparent;
-        --ins-text: #4a4;
-        --ins-bg: transparent;
-
-        --a-normal-text: #6af;
-        --a-normal-underline: #555;
-        --a-visited-text: var(--a-normal-text);
-        --a-visited-underline: var(--a-normal-underline);
-        --a-hover-bg: rgba(25%, 25%, 25%, .2);
-        --a-active-text: #f44;
-        --a-active-underline: var(--a-active-text);
-
-        --borderedblock-bg: rgba(255, 255, 255, .05);
-
-        --blockquote-border: silver;
-        --blockquote-bg: var(--borderedblock-bg);
-        --blockquote-text: currentcolor;
-
-        --issue-border: #e05252;
-        --issue-bg: var(--borderedblock-bg);
-        --issue-text: var(--text);
-        --issueheading-text: hsl(0deg, 70%, 70%);
-
-        --example-border: hsl(50deg, 90%, 60%);
-        --example-bg: var(--borderedblock-bg);
-        --example-text: var(--text);
-        --exampleheading-text: hsl(50deg, 70%, 70%);
-
-        --note-border: hsl(120deg, 100%, 35%);
-        --note-bg: var(--borderedblock-bg);
-        --note-text: var(--text);
-        --noteheading-text: hsl(120, 70%, 70%);
-        --notesummary-underline: silver;
-
-        --assertion-border: #444;
-        --assertion-bg: var(--borderedblock-bg);
-        --assertion-text: var(--text);
-
-        --advisement-border: orange;
-        --advisement-bg: #222218;
-        --advisement-text: var(--text);
-        --advisementheading-text: #f84;
-
-        --warning-border: red;
-        --warning-bg: hsla(40,100%,20%,0.95);
-        --warning-text: var(--text);
-
-        --amendment-border: #330099;
-        --amendment-bg: #080010;
-        --amendment-text: var(--text);
-        --amendmentheading-text: #cc00ff;
-
-        --def-border: #8ccbf2;
-        --def-bg: #080818;
-        --def-text: var(--text);
-        --defrow-border: #136;
-
-        --datacell-border: silver;
-
-        --indexinfo-text: #aaa;
-
-        --indextable-hover-text: var(--text);
-        --indextable-hover-bg: #181818;
-
-        --outdatedspec-bg: rgba(255, 255, 255, .5);
-        --outdatedspec-text: black;
-        --outdated-bg: maroon;
-        --outdated-text: white;
-        --outdated-shadow: red;
-
-        --editedrec-bg: darkorange;
-    }
-    /* In case a transparent-bg image doesn't expect to be on a dark bg,
-       which is quite common in practice... */
-    img { background: white; }
-}
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --dfnpanel-bg: #222;
-        --dfnpanel-text: var(--text);
-    }
-}@media (prefers-color-scheme: dark) {
-	:root {
-		--mdn-bg: #222;
-		--mdn-shadow: #444;
-		--mdn-nosupport-text: #666;
-	}
-}
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
 
@@ -829,7 +884,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Accelerated Shape Detection in Images</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2023-01-30">30 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-04-08">8 April 2024</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -847,7 +902,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 the Contributors to the Accelerated Shape Detection in Images Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 the Contributors to the Accelerated Shape Detection in Images Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
 A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    <hr title="Separator for header">
   </div>
@@ -905,7 +960,6 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
      <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
       <li><a href="#w3c-conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
-      <li><a href="#w3c-conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -988,23 +1042,23 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <h4 class="heading settled" data-level="2.2.2" id="detectedface-section"><span class="secno">2.2.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dictdef-detectedface" id="ref-for-dictdef-detectedface③">DetectedFace</a></code></span><a class="self-link" href="#detectedface-section"></a></h4>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-detectedface"><code><c- g>DetectedFace</c-></code></dfn> {
   <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly " href="#dom-detectedface-boundingbox" id="ref-for-dom-detectedface-boundingbox①"><c- g>boundingBox</c-></a>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array" id="ref-for-idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-landmark" id="ref-for-dictdef-landmark"><c- n>Landmark</c-></a>>? <a class="idl-code" data-link-type="dict-member" data-type="FrozenArray<Landmark>? " href="#dom-detectedface-landmarks" id="ref-for-dom-detectedface-landmarks"><c- g>landmarks</c-></a>;
+  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-landmark" id="ref-for-dictdef-landmark"><c- n>Landmark</c-></a>>? <a class="idl-code" data-link-type="dict-member" data-type="sequence<Landmark>? " href="#dom-detectedface-landmarks" id="ref-for-dom-detectedface-landmarks"><c- g>landmarks</c-></a>;
 };
 </pre>
    <dl class="domintro">
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedFace" data-dfn-type="dict-member" data-export id="dom-detectedface-boundingbox"><code>boundingBox</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly①">DOMRectReadOnly</a></span>
     <dd>A rectangle indicating the position and extent of a detected feature aligned to the image axes.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedFace" data-dfn-type="dict-member" data-export id="dom-detectedface-landmarks"><code>landmarks</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="#dictdef-landmark" id="ref-for-dictdef-landmark①">Landmark</a>>, nullable</span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedFace" data-dfn-type="dict-member" data-export id="dom-detectedface-landmarks"><code>landmarks</code></dfn>, <span> of type sequence&lt;<a data-link-type="idl-name" href="#dictdef-landmark" id="ref-for-dictdef-landmark①">Landmark</a>>, nullable</span>
     <dd>A series of features of interest related to the detected feature.
    </dl>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-landmark"><code><c- g>Landmark</c-></code></dfn> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array" id="ref-for-idl-frozen-array①"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="FrozenArray<Point2D> " href="#dom-landmark-locations" id="ref-for-dom-landmark-locations"><c- g>locations</c-></a>;
+  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<Point2D> " href="#dom-landmark-locations" id="ref-for-dom-landmark-locations"><c- g>locations</c-></a>;
   <a data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype"><c- n>LandmarkType</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="LandmarkType " href="#dom-landmark-type" id="ref-for-dom-landmark-type"><c- g>type</c-></a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export id="dom-landmark-locations"><code>locations</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d①">Point2D</a>></span>
-    <dd>A point in the center of the detected landmark, or a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①">sequence</a> of points defining the vertices of a simple polygon surrounding the landmark in either a clockwise or counter-clockwise direction.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export id="dom-landmark-locations"><code>locations</code></dfn>, <span> of type sequence&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d①">Point2D</a>></span>
+    <dd>A point in the center of the detected landmark, or a <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence③">sequence</a> of points defining the vertices of a simple polygon surrounding the landmark in either a clockwise or counter-clockwise direction.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="Landmark" data-dfn-type="dict-member" data-export id="dom-landmark-type"><code>type</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-landmarktype" id="ref-for-enumdef-landmarktype①">LandmarkType</a></span>
     <dd>Type of the landmark, if known.
    </dl>
@@ -1029,52 +1083,19 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <p>to <code class="idl"><a data-link-type="idl" href="#dictdef-detectedface" id="ref-for-dictdef-detectedface④">DetectedFace</a></code>.</p>
    </div>
    <h3 class="heading settled" data-level="2.3" id="barcode-detection-api"><span class="secno">2.3. </span><span class="content">Barcode Detection API</span><a class="self-link" href="#barcode-detection-api"></a></h3>
-   <div class="mdn-anno wrapped after">
-    <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
-    <div class="feature">
-     <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector" title="The BarcodeDetector interface of the Barcode Detection API allows detection of linear and two dimensional barcodes in images.">BarcodeDetector</a></p>
-     <p class="less-than-two-engines-text">In only one current engine.</p>
-     <div class="support">
-      <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
-      <hr>
-      <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
-      <hr>
-      <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-      <hr>
-      <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-     </div>
-    </div>
-   </div>
    <p><code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector">BarcodeDetector</a></code> represents an underlying accelerated platform’s component for detection of linear or two-dimensional barcodes in images.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①⑤">ImageBitmapSource</a></code> which result is a Promise.  This method MUST reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§ 2.1 Image sources for detection</a>; otherwise it MAY queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#dictdef-detectedbarcode" id="ref-for-dictdef-detectedbarcode">DetectedBarcode</a></code>s, each one essentially consisting on and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox">boundingBox</a></code> and a series of <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d②">Point2D</a></code>s, and possibly a <code class="idl"><a data-link-type="idl" href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue">rawValue</a></code> decoded <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString">DOMString</a></code>.</p>
    <div class="example" id="example-66867fd7"><a class="self-link" href="#example-66867fd7"></a> Example implementations of Barcode/QR code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">Google Play Services</a> or Apple’s <a href="https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc">CIQRCodeFeature</a> / <a href="https://developer.apple.com/documentation/vision/vndetectbarcodesrequest?language=objc">VNDetectBarcodesRequest</a>. </div>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->),
  <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="barcodedetector"><code><c- g>BarcodeDetector</c-></code></dfn> {
   <a class="idl-code" data-link-type="constructor" href="#dom-barcodedetector-barcodedetector" id="ref-for-dom-barcodedetector-barcodedetector"><c- g>constructor</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="#dictdef-barcodedetectoroptions" id="ref-for-dictdef-barcodedetectoroptions"><c- n>BarcodeDetectorOptions</c-></a> <dfn class="idl-code" data-dfn-for="BarcodeDetector/BarcodeDetector(barcodeDetectorOptions), BarcodeDetector/constructor(barcodeDetectorOptions), BarcodeDetector/BarcodeDetector(), BarcodeDetector/constructor()" data-dfn-type="argument" data-export id="dom-barcodedetector-barcodedetector-barcodedetectoroptions-barcodedetectoroptions"><code><c- g>barcodeDetectorOptions</c-></code><a class="self-link" href="#dom-barcodedetector-barcodedetector-barcodedetectoroptions-barcodedetectoroptions"></a></dfn> = {});
-  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat"><c- n>BarcodeFormat</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-barcodedetector-getsupportedformats" id="ref-for-dom-barcodedetector-getsupportedformats"><c- g>getSupportedFormats</c-></a>();
+  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat"><c- n>BarcodeFormat</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-barcodedetector-getsupportedformats" id="ref-for-dom-barcodedetector-getsupportedformats"><c- g>getSupportedFormats</c-></a>();
 
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence③"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-detectedbarcode" id="ref-for-dictdef-detectedbarcode①"><c- n>DetectedBarcode</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect①"><c- g>detect</c-></a>(<a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①⑥"><c- n>ImageBitmapSource</c-></a> <dfn class="idl-code" data-dfn-for="BarcodeDetector/detect(image)" data-dfn-type="argument" data-export id="dom-barcodedetector-detect-image-image"><code><c- g>image</c-></code><a class="self-link" href="#dom-barcodedetector-detect-image-image"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑤"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-detectedbarcode" id="ref-for-dictdef-detectedbarcode①"><c- n>DetectedBarcode</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-barcodedetector-detect" id="ref-for-dom-barcodedetector-detect①"><c- g>detect</c-></a>(<a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①⑥"><c- n>ImageBitmapSource</c-></a> <dfn class="idl-code" data-dfn-for="BarcodeDetector/detect(image)" data-dfn-type="argument" data-export id="dom-barcodedetector-detect-image-image"><code><c- g>image</c-></code><a class="self-link" href="#dom-barcodedetector-detect-image-image"></a></dfn>);
 };
 </pre>
    <dl class="domintro">
-    <dt>
-     <div class="mdn-anno wrapped">
-      <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
-      <div class="feature">
-       <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/BarcodeDetector" title="The BarcodeDetector() constructor creates a new BarcodeDetector object which detects linear and two-dimensional barcodes in images.">BarcodeDetector/BarcodeDetector</a></p>
-       <p class="less-than-two-engines-text">In only one current engine.</p>
-       <div class="support">
-        <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
-        <hr>
-        <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
-        <hr>
-        <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-        <hr>
-        <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-       </div>
-      </div>
-     </div>
-     <dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="constructor" data-export data-lt="BarcodeDetector(barcodeDetectorOptions)|constructor(barcodeDetectorOptions)|BarcodeDetector()|constructor()" id="dom-barcodedetector-barcodedetector"><code>BarcodeDetector(optional BarcodeDetectorOptions <var>barcodeDetectorOptions</var>)</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="constructor" data-export data-lt="BarcodeDetector(barcodeDetectorOptions)|constructor(barcodeDetectorOptions)|BarcodeDetector()|constructor()" id="dom-barcodedetector-barcodedetector"><code>BarcodeDetector(optional BarcodeDetectorOptions <var>barcodeDetectorOptions</var>)</code></dfn>
     <dd>
      Constructs a new <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector①">BarcodeDetector</a></code> with <var>barcodeDetectorOptions</var>. 
      <ul>
@@ -1084,24 +1105,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
        <p>If <var>barcodeDetectorOptions</var>.<code class="idl"><a data-link-type="idl" href="#dom-barcodedetectoroptions-formats" id="ref-for-dom-barcodedetectoroptions-formats①">formats</a></code> is present and contains <code class="idl"><a data-link-type="idl" href="#dom-barcodeformat-unknown" id="ref-for-dom-barcodeformat-unknown">unknown</a></code>, then throw a new <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.</p>
      </ul>
      <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#barcodedetector" id="ref-for-barcodedetector②">BarcodeDetector</a></code> for several detections. </div>
-    <dt>
-     <div class="mdn-anno wrapped">
-      <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
-      <div class="feature">
-       <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/getSupportedFormats" title="The getSupportedFormats() static method of the BarcodeDetector interface returns a Promise which fulfills with an Array of supported barcode format types.">BarcodeDetector/getSupportedFormats</a></p>
-       <p class="less-than-two-engines-text">In only one current engine.</p>
-       <div class="support">
-        <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
-        <hr>
-        <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
-        <hr>
-        <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-        <hr>
-        <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-       </div>
-      </div>
-     </div>
-     <dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export id="dom-barcodedetector-getsupportedformats"><code>getSupportedFormats()</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export id="dom-barcodedetector-getsupportedformats"><code>getSupportedFormats()</code></dfn>
     <dd>
      This method, when invoked, MUST return a new <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise③">Promise</a></code> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>: 
      <ol>
@@ -1113,29 +1117,12 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li>Resolve <var>promise</var> with <var>supportedFormats</var>.
      </ol>
      <div class="note" role="note"> The list of supported <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat②">BarcodeFormat</a></code>s is platform dependent, some examples are the ones supported by <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/BarcodeDetector.Builder.html#setBarcodeFormats(int)">Google Play Services</a> and <a href="https://developer.apple.com/documentation/coreimage/ciqrcodefeature?preferredLanguage=occ#overview">Apple’s QICRCodeFeature</a>. </div>
-    <dt>
-     <div class="mdn-anno wrapped">
-      <button class="mdn-anno-btn"><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></button>
-      <div class="feature">
-       <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/detect" title="The detect() method of the BarcodeDetector interface returns a Promise which fulfills with an Array of detected barcodes within an image.">BarcodeDetector/detect</a></p>
-       <p class="less-than-two-engines-text">In only one current engine.</p>
-       <div class="support">
-        <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
-        <hr>
-        <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
-        <hr>
-        <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
-        <hr>
-        <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
-       </div>
-      </div>
-     </div>
-     <dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export data-lt="detect(image)" id="dom-barcodedetector-detect"><code>detect(ImageBitmapSource <var>image</var>)</code></dfn>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export data-lt="detect(image)" id="dom-barcodedetector-detect"><code>detect(ImageBitmapSource <var>image</var>)</code></dfn>
     <dd>Tries to detect barcodes in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①⑦">ImageBitmapSource</a></code> <var>image</var>.
    </dl>
    <h4 class="heading settled" data-level="2.3.1" id="barcodedetectoroptions-section"><span class="secno">2.3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dictdef-barcodedetectoroptions" id="ref-for-dictdef-barcodedetectoroptions①">BarcodeDetectorOptions</a></code></span><a class="self-link" href="#barcodedetectoroptions-section"></a></h4>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-barcodedetectoroptions"><code><c- g>BarcodeDetectorOptions</c-></code></dfn> {
-  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat③"><c- n>BarcodeFormat</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<BarcodeFormat> " href="#dom-barcodedetectoroptions-formats" id="ref-for-dom-barcodedetectoroptions-formats②"><c- g>formats</c-></a>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑥"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat③"><c- n>BarcodeFormat</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<BarcodeFormat> " href="#dom-barcodedetectoroptions-formats" id="ref-for-dom-barcodedetectoroptions-formats②"><c- g>formats</c-></a>;
 };
 </pre>
    <dl class="domintro">
@@ -1149,7 +1136,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly②"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly " href="#dom-detectedbarcode-boundingbox" id="ref-for-dom-detectedbarcode-boundingbox①"><c- g>boundingBox</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-detectedbarcode-rawvalue" id="ref-for-dom-detectedbarcode-rawvalue①"><c- g>rawValue</c-></a>;
   <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat⑥"><c- n>BarcodeFormat</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="BarcodeFormat " href="#dom-detectedbarcode-format" id="ref-for-dom-detectedbarcode-format"><c- g>format</c-></a>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array" id="ref-for-idl-frozen-array②"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d③"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="FrozenArray<Point2D> " href="#dom-detectedbarcode-cornerpoints" id="ref-for-dom-detectedbarcode-cornerpoints"><c- g>cornerPoints</c-></a>;
+  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑦"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d③"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<Point2D> " href="#dom-detectedbarcode-cornerpoints" id="ref-for-dom-detectedbarcode-cornerpoints"><c- g>cornerPoints</c-></a>;
 };
 </pre>
    <dl class="domintro">
@@ -1159,8 +1146,8 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <dd>String decoded from the barcode. This value might be multiline.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="dict-member" data-export id="dom-detectedbarcode-format"><code>format</code></dfn>, <span> of type <a data-link-type="idl-name" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat⑦">BarcodeFormat</a></span>
     <dd>Detect <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat⑧">BarcodeFormat</a></code>.
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="dict-member" data-export id="dom-detectedbarcode-cornerpoints"><code>cornerPoints</code></dfn>, <span> of type FrozenArray&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d④">Point2D</a>></span>
-    <dd>A <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑤">sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedBarcode" data-dfn-type="dict-member" data-export id="dom-detectedbarcode-cornerpoints"><code>cornerPoints</code></dfn>, <span> of type sequence&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d④">Point2D</a>></span>
+    <dd>A <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑧">sequence</a> of corner points of the detected barcode, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
    </dl>
    <h4 class="heading settled" data-level="2.3.3" id="barcodeformat-section"><span class="secno">2.3.3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat⑨">BarcodeFormat</a></code></span><a class="self-link" href="#barcodeformat-section"></a></h4>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-barcodeformat"><code><c- g>BarcodeFormat</c-></code></dfn> {
@@ -1302,20 +1289,6 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
     with <code>class="note"</code>,
     like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
-    (such as "strip any leading space characters"
-    or "return false and abort these steps")
-    are to be interpreted with the meaning of the key word
-    ("must", "should", "may", etc)
-    used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
-    can be implemented in any manner,
-    so long as the end result is equivalent.
-    In particular, the algorithms defined in this specification
-    are intended to be easy to understand
-    and are not intended to be performant.
-    Implementers are encouraged to optimize. </p>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
@@ -1403,209 +1376,50 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
    <li><a href="#dom-barcodeformat-upc_e">"upc_e"</a><span>, in § 2.3.3</span>
    <li><a href="#dom-barcodeformat-upc_e">upc_e</a><span>, in § 2.3.3</span>
   </ul>
-  <aside class="dfn-panel" data-for="term-for-sec-array-objects">
-   <a href="https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-objects">https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-objects</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-sec-array-objects">2.3. Barcode Detection API</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-domrectreadonly">
-   <a href="https://drafts.fxtf.org/geometry-1/#domrectreadonly">https://drafts.fxtf.org/geometry-1/#domrectreadonly</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-domrectreadonly">2.2.2. DetectedFace</a> <a href="#ref-for-domrectreadonly①">(2)</a>
-    <li><a href="#ref-for-domrectreadonly②">2.3.2. DetectedBarcode</a> <a href="#ref-for-domrectreadonly③">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-media-have_metadata">
-   <a href="https://html.spec.whatwg.org/multipage/media.html#dom-media-have_metadata">https://html.spec.whatwg.org/multipage/media.html#dom-media-have_metadata</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-media-have_metadata">2.1. Image sources for detection</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-media-have_nothing">
-   <a href="https://html.spec.whatwg.org/multipage/media.html#dom-media-have_nothing">https://html.spec.whatwg.org/multipage/media.html#dom-media-have_nothing</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-media-have_nothing">2.1. Image sources for detection</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-htmlcanvaselement">
-   <a href="https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement">https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-htmlcanvaselement">2.1. Image sources for detection</a> <a href="#ref-for-htmlcanvaselement①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-htmlimageelement">
-   <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement">https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-htmlimageelement">2.1. Image sources for detection</a> <a href="#ref-for-htmlimageelement①">(2)</a> <a href="#ref-for-htmlimageelement②">(3)</a> <a href="#ref-for-htmlimageelement③">(4)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-htmlvideoelement">
-   <a href="https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement">https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-htmlvideoelement">2.1. Image sources for detection</a> <a href="#ref-for-htmlvideoelement①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-imagebitmapsource">
-   <a href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource">https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-imagebitmapsource">2.1. Image sources for detection</a> <a href="#ref-for-imagebitmapsource①">(2)</a> <a href="#ref-for-imagebitmapsource②">(3)</a> <a href="#ref-for-imagebitmapsource③">(4)</a> <a href="#ref-for-imagebitmapsource④">(5)</a> <a href="#ref-for-imagebitmapsource⑤">(6)</a> <a href="#ref-for-imagebitmapsource⑥">(7)</a> <a href="#ref-for-imagebitmapsource⑦">(8)</a> <a href="#ref-for-imagebitmapsource⑧">(9)</a> <a href="#ref-for-imagebitmapsource⑨">(10)</a> <a href="#ref-for-imagebitmapsource①⓪">(11)</a> <a href="#ref-for-imagebitmapsource①①">(12)</a>
-    <li><a href="#ref-for-imagebitmapsource①②">2.2. Face Detection API</a> <a href="#ref-for-imagebitmapsource①③">(2)</a> <a href="#ref-for-imagebitmapsource①④">(3)</a>
-    <li><a href="#ref-for-imagebitmapsource①⑤">2.3. Barcode Detection API</a> <a href="#ref-for-imagebitmapsource①⑥">(2)</a> <a href="#ref-for-imagebitmapsource①⑦">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-in-parallel">
-   <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-in-parallel">2.3. Barcode Detection API</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-origin">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-origin">2.1. Image sources for detection</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-media-readystate">
-   <a href="https://html.spec.whatwg.org/multipage/media.html#dom-media-readystate">https://html.spec.whatwg.org/multipage/media.html#dom-media-readystate</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-media-readystate">2.1. Image sources for detection</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dictdef-point2d">
-   <a href="https://w3c.github.io/mediacapture-image/#dictdef-point2d">https://w3c.github.io/mediacapture-image/#dictdef-point2d</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-point2d">2.2.2. DetectedFace</a> <a href="#ref-for-dictdef-point2d①">(2)</a>
-    <li><a href="#ref-for-dictdef-point2d②">2.3. Barcode Detection API</a>
-    <li><a href="#ref-for-dictdef-point2d③">2.3.2. DetectedBarcode</a> <a href="#ref-for-dictdef-point2d④">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-DOMException">
-   <a href="https://webidl.spec.whatwg.org/#idl-DOMException">https://webidl.spec.whatwg.org/#idl-DOMException</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-DOMException">2.1. Image sources for detection</a> <a href="#ref-for-idl-DOMException①">(2)</a> <a href="#ref-for-idl-DOMException②">(3)</a> <a href="#ref-for-idl-DOMException③">(4)</a> <a href="#ref-for-idl-DOMException④">(5)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-DOMString">
-   <a href="https://webidl.spec.whatwg.org/#idl-DOMString">https://webidl.spec.whatwg.org/#idl-DOMString</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-DOMString">2.3. Barcode Detection API</a>
-    <li><a href="#ref-for-idl-DOMString①">2.3.2. DetectedBarcode</a> <a href="#ref-for-idl-DOMString②">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-Exposed">
-   <a href="https://webidl.spec.whatwg.org/#Exposed">https://webidl.spec.whatwg.org/#Exposed</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-Exposed">2.2. Face Detection API</a>
-    <li><a href="#ref-for-Exposed①">2.3. Barcode Detection API</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-frozen-array">
-   <a href="https://webidl.spec.whatwg.org/#idl-frozen-array">https://webidl.spec.whatwg.org/#idl-frozen-array</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-frozen-array">2.2.2. DetectedFace</a> <a href="#ref-for-idl-frozen-array①">(2)</a>
-    <li><a href="#ref-for-idl-frozen-array②">2.3.2. DetectedBarcode</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-invalidstateerror">
-   <a href="https://webidl.spec.whatwg.org/#invalidstateerror">https://webidl.spec.whatwg.org/#invalidstateerror</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-invalidstateerror">2.1. Image sources for detection</a> <a href="#ref-for-invalidstateerror①">(2)</a> <a href="#ref-for-invalidstateerror②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-promise">
-   <a href="https://webidl.spec.whatwg.org/#idl-promise">https://webidl.spec.whatwg.org/#idl-promise</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-promise">2.2. Face Detection API</a>
-    <li><a href="#ref-for-idl-promise①">2.3. Barcode Detection API</a> <a href="#ref-for-idl-promise②">(2)</a> <a href="#ref-for-idl-promise③">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-SecureContext">
-   <a href="https://webidl.spec.whatwg.org/#SecureContext">https://webidl.spec.whatwg.org/#SecureContext</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-SecureContext">2.2. Face Detection API</a>
-    <li><a href="#ref-for-SecureContext①">2.3. Barcode Detection API</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-securityerror">
-   <a href="https://webidl.spec.whatwg.org/#securityerror">https://webidl.spec.whatwg.org/#securityerror</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-securityerror">2.1. Image sources for detection</a> <a href="#ref-for-securityerror①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-exceptiondef-typeerror">
-   <a href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror">https://webidl.spec.whatwg.org/#exceptiondef-typeerror</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-exceptiondef-typeerror">2.3. Barcode Detection API</a> <a href="#ref-for-exceptiondef-typeerror①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-boolean">
-   <a href="https://webidl.spec.whatwg.org/#idl-boolean">https://webidl.spec.whatwg.org/#idl-boolean</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-boolean">2.2.1. FaceDetectorOptions</a> <a href="#ref-for-idl-boolean①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-sequence">
-   <a href="https://webidl.spec.whatwg.org/#idl-sequence">https://webidl.spec.whatwg.org/#idl-sequence</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-sequence">2.2. Face Detection API</a>
-    <li><a href="#ref-for-idl-sequence①">2.2.2. DetectedFace</a>
-    <li><a href="#ref-for-idl-sequence②">2.3. Barcode Detection API</a> <a href="#ref-for-idl-sequence③">(2)</a>
-    <li><a href="#ref-for-idl-sequence④">2.3.1. BarcodeDetectorOptions</a>
-    <li><a href="#ref-for-idl-sequence⑤">2.3.2. DetectedBarcode</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-unsigned-short">
-   <a href="https://webidl.spec.whatwg.org/#idl-unsigned-short">https://webidl.spec.whatwg.org/#idl-unsigned-short</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-unsigned-short">2.2.1. FaceDetectorOptions</a> <a href="#ref-for-idl-unsigned-short①">(2)</a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[ECMASCRIPT]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-sec-array-objects">Array</span>
+     <li><span class="dfn-paneled" id="f426b2a9">Array</span>
     </ul>
    <li>
     <a data-link-type="biblio">[GEOMETRY-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-domrectreadonly">DOMRectReadOnly</span>
+     <li><span class="dfn-paneled" id="fdd2dd4e">DOMRectReadOnly</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-media-have_metadata">HAVE_METADATA</span>
-     <li><span class="dfn-paneled" id="term-for-dom-media-have_nothing">HAVE_NOTHING</span>
-     <li><span class="dfn-paneled" id="term-for-htmlcanvaselement">HTMLCanvasElement</span>
-     <li><span class="dfn-paneled" id="term-for-htmlimageelement">HTMLImageElement</span>
-     <li><span class="dfn-paneled" id="term-for-htmlvideoelement">HTMLVideoElement</span>
-     <li><span class="dfn-paneled" id="term-for-imagebitmapsource">ImageBitmapSource</span>
-     <li><span class="dfn-paneled" id="term-for-in-parallel">in parallel</span>
-     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
-     <li><span class="dfn-paneled" id="term-for-dom-media-readystate">readyState</span>
+     <li><span class="dfn-paneled" id="36a0b7c1">HAVE_METADATA</span>
+     <li><span class="dfn-paneled" id="3f5f11ee">HAVE_NOTHING</span>
+     <li><span class="dfn-paneled" id="5b13c537">HTMLCanvasElement</span>
+     <li><span class="dfn-paneled" id="c5891539">HTMLImageElement</span>
+     <li><span class="dfn-paneled" id="f57f330b">HTMLVideoElement</span>
+     <li><span class="dfn-paneled" id="aeb8d5fd">ImageBitmapSource</span>
+     <li><span class="dfn-paneled" id="a72449dd">in parallel</span>
+     <li><span class="dfn-paneled" id="086e3aff">origin</span>
+     <li><span class="dfn-paneled" id="621f3aeb">readyState</span>
     </ul>
    <li>
     <a data-link-type="biblio">[IMAGE-CAPTURE]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dictdef-point2d">Point2D</span>
+     <li><span class="dfn-paneled" id="c2229d72">Point2D</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-idl-DOMException">DOMException</span>
-     <li><span class="dfn-paneled" id="term-for-idl-DOMString">DOMString</span>
-     <li><span class="dfn-paneled" id="term-for-Exposed">Exposed</span>
-     <li><span class="dfn-paneled" id="term-for-idl-frozen-array">FrozenArray</span>
-     <li><span class="dfn-paneled" id="term-for-invalidstateerror">InvalidStateError</span>
-     <li><span class="dfn-paneled" id="term-for-idl-promise">Promise</span>
-     <li><span class="dfn-paneled" id="term-for-SecureContext">SecureContext</span>
-     <li><span class="dfn-paneled" id="term-for-securityerror">SecurityError</span>
-     <li><span class="dfn-paneled" id="term-for-exceptiondef-typeerror">TypeError</span>
-     <li><span class="dfn-paneled" id="term-for-idl-boolean">boolean</span>
-     <li><span class="dfn-paneled" id="term-for-idl-sequence">sequence</span>
-     <li><span class="dfn-paneled" id="term-for-idl-unsigned-short">unsigned short</span>
+     <li><span class="dfn-paneled" id="dca2de17">DOMException</span>
+     <li><span class="dfn-paneled" id="8855a9aa">DOMString</span>
+     <li><span class="dfn-paneled" id="889e932f">Exposed</span>
+     <li><span class="dfn-paneled" id="797018a7">InvalidStateError</span>
+     <li><span class="dfn-paneled" id="bdbd19d1">Promise</span>
+     <li><span class="dfn-paneled" id="b75bb3bd">SecureContext</span>
+     <li><span class="dfn-paneled" id="c3e881ef">SecurityError</span>
+     <li><span class="dfn-paneled" id="82ca3efc">TypeError</span>
+     <li><span class="dfn-paneled" id="5372cca8">boolean</span>
+     <li><span class="dfn-paneled" id="9cce47fd">sequence</span>
+     <li><span class="dfn-paneled" id="450958f7">unsigned short</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -1664,11 +1478,11 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
 
 <c- b>dictionary</c-> <a href="#dictdef-detectedface"><code><c- g>DetectedFace</c-></code></a> {
   <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly " href="#dom-detectedface-boundingbox"><c- g>boundingBox</c-></a>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-landmark"><c- n>Landmark</c-></a>>? <a class="idl-code" data-link-type="dict-member" data-type="FrozenArray<Landmark>? " href="#dom-detectedface-landmarks"><c- g>landmarks</c-></a>;
+  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-landmark"><c- n>Landmark</c-></a>>? <a class="idl-code" data-link-type="dict-member" data-type="sequence<Landmark>? " href="#dom-detectedface-landmarks"><c- g>landmarks</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-landmark"><code><c- g>Landmark</c-></code></a> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="FrozenArray<Point2D> " href="#dom-landmark-locations"><c- g>locations</c-></a>;
+  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<Point2D> " href="#dom-landmark-locations"><c- g>locations</c-></a>;
   <a data-link-type="idl-name" href="#enumdef-landmarktype"><c- n>LandmarkType</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="LandmarkType " href="#dom-landmark-type"><c- g>type</c-></a>;
 };
 
@@ -1695,7 +1509,7 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
   <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly " href="#dom-detectedbarcode-boundingbox"><c- g>boundingBox</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-detectedbarcode-rawvalue"><c- g>rawValue</c-></a>;
   <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-barcodeformat"><c- n>BarcodeFormat</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="BarcodeFormat " href="#dom-detectedbarcode-format"><c- g>format</c-></a>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="FrozenArray<Point2D> " href="#dom-detectedbarcode-cornerpoints"><c- g>cornerPoints</c-></a>;
+  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<Point2D> " href="#dom-detectedbarcode-cornerpoints"><c- g>cornerPoints</c-></a>;
 };
 
 <c- b>enum</c-> <a href="#enumdef-barcodeformat"><code><c- g>BarcodeFormat</c-></code></a> {
@@ -1716,354 +1530,685 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
 };
 
 </pre>
-  <aside class="dfn-panel" data-for="facedetector">
-   <b><a href="#facedetector">#facedetector</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-facedetector">2.2. Face Detection API</a> <a href="#ref-for-facedetector①">(2)</a> <a href="#ref-for-facedetector②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-facedetector-facedetector">
-   <b><a href="#dom-facedetector-facedetector">#dom-facedetector-facedetector</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-facedetector-facedetector">2.2. Face Detection API</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-facedetector-detect">
-   <b><a href="#dom-facedetector-detect">#dom-facedetector-detect</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-facedetector-detect">2.2. Face Detection API</a> <a href="#ref-for-dom-facedetector-detect①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dictdef-facedetectoroptions">
-   <b><a href="#dictdef-facedetectoroptions">#dictdef-facedetectoroptions</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-facedetectoroptions">2.2. Face Detection API</a> <a href="#ref-for-dictdef-facedetectoroptions①">(2)</a>
-    <li><a href="#ref-for-dictdef-facedetectoroptions②">2.2.1. FaceDetectorOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-facedetectoroptions-maxdetectedfaces">
-   <b><a href="#dom-facedetectoroptions-maxdetectedfaces">#dom-facedetectoroptions-maxdetectedfaces</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-facedetectoroptions-maxdetectedfaces">2.2.1. FaceDetectorOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-facedetectoroptions-fastmode">
-   <b><a href="#dom-facedetectoroptions-fastmode">#dom-facedetectoroptions-fastmode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-facedetectoroptions-fastmode">2.2.1. FaceDetectorOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dictdef-detectedface">
-   <b><a href="#dictdef-detectedface">#dictdef-detectedface</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-detectedface">2.2. Face Detection API</a> <a href="#ref-for-dictdef-detectedface①">(2)</a> <a href="#ref-for-dictdef-detectedface②">(3)</a>
-    <li><a href="#ref-for-dictdef-detectedface③">2.2.2. DetectedFace</a> <a href="#ref-for-dictdef-detectedface④">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-detectedface-boundingbox">
-   <b><a href="#dom-detectedface-boundingbox">#dom-detectedface-boundingbox</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-detectedface-boundingbox">2.2. Face Detection API</a>
-    <li><a href="#ref-for-dom-detectedface-boundingbox①">2.2.2. DetectedFace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-detectedface-landmarks">
-   <b><a href="#dom-detectedface-landmarks">#dom-detectedface-landmarks</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-detectedface-landmarks">2.2.2. DetectedFace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dictdef-landmark">
-   <b><a href="#dictdef-landmark">#dictdef-landmark</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-landmark">2.2.2. DetectedFace</a> <a href="#ref-for-dictdef-landmark①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-landmark-locations">
-   <b><a href="#dom-landmark-locations">#dom-landmark-locations</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-landmark-locations">2.2.2. DetectedFace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-landmark-type">
-   <b><a href="#dom-landmark-type">#dom-landmark-type</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-landmark-type">2.2.2. DetectedFace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="enumdef-landmarktype">
-   <b><a href="#enumdef-landmarktype">#enumdef-landmarktype</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-landmarktype">2.2.2. DetectedFace</a> <a href="#ref-for-enumdef-landmarktype①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-landmarktype-mouth">
-   <b><a href="#dom-landmarktype-mouth">#dom-landmarktype-mouth</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-landmarktype-mouth">2.2.2. DetectedFace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-landmarktype-eye">
-   <b><a href="#dom-landmarktype-eye">#dom-landmarktype-eye</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-landmarktype-eye">2.2.2. DetectedFace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-landmarktype-nose">
-   <b><a href="#dom-landmarktype-nose">#dom-landmarktype-nose</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-landmarktype-nose">2.2.2. DetectedFace</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="barcodedetector">
-   <b><a href="#barcodedetector">#barcodedetector</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-barcodedetector">2.3. Barcode Detection API</a> <a href="#ref-for-barcodedetector①">(2)</a> <a href="#ref-for-barcodedetector②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodedetector-barcodedetector">
-   <b><a href="#dom-barcodedetector-barcodedetector">#dom-barcodedetector-barcodedetector</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodedetector-barcodedetector">2.3. Barcode Detection API</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodedetector-getsupportedformats">
-   <b><a href="#dom-barcodedetector-getsupportedformats">#dom-barcodedetector-getsupportedformats</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodedetector-getsupportedformats">2.3. Barcode Detection API</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodedetector-detect">
-   <b><a href="#dom-barcodedetector-detect">#dom-barcodedetector-detect</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodedetector-detect">2.3. Barcode Detection API</a> <a href="#ref-for-dom-barcodedetector-detect①">(2)</a>
-    <li><a href="#ref-for-dom-barcodedetector-detect②">2.3.1. BarcodeDetectorOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dictdef-barcodedetectoroptions">
-   <b><a href="#dictdef-barcodedetectoroptions">#dictdef-barcodedetectoroptions</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-barcodedetectoroptions">2.3. Barcode Detection API</a>
-    <li><a href="#ref-for-dictdef-barcodedetectoroptions①">2.3.1. BarcodeDetectorOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodedetectoroptions-formats">
-   <b><a href="#dom-barcodedetectoroptions-formats">#dom-barcodedetectoroptions-formats</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodedetectoroptions-formats">2.3. Barcode Detection API</a> <a href="#ref-for-dom-barcodedetectoroptions-formats①">(2)</a>
-    <li><a href="#ref-for-dom-barcodedetectoroptions-formats②">2.3.1. BarcodeDetectorOptions</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dictdef-detectedbarcode">
-   <b><a href="#dictdef-detectedbarcode">#dictdef-detectedbarcode</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dictdef-detectedbarcode">2.3. Barcode Detection API</a> <a href="#ref-for-dictdef-detectedbarcode①">(2)</a>
-    <li><a href="#ref-for-dictdef-detectedbarcode②">2.3.2. DetectedBarcode</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-detectedbarcode-boundingbox">
-   <b><a href="#dom-detectedbarcode-boundingbox">#dom-detectedbarcode-boundingbox</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-detectedbarcode-boundingbox">2.3. Barcode Detection API</a>
-    <li><a href="#ref-for-dom-detectedbarcode-boundingbox①">2.3.2. DetectedBarcode</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-detectedbarcode-rawvalue">
-   <b><a href="#dom-detectedbarcode-rawvalue">#dom-detectedbarcode-rawvalue</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-detectedbarcode-rawvalue">2.3. Barcode Detection API</a>
-    <li><a href="#ref-for-dom-detectedbarcode-rawvalue①">2.3.2. DetectedBarcode</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-detectedbarcode-format">
-   <b><a href="#dom-detectedbarcode-format">#dom-detectedbarcode-format</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-detectedbarcode-format">2.3.2. DetectedBarcode</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-detectedbarcode-cornerpoints">
-   <b><a href="#dom-detectedbarcode-cornerpoints">#dom-detectedbarcode-cornerpoints</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-detectedbarcode-cornerpoints">2.3.2. DetectedBarcode</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="enumdef-barcodeformat">
-   <b><a href="#enumdef-barcodeformat">#enumdef-barcodeformat</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-enumdef-barcodeformat">2.3. Barcode Detection API</a> <a href="#ref-for-enumdef-barcodeformat①">(2)</a> <a href="#ref-for-enumdef-barcodeformat②">(3)</a>
-    <li><a href="#ref-for-enumdef-barcodeformat③">2.3.1. BarcodeDetectorOptions</a> <a href="#ref-for-enumdef-barcodeformat④">(2)</a> <a href="#ref-for-enumdef-barcodeformat⑤">(3)</a>
-    <li><a href="#ref-for-enumdef-barcodeformat⑥">2.3.2. DetectedBarcode</a> <a href="#ref-for-enumdef-barcodeformat⑦">(2)</a> <a href="#ref-for-enumdef-barcodeformat⑧">(3)</a>
-    <li><a href="#ref-for-enumdef-barcodeformat⑨">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-aztec">
-   <b><a href="#dom-barcodeformat-aztec">#dom-barcodeformat-aztec</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-aztec">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-code_128">
-   <b><a href="#dom-barcodeformat-code_128">#dom-barcodeformat-code_128</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-code_128">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="code-128">
-   <b><a href="#code-128">#code-128</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-code-128">2.3.3. BarcodeFormat</a> <a href="#ref-for-code-128①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-code_39">
-   <b><a href="#dom-barcodeformat-code_39">#dom-barcodeformat-code_39</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-code_39">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="code-39">
-   <b><a href="#code-39">#code-39</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-code-39">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-code_93">
-   <b><a href="#dom-barcodeformat-code_93">#dom-barcodeformat-code_93</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-code_93">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-codabar">
-   <b><a href="#dom-barcodeformat-codabar">#dom-barcodeformat-codabar</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-codabar">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-data_matrix">
-   <b><a href="#dom-barcodeformat-data_matrix">#dom-barcodeformat-data_matrix</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-data_matrix">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-ean_13">
-   <b><a href="#dom-barcodeformat-ean_13">#dom-barcodeformat-ean_13</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-ean_13">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="ean-13">
-   <b><a href="#ean-13">#ean-13</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-ean-13">2.3.3. BarcodeFormat</a> <a href="#ref-for-ean-13①">(2)</a> <a href="#ref-for-ean-13②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-ean_8">
-   <b><a href="#dom-barcodeformat-ean_8">#dom-barcodeformat-ean_8</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-ean_8">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-itf">
-   <b><a href="#dom-barcodeformat-itf">#dom-barcodeformat-itf</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-itf">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-pdf417">
-   <b><a href="#dom-barcodeformat-pdf417">#dom-barcodeformat-pdf417</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-pdf417">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-qr_code">
-   <b><a href="#dom-barcodeformat-qr_code">#dom-barcodeformat-qr_code</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-qr_code">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-unknown">
-   <b><a href="#dom-barcodeformat-unknown">#dom-barcodeformat-unknown</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-unknown">2.3. Barcode Detection API</a>
-    <li><a href="#ref-for-dom-barcodeformat-unknown①">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-upc_a">
-   <b><a href="#dom-barcodeformat-upc_a">#dom-barcodeformat-upc_a</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-upc_a">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="upc-a">
-   <b><a href="#upc-a">#upc-a</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-upc-a">2.3.3. BarcodeFormat</a> <a href="#ref-for-upc-a①">(2)</a> <a href="#ref-for-upc-a②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-barcodeformat-upc_e">
-   <b><a href="#dom-barcodeformat-upc_e">#dom-barcodeformat-upc_e</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-barcodeformat-upc_e">2.3.3. BarcodeFormat</a>
-   </ul>
-  </aside>
-<script>/* script-dfn-panel */
+  <details class="mdn-anno unpositioned" data-anno-for="dom-barcodedetector-barcodedetector">
+   <summary><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></summary>
+   <div class="feature">
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/BarcodeDetector" title="The BarcodeDetector() constructor creates a new BarcodeDetector object which detects linear and two-dimensional barcodes in images.">BarcodeDetector/BarcodeDetector</a></p>
+    <p class="less-than-two-engines-text">In only one current engine.</p>
+    <div class="support">
+     <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
+     <hr>
+     <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
+     <hr>
+     <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+     <hr>
+     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+    </div>
+   </div>
+  </details>
+  <details class="mdn-anno unpositioned" data-anno-for="dom-barcodedetector-detect">
+   <summary><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></summary>
+   <div class="feature">
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/detect" title="The detect() method of the BarcodeDetector interface returns a Promise which fulfills with an Array of detected barcodes within an image.">BarcodeDetector/detect</a></p>
+    <p class="less-than-two-engines-text">In only one current engine.</p>
+    <div class="support">
+     <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
+     <hr>
+     <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
+     <hr>
+     <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+     <hr>
+     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+    </div>
+   </div>
+  </details>
+  <details class="mdn-anno unpositioned" data-anno-for="dom-barcodedetector-getsupportedformats">
+   <summary><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></summary>
+   <div class="feature">
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/getSupportedFormats_static" title="The getSupportedFormats() static method of the BarcodeDetector interface returns a Promise which fulfills with an Array of supported barcode format types.">BarcodeDetector/getSupportedFormats_static</a></p>
+    <p class="less-than-two-engines-text">In only one current engine.</p>
+    <div class="support">
+     <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
+     <hr>
+     <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
+     <hr>
+     <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+     <hr>
+     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+    </div>
+   </div>
+  </details>
+  <details class="mdn-anno unpositioned" data-anno-for="barcode-detection-api">
+   <summary><b class="less-than-two-engines-flag" title="This feature is in less than two current engines.">⚠</b><span>MDN</span></summary>
+   <div class="feature">
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector" title="The BarcodeDetector interface of the Barcode Detection API allows detection of linear and two dimensional barcodes in images.">BarcodeDetector</a></p>
+    <p class="less-than-two-engines-text">In only one current engine.</p>
+    <div class="support">
+     <span class="firefox no"><span>Firefox</span><span>None</span></span><span class="safari no"><span>Safari</span><span>None</span></span><span class="chrome no"><span>Chrome</span><span>?</span></span>
+     <hr>
+     <span class="opera no"><span>Opera</span><span>None</span></span><span class="edge_blink no"><span>Edge</span><span>?</span></span>
+     <hr>
+     <span class="edge no"><span>Edge (Legacy)</span><span>None</span></span><span class="ie no"><span>IE</span><span>None</span></span>
+     <hr>
+     <span class="firefox_android no"><span>Firefox for Android</span><span>?</span></span><span class="safari_ios no"><span>iOS Safari</span><span>?</span></span><span class="chrome_android yes"><span>Chrome for Android</span><span>83+</span></span><span class="webview_android no"><span>Android WebView</span><span>?</span></span><span class="samsunginternet_android no"><span>Samsung Internet</span><span>?</span></span><span class="opera_android no"><span>Opera Mobile</span><span>?</span></span>
+    </div>
+   </div>
+  </details>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
 
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
-    if(target != "dfn-panel") {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
             }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
         }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
     }
 
-});
-</script>
-<script>/* script-mdn-anno */
-document.body.addEventListener("click", (e) => {
-    if(e.target.closest(".mdn-anno-btn")) {
-        e.target.closest(".mdn-anno").classList.toggle("wrapped");
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
     }
-});</script>
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['f426b2a9'] = {"dfnID": "f426b2a9", "url": "https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-objects", "dfnText": "Array", "refSections": [{"refs": [{"id": "ref-for-sec-array-objects"}], "title": "2.3. Barcode Detection API"}], "external": true};
+window.dfnpanelData['fdd2dd4e'] = {"dfnID": "fdd2dd4e", "url": "https://drafts.fxtf.org/geometry-1/#domrectreadonly", "dfnText": "DOMRectReadOnly", "refSections": [{"refs": [{"id": "ref-for-domrectreadonly"}, {"id": "ref-for-domrectreadonly\u2460"}], "title": "2.2.2. DetectedFace"}, {"refs": [{"id": "ref-for-domrectreadonly\u2461"}, {"id": "ref-for-domrectreadonly\u2462"}], "title": "2.3.2. DetectedBarcode"}], "external": true};
+window.dfnpanelData['36a0b7c1'] = {"dfnID": "36a0b7c1", "url": "https://html.spec.whatwg.org/multipage/media.html#dom-media-have_metadata", "dfnText": "HAVE_METADATA", "refSections": [{"refs": [{"id": "ref-for-dom-media-have_metadata"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['3f5f11ee'] = {"dfnID": "3f5f11ee", "url": "https://html.spec.whatwg.org/multipage/media.html#dom-media-have_nothing", "dfnText": "HAVE_NOTHING", "refSections": [{"refs": [{"id": "ref-for-dom-media-have_nothing"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['5b13c537'] = {"dfnID": "5b13c537", "url": "https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement", "dfnText": "HTMLCanvasElement", "refSections": [{"refs": [{"id": "ref-for-htmlcanvaselement"}, {"id": "ref-for-htmlcanvaselement\u2460"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['c5891539'] = {"dfnID": "c5891539", "url": "https://html.spec.whatwg.org/multipage/embedded-content.html#htmlimageelement", "dfnText": "HTMLImageElement", "refSections": [{"refs": [{"id": "ref-for-htmlimageelement"}, {"id": "ref-for-htmlimageelement\u2460"}, {"id": "ref-for-htmlimageelement\u2461"}, {"id": "ref-for-htmlimageelement\u2462"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['f57f330b'] = {"dfnID": "f57f330b", "url": "https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement", "dfnText": "HTMLVideoElement", "refSections": [{"refs": [{"id": "ref-for-htmlvideoelement"}, {"id": "ref-for-htmlvideoelement\u2460"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['aeb8d5fd'] = {"dfnID": "aeb8d5fd", "url": "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource", "dfnText": "ImageBitmapSource", "refSections": [{"refs": [{"id": "ref-for-imagebitmapsource"}, {"id": "ref-for-imagebitmapsource\u2460"}, {"id": "ref-for-imagebitmapsource\u2461"}, {"id": "ref-for-imagebitmapsource\u2462"}, {"id": "ref-for-imagebitmapsource\u2463"}, {"id": "ref-for-imagebitmapsource\u2464"}, {"id": "ref-for-imagebitmapsource\u2465"}, {"id": "ref-for-imagebitmapsource\u2466"}, {"id": "ref-for-imagebitmapsource\u2467"}, {"id": "ref-for-imagebitmapsource\u2468"}, {"id": "ref-for-imagebitmapsource\u2460\u24ea"}, {"id": "ref-for-imagebitmapsource\u2460\u2460"}], "title": "2.1. Image sources for detection"}, {"refs": [{"id": "ref-for-imagebitmapsource\u2460\u2461"}, {"id": "ref-for-imagebitmapsource\u2460\u2462"}, {"id": "ref-for-imagebitmapsource\u2460\u2463"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-imagebitmapsource\u2460\u2464"}, {"id": "ref-for-imagebitmapsource\u2460\u2465"}, {"id": "ref-for-imagebitmapsource\u2460\u2466"}], "title": "2.3. Barcode Detection API"}], "external": true};
+window.dfnpanelData['a72449dd'] = {"dfnID": "a72449dd", "url": "https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel", "dfnText": "in parallel", "refSections": [{"refs": [{"id": "ref-for-in-parallel"}], "title": "2.3. Barcode Detection API"}], "external": true};
+window.dfnpanelData['086e3aff'] = {"dfnID": "086e3aff", "url": "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['621f3aeb'] = {"dfnID": "621f3aeb", "url": "https://html.spec.whatwg.org/multipage/media.html#dom-media-readystate", "dfnText": "readyState", "refSections": [{"refs": [{"id": "ref-for-dom-media-readystate"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['c2229d72'] = {"dfnID": "c2229d72", "url": "https://w3c.github.io/mediacapture-image/#dictdef-point2d", "dfnText": "Point2D", "refSections": [{"refs": [{"id": "ref-for-dictdef-point2d"}, {"id": "ref-for-dictdef-point2d\u2460"}], "title": "2.2.2. DetectedFace"}, {"refs": [{"id": "ref-for-dictdef-point2d\u2461"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dictdef-point2d\u2462"}, {"id": "ref-for-dictdef-point2d\u2463"}], "title": "2.3.2. DetectedBarcode"}], "external": true};
+window.dfnpanelData['dca2de17'] = {"dfnID": "dca2de17", "url": "https://webidl.spec.whatwg.org/#idl-DOMException", "dfnText": "DOMException", "refSections": [{"refs": [{"id": "ref-for-idl-DOMException"}, {"id": "ref-for-idl-DOMException\u2460"}, {"id": "ref-for-idl-DOMException\u2461"}, {"id": "ref-for-idl-DOMException\u2462"}, {"id": "ref-for-idl-DOMException\u2463"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['8855a9aa'] = {"dfnID": "8855a9aa", "url": "https://webidl.spec.whatwg.org/#idl-DOMString", "dfnText": "DOMString", "refSections": [{"refs": [{"id": "ref-for-idl-DOMString"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-idl-DOMString\u2460"}, {"id": "ref-for-idl-DOMString\u2461"}], "title": "2.3.2. DetectedBarcode"}], "external": true};
+window.dfnpanelData['889e932f'] = {"dfnID": "889e932f", "url": "https://webidl.spec.whatwg.org/#Exposed", "dfnText": "Exposed", "refSections": [{"refs": [{"id": "ref-for-Exposed"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-Exposed\u2460"}], "title": "2.3. Barcode Detection API"}], "external": true};
+window.dfnpanelData['797018a7'] = {"dfnID": "797018a7", "url": "https://webidl.spec.whatwg.org/#invalidstateerror", "dfnText": "InvalidStateError", "refSections": [{"refs": [{"id": "ref-for-invalidstateerror"}, {"id": "ref-for-invalidstateerror\u2460"}, {"id": "ref-for-invalidstateerror\u2461"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['bdbd19d1'] = {"dfnID": "bdbd19d1", "url": "https://webidl.spec.whatwg.org/#idl-promise", "dfnText": "Promise", "refSections": [{"refs": [{"id": "ref-for-idl-promise"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-idl-promise\u2460"}, {"id": "ref-for-idl-promise\u2461"}, {"id": "ref-for-idl-promise\u2462"}], "title": "2.3. Barcode Detection API"}], "external": true};
+window.dfnpanelData['b75bb3bd'] = {"dfnID": "b75bb3bd", "url": "https://webidl.spec.whatwg.org/#SecureContext", "dfnText": "SecureContext", "refSections": [{"refs": [{"id": "ref-for-SecureContext"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-SecureContext\u2460"}], "title": "2.3. Barcode Detection API"}], "external": true};
+window.dfnpanelData['c3e881ef'] = {"dfnID": "c3e881ef", "url": "https://webidl.spec.whatwg.org/#securityerror", "dfnText": "SecurityError", "refSections": [{"refs": [{"id": "ref-for-securityerror"}, {"id": "ref-for-securityerror\u2460"}], "title": "2.1. Image sources for detection"}], "external": true};
+window.dfnpanelData['82ca3efc'] = {"dfnID": "82ca3efc", "url": "https://webidl.spec.whatwg.org/#exceptiondef-typeerror", "dfnText": "TypeError", "refSections": [{"refs": [{"id": "ref-for-exceptiondef-typeerror"}, {"id": "ref-for-exceptiondef-typeerror\u2460"}], "title": "2.3. Barcode Detection API"}], "external": true};
+window.dfnpanelData['5372cca8'] = {"dfnID": "5372cca8", "url": "https://webidl.spec.whatwg.org/#idl-boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-idl-boolean"}, {"id": "ref-for-idl-boolean\u2460"}], "title": "2.2.1. FaceDetectorOptions"}], "external": true};
+window.dfnpanelData['9cce47fd'] = {"dfnID": "9cce47fd", "url": "https://webidl.spec.whatwg.org/#idl-sequence", "dfnText": "sequence", "refSections": [{"refs": [{"id": "ref-for-idl-sequence"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-idl-sequence\u2460"}, {"id": "ref-for-idl-sequence\u2461"}, {"id": "ref-for-idl-sequence\u2462"}], "title": "2.2.2. DetectedFace"}, {"refs": [{"id": "ref-for-idl-sequence\u2463"}, {"id": "ref-for-idl-sequence\u2464"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-idl-sequence\u2465"}], "title": "2.3.1. BarcodeDetectorOptions"}, {"refs": [{"id": "ref-for-idl-sequence\u2466"}, {"id": "ref-for-idl-sequence\u2467"}], "title": "2.3.2. DetectedBarcode"}], "external": true};
+window.dfnpanelData['450958f7'] = {"dfnID": "450958f7", "url": "https://webidl.spec.whatwg.org/#idl-unsigned-short", "dfnText": "unsigned short", "refSections": [{"refs": [{"id": "ref-for-idl-unsigned-short"}, {"id": "ref-for-idl-unsigned-short\u2460"}], "title": "2.2.1. FaceDetectorOptions"}], "external": true};
+window.dfnpanelData['facedetector'] = {"dfnID": "facedetector", "url": "#facedetector", "dfnText": "FaceDetector", "refSections": [{"refs": [{"id": "ref-for-facedetector"}, {"id": "ref-for-facedetector\u2460"}, {"id": "ref-for-facedetector\u2461"}], "title": "2.2. Face Detection API"}], "external": false};
+window.dfnpanelData['dom-facedetector-facedetector'] = {"dfnID": "dom-facedetector-facedetector", "url": "#dom-facedetector-facedetector", "dfnText": "FaceDetector(optional FaceDetectorOptions faceDetectorOptions)", "refSections": [{"refs": [{"id": "ref-for-dom-facedetector-facedetector"}], "title": "2.2. Face Detection API"}], "external": false};
+window.dfnpanelData['dom-facedetector-detect'] = {"dfnID": "dom-facedetector-detect", "url": "#dom-facedetector-detect", "dfnText": "detect(ImageBitmapSource image)", "refSections": [{"refs": [{"id": "ref-for-dom-facedetector-detect"}, {"id": "ref-for-dom-facedetector-detect\u2460"}], "title": "2.2. Face Detection API"}], "external": false};
+window.dfnpanelData['dictdef-facedetectoroptions'] = {"dfnID": "dictdef-facedetectoroptions", "url": "#dictdef-facedetectoroptions", "dfnText": "FaceDetectorOptions", "refSections": [{"refs": [{"id": "ref-for-dictdef-facedetectoroptions"}, {"id": "ref-for-dictdef-facedetectoroptions\u2460"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-dictdef-facedetectoroptions\u2461"}], "title": "2.2.1. FaceDetectorOptions"}], "external": false};
+window.dfnpanelData['dom-facedetectoroptions-maxdetectedfaces'] = {"dfnID": "dom-facedetectoroptions-maxdetectedfaces", "url": "#dom-facedetectoroptions-maxdetectedfaces", "dfnText": "maxDetectedFaces", "refSections": [{"refs": [{"id": "ref-for-dom-facedetectoroptions-maxdetectedfaces"}], "title": "2.2.1. FaceDetectorOptions"}], "external": false};
+window.dfnpanelData['dom-facedetectoroptions-fastmode'] = {"dfnID": "dom-facedetectoroptions-fastmode", "url": "#dom-facedetectoroptions-fastmode", "dfnText": "fastMode", "refSections": [{"refs": [{"id": "ref-for-dom-facedetectoroptions-fastmode"}], "title": "2.2.1. FaceDetectorOptions"}], "external": false};
+window.dfnpanelData['dictdef-detectedface'] = {"dfnID": "dictdef-detectedface", "url": "#dictdef-detectedface", "dfnText": "DetectedFace", "refSections": [{"refs": [{"id": "ref-for-dictdef-detectedface"}, {"id": "ref-for-dictdef-detectedface\u2460"}, {"id": "ref-for-dictdef-detectedface\u2461"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-dictdef-detectedface\u2462"}, {"id": "ref-for-dictdef-detectedface\u2463"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dom-detectedface-boundingbox'] = {"dfnID": "dom-detectedface-boundingbox", "url": "#dom-detectedface-boundingbox", "dfnText": "boundingBox", "refSections": [{"refs": [{"id": "ref-for-dom-detectedface-boundingbox"}], "title": "2.2. Face Detection API"}, {"refs": [{"id": "ref-for-dom-detectedface-boundingbox\u2460"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dom-detectedface-landmarks'] = {"dfnID": "dom-detectedface-landmarks", "url": "#dom-detectedface-landmarks", "dfnText": "landmarks", "refSections": [{"refs": [{"id": "ref-for-dom-detectedface-landmarks"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dictdef-landmark'] = {"dfnID": "dictdef-landmark", "url": "#dictdef-landmark", "dfnText": "Landmark", "refSections": [{"refs": [{"id": "ref-for-dictdef-landmark"}, {"id": "ref-for-dictdef-landmark\u2460"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dom-landmark-locations'] = {"dfnID": "dom-landmark-locations", "url": "#dom-landmark-locations", "dfnText": "locations", "refSections": [{"refs": [{"id": "ref-for-dom-landmark-locations"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dom-landmark-type'] = {"dfnID": "dom-landmark-type", "url": "#dom-landmark-type", "dfnText": "type", "refSections": [{"refs": [{"id": "ref-for-dom-landmark-type"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['enumdef-landmarktype'] = {"dfnID": "enumdef-landmarktype", "url": "#enumdef-landmarktype", "dfnText": "LandmarkType", "refSections": [{"refs": [{"id": "ref-for-enumdef-landmarktype"}, {"id": "ref-for-enumdef-landmarktype\u2460"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dom-landmarktype-mouth'] = {"dfnID": "dom-landmarktype-mouth", "url": "#dom-landmarktype-mouth", "dfnText": "mouth", "refSections": [{"refs": [{"id": "ref-for-dom-landmarktype-mouth"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dom-landmarktype-eye'] = {"dfnID": "dom-landmarktype-eye", "url": "#dom-landmarktype-eye", "dfnText": "eye", "refSections": [{"refs": [{"id": "ref-for-dom-landmarktype-eye"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['dom-landmarktype-nose'] = {"dfnID": "dom-landmarktype-nose", "url": "#dom-landmarktype-nose", "dfnText": "nose", "refSections": [{"refs": [{"id": "ref-for-dom-landmarktype-nose"}], "title": "2.2.2. DetectedFace"}], "external": false};
+window.dfnpanelData['barcodedetector'] = {"dfnID": "barcodedetector", "url": "#barcodedetector", "dfnText": "BarcodeDetector", "refSections": [{"refs": [{"id": "ref-for-barcodedetector"}, {"id": "ref-for-barcodedetector\u2460"}, {"id": "ref-for-barcodedetector\u2461"}], "title": "2.3. Barcode Detection API"}], "external": false};
+window.dfnpanelData['dom-barcodedetector-barcodedetector'] = {"dfnID": "dom-barcodedetector-barcodedetector", "url": "#dom-barcodedetector-barcodedetector", "dfnText": "BarcodeDetector(optional BarcodeDetectorOptions barcodeDetectorOptions)", "refSections": [{"refs": [{"id": "ref-for-dom-barcodedetector-barcodedetector"}], "title": "2.3. Barcode Detection API"}], "external": false};
+window.dfnpanelData['dom-barcodedetector-getsupportedformats'] = {"dfnID": "dom-barcodedetector-getsupportedformats", "url": "#dom-barcodedetector-getsupportedformats", "dfnText": "getSupportedFormats()", "refSections": [{"refs": [{"id": "ref-for-dom-barcodedetector-getsupportedformats"}], "title": "2.3. Barcode Detection API"}], "external": false};
+window.dfnpanelData['dom-barcodedetector-detect'] = {"dfnID": "dom-barcodedetector-detect", "url": "#dom-barcodedetector-detect", "dfnText": "detect(ImageBitmapSource image)", "refSections": [{"refs": [{"id": "ref-for-dom-barcodedetector-detect"}, {"id": "ref-for-dom-barcodedetector-detect\u2460"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dom-barcodedetector-detect\u2461"}], "title": "2.3.1. BarcodeDetectorOptions"}], "external": false};
+window.dfnpanelData['dictdef-barcodedetectoroptions'] = {"dfnID": "dictdef-barcodedetectoroptions", "url": "#dictdef-barcodedetectoroptions", "dfnText": "BarcodeDetectorOptions", "refSections": [{"refs": [{"id": "ref-for-dictdef-barcodedetectoroptions"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dictdef-barcodedetectoroptions\u2460"}], "title": "2.3.1. BarcodeDetectorOptions"}], "external": false};
+window.dfnpanelData['dom-barcodedetectoroptions-formats'] = {"dfnID": "dom-barcodedetectoroptions-formats", "url": "#dom-barcodedetectoroptions-formats", "dfnText": "formats", "refSections": [{"refs": [{"id": "ref-for-dom-barcodedetectoroptions-formats"}, {"id": "ref-for-dom-barcodedetectoroptions-formats\u2460"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dom-barcodedetectoroptions-formats\u2461"}], "title": "2.3.1. BarcodeDetectorOptions"}], "external": false};
+window.dfnpanelData['dictdef-detectedbarcode'] = {"dfnID": "dictdef-detectedbarcode", "url": "#dictdef-detectedbarcode", "dfnText": "DetectedBarcode", "refSections": [{"refs": [{"id": "ref-for-dictdef-detectedbarcode"}, {"id": "ref-for-dictdef-detectedbarcode\u2460"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dictdef-detectedbarcode\u2461"}], "title": "2.3.2. DetectedBarcode"}], "external": false};
+window.dfnpanelData['dom-detectedbarcode-boundingbox'] = {"dfnID": "dom-detectedbarcode-boundingbox", "url": "#dom-detectedbarcode-boundingbox", "dfnText": "boundingBox", "refSections": [{"refs": [{"id": "ref-for-dom-detectedbarcode-boundingbox"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dom-detectedbarcode-boundingbox\u2460"}], "title": "2.3.2. DetectedBarcode"}], "external": false};
+window.dfnpanelData['dom-detectedbarcode-rawvalue'] = {"dfnID": "dom-detectedbarcode-rawvalue", "url": "#dom-detectedbarcode-rawvalue", "dfnText": "rawValue", "refSections": [{"refs": [{"id": "ref-for-dom-detectedbarcode-rawvalue"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dom-detectedbarcode-rawvalue\u2460"}], "title": "2.3.2. DetectedBarcode"}], "external": false};
+window.dfnpanelData['dom-detectedbarcode-format'] = {"dfnID": "dom-detectedbarcode-format", "url": "#dom-detectedbarcode-format", "dfnText": "format", "refSections": [{"refs": [{"id": "ref-for-dom-detectedbarcode-format"}], "title": "2.3.2. DetectedBarcode"}], "external": false};
+window.dfnpanelData['dom-detectedbarcode-cornerpoints'] = {"dfnID": "dom-detectedbarcode-cornerpoints", "url": "#dom-detectedbarcode-cornerpoints", "dfnText": "cornerPoints", "refSections": [{"refs": [{"id": "ref-for-dom-detectedbarcode-cornerpoints"}], "title": "2.3.2. DetectedBarcode"}], "external": false};
+window.dfnpanelData['enumdef-barcodeformat'] = {"dfnID": "enumdef-barcodeformat", "url": "#enumdef-barcodeformat", "dfnText": "BarcodeFormat", "refSections": [{"refs": [{"id": "ref-for-enumdef-barcodeformat"}, {"id": "ref-for-enumdef-barcodeformat\u2460"}, {"id": "ref-for-enumdef-barcodeformat\u2461"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-enumdef-barcodeformat\u2462"}, {"id": "ref-for-enumdef-barcodeformat\u2463"}, {"id": "ref-for-enumdef-barcodeformat\u2464"}], "title": "2.3.1. BarcodeDetectorOptions"}, {"refs": [{"id": "ref-for-enumdef-barcodeformat\u2465"}, {"id": "ref-for-enumdef-barcodeformat\u2466"}, {"id": "ref-for-enumdef-barcodeformat\u2467"}], "title": "2.3.2. DetectedBarcode"}, {"refs": [{"id": "ref-for-enumdef-barcodeformat\u2468"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-aztec'] = {"dfnID": "dom-barcodeformat-aztec", "url": "#dom-barcodeformat-aztec", "dfnText": "aztec", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-aztec"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-code_128'] = {"dfnID": "dom-barcodeformat-code_128", "url": "#dom-barcodeformat-code_128", "dfnText": "code_128", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-code_128"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['code-128'] = {"dfnID": "code-128", "url": "#code-128", "dfnText": "Code 128", "refSections": [{"refs": [{"id": "ref-for-code-128"}, {"id": "ref-for-code-128\u2460"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-code_39'] = {"dfnID": "dom-barcodeformat-code_39", "url": "#dom-barcodeformat-code_39", "dfnText": "code_39", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-code_39"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['code-39'] = {"dfnID": "code-39", "url": "#code-39", "dfnText": "Code 39", "refSections": [{"refs": [{"id": "ref-for-code-39"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-code_93'] = {"dfnID": "dom-barcodeformat-code_93", "url": "#dom-barcodeformat-code_93", "dfnText": "code_93", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-code_93"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-codabar'] = {"dfnID": "dom-barcodeformat-codabar", "url": "#dom-barcodeformat-codabar", "dfnText": "codabar", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-codabar"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-data_matrix'] = {"dfnID": "dom-barcodeformat-data_matrix", "url": "#dom-barcodeformat-data_matrix", "dfnText": "data_matrix", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-data_matrix"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-ean_13'] = {"dfnID": "dom-barcodeformat-ean_13", "url": "#dom-barcodeformat-ean_13", "dfnText": "ean_13", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-ean_13"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['ean-13'] = {"dfnID": "ean-13", "url": "#ean-13", "dfnText": "EAN-13", "refSections": [{"refs": [{"id": "ref-for-ean-13"}, {"id": "ref-for-ean-13\u2460"}, {"id": "ref-for-ean-13\u2461"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-ean_8'] = {"dfnID": "dom-barcodeformat-ean_8", "url": "#dom-barcodeformat-ean_8", "dfnText": "ean_8", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-ean_8"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-itf'] = {"dfnID": "dom-barcodeformat-itf", "url": "#dom-barcodeformat-itf", "dfnText": "itf", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-itf"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-pdf417'] = {"dfnID": "dom-barcodeformat-pdf417", "url": "#dom-barcodeformat-pdf417", "dfnText": "pdf417", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-pdf417"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-qr_code'] = {"dfnID": "dom-barcodeformat-qr_code", "url": "#dom-barcodeformat-qr_code", "dfnText": "qr_code", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-qr_code"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-unknown'] = {"dfnID": "dom-barcodeformat-unknown", "url": "#dom-barcodeformat-unknown", "dfnText": "unknown", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-unknown"}], "title": "2.3. Barcode Detection API"}, {"refs": [{"id": "ref-for-dom-barcodeformat-unknown\u2460"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-upc_a'] = {"dfnID": "dom-barcodeformat-upc_a", "url": "#dom-barcodeformat-upc_a", "dfnText": "upc_a", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-upc_a"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['upc-a'] = {"dfnID": "upc-a", "url": "#upc-a", "dfnText": "UPC-A", "refSections": [{"refs": [{"id": "ref-for-upc-a"}, {"id": "ref-for-upc-a\u2460"}, {"id": "ref-for-upc-a\u2461"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+window.dfnpanelData['dom-barcodeformat-upc_e'] = {"dfnID": "dom-barcodeformat-upc_e", "url": "#dom-barcodeformat-upc_e", "dfnText": "upc_e", "refSections": [{"refs": [{"id": "ref-for-dom-barcodeformat-upc_e"}], "title": "2.3.3. BarcodeFormat"}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}
+</script>
+<script>/* Boilerplate: script-position-annos */
+"use strict";
+{
+
+function repositionAnnoPanels(){
+    const panels = [...document.querySelectorAll("[data-anno-for]")];
+    const main = document.querySelector("main");
+    let mainRect;
+    if(main) mainRect = main.getBoundingClientRect();
+    for(const panel of panels) {
+        const dfn = document.getElementById(panel.getAttribute("data-anno-for"));
+        if(!dfn) {
+            console.log("Can't find the annotation panel target:", panel);
+            continue;
+        }
+        const rect = dfn.getBoundingClientRect();
+        const top = window.scrollY + rect.top
+        panel.style.top = top + "px";
+        panel.top = top;
+        panel.height = rect.height;
+        panel.classList.remove("unpositioned");
+        const panelRect = panel.getBoundingClientRect()
+        if(main) {
+            panel.classList.toggle("overlapping-main", panelRect.left < mainRect.right)
+        }
+    }
+    let vSoFar = 0;
+    for(const panel of panels.sort(cmpTops)) {
+        if(panel.top < vSoFar) {
+            panel.top = vSoFar;
+            panel.style.top = vSoFar + "px";
+        }
+        vSoFar = panel.top + panel.height + 15;
+    }
+}
+
+function cmpTops(a,b) {
+    return a.top - b.top;
+}
+
+window.addEventListener("load", repositionAnnoPanels);
+window.addEventListener("resize", repositionAnnoPanels);
+}
+</script>
