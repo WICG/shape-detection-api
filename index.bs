@@ -49,6 +49,8 @@ Please see the <a href="https://github.com/WICG/shape-detection-api/blob/master/
 
 Individual browsers MAY provide Detectors indicating the availability of hardware providing accelerated operation.
 
+Detecting features in an image occurs asynchronously, potentially communicating with acceleration hardware independent of the browser. Completion events use the <dfn>shape detection task source</dfn>.
+
 ## Image sources for detection ## {#image-sources-for-detection}
 
 <p class="note">
@@ -209,13 +211,13 @@ interface BarcodeDetector {
   <dd>This method, when invoked, MUST return a new {{Promise}} |promise| and run the following steps <a>in parallel</a>:
     <ol>
       <li>Let |supportedFormats| be a new {{Array}}.</li>
-      <li>If the UA does not support barcode detection, resolve |promise| with |supportedFormats| and abort these steps.</li>
+      <li>If the UA does not support barcode detection, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=shape detection task source=] to [=resolve=] |promise| with |supportedFormats| and abort these steps.</li>
       <li>Enumerate the {{BarcodeFormat}}s that the UA understands as potentially detectable in images. Add these to |supportedFormats|.
       <div class="note">
         The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in |supportedFormats| array, however, it should not be detectable whatsoever.
       </div>
       </li>
-      <li>Resolve |promise| with |supportedFormats|.</li>
+      <li>[=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=shape detection task source=] to [=resolve=] |promise| with |supportedFormats|.</li>
    </ol>
   <div class="note">
     The list of supported {{BarcodeFormat}}s is platform dependent, some examples are the ones supported by <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/BarcodeDetector.Builder.html#setBarcodeFormats(int)">Google Play Services</a> and <a href="https://developer.apple.com/documentation/coreimage/ciqrcodefeature?preferredLanguage=occ#overview">Apple's QICRCodeFeature</a>.
