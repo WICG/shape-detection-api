@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
-  <meta content="e516bfc4911142d32f4c0e00e8dd5acf98ed4b03" name="revision">
+  <meta content="7499404e05d322088717f39e6d88941b223ba86f" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -1035,6 +1035,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>Please see the <a href="https://github.com/WICG/shape-detection-api/blob/master/README.md">Readme/Explainer</a> in the repository.</p>
    <h2 class="heading settled" data-level="2" id="api"><span class="secno">2. </span><span class="content">Shape Detection API</span><a class="self-link" href="#api"></a></h2>
    <p>Individual browsers MAY provide Detectors indicating the availability of hardware providing accelerated operation.</p>
+   <p>Detecting features in an image occurs asynchronously, potentially communicating with acceleration hardware independent of the browser. Completion events use the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shape-detection-task-source">shape detection task source</dfn>.</p>
    <h3 class="heading settled" data-level="2.1" id="image-sources-for-detection"><span class="secno">2.1. </span><span class="content">Image sources for detection</span><a class="self-link" href="#image-sources-for-detection"></a></h3>
    <p class="note" role="note"> This section is inspired by <a href="https://www.w3.org/TR/2dcontext/#image-sources-for-2d-rendering-contexts">HTML Canvas 2D Context § image-sources-for-2d-rendering-contexts</a>. </p>
    <p><code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource">ImageBitmapSource</a></code> allows objects implementing any of a number of interfaces to be used as image sources for the detection process.</p>
@@ -1161,11 +1162,11 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
      This method, when invoked, MUST return a new <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise③">Promise</a></code> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>: 
      <ol>
       <li>Let <var>supportedFormats</var> be a new <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-objects" id="ref-for-sec-array-objects">Array</a></code>.
-      <li>If the UA does not support barcode detection, resolve <var>promise</var> with <var>supportedFormats</var> and abort these steps.
+      <li>If the UA does not support barcode detection, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task">queue a global task</a> on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global">relevant global object</a> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a> using the <a data-link-type="dfn" href="#shape-detection-task-source" id="ref-for-shape-detection-task-source">shape detection task source</a> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve">resolve</a> <var>promise</var> with <var>supportedFormats</var> and abort these steps.
       <li>
        Enumerate the <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat①">BarcodeFormat</a></code>s that the UA understands as potentially detectable in images. Add these to <var>supportedFormats</var>. 
        <div class="note" role="note"> The UA cannot give a definitive answer as to whether a given barcode format will <i>always</i> be recognized on an image due to e.g. positioning of the symbols or encoding errors. If a given barcode symbology is not in <var>supportedFormats</var> array, however, it should not be detectable whatsoever. </div>
-      <li>Resolve <var>promise</var> with <var>supportedFormats</var>.
+      <li><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task①">Queue a global task</a> on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a> using the <a data-link-type="dfn" href="#shape-detection-task-source" id="ref-for-shape-detection-task-source①">shape detection task source</a> to <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#resolve" id="ref-for-resolve①">resolve</a> <var>promise</var> with <var>supportedFormats</var>.
      </ol>
      <div class="note" role="note"> The list of supported <code class="idl"><a data-link-type="idl" href="#enumdef-barcodeformat" id="ref-for-enumdef-barcodeformat②">BarcodeFormat</a></code>s is platform dependent, some examples are the ones supported by <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/BarcodeDetector.Builder.html#setBarcodeFormats(int)">Google Play Services</a> and <a href="https://developer.apple.com/documentation/coreimage/ciqrcodefeature?preferredLanguage=occ#overview">Apple’s QICRCodeFeature</a>. </div>
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="BarcodeDetector" data-dfn-type="method" data-export data-lt="detect(image)" id="dom-barcodedetector-detect"><code>detect(ImageBitmapSource <var>image</var>)</code></dfn>
@@ -1418,6 +1419,7 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
    <li><a href="#dom-barcodeformat-qr_code">"qr_code"</a><span>, in § 2.3.3</span>
    <li><a href="#dom-barcodeformat-qr_code">qr_code</a><span>, in § 2.3.3</span>
    <li><a href="#dom-detectedbarcode-rawvalue">rawValue</a><span>, in § 2.3.2</span>
+   <li><a href="#shape-detection-task-source">shape detection task source</a><span>, in § 2</span>
    <li><a href="#dom-landmark-type">type</a><span>, in § 2.2.2</span>
    <li><a href="#dom-barcodeformat-unknown">"unknown"</a><span>, in § 2.3.3</span>
    <li><a href="#dom-barcodeformat-unknown">unknown</a><span>, in § 2.3.3</span>
@@ -1450,7 +1452,9 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
      <li><span class="dfn-paneled" id="aeb8d5fd">ImageBitmapSource</span>
      <li><span class="dfn-paneled" id="a72449dd">in parallel</span>
      <li><span class="dfn-paneled" id="086e3aff">origin</span>
+     <li><span class="dfn-paneled" id="48438eb3">queue a global task</span>
      <li><span class="dfn-paneled" id="621f3aeb">readyState</span>
+     <li><span class="dfn-paneled" id="e99bd18e">relevant global object</span>
     </ul>
    <li>
     <a data-link-type="biblio">[IMAGE-CAPTURE]</a> defines the following terms:
@@ -1469,7 +1473,9 @@ barcodeDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
      <li><span class="dfn-paneled" id="c3e881ef">SecurityError</span>
      <li><span class="dfn-paneled" id="82ca3efc">TypeError</span>
      <li><span class="dfn-paneled" id="5372cca8">boolean</span>
+     <li><span class="dfn-paneled" id="3b90bdcd">resolve</span>
      <li><span class="dfn-paneled" id="9cce47fd">sequence</span>
+     <li><span class="dfn-paneled" id="4013a022">this</span>
      <li><span class="dfn-paneled" id="450958f7">unsigned short</span>
     </ul>
   </ul>
@@ -1847,8 +1853,11 @@ function parseHTML(markup) {
 let dfnPanelData = {
 "086e3aff": {"dfnID":"086e3aff","dfnText":"origin","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-origin"}],"title":"2.1. Image sources for detection"}],"url":"https://html.spec.whatwg.org/multipage/browsers.html#concept-origin"},
 "36a0b7c1": {"dfnID":"36a0b7c1","dfnText":"HAVE_METADATA","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-media-have_metadata"}],"title":"2.1. Image sources for detection"}],"url":"https://html.spec.whatwg.org/multipage/media.html#dom-media-have_metadata"},
+"3b90bdcd": {"dfnID":"3b90bdcd","dfnText":"resolve","external":true,"refSections":[{"refs":[{"id":"ref-for-resolve"},{"id":"ref-for-resolve\u2460"}],"title":"2.3. Barcode Detection API"}],"url":"https://webidl.spec.whatwg.org/#resolve"},
 "3f5f11ee": {"dfnID":"3f5f11ee","dfnText":"HAVE_NOTHING","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-media-have_nothing"}],"title":"2.1. Image sources for detection"}],"url":"https://html.spec.whatwg.org/multipage/media.html#dom-media-have_nothing"},
+"4013a022": {"dfnID":"4013a022","dfnText":"this","external":true,"refSections":[{"refs":[{"id":"ref-for-this"},{"id":"ref-for-this\u2460"}],"title":"2.3. Barcode Detection API"}],"url":"https://webidl.spec.whatwg.org/#this"},
 "450958f7": {"dfnID":"450958f7","dfnText":"unsigned short","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-unsigned-short"},{"id":"ref-for-idl-unsigned-short\u2460"}],"title":"2.2.1. FaceDetectorOptions"}],"url":"https://webidl.spec.whatwg.org/#idl-unsigned-short"},
+"48438eb3": {"dfnID":"48438eb3","dfnText":"queue a global task","external":true,"refSections":[{"refs":[{"id":"ref-for-queue-a-global-task"},{"id":"ref-for-queue-a-global-task\u2460"}],"title":"2.3. Barcode Detection API"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task"},
 "5372cca8": {"dfnID":"5372cca8","dfnText":"boolean","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-boolean"},{"id":"ref-for-idl-boolean\u2460"}],"title":"2.2.1. FaceDetectorOptions"}],"url":"https://webidl.spec.whatwg.org/#idl-boolean"},
 "5b13c537": {"dfnID":"5b13c537","dfnText":"HTMLCanvasElement","external":true,"refSections":[{"refs":[{"id":"ref-for-htmlcanvaselement"},{"id":"ref-for-htmlcanvaselement\u2460"}],"title":"2.1. Image sources for detection"}],"url":"https://html.spec.whatwg.org/multipage/canvas.html#htmlcanvaselement"},
 "621f3aeb": {"dfnID":"621f3aeb","dfnText":"readyState","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-media-readystate"}],"title":"2.1. Image sources for detection"}],"url":"https://html.spec.whatwg.org/multipage/media.html#dom-media-readystate"},
@@ -1910,6 +1919,7 @@ let dfnPanelData = {
 "dom-landmarktype-eye": {"dfnID":"dom-landmarktype-eye","dfnText":"eye","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-landmarktype-eye"}],"title":"2.2.2. DetectedFace"}],"url":"#dom-landmarktype-eye"},
 "dom-landmarktype-mouth": {"dfnID":"dom-landmarktype-mouth","dfnText":"mouth","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-landmarktype-mouth"}],"title":"2.2.2. DetectedFace"}],"url":"#dom-landmarktype-mouth"},
 "dom-landmarktype-nose": {"dfnID":"dom-landmarktype-nose","dfnText":"nose","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-landmarktype-nose"}],"title":"2.2.2. DetectedFace"}],"url":"#dom-landmarktype-nose"},
+"e99bd18e": {"dfnID":"e99bd18e","dfnText":"relevant global object","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-relevant-global"},{"id":"ref-for-concept-relevant-global\u2460"}],"title":"2.3. Barcode Detection API"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global"},
 "ean-13": {"dfnID":"ean-13","dfnText":"EAN-13","external":false,"refSections":[{"refs":[{"id":"ref-for-ean-13"},{"id":"ref-for-ean-13\u2460"},{"id":"ref-for-ean-13\u2461"}],"title":"2.3.3. BarcodeFormat"}],"url":"#ean-13"},
 "enumdef-barcodeformat": {"dfnID":"enumdef-barcodeformat","dfnText":"BarcodeFormat","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-barcodeformat"},{"id":"ref-for-enumdef-barcodeformat\u2460"},{"id":"ref-for-enumdef-barcodeformat\u2461"}],"title":"2.3. Barcode Detection API"},{"refs":[{"id":"ref-for-enumdef-barcodeformat\u2462"},{"id":"ref-for-enumdef-barcodeformat\u2463"},{"id":"ref-for-enumdef-barcodeformat\u2464"}],"title":"2.3.1. BarcodeDetectorOptions"},{"refs":[{"id":"ref-for-enumdef-barcodeformat\u2465"},{"id":"ref-for-enumdef-barcodeformat\u2466"},{"id":"ref-for-enumdef-barcodeformat\u2467"}],"title":"2.3.2. DetectedBarcode"},{"refs":[{"id":"ref-for-enumdef-barcodeformat\u2468"}],"title":"2.3.3. BarcodeFormat"}],"url":"#enumdef-barcodeformat"},
 "enumdef-landmarktype": {"dfnID":"enumdef-landmarktype","dfnText":"LandmarkType","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-landmarktype"},{"id":"ref-for-enumdef-landmarktype\u2460"}],"title":"2.2.2. DetectedFace"}],"url":"#enumdef-landmarktype"},
@@ -1917,6 +1927,7 @@ let dfnPanelData = {
 "f57f330b": {"dfnID":"f57f330b","dfnText":"HTMLVideoElement","external":true,"refSections":[{"refs":[{"id":"ref-for-htmlvideoelement"},{"id":"ref-for-htmlvideoelement\u2460"}],"title":"2.1. Image sources for detection"}],"url":"https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement"},
 "facedetector": {"dfnID":"facedetector","dfnText":"FaceDetector","external":false,"refSections":[{"refs":[{"id":"ref-for-facedetector"},{"id":"ref-for-facedetector\u2460"},{"id":"ref-for-facedetector\u2461"}],"title":"2.2. Face Detection API"}],"url":"#facedetector"},
 "fdd2dd4e": {"dfnID":"fdd2dd4e","dfnText":"DOMRectReadOnly","external":true,"refSections":[{"refs":[{"id":"ref-for-domrectreadonly"},{"id":"ref-for-domrectreadonly\u2460"}],"title":"2.2.2. DetectedFace"},{"refs":[{"id":"ref-for-domrectreadonly\u2461"},{"id":"ref-for-domrectreadonly\u2462"}],"title":"2.3.2. DetectedBarcode"}],"url":"https://drafts.fxtf.org/geometry-1/#domrectreadonly"},
+"shape-detection-task-source": {"dfnID":"shape-detection-task-source","dfnText":"shape detection task source","external":false,"refSections":[{"refs":[{"id":"ref-for-shape-detection-task-source"},{"id":"ref-for-shape-detection-task-source\u2460"}],"title":"2.3. Barcode Detection API"}],"url":"#shape-detection-task-source"},
 "upc-a": {"dfnID":"upc-a","dfnText":"UPC-A","external":false,"refSections":[{"refs":[{"id":"ref-for-upc-a"},{"id":"ref-for-upc-a\u2460"},{"id":"ref-for-upc-a\u2461"}],"title":"2.3.3. BarcodeFormat"}],"url":"#upc-a"},
 };
 
@@ -2408,6 +2419,7 @@ let refsData = {
 "#enumdef-barcodeformat": {"displayText":"BarcodeFormat","export":true,"for_":[],"level":"1","normative":true,"shortname":"shape-detection-api","spec":"shape-detection-api-1","status":"local","text":"BarcodeFormat","type":"enum","url":"#enumdef-barcodeformat"},
 "#enumdef-landmarktype": {"displayText":"LandmarkType","export":true,"for_":[],"level":"1","normative":true,"shortname":"shape-detection-api","spec":"shape-detection-api-1","status":"local","text":"LandmarkType","type":"enum","url":"#enumdef-landmarktype"},
 "#facedetector": {"displayText":"FaceDetector","export":true,"for_":[],"level":"1","normative":true,"shortname":"shape-detection-api","spec":"shape-detection-api-1","status":"local","text":"FaceDetector","type":"interface","url":"#facedetector"},
+"#shape-detection-task-source": {"displayText":"shape detection task source","export":true,"for_":[],"level":"1","normative":true,"shortname":"shape-detection-api","spec":"shape-detection-api-1","status":"local","text":"shape detection task source","type":"dfn","url":"#shape-detection-task-source"},
 "#upc-a": {"displayText":"upc-a","export":true,"for_":[],"level":"1","normative":true,"shortname":"shape-detection-api","spec":"shape-detection-api-1","status":"local","text":"upc-a","type":"dfn","url":"#upc-a"},
 "https://drafts.fxtf.org/geometry-1/#domrectreadonly": {"displayText":"DOMRectReadOnly","export":true,"for_":[],"level":"1","normative":true,"shortname":"geometry","spec":"geometry-1","status":"current","text":"DOMRectReadOnly","type":"interface","url":"https://drafts.fxtf.org/geometry-1/#domrectreadonly"},
 "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin": {"displayText":"origin","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"origin","type":"dfn","url":"https://html.spec.whatwg.org/multipage/browsers.html#concept-origin"},
@@ -2419,6 +2431,8 @@ let refsData = {
 "https://html.spec.whatwg.org/multipage/media.html#dom-media-have_nothing": {"displayText":"HAVE_NOTHING","export":true,"for_":["HTMLMediaElement"],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"HAVE_NOTHING","type":"const","url":"https://html.spec.whatwg.org/multipage/media.html#dom-media-have_nothing"},
 "https://html.spec.whatwg.org/multipage/media.html#dom-media-readystate": {"displayText":"readyState","export":true,"for_":["HTMLMediaElement"],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"readyState","type":"attribute","url":"https://html.spec.whatwg.org/multipage/media.html#dom-media-readystate"},
 "https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement": {"displayText":"HTMLVideoElement","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"HTMLVideoElement","type":"interface","url":"https://html.spec.whatwg.org/multipage/media.html#htmlvideoelement"},
+"https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global": {"displayText":"relevant global object","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"relevant global object","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global"},
+"https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task": {"displayText":"queue a global task","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"queue a global task","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task"},
 "https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-objects": {"displayText":"Array","export":true,"for_":[],"level":"1","normative":true,"shortname":"ecmascript","spec":"ecmascript","status":"current","text":"Array","type":"interface","url":"https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-objects"},
 "https://w3c.github.io/mediacapture-image/#dictdef-point2d": {"displayText":"Point2D","export":true,"for_":[],"level":"1","normative":true,"shortname":"image-capture","spec":"image-capture","status":"current","text":"Point2D","type":"dictionary","url":"https://w3c.github.io/mediacapture-image/#dictdef-point2d"},
 "https://webidl.spec.whatwg.org/#Exposed": {"displayText":"Exposed","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Exposed","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#Exposed"},
@@ -2431,7 +2445,9 @@ let refsData = {
 "https://webidl.spec.whatwg.org/#idl-sequence": {"displayText":"sequence","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"sequence","type":"dfn","url":"https://webidl.spec.whatwg.org/#idl-sequence"},
 "https://webidl.spec.whatwg.org/#idl-unsigned-short": {"displayText":"unsigned short","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"unsigned short","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-unsigned-short"},
 "https://webidl.spec.whatwg.org/#invalidstateerror": {"displayText":"InvalidStateError","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"InvalidStateError","type":"exception","url":"https://webidl.spec.whatwg.org/#invalidstateerror"},
+"https://webidl.spec.whatwg.org/#resolve": {"displayText":"resolve","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"resolve","type":"dfn","url":"https://webidl.spec.whatwg.org/#resolve"},
 "https://webidl.spec.whatwg.org/#securityerror": {"displayText":"SecurityError","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"SecurityError","type":"exception","url":"https://webidl.spec.whatwg.org/#securityerror"},
+"https://webidl.spec.whatwg.org/#this": {"displayText":"this","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"this","type":"dfn","url":"https://webidl.spec.whatwg.org/#this"},
 };
 
 function mkRefHint(link, ref) {
