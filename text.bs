@@ -42,7 +42,10 @@ Please see the <a href="https://github.com/WICG/shape-detection-api/blob/gh-page
 
 # Text Detection API # {#api}
 
-Individual browsers MAY provide Detectors indicating the availability of hardware providing accelerated operation.
+Individual browsers MAY provide a {{TextDetector}} to perform text detection in images,
+potentially leveraging hardware acceleration or additional dependent libraries.
+The {{TextDetector/availability()}} method allows developers to check for the availability
+of these capabilities and specific language support.
 
 ## Image sources for detection ## {#image-sources-for-detection}
 
@@ -52,16 +55,25 @@ Please refer to [[SHAPE-DETECTION-API#image-sources-for-detection]]
 
 {{TextDetector}} represents an underlying accelerated platform's component for detection in images of Latin-1 text as defined in [[iso8859-1]].  It provides a single {{TextDetector/detect()}} operation on an {{ImageBitmapSource}} of which the result is a Promise.  This method must reject this Promise in the cases detailed in [[#image-sources-for-detection]]; otherwise it may queue a task using the OS/Platform resources to resolve the Promise with a sequence of {{DetectedText}}s, each one essentially consisting on a {{DetectedText/rawValue}} and delimited by a {{DetectedText/boundingBox}} and a series of {{Point2D}}s.
 
-<div class="example">
-Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple's CIDetector</a> (bounding box only, no OCR) or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>.
-</div>
+
 
 <xmp class="idl">
+dictionary TextDetectorOptions {
+    required sequence<DOMString> languages;
+};
+
+dictionary TextDetectorCreateOptions {
+    AbortSignal signal;
+    sequence<DOMString> languages;
+};
+
 [
     Exposed=(Window,Worker),
     SecureContext
 ] interface TextDetector {
     constructor();
+    static Promise<Availability> availability(TextDetectorOptions options);
+    static Promise<TextDetector> create(optional TextDetectorCreateOptions options);
     Promise<sequence<DetectedText>> detect(ImageBitmapSource image);
 };
 </xmp>
@@ -73,9 +85,50 @@ Example implementations of Text code detection are e.g. <a href="https://develop
     Detectors may potentially allocate and hold significant resources. Where possible, reuse the same {{TextDetector}} for several detections.
     </div>
   </dd>
+  <dt><dfn method for="TextDetector"><code>availability(TextDetectorOptions |options|)</code></dfn></dt>
+  <dd>
+    <p>
+      Returns a {{Promise}} that resolves with an {{Availability}} object
+      indicating the overall availability status for the specified |options| languages for text
+      detection.
+    </p>
+    <p>
+      The returned {{Availability}} value is determined by the following precedence,
+      applied across all requested languages:
+    </p>
+    <ul>
+      <li>If any requested language is <code>"unavailable"</code>, the method returns
+      <code>"unavailable"</code>.</li>
+      <li>Otherwise, if any requested language is <code>"downloadable"</code>, the method
+      returns <code>"downloadable"</code>.</li>
+      <li>Otherwise, if any requested language is <code>"downloading"</code>, the method
+      returns <code>"downloading"</code>.</li>
+      <li>Otherwise, all requested languages are <code>"available"</code>, and the method
+      returns <code>"available"</code>.</li>
+    </ul>
+    <div class="note">
+      This method allows developers to check for specific language support before
+      attempting to create a {{TextDetector}} instance.
+    </div>
+  </dd>
+  <dt><dfn method for="TextDetector"><code>create(optional TextDetectorCreateOptions |options|)</code></dfn></dt>
+  <dd>
+    <p>
+      Returns a {{Promise}} that resolves with a new {{TextDetector}}
+      instance.
+    </p>
+    <div class="note">
+      This factory method handles the asynchronous initialization of the
+      text detector, including downloading necessary resources. It is recommended
+      to use this asynchronous method over the synchronous constructor
+      to accommodate potential delays from dependency downloads or initialization,
+      ensuring a smoother user experience.
+    </div>
+  </dd>
   <dt><dfn method for="TextDetector"><code>detect(ImageBitmapSource |image|)</code></dfn></dt>
   <dd>Tries to detect text blocks in the {{ImageBitmapSource}} |image|.</dd>
 </dl>
+
 
 ### {{DetectedText}} ### {#detectedtext-section}
 
@@ -102,49 +155,66 @@ dictionary DetectedText {
 
 <i>This section is non-normative.</i>
 
-<p class="note">
-Slightly modified/extended versions of these examples (and more) can be found in
- e.g. <a href="https://codepen.io/collection/DwWVJj/">this codepen collection</a>.
-</p>
+
 
 ## Platform support for a text detector ## {#example-feature-detection}
 
-<div class="note">
-The following example can also be found in e.g. <a
-href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a>
-with minimal modifications.
-</div>
-
 <div class="example">
 ```js
-if (window.TextDetector == undefined) {
+if (!('TextDetector' in window)) {
   console.error('Text Detection not supported on this platform');
+} else {
+  const languages = ['en', 'es']; // English and Spanish
+  TextDetector.availability({ languages: languages }).then(availability => {
+    if (availability === 'unavailable') {
+      console.log('Not all of the requested languages are supported.');
+      return;
+    }
+
+    if (availability === 'downloadable') {
+      console.log('Languages need to be downloaded first.');
+    } else if (availability === 'downloading') {
+      console.log('Languages are currently being downloaded.');
+    } else {
+      console.log('All requested languages are supported.');
+    }
+
+    // Now you can create a TextDetector with the supported languages.
+    // If the status was 'downloadable' or 'downloading', create() will wait
+    // for the download to finish before resolving.
+    TextDetector.create({ languages: languages }).then(detector => {
+      // ... use the detector
+    });
+  });
 }
 ```
 </div>
 
 ## Text Detection ## {#example-text-detection}
 
-<div class="note">
-The following example can also be found in e.g.
-<a href="https://codepen.io/miguelao/pen/ygxVqg">this codepen</a>.
-</div>
+
 
 <div class="example">
 ```js
-let textDetector = new TextDetector();
-// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.
+(async () => {
+  // Assuming |theImage| is e.g. a <img> content, or a Blob.
+  try {
+    // The legacy synchronous constructor is still supported,
+    // but the async create() method is recommended.
+    // let textDetector = new TextDetector();
 
-textDetector.detect(theImage)
-.then(detectedTextBlocks => {
-  for (const textBlock of detectedTextBlocks) {
-    console.log(
-        'text @ (${textBlock.boundingBox.x}, ${textBlock.boundingBox.y}), ' +
-        'size ${textBlock.boundingBox.width}x${textBlock.boundingBox.height}');
+    let textDetector = await TextDetector.create();
+
+    const detectedTextBlocks = await textDetector.detect(theImage);
+    for (const textBlock of detectedTextBlocks) {
+      console.log(
+          `text @ (${textBlock.boundingBox.x}, ${textBlock.boundingBox.y}), ` +
+          `size ${textBlock.boundingBox.width}x${textBlock.boundingBox.height}`);
+    }
+  } catch (e) {
+    console.error("Text Detection failed, boo.", e);
   }
-}).catch(() => {
-  console.error("Text Detection failed, boo.");
-})
+})();
 ```
 </div>
 
@@ -154,6 +224,9 @@ spec: html
         text: allowed to show a popup
         text: in parallel
         text: incumbent settings object
+spec: writing-assistance-apis
+    type: enum
+        text: Availability
 </pre>
 
 <pre class="biblio">
