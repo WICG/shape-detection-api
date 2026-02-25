@@ -4,9 +4,9 @@
   <title>Accelerated Text Detection in Images</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
+  <meta content="Bikeshed version 3c53a5b02, updated Thu Nov 27 17:03:30 2025 +0000" name="generator">
   <link href="https://wicg.github.io/shape-detection-api" rel="canonical">
-  <meta content="7499404e05d322088717f39e6d88941b223ba86f" name="revision">
+  <meta content="95dda254b020244b918571a0ca98a7371b9c2793" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>
@@ -336,7 +336,7 @@ body {
 }
 .invalid.example:not(.no-marker)::before,
 .illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
+    content: "Invalid Example " counter(example);
 }
 
 figcaption {
@@ -709,9 +709,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </style>
  <body class="h-entry">
   <div class="head">
-   <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
-   <h1 class="p-name no-ref" id="title">Accelerated Text Detection in Images</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2025-01-08">8 January 2025</time></p>
+   <h1 class="no-ref p-name" id="title">Accelerated Text Detection in Images</h1>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>,
+    <time class="dt-updated" datetime="2026-02-25">25 February 2026</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -719,37 +719,43 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt>Issue Tracking:
      <dd><a href="https://github.com/wicg/shape-detection-api/issues/">GitHub</a>
      <dt class="editor">Editors:
-     <dd class="editor p-author h-card vcard" data-editor-id="82825"><a class="p-name fn u-email email" href="mailto:mcasas@google.com">Miguel Casas-Sanchez</a> (<a class="p-org org" href="https://www.google.com">Google LLC</a>)
-     <dd class="editor p-author h-card vcard" data-editor-id="83788"><a class="p-name fn u-email email" href="mailto:reillyg@google.com">Reilly Grant</a> (<a class="p-org org" href="https://www.google.com">Google LLC</a>)
+     <dd class="editor h-card p-author vcard" data-editor-id="82825"><a class="email fn p-name u-email" href="mailto:mcasas@google.com">Miguel Casas-Sanchez</a> (<a class="org p-org" href="https://www.google.com">Google LLC</a>)
+     <dd class="editor h-card p-author vcard" data-editor-id="83788"><a class="email fn p-name u-email" href="mailto:reillyg@google.com">Reilly Grant</a> (<a class="org p-org" href="https://www.google.com">Google LLC</a>)
      <dt>Participate:
      <dd><a href="https://www.w3.org/community/wicg/">Join the W3C Community Group</a>
      <dd><a href="https://github.com/WICG/shape-detection-api">Fix the text through GitHub</a>
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 the Contributors to the Accelerated Text Detection in Images Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
-A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2026 the Contributors to the Accelerated Text Detection in Images Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.
+</p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
-   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <h2 class="heading no-num no-ref no-toc settled" id="abstract"><span class="content">Abstract</span></h2>
    <p>This document describes an API providing access to accelerated text detectors for still images and/or live image feeds.</p>
   </div>
   <div data-fill-with="at-risk"></div>
-  <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
+  <h2 class="heading no-num no-ref no-toc settled" id="status"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> This specification was published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a>.
+   <p>
+  This specification was published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a>.
   It is not a W3C Standard nor is it on the W3C Standards Track.
 
-  Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> there is a limited opt-out and other conditions apply.
+  Please note that under the
+  <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>
+  there is a limited opt-out and other conditions apply.
 
-  Learn more about <a href="http://www.w3.org/community/">W3C Community and Business Groups</a>. </p>
+  Learn more about
+  <a href="http://www.w3.org/community/">W3C Community and Business Groups</a>.
+</p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
-   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
-   <ol class="toc" role="directory">
+   <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
+   <ol class="toc">
     <li>
      <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
@@ -797,78 +803,158 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <h3 class="heading settled" data-level="1.1" id="use-cases"><span class="secno">1.1. </span><span class="content">Text detection use cases</span><a class="self-link" href="#use-cases"></a></h3>
    <p>Please see the <a href="https://github.com/WICG/shape-detection-api/blob/gh-pages/README.md">Readme/Explainer</a> in the repository.</p>
    <h2 class="heading settled" data-level="2" id="api"><span class="secno">2. </span><span class="content">Text Detection API</span><a class="self-link" href="#api"></a></h2>
-   <p>Individual browsers MAY provide Detectors indicating the availability of hardware providing accelerated operation.</p>
+   <p>Individual browsers MAY provide a <code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector">TextDetector</a></code> to perform text detection in images,
+potentially leveraging hardware acceleration or additional dependent libraries.
+The <code class="idl"><a data-link-type="idl" href="#dom-textdetector-availability" id="ref-for-dom-textdetector-availability">availability()</a></code> method allows developers to check for the availability
+of these capabilities and specific language support.</p>
    <h3 class="heading settled" data-level="2.1" id="image-sources-for-detection"><span class="secno">2.1. </span><span class="content">Image sources for detection</span><a class="self-link" href="#image-sources-for-detection"></a></h3>
    <p>Please refer to <a href="https://wicg.github.io/shape-detection-api/#image-sources-for-detection"><cite>Accelerated Shape Detection in Images</cite> § 2.1 Image sources for detection</a></p>
    <h3 class="heading settled" data-level="2.2" id="text-detection-api"><span class="secno">2.2. </span><span class="content">Text Detection API</span><a class="self-link" href="#text-detection-api"></a></h3>
-   <p><code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector">TextDetector</a></code> represents an underlying accelerated platform’s component for detection in images of Latin-1 text as defined in <a data-link-type="biblio" href="#biblio-iso8859-1" title="Information technology -- 8-bit single-byte coded graphic character sets -- Part 1: Latin alphabet No. 1">[iso8859-1]</a>.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource">ImageBitmapSource</a></code> of which the result is a Promise.  This method must reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§ 2.1 Image sources for detection</a>; otherwise it may queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#dictdef-detectedtext" id="ref-for-dictdef-detectedtext">DetectedText</a></code>s, each one essentially consisting on a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue">rawValue</a></code> and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox">boundingBox</a></code> and a series of <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d">Point2D</a></code>s.</p>
-   <div class="example" id="example-ddf46207"><a class="self-link" href="#example-ddf46207"></a> Example implementations of Text code detection are e.g. <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">Google Play Services</a>, <a href="https://developer.apple.com/reference/coreimage/cidetectortypetext">Apple’s CIDetector</a> (bounding box only, no OCR) or <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.media.ocr.aspx">Windows 10 <abbr title="Optical Character Recognition">OCR</abbr> API</a>. </div>
-<pre class="idl highlight def">[
+   <p><code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector①">TextDetector</a></code> represents an underlying accelerated platform’s component for detection in images of Latin-1 text as defined in <a data-link-type="biblio" href="#biblio-iso8859-1" title="Information technology -- 8-bit single-byte coded graphic character sets -- Part 1: Latin alphabet No. 1">[iso8859-1]</a>.  It provides a single <code class="idl"><a data-link-type="idl" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect">detect()</a></code> operation on an <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource">ImageBitmapSource</a></code> of which the result is a Promise.  This method must reject this Promise in the cases detailed in <a href="#image-sources-for-detection">§ 2.1 Image sources for detection</a>; otherwise it may queue a task using the OS/Platform resources to resolve the Promise with a sequence of <code class="idl"><a data-link-type="idl" href="#dictdef-detectedtext" id="ref-for-dictdef-detectedtext">DetectedText</a></code>s, each one essentially consisting on a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue">rawValue</a></code> and delimited by a <code class="idl"><a data-link-type="idl" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox">boundingBox</a></code> and a series of <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d">Point2D</a></code>s.</p>
+<pre class="def highlight idl"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-textdetectoroptions"><code><c- g>TextDetectorOptions</c-></code></dfn> {
+    <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="TextDetectorOptions" data-dfn-type="dict-member" data-export data-type="sequence<DOMString>" id="dom-textdetectoroptions-languages"><code><c- g>languages</c-></code></dfn>;
+};
+
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-textdetectorcreateoptions"><code><c- g>TextDetectorCreateOptions</c-></code></dfn> {
+    <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#abortsignal" id="ref-for-abortsignal"><c- n>AbortSignal</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="TextDetectorCreateOptions" data-dfn-type="dict-member" data-export data-type="AbortSignal" id="dom-textdetectorcreateoptions-signal"><code><c- g>signal</c-></code></dfn>;
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="TextDetectorCreateOptions" data-dfn-type="dict-member" data-export data-type="sequence<DOMString>" id="dom-textdetectorcreateoptions-languages"><code><c- g>languages</c-></code></dfn>;
+};
+
+[
     <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->),
     <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext"><c- g>SecureContext</c-></a>
 ] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="textdetector"><code><c- g>TextDetector</c-></code></dfn> {
     <a class="idl-code" data-link-type="constructor" href="#dom-textdetector-textdetector" id="ref-for-dom-textdetector-textdetector"><c- g>constructor</c-></a>();
-    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-detectedtext" id="ref-for-dictdef-detectedtext①"><c- n>DetectedText</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect①"><c- g>detect</c-></a>(<a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①"><c- n>ImageBitmapSource</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector/detect(image)" data-dfn-type="argument" data-export id="dom-textdetector-detect-image-image"><code><c- g>image</c-></code></dfn>);
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://webmachinelearning.github.io/writing-assistance-apis/#enumdef-availability" id="ref-for-enumdef-availability"><c- n>Availability</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-textdetector-availability" id="ref-for-dom-textdetector-availability①"><c- g>availability</c-></a>(<a data-link-type="idl-name" href="#dictdef-textdetectoroptions" id="ref-for-dictdef-textdetectoroptions"><c- n>TextDetectorOptions</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector/availability(options)" data-dfn-type="argument" data-export id="dom-textdetector-availability-options-options"><code><c- g>options</c-></code></dfn>);
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#textdetector" id="ref-for-textdetector②"><c- n>TextDetector</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-textdetector-create" id="ref-for-dom-textdetector-create"><c- g>create</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="#dictdef-textdetectorcreateoptions" id="ref-for-dictdef-textdetectorcreateoptions"><c- n>TextDetectorCreateOptions</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector/create(options), TextDetector/create()" data-dfn-type="argument" data-export id="dom-textdetector-create-options-options"><code><c- g>options</c-></code></dfn> = {});
+    <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-detectedtext" id="ref-for-dictdef-detectedtext①"><c- n>DetectedText</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-textdetector-detect" id="ref-for-dom-textdetector-detect①"><c- g>detect</c-></a>(<a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource①"><c- n>ImageBitmapSource</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector/detect(image)" data-dfn-type="argument" data-export id="dom-textdetector-detect-image-image"><code><c- g>image</c-></code></dfn>);
 };
 </pre>
    <dl class="domintro">
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="constructor" data-export data-lt="TextDetector()|constructor()" id="dom-textdetector-textdetector"><code>TextDetector()</code></dfn>
     <dd>
-     <div class="note" role="note"> Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector①">TextDetector</a></code> for several detections. </div>
+     <div class="note" role="note">
+    Detectors may potentially allocate and hold significant resources. Where possible, reuse the same <code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector③">TextDetector</a></code> for several detections.
+    </div>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="method" data-export data-lt="availability(options)" id="dom-textdetector-availability"><code>availability(TextDetectorOptions <var>options</var>)</code></dfn>
+    <dd>
+     <p>
+      Returns a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise③">Promise</a></code> that resolves with an <code class="idl"><a data-link-type="idl" href="https://webmachinelearning.github.io/writing-assistance-apis/#enumdef-availability" id="ref-for-enumdef-availability①">Availability</a></code> object
+      indicating the overall availability status for the specified <var>options</var> languages for text
+      detection.
+    </p>
+     <p>
+      The returned <code class="idl"><a data-link-type="idl" href="https://webmachinelearning.github.io/writing-assistance-apis/#enumdef-availability" id="ref-for-enumdef-availability②">Availability</a></code> value is determined by the following precedence,
+      applied across all requested languages:
+    </p>
+     <ul>
+      <li>If any requested language is <code>"unavailable"</code>, the method returns
+      <code>"unavailable"</code>.
+      <li>Otherwise, if any requested language is <code>"downloadable"</code>, the method
+      returns <code>"downloadable"</code>.
+      <li>Otherwise, if any requested language is <code>"downloading"</code>, the method
+      returns <code>"downloading"</code>.
+      <li>Otherwise, all requested languages are <code>"available"</code>, and the method
+      returns <code>"available"</code>.
+     </ul>
+     <div class="note" role="note">
+      This method allows developers to check for specific language support before
+      attempting to create a <code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector④">TextDetector</a></code> instance.
+    </div>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="method" data-export data-lt="create(options)|create()" id="dom-textdetector-create"><code>create(optional TextDetectorCreateOptions <var>options</var>)</code></dfn>
+    <dd>
+     <p>
+      Returns a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise④">Promise</a></code> that resolves with a new <code class="idl"><a data-link-type="idl" href="#textdetector" id="ref-for-textdetector⑤">TextDetector</a></code>
+      instance.
+    </p>
+     <div class="note" role="note">
+      This factory method handles the asynchronous initialization of the
+      text detector, including downloading necessary resources. It is recommended
+      to use this asynchronous method over the synchronous constructor
+      to accommodate potential delays from dependency downloads or initialization,
+      ensuring a smoother user experience.
+    </div>
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="TextDetector" data-dfn-type="method" data-export data-lt="detect(image)" id="dom-textdetector-detect"><code>detect(ImageBitmapSource <var>image</var>)</code></dfn>
     <dd>Tries to detect text blocks in the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource" id="ref-for-imagebitmapsource②">ImageBitmapSource</a></code> <var>image</var>.
    </dl>
    <h4 class="heading settled" data-level="2.2.1" id="detectedtext-section"><span class="secno">2.2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dictdef-detectedtext" id="ref-for-dictdef-detectedtext②">DetectedText</a></code></span><a class="self-link" href="#detectedtext-section"></a></h4>
-<pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-detectedtext"><code><c- g>DetectedText</c-></code></dfn> {
-  <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox①"><c- g>boundingBox</c-></a>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue①"><c- g>rawValue</c-></a>;
-  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d①"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<Point2D>" href="#dom-detectedtext-cornerpoints" id="ref-for-dom-detectedtext-cornerpoints"><c- g>cornerPoints</c-></a>;
+<pre class="def highlight idl"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-detectedtext"><code><c- g>DetectedText</c-></code></dfn> {
+  <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly" href="#dom-detectedtext-boundingbox" id="ref-for-dom-detectedtext-boundingbox①"><c- g>boundingBox</c-></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString" href="#dom-detectedtext-rawvalue" id="ref-for-dom-detectedtext-rawvalue①"><c- g>rawValue</c-></a>;
+  <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence③"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d①"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<Point2D>" href="#dom-detectedtext-cornerpoints" id="ref-for-dom-detectedtext-cornerpoints"><c- g>cornerPoints</c-></a>;
 };
 </pre>
    <dl class="domintro">
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="dict-member" data-export id="dom-detectedtext-boundingbox"><code>boundingBox</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly①">DOMRectReadOnly</a></span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="dict-member" data-export id="dom-detectedtext-boundingbox"><code>boundingBox</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://drafts.csswg.org/geometry-1/#domrectreadonly" id="ref-for-domrectreadonly①">DOMRectReadOnly</a></span>
     <dd>A rectangle indicating the position and extent of a detected feature aligned to the image
-    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="dict-member" data-export id="dom-detectedtext-rawvalue"><code>rawValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString①">DOMString</a></span>
+    <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="dict-member" data-export id="dom-detectedtext-rawvalue"><code>rawValue</code></dfn>, <span> of type <a data-link-type="idl-name" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString③">DOMString</a></span>
     <dd>Raw string detected from the image, where characters are drawn from <a data-link-type="biblio" href="#biblio-iso8859-1" title="Information technology -- 8-bit single-byte coded graphic character sets -- Part 1: Latin alphabet No. 1">[iso8859-1]</a>.
     <dt><dfn class="dfn-paneled idl-code" data-dfn-for="DetectedText" data-dfn-type="dict-member" data-export id="dom-detectedtext-cornerpoints"><code>cornerPoints</code></dfn>, <span> of type sequence&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d" id="ref-for-dictdef-point2d②">Point2D</a>></span>
-    <dd>A <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②">sequence</a> of corner points of the detected feature, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
+    <dd>A <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④">sequence</a> of corner points of the detected feature, in clockwise direction and  starting with top-left. This is not necessarily a square due to possible perspective distortions.
    </dl>
    <h2 class="heading settled" data-level="3" id="examples"><span class="secno">3. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
    <p><i>This section is non-normative.</i></p>
-   <p class="note" role="note"> Slightly modified/extended versions of these examples (and more) can be found in
- e.g. <a href="https://codepen.io/collection/DwWVJj/">this codepen collection</a>. </p>
    <h3 class="heading settled" data-level="3.1" id="example-feature-detection"><span class="secno">3.1. </span><span class="content">Platform support for a text detector</span><a class="self-link" href="#example-feature-detection"></a></h3>
-   <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/PbYpMv?editors=0010">this codepen</a> with minimal modifications. </div>
-   <div class="example" id="example-327e1be4">
-    <a class="self-link" href="#example-327e1be4"></a> 
-<pre class="language-js highlight"><c- k>if</c-> <c- p>(</c->window<c- p>.</c->TextDetector <c- o>==</c-> <c- kc>undefined</c-><c- p>)</c-> <c- p>{</c->
+   <div class="example" id="example-987f6175">
+    <a class="self-link" href="#example-987f6175"></a>
+
+<pre class="highlight language-js"><c- k>if</c-> <c- p>(</c-><c- o>!</c-><c- p>(</c-><c- t>'TextDetector'</c-> <c- ow>in</c-> window<c- p>))</c-> <c- p>{</c->
   console<c- p>.</c->error<c- p>(</c-><c- t>'Text Detection not supported on this platform'</c-><c- p>);</c->
+<c- p>}</c-> <c- k>else</c-> <c- p>{</c->
+  <c- a>const</c-> languages <c- o>=</c-> <c- p>[</c-><c- t>'en'</c-><c- p>,</c-> <c- t>'es'</c-><c- p>];</c-> <c- c1>// English and Spanish</c->
+  TextDetector<c- p>.</c->availability<c- p>({</c-> languages<c- o>:</c-> languages <c- p>}).</c->then<c- p>(</c->availability <c- p>=></c-> <c- p>{</c->
+    <c- k>if</c-> <c- p>(</c->availability <c- o>===</c-> <c- t>'unavailable'</c-><c- p>)</c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c-><c- t>'Not all of the requested languages are supported.'</c-><c- p>);</c->
+      <c- k>return</c-><c- p>;</c->
+    <c- p>}</c->
+
+    <c- k>if</c-> <c- p>(</c->availability <c- o>===</c-> <c- t>'downloadable'</c-><c- p>)</c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c-><c- t>'Languages need to be downloaded first.'</c-><c- p>);</c->
+    <c- p>}</c-> <c- k>else</c-> <c- k>if</c-> <c- p>(</c->availability <c- o>===</c-> <c- t>'downloading'</c-><c- p>)</c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c-><c- t>'Languages are currently being downloaded.'</c-><c- p>);</c->
+    <c- p>}</c-> <c- k>else</c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c-><c- t>'All requested languages are supported.'</c-><c- p>);</c->
+    <c- p>}</c->
+
+    <c- c1>// Now you can create a TextDetector with the supported languages.</c->
+    <c- c1>// If the status was 'downloadable' or 'downloading', create() will wait</c->
+    <c- c1>// for the download to finish before resolving.</c->
+    TextDetector<c- p>.</c->create<c- p>({</c-> languages<c- o>:</c-> languages <c- p>}).</c->then<c- p>(</c->detector <c- p>=></c-> <c- p>{</c->
+      <c- c1>// ... use the detector</c->
+    <c- p>});</c->
+  <c- p>});</c->
 <c- p>}</c->
 </pre>
    </div>
    <h3 class="heading settled" data-level="3.2" id="example-text-detection"><span class="secno">3.2. </span><span class="content">Text Detection</span><a class="self-link" href="#example-text-detection"></a></h3>
-   <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/ygxVqg">this codepen</a>. </div>
-   <div class="example" id="example-ef78d2c3">
-    <a class="self-link" href="#example-ef78d2c3"></a> 
-<pre class="language-js highlight"><c- a>let</c-> textDetector <c- o>=</c-> <c- ow>new</c-> TextDetector<c- p>();</c->
-<c- c1>// Assuming |theImage| is e.g. a &amp;lt;img> content, or a Blob.</c->
+   <div class="example" id="example-f9292925">
+    <a class="self-link" href="#example-f9292925"></a>
 
-textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
-<c- p>.</c->then<c- p>(</c->detectedTextBlocks <c- p>=></c-> <c- p>{</c->
-  <c- k>for</c-> <c- p>(</c-><c- a>const</c-> textBlock <c- k>of</c-> detectedTextBlocks<c- p>)</c-> <c- p>{</c->
-    console<c- p>.</c->log<c- p>(</c->
-        <c- t>'text @ (${textBlock.boundingBox.x}, ${textBlock.boundingBox.y}), '</c-> <c- o>+</c->
-        <c- t>'size ${textBlock.boundingBox.width}x${textBlock.boundingBox.height}'</c-><c- p>);</c->
+<pre class="highlight language-js"><c- p>(</c-><c- k>async</c-> <c- p>()</c-> <c- p>=></c-> <c- p>{</c->
+  <c- c1>// Assuming |theImage| is e.g. a &lt;img> content, or a Blob.</c->
+  <c- k>try</c-> <c- p>{</c->
+    <c- c1>// The legacy synchronous constructor is still supported,</c->
+    <c- c1>// but the async create() method is recommended.</c->
+    <c- c1>// let textDetector = new TextDetector();</c->
+
+    <c- a>let</c-> textDetector <c- o>=</c-> <c- k>await</c-> TextDetector<c- p>.</c->create<c- p>();</c->
+
+    <c- a>const</c-> detectedTextBlocks <c- o>=</c-> <c- k>await</c-> textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>);</c->
+    <c- k>for</c-> <c- p>(</c-><c- a>const</c-> textBlock <c- k>of</c-> detectedTextBlocks<c- p>)</c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c->
+          <c- sb>`text @ (</c-><c- si>${</c->textBlock<c- p>.</c->boundingBox<c- p>.</c->x<c- si>}</c-><c- sb>, </c-><c- si>${</c->textBlock<c- p>.</c->boundingBox<c- p>.</c->y<c- si>}</c-><c- sb>), `</c-> <c- o>+</c->
+          <c- sb>`size </c-><c- si>${</c->textBlock<c- p>.</c->boundingBox<c- p>.</c->width<c- si>}</c-><c- sb>x</c-><c- si>${</c->textBlock<c- p>.</c->boundingBox<c- p>.</c->height<c- si>}</c-><c- sb>`</c-><c- p>);</c->
+    <c- p>}</c->
+  <c- p>}</c-> <c- k>catch</c-> <c- p>(</c->e<c- p>)</c-> <c- p>{</c->
+    console<c- p>.</c->error<c- p>(</c-><c- u>"Text Detection failed, boo."</c-><c- p>,</c-> e<c- p>);</c->
   <c- p>}</c->
-<c- p>}).</c-><c- k>catch</c-><c- p>(()</c-> <c- p>=></c-> <c- p>{</c->
-  console<c- p>.</c->error<c- p>(</c-><c- u>"Text Detection failed, boo."</c-><c- p>);</c->
-<c- p>})</c->
+<c- p>})();</c->
 </pre>
    </div>
   </main>
   <div data-fill-with="conformance">
-   <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
-   <h3 class="no-ref no-num heading settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
+   <h2 class="heading no-num no-ref settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>
+   <h3 class="heading no-num no-ref settled" id="w3c-conventions"><span class="content">Document conventions</span><a class="self-link" href="#w3c-conventions"></a></h3>
    <p>Conformance requirements are expressed
     with a combination of descriptive assertions
     and RFC 2119 terminology.
@@ -876,42 +962,69 @@ textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
     in the normative parts of this document
     are to be interpreted as described in RFC 2119.
     However, for readability,
-    these words do not appear in all uppercase letters in this specification. </p>
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <div class="example" id="w3c-example">
-    <a class="self-link" href="#w3c-example"></a> 
-    <p>This is an example of an informative example. </p>
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
    </div>
    <p>Informative notes begin with the word “Note”
     and are set apart from the normative text
     with <code>class="note"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <p class="note" role="note">Note, this is an informative note.</p>
   </div>
   <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
-  <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
-  <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
+  <h2 class="heading no-num no-ref settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
+   <li><a href="#dom-textdetector-availability">availability(options)</a><span>, in § 2.2</span>
    <li><a href="#dom-detectedtext-boundingbox">boundingBox</a><span>, in § 2.2.1</span>
    <li><a href="#dom-textdetector-textdetector">constructor()</a><span>, in § 2.2</span>
    <li><a href="#dom-detectedtext-cornerpoints">cornerPoints</a><span>, in § 2.2.1</span>
+   <li><a href="#dom-textdetector-create">create()</a><span>, in § 2.2</span>
+   <li><a href="#dom-textdetector-create">create(options)</a><span>, in § 2.2</span>
    <li><a href="#dictdef-detectedtext">DetectedText</a><span>, in § 2.2.1</span>
    <li><a href="#dom-textdetector-detect">detect(image)</a><span>, in § 2.2</span>
+   <li>
+    languages
+    <ul>
+     <li><a href="#dom-textdetectorcreateoptions-languages">dict-member for TextDetectorCreateOptions</a><span>, in § 2.2</span>
+     <li><a href="#dom-textdetectoroptions-languages">dict-member for TextDetectorOptions</a><span>, in § 2.2</span>
+    </ul>
    <li><a href="#dom-detectedtext-rawvalue">rawValue</a><span>, in § 2.2.1</span>
+   <li><a href="#dom-textdetectorcreateoptions-signal">signal</a><span>, in § 2.2</span>
    <li><a href="#textdetector">TextDetector</a><span>, in § 2.2</span>
    <li><a href="#dom-textdetector-textdetector">TextDetector()</a><span>, in § 2.2</span>
+   <li><a href="#dictdef-textdetectorcreateoptions">TextDetectorCreateOptions</a><span>, in § 2.2</span>
+   <li><a href="#dictdef-textdetectoroptions">TextDetectorOptions</a><span>, in § 2.2</span>
   </ul>
-  <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
+  <h3 class="heading no-num no-ref settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
+   <li>
+    <a data-link-type="biblio">[DOM]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="cca3cdb2">AbortSignal</span>
+    </ul>
    <li>
     <a data-link-type="biblio">[GEOMETRY-1]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="fdd2dd4e">DOMRectReadOnly</span>
+     <li><span class="dfn-paneled" id="956a2c19">DOMRectReadOnly</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
@@ -932,12 +1045,19 @@ textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
      <li><span class="dfn-paneled" id="b75bb3bd">SecureContext</span>
      <li><span class="dfn-paneled" id="9cce47fd">sequence</span>
     </ul>
+   <li>
+    <a data-link-type="biblio">[WRITING-ASSISTANCE-APIS]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="1547df8e">Availability</span>
+    </ul>
   </ul>
-  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
-  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <h2 class="heading no-num no-ref settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
+   <dt id="biblio-dom">[DOM]
+   <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-geometry-1">[GEOMETRY-1]
-   <dd>Simon Pieters; Chris Harrelson. <a href="https://drafts.fxtf.org/geometry/"><cite>Geometry Interfaces Module Level 1</cite></a>. URL: <a href="https://drafts.fxtf.org/geometry/">https://drafts.fxtf.org/geometry/</a>
+   <dd>Sebastian Zartner; Yehonatan Daniv. <a href="https://drafts.csswg.org/geometry/"><cite>Geometry Interfaces Module Level 1</cite></a>. URL: <a href="https://drafts.csswg.org/geometry/">https://drafts.csswg.org/geometry/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-image-capture">[IMAGE-CAPTURE]
@@ -945,26 +1065,39 @@ textDetector<c- p>.</c->detect<c- p>(</c->theImage<c- p>)</c->
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-shape-detection-api">[SHAPE-DETECTION-API]
-   <dd><a href="https://wicg.github.io/shape-detection-api/"><cite>Accelerated Shape Detection in Images</cite></a>. cg-draft. URL: <a href="https://wicg.github.io/shape-detection-api/">https://wicg.github.io/shape-detection-api/</a>
+   <dd><a href="https://wicg.github.io/shape-detection-api/"><cite>Accelerated Shape Detection in Images</cite></a>. Draft Community Group Report. URL: <a href="https://wicg.github.io/shape-detection-api/">https://wicg.github.io/shape-detection-api/</a>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
+   <dt id="biblio-writing-assistance-apis">[WRITING-ASSISTANCE-APIS]
+   <dd><a href="https://webmachinelearning.github.io/writing-assistance-apis/"><cite>Writing Assistance APIs</cite></a>. Draft Community Group Report. URL: <a href="https://webmachinelearning.github.io/writing-assistance-apis/">https://webmachinelearning.github.io/writing-assistance-apis/</a>
   </dl>
-  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <h3 class="heading no-num no-ref settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-iso8859-1">[ISO8859-1]
    <dd><a href="https://www.iso.org/standard/28245.html"><cite>Information technology -- 8-bit single-byte coded graphic character sets -- Part 1: Latin alphabet No. 1</cite></a>. April 1998. URL: <a href="https://www.iso.org/standard/28245.html">https://www.iso.org/standard/28245.html</a>
   </dl>
-  <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def">[
+  <h2 class="heading no-num no-ref settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
+<pre class="def highlight idl"><c- b>dictionary</c-> <a href="#dictdef-textdetectoroptions"><code><c- g>TextDetectorOptions</c-></code></a> {
+    <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString"><c- b>DOMString</c-></a>> <a data-type="sequence<DOMString>" href="#dom-textdetectoroptions-languages"><code><c- g>languages</c-></code></a>;
+};
+
+<c- b>dictionary</c-> <a href="#dictdef-textdetectorcreateoptions"><code><c- g>TextDetectorCreateOptions</c-></code></a> {
+    <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#abortsignal"><c- n>AbortSignal</c-></a> <a data-type="AbortSignal" href="#dom-textdetectorcreateoptions-signal"><code><c- g>signal</c-></code></a>;
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString"><c- b>DOMString</c-></a>> <a data-type="sequence<DOMString>" href="#dom-textdetectorcreateoptions-languages"><code><c- g>languages</c-></code></a>;
+};
+
+[
     <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->,<c- n>Worker</c->),
     <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>
 ] <c- b>interface</c-> <a href="#textdetector"><code><c- g>TextDetector</c-></code></a> {
     <a class="idl-code" data-link-type="constructor" href="#dom-textdetector-textdetector"><c- g>constructor</c-></a>();
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://webmachinelearning.github.io/writing-assistance-apis/#enumdef-availability"><c- n>Availability</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-textdetector-availability"><c- g>availability</c-></a>(<a data-link-type="idl-name" href="#dictdef-textdetectoroptions"><c- n>TextDetectorOptions</c-></a> <a href="#dom-textdetector-availability-options-options"><code><c- g>options</c-></code></a>);
+    <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#textdetector"><c- n>TextDetector</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-textdetector-create"><c- g>create</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="#dictdef-textdetectorcreateoptions"><c- n>TextDetectorCreateOptions</c-></a> <a href="#dom-textdetector-create-options-options"><code><c- g>options</c-></code></a> = {});
     <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-detectedtext"><c- n>DetectedText</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-textdetector-detect"><c- g>detect</c-></a>(<a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource"><c- n>ImageBitmapSource</c-></a> <a href="#dom-textdetector-detect-image-image"><code><c- g>image</c-></code></a>);
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-detectedtext"><code><c- g>DetectedText</c-></code></a> {
-  <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.fxtf.org/geometry-1/#domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly" href="#dom-detectedtext-boundingbox"><c- g>boundingBox</c-></a>;
+  <c- b>required</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/geometry-1/#domrectreadonly"><c- n>DOMRectReadOnly</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMRectReadOnly" href="#dom-detectedtext-boundingbox"><c- g>boundingBox</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString" href="#dom-detectedtext-rawvalue"><c- g>rawValue</c-></a>;
   <c- b>required</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/mediacapture-image/#dictdef-point2d"><c- n>Point2D</c-></a>> <a class="idl-code" data-link-type="dict-member" data-type="sequence<Point2D>" href="#dom-detectedtext-cornerpoints"><c- g>cornerPoints</c-></a>;
 };
@@ -1170,22 +1303,33 @@ function parseHTML(markup) {
 "use strict";
 {
 let dfnPanelData = {
-"8855a9aa": {"dfnID":"8855a9aa","dfnText":"DOMString","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-DOMString"},{"id":"ref-for-idl-DOMString\u2460"}],"title":"2.2.1. DetectedText"}],"url":"https://webidl.spec.whatwg.org/#idl-DOMString"},
+"1547df8e": {"dfnID":"1547df8e","dfnText":"Availability","external":true,"refSections":[{"refs":[{"id":"ref-for-enumdef-availability"},{"id":"ref-for-enumdef-availability\u2460"},{"id":"ref-for-enumdef-availability\u2461"}],"title":"2.2. Text Detection API"}],"url":"https://webmachinelearning.github.io/writing-assistance-apis/#enumdef-availability"},
+"8855a9aa": {"dfnID":"8855a9aa","dfnText":"DOMString","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-DOMString"},{"id":"ref-for-idl-DOMString\u2460"}],"title":"2.2. Text Detection API"},{"refs":[{"id":"ref-for-idl-DOMString\u2461"},{"id":"ref-for-idl-DOMString\u2462"}],"title":"2.2.1. DetectedText"}],"url":"https://webidl.spec.whatwg.org/#idl-DOMString"},
 "889e932f": {"dfnID":"889e932f","dfnText":"Exposed","external":true,"refSections":[{"refs":[{"id":"ref-for-Exposed"}],"title":"2.2. Text Detection API"}],"url":"https://webidl.spec.whatwg.org/#Exposed"},
-"9cce47fd": {"dfnID":"9cce47fd","dfnText":"sequence","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-sequence"}],"title":"2.2. Text Detection API"},{"refs":[{"id":"ref-for-idl-sequence\u2460"},{"id":"ref-for-idl-sequence\u2461"}],"title":"2.2.1. DetectedText"}],"url":"https://webidl.spec.whatwg.org/#idl-sequence"},
+"956a2c19": {"dfnID":"956a2c19","dfnText":"DOMRectReadOnly","external":true,"refSections":[{"refs":[{"id":"ref-for-domrectreadonly"},{"id":"ref-for-domrectreadonly\u2460"}],"title":"2.2.1. DetectedText"}],"url":"https://drafts.csswg.org/geometry-1/#domrectreadonly"},
+"9cce47fd": {"dfnID":"9cce47fd","dfnText":"sequence","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-sequence"},{"id":"ref-for-idl-sequence\u2460"},{"id":"ref-for-idl-sequence\u2461"}],"title":"2.2. Text Detection API"},{"refs":[{"id":"ref-for-idl-sequence\u2462"},{"id":"ref-for-idl-sequence\u2463"}],"title":"2.2.1. DetectedText"}],"url":"https://webidl.spec.whatwg.org/#idl-sequence"},
 "aeb8d5fd": {"dfnID":"aeb8d5fd","dfnText":"ImageBitmapSource","external":true,"refSections":[{"refs":[{"id":"ref-for-imagebitmapsource"},{"id":"ref-for-imagebitmapsource\u2460"},{"id":"ref-for-imagebitmapsource\u2461"}],"title":"2.2. Text Detection API"}],"url":"https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource"},
 "b75bb3bd": {"dfnID":"b75bb3bd","dfnText":"SecureContext","external":true,"refSections":[{"refs":[{"id":"ref-for-SecureContext"}],"title":"2.2. Text Detection API"}],"url":"https://webidl.spec.whatwg.org/#SecureContext"},
-"bdbd19d1": {"dfnID":"bdbd19d1","dfnText":"Promise","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-promise"}],"title":"2.2. Text Detection API"}],"url":"https://webidl.spec.whatwg.org/#idl-promise"},
+"bdbd19d1": {"dfnID":"bdbd19d1","dfnText":"Promise","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-promise"},{"id":"ref-for-idl-promise\u2460"},{"id":"ref-for-idl-promise\u2461"},{"id":"ref-for-idl-promise\u2462"},{"id":"ref-for-idl-promise\u2463"}],"title":"2.2. Text Detection API"}],"url":"https://webidl.spec.whatwg.org/#idl-promise"},
 "c2229d72": {"dfnID":"c2229d72","dfnText":"Point2D","external":true,"refSections":[{"refs":[{"id":"ref-for-dictdef-point2d"}],"title":"2.2. Text Detection API"},{"refs":[{"id":"ref-for-dictdef-point2d\u2460"},{"id":"ref-for-dictdef-point2d\u2461"}],"title":"2.2.1. DetectedText"}],"url":"https://w3c.github.io/mediacapture-image/#dictdef-point2d"},
+"cca3cdb2": {"dfnID":"cca3cdb2","dfnText":"AbortSignal","external":true,"refSections":[{"refs":[{"id":"ref-for-abortsignal"}],"title":"2.2. Text Detection API"}],"url":"https://dom.spec.whatwg.org/#abortsignal"},
 "dictdef-detectedtext": {"dfnID":"dictdef-detectedtext","dfnText":"DetectedText","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-detectedtext"},{"id":"ref-for-dictdef-detectedtext\u2460"}],"title":"2.2. Text Detection API"},{"refs":[{"id":"ref-for-dictdef-detectedtext\u2461"}],"title":"2.2.1. DetectedText"}],"url":"#dictdef-detectedtext"},
+"dictdef-textdetectorcreateoptions": {"dfnID":"dictdef-textdetectorcreateoptions","dfnText":"TextDetectorCreateOptions","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-textdetectorcreateoptions"}],"title":"2.2. Text Detection API"}],"url":"#dictdef-textdetectorcreateoptions"},
+"dictdef-textdetectoroptions": {"dfnID":"dictdef-textdetectoroptions","dfnText":"TextDetectorOptions","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-textdetectoroptions"}],"title":"2.2. Text Detection API"}],"url":"#dictdef-textdetectoroptions"},
 "dom-detectedtext-boundingbox": {"dfnID":"dom-detectedtext-boundingbox","dfnText":"boundingBox","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-detectedtext-boundingbox"}],"title":"2.2. Text Detection API"},{"refs":[{"id":"ref-for-dom-detectedtext-boundingbox\u2460"}],"title":"2.2.1. DetectedText"}],"url":"#dom-detectedtext-boundingbox"},
 "dom-detectedtext-cornerpoints": {"dfnID":"dom-detectedtext-cornerpoints","dfnText":"cornerPoints","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-detectedtext-cornerpoints"}],"title":"2.2.1. DetectedText"}],"url":"#dom-detectedtext-cornerpoints"},
 "dom-detectedtext-rawvalue": {"dfnID":"dom-detectedtext-rawvalue","dfnText":"rawValue","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-detectedtext-rawvalue"}],"title":"2.2. Text Detection API"},{"refs":[{"id":"ref-for-dom-detectedtext-rawvalue\u2460"}],"title":"2.2.1. DetectedText"}],"url":"#dom-detectedtext-rawvalue"},
+"dom-textdetector-availability": {"dfnID":"dom-textdetector-availability","dfnText":"availability(TextDetectorOptions options)","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-textdetector-availability"}],"title":"2. Text Detection API"},{"refs":[{"id":"ref-for-dom-textdetector-availability\u2460"}],"title":"2.2. Text Detection API"}],"url":"#dom-textdetector-availability"},
+"dom-textdetector-availability-options-options": {"dfnID":"dom-textdetector-availability-options-options","dfnText":"options","external":false,"refSections":[],"url":"#dom-textdetector-availability-options-options"},
+"dom-textdetector-create": {"dfnID":"dom-textdetector-create","dfnText":"create(optional TextDetectorCreateOptions options)","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-textdetector-create"}],"title":"2.2. Text Detection API"}],"url":"#dom-textdetector-create"},
+"dom-textdetector-create-options-options": {"dfnID":"dom-textdetector-create-options-options","dfnText":"options","external":false,"refSections":[],"url":"#dom-textdetector-create-options-options"},
 "dom-textdetector-detect": {"dfnID":"dom-textdetector-detect","dfnText":"detect(ImageBitmapSource image)","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-textdetector-detect"},{"id":"ref-for-dom-textdetector-detect\u2460"}],"title":"2.2. Text Detection API"}],"url":"#dom-textdetector-detect"},
 "dom-textdetector-detect-image-image": {"dfnID":"dom-textdetector-detect-image-image","dfnText":"image","external":false,"refSections":[],"url":"#dom-textdetector-detect-image-image"},
 "dom-textdetector-textdetector": {"dfnID":"dom-textdetector-textdetector","dfnText":"TextDetector()","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-textdetector-textdetector"}],"title":"2.2. Text Detection API"}],"url":"#dom-textdetector-textdetector"},
-"fdd2dd4e": {"dfnID":"fdd2dd4e","dfnText":"DOMRectReadOnly","external":true,"refSections":[{"refs":[{"id":"ref-for-domrectreadonly"},{"id":"ref-for-domrectreadonly\u2460"}],"title":"2.2.1. DetectedText"}],"url":"https://drafts.fxtf.org/geometry-1/#domrectreadonly"},
-"textdetector": {"dfnID":"textdetector","dfnText":"TextDetector","external":false,"refSections":[{"refs":[{"id":"ref-for-textdetector"},{"id":"ref-for-textdetector\u2460"}],"title":"2.2. Text Detection API"}],"url":"#textdetector"},
+"dom-textdetectorcreateoptions-languages": {"dfnID":"dom-textdetectorcreateoptions-languages","dfnText":"languages","external":false,"refSections":[],"url":"#dom-textdetectorcreateoptions-languages"},
+"dom-textdetectorcreateoptions-signal": {"dfnID":"dom-textdetectorcreateoptions-signal","dfnText":"signal","external":false,"refSections":[],"url":"#dom-textdetectorcreateoptions-signal"},
+"dom-textdetectoroptions-languages": {"dfnID":"dom-textdetectoroptions-languages","dfnText":"languages","external":false,"refSections":[],"url":"#dom-textdetectoroptions-languages"},
+"textdetector": {"dfnID":"textdetector","dfnText":"TextDetector","external":false,"refSections":[{"refs":[{"id":"ref-for-textdetector"}],"title":"2. Text Detection API"},{"refs":[{"id":"ref-for-textdetector\u2460"},{"id":"ref-for-textdetector\u2461"},{"id":"ref-for-textdetector\u2462"},{"id":"ref-for-textdetector\u2463"},{"id":"ref-for-textdetector\u2464"}],"title":"2.2. Text Detection API"}],"url":"#textdetector"},
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -1575,13 +1719,18 @@ function genLinkingSyntaxes(dfn) {
 {
 let refsData = {
 "#dictdef-detectedtext": {"displayText":"DetectedText","export":true,"for_":[],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"DetectedText","type":"dictionary","url":"#dictdef-detectedtext"},
+"#dictdef-textdetectorcreateoptions": {"displayText":"TextDetectorCreateOptions","export":true,"for_":[],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"TextDetectorCreateOptions","type":"dictionary","url":"#dictdef-textdetectorcreateoptions"},
+"#dictdef-textdetectoroptions": {"displayText":"TextDetectorOptions","export":true,"for_":[],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"TextDetectorOptions","type":"dictionary","url":"#dictdef-textdetectoroptions"},
 "#dom-detectedtext-boundingbox": {"displayText":"boundingBox","export":true,"for_":["DetectedText"],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"boundingBox","type":"dict-member","url":"#dom-detectedtext-boundingbox"},
 "#dom-detectedtext-cornerpoints": {"displayText":"cornerPoints","export":true,"for_":["DetectedText"],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"cornerPoints","type":"dict-member","url":"#dom-detectedtext-cornerpoints"},
 "#dom-detectedtext-rawvalue": {"displayText":"rawValue","export":true,"for_":["DetectedText"],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"rawValue","type":"dict-member","url":"#dom-detectedtext-rawvalue"},
+"#dom-textdetector-availability": {"displayText":"availability(options)","export":true,"for_":["TextDetector"],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"availability(options)","type":"method","url":"#dom-textdetector-availability"},
+"#dom-textdetector-create": {"displayText":"create(options)","export":true,"for_":["TextDetector"],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"create(options)","type":"method","url":"#dom-textdetector-create"},
 "#dom-textdetector-detect": {"displayText":"detect(image)","export":true,"for_":["TextDetector"],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"detect(image)","type":"method","url":"#dom-textdetector-detect"},
 "#dom-textdetector-textdetector": {"displayText":"TextDetector()","export":true,"for_":["TextDetector"],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"TextDetector()","type":"constructor","url":"#dom-textdetector-textdetector"},
 "#textdetector": {"displayText":"TextDetector","export":true,"for_":[],"level":"1","normative":true,"shortname":"text-detection-api","spec":"text-detection-api-1","status":"local","text":"TextDetector","type":"interface","url":"#textdetector"},
-"https://drafts.fxtf.org/geometry-1/#domrectreadonly": {"displayText":"DOMRectReadOnly","export":true,"for_":[],"level":"1","normative":true,"shortname":"geometry","spec":"geometry-1","status":"current","text":"DOMRectReadOnly","type":"interface","url":"https://drafts.fxtf.org/geometry-1/#domrectreadonly"},
+"https://dom.spec.whatwg.org/#abortsignal": {"displayText":"AbortSignal","export":true,"for_":[],"level":"1","normative":true,"shortname":"dom","spec":"dom","status":"current","text":"AbortSignal","type":"interface","url":"https://dom.spec.whatwg.org/#abortsignal"},
+"https://drafts.csswg.org/geometry-1/#domrectreadonly": {"displayText":"DOMRectReadOnly","export":true,"for_":[],"level":"1","normative":true,"shortname":"geometry","spec":"geometry-1","status":"current","text":"DOMRectReadOnly","type":"interface","url":"https://drafts.csswg.org/geometry-1/#domrectreadonly"},
 "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource": {"displayText":"ImageBitmapSource","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"ImageBitmapSource","type":"typedef","url":"https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapsource"},
 "https://w3c.github.io/mediacapture-image/#dictdef-point2d": {"displayText":"Point2D","export":true,"for_":[],"level":"1","normative":true,"shortname":"image-capture","spec":"image-capture","status":"current","text":"Point2D","type":"dictionary","url":"https://w3c.github.io/mediacapture-image/#dictdef-point2d"},
 "https://webidl.spec.whatwg.org/#Exposed": {"displayText":"Exposed","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Exposed","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#Exposed"},
@@ -1589,6 +1738,7 @@ let refsData = {
 "https://webidl.spec.whatwg.org/#idl-DOMString": {"displayText":"DOMString","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"DOMString","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-DOMString"},
 "https://webidl.spec.whatwg.org/#idl-promise": {"displayText":"Promise","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Promise","type":"interface","url":"https://webidl.spec.whatwg.org/#idl-promise"},
 "https://webidl.spec.whatwg.org/#idl-sequence": {"displayText":"sequence","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"sequence","type":"dfn","url":"https://webidl.spec.whatwg.org/#idl-sequence"},
+"https://webmachinelearning.github.io/writing-assistance-apis/#enumdef-availability": {"displayText":"Availability","export":true,"for_":[],"level":"1","normative":true,"shortname":"writing-assistance-apis","spec":"writing-assistance-apis","status":"current","text":"Availability","type":"enum","url":"https://webmachinelearning.github.io/writing-assistance-apis/#enumdef-availability"},
 };
 
 function mkRefHint(link, ref) {
@@ -1670,7 +1820,12 @@ function hideRefHint(refHint) {
 function showRefHint(link) {
     if(link.classList.contains("dfn-link")) return;
     const url = link.getAttribute("href");
-    const ref = refsData[url];
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
     if(!ref) return;
 
     hideAllRefHints(); // Only display one at this time.
