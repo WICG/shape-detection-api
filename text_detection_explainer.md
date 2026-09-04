@@ -195,6 +195,7 @@ While modern vision engines often recognize multilingual text automatically, app
 enum Availability {
     "unavailable",
     "downloadable",
+    "downloading",
     "available"
 };
 
@@ -222,7 +223,7 @@ The initial API returns recognized text segments at the line level. Future exten
 
 ## Privacy & Security Considerations
 
-- **Secure Contexts Only:** The `TextDetector` interface is restricted to Secure Contexts (`HTTPS`), preventing man-in-the-middle tampering and eavesdropping.
+- **Secure Contexts Only:** The `TextDetector` interface is restricted to Secure Contexts (`HTTPS`), preventing person-in-the-middle tampering and eavesdropping.
 - **Cross-Origin Image Protection (CORS):** To prevent unauthorized reading of cross-origin visual data, `detect()` enforces the same-origin policy on all `ImageBitmapSource` inputs. Passing a cross-origin image or video that has not been granted CORS access rejects the promise with a `SecurityError` DOMException.
 - **Data Confidentiality:** Unlike cloud-based OCR services, the API allows text recognition to occur within the browser without transmitting user images or recognition results across network boundaries.
 
