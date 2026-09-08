@@ -18,9 +18,8 @@ Today, web developers needing to detect text in images must choose between two a
 - **Limited Access to Hardware Acceleration:** Web content cannot directly leverage platform-level vision pipelines or hardware accelerators.
 
 ### 2. Using Remote Cloud Vision Services
-- **Network Latency:** Uploading high-resolution images or camera frames to a remote cloud API introduces round-trip network delays, making interactive or live viewfinder experiences sluggish.
+- **Network Latency:** Uploading high-resolution images or camera frames to a remote cloud API introduces round-trip network delays, making interactive or live camera experiences sluggish.
 - **Infrastructure and Financial Cost:** Running or subscribing to cloud vision endpoints incurs ongoing hosting and API costs that increase linearly with application usage.
-- **Offline Limitations:** Cloud-based recognition fails completely in low-connectivity, intermittent, or offline environments.
 - **Privacy and Data Residency:** Sending sensitive user images—such as receipts, identity documents, bank statements, or private photos—over the network introduces privacy concerns and adds compliance overhead regarding data residency and user consent.
 
 ---
