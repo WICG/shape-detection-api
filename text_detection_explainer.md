@@ -102,7 +102,7 @@ if ('TextDetector' in globalThis) {
 }
 ```
 
-### 2. Live Camera Viewfinder with Oriented Overlays
+### 2. Live Camera Stream with Text Overlays
 
 ```javascript
 const video = document.getElementById('camera-preview');
