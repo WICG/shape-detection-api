@@ -115,35 +115,31 @@ await video.play();
 const detector = await TextDetector.create();
 
 async function processFrame() {
-  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-    const results = await detector.detect(video);
+  const results = await detector.detect(video);
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (const item of results) {
-      // Draw oriented polygon around text using cornerPoints
-      const [tl, tr, br, bl] = item.cornerPoints;
-      ctx.beginPath();
-      ctx.moveTo(tl.x, tl.y);
-      ctx.lineTo(tr.x, tr.y);
-      ctx.lineTo(br.x, br.y);
-      ctx.lineTo(bl.x, bl.y);
-      ctx.closePath();
+  for (const item of results) {
+    // Draw bounding box around detected text
+    // (For tilted/skewed text, item.cornerPoints can be traced instead)
+    const { x, y, width, height } = item.boundingBox;
+    ctx.beginPath();
+    ctx.rect(x, y, width, height);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#00E676';
+    ctx.stroke();
 
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#00E676';
-      ctx.stroke();
-
-      // Display detected text
-      ctx.font = '14px sans-serif';
-      ctx.fillStyle = '#00E676';
-      ctx.fillText(item.rawValue, tl.x, tl.y - 4);
-    }
+    // Display detected text (simplified demo overlay; not production-ready
+    // as fixed-size text may render outside the bounding box or canvas)
+    ctx.font = '14px sans-serif';
+    ctx.fillStyle = '#00E676';
+    ctx.fillText(item.rawValue, x, y - 4);
   }
-  requestAnimationFrame(processFrame);
+
+  video.requestVideoFrameCallback(processFrame);
 }
 
-requestAnimationFrame(processFrame);
+video.requestVideoFrameCallback(processFrame);
 ```
 
 ### 3. Offloading Processing to a Web Worker
@@ -215,8 +211,15 @@ partial interface TextDetector {
 
 This would allow web applications to query whether specific language packs (e.g., `["ja", "ko"]`) are readily available or require on-demand downloads before initiating recognition.
 
-### 2. Structural Hierarchy (Blocks, Lines, Words)
-The initial API returns recognized text segments at the line level. Future extensions could optionally expose hierarchical segmentation—such as identifying paragraphs, lines, and individual word bounding boxes—to assist advanced document editors and in-place translation overlays.
+### 2. Structural Hierarchy & Rich Text Markup
+The initial API returns recognized text segments at the line level as plain text. Future extensions could optionally expose hierarchical segmentation—such as identifying paragraphs, lines, and individual word bounding boxes—as well as preserving semantic or stylistic markup (e.g., `<strong>`, `<em>`) to assist advanced document editors and in-place translation overlays as more OCR engines support font styling.
+
+### 3. Task-Specific Detection Modes
+Different use cases have varying requirements for recognition versus localization:
+- **Pure OCR / Text Extraction:** Applications indexing document text may only need the recognized strings (`rawValue`) without computing geometric bounding boxes.
+- **Text Localization / Redaction:** Privacy-preserving workflows (such as blurring sensitive text or license plates in video feeds) may only need geometric coordinates (`boundingBox` / `cornerPoints`) without running full character recognition.
+
+Future options could allow developers to selectively enable only the capabilities they need as more platform backends expose granular execution modes.
 
 ---
 
