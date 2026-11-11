@@ -397,8 +397,8 @@ faceDetector.detect(theImage)
 .then(detectedFaces => {
   for (const face of detectedFaces) {
     console.log(
-        ' Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),' +
-        ' size ${face.boundingBox.width}x${face.boundingBox.height}');
+        ` Face @ (${face.boundingBox.x}, ${face.boundingBox.y}),` +
+        ` size ${face.boundingBox.width}x${face.boundingBox.height}`);
   }
 }).catch(() => {
   console.error("Face Detection failed, boo.");
@@ -421,9 +421,9 @@ let barcodeDetector = new BarcodeDetector();
 barcodeDetector.detect(theImage)
 .then(detectedCodes => {
   for (const barcode of detectedCodes) {
-    console.log(' Barcode ${barcode.rawValue}' +
-        ' @ (${barcode.boundingBox.x}, ${barcode.boundingBox.y}) with size' +
-        ' ${barcode.boundingBox.width}x${barcode.boundingBox.height}');
+    console.log(` Barcode ${barcode.rawValue}` +
+        ` @ (${barcode.boundingBox.x}, ${barcode.boundingBox.y}) with size` +
+        ` ${barcode.boundingBox.width}x${barcode.boundingBox.height}`);
   }
 }).catch(() => {
   console.error("Barcode Detection failed, boo.");
